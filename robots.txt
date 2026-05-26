@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cascasth.github.io/Mapa-identidad-natal/sitemap.xml
