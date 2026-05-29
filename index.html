@@ -1392,25 +1392,6 @@
       <div class="hint" data-i18n="hint-ciudad">📍 Escribe las primeras letras y selecciona tu ciudad de la lista. Funciona en cualquier idioma.</div>
     </div>
 
-    <div class="field">
-      <label data-i18n="lbl-asc">¿Conoces tu ascendente? (opcional)</label>
-      <select id="ascendente">
-        <option value="" data-i18n-opt="asc-none">No lo sé — lo calculamos con tu ciudad y hora</option>
-        <option value="Aries">Aries</option>
-        <option value="Tauro">Tauro</option>
-        <option value="Géminis">Géminis</option>
-        <option value="Cáncer">Cáncer</option>
-        <option value="Leo">Leo</option>
-        <option value="Virgo">Virgo</option>
-        <option value="Libra">Libra</option>
-        <option value="Escorpio">Escorpio</option>
-        <option value="Sagitario">Sagitario</option>
-        <option value="Capricornio">Capricornio</option>
-        <option value="Acuario">Acuario</option>
-        <option value="Piscis">Piscis</option>
-      </select>
-      <div class="hint" data-i18n="hint-asc">Si ya lo sabes, usamos ese dato directo para mayor precisión.</div>
-    </div>
 
     <div class="submit-wrap">
       <button type="button" class="btn-submit" id="btn-revisar" onclick="mostrarConfirmacion()">
@@ -1448,10 +1429,7 @@
         <span class="confirm-label" data-i18n="conf-lbl-ciudad">Ciudad</span>
         <span class="confirm-value" id="conf-ciudad"></span>
       </div>
-      <div class="confirm-row" id="conf-row-ascendente">
-        <span class="confirm-label" data-i18n="conf-lbl-asc">Asc.</span>
-        <span class="confirm-value" id="conf-ascendente"></span>
-      </div>
+      
     </div>
     <div class="confirm-actions">
       <button class="btn-confirmar" id="btn-confirmar" onclick="enviarConfirmado()">
