@@ -1706,7 +1706,6 @@ function mostrarFormulario() {
     const hora     = parseInt(document.getElementById('hora').value);
     const minutos  = parseInt(document.getElementById('minutos').value) || 0;
     const ciudad   = document.getElementById('ciudad').value.trim();
-    const ascendente = document.getElementById('ascendente').value;
 
     // Validaciones básicas (las mismas de antes de enviar)
     if (!nombre || !email || !dia || !mes || !anio || isNaN(hora) || !ciudad) {
@@ -1790,7 +1789,7 @@ function mostrarFormulario() {
     const hora       = parseInt(document.getElementById('hora').value);
     const minutos    = parseInt(document.getElementById('minutos').value) || 0;
     const ciudad     = document.getElementById('ciudad').value.trim();
-    const ascendente = document.getElementById('ascendente').value;
+
 
     btn.disabled = true;
     btn.classList.add('loading');
