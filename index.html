@@ -1653,13 +1653,6 @@ function mostrarFormulario() {
       if (t[key] !== undefined) el.placeholder = t[key];
     });
 
-    // Actualizar opciones del select de ascendente
-    const asc = document.getElementById('ascendente');
-    if (asc) {
-      asc.options[0].text = t['asc-none'];
-      const signs = lang === 'en' ? zodiacEN : zodiacES;
-      signs.forEach((name, i) => { if (asc.options[i+1]) asc.options[i+1].text = name; });
-    }
 
     // Actualizar imagen de beneficios
     const img = document.getElementById('benefits-img');
@@ -1756,14 +1749,14 @@ function mostrarFormulario() {
     const nombreMes = i18n[idiomaSeleccionado].months[(mes - 1)] || mes;
     const horaFmt   = String(hora).padStart(2,'0') + ':' + String(minutos).padStart(2,'0');
     const fechaFmt  = `${dia} de ${nombreMes} de ${anio}`;
-    const ascFmt    = ascendente || i18n[idiomaSeleccionado]['conf-asc-unknown'];
+
 
     document.getElementById('conf-nombre').textContent    = nombre;
     document.getElementById('conf-email').textContent     = email;
     document.getElementById('conf-fecha').textContent     = fechaFmt;
     document.getElementById('conf-hora').textContent      = horaFmt + ' h';
     document.getElementById('conf-ciudad').textContent    = ciudad;
-    document.getElementById('conf-ascendente').textContent = ascFmt;
+
 
     // Mostrar panel, ocultar formulario
     document.getElementById('form').style.display = 'none';
@@ -1823,7 +1816,6 @@ function mostrarFormulario() {
       lat: ciudadLat,
       lng: ciudadLng,
       timezone: timezone,
-      ascendente: ascendente || null,
       idioma: idiomaSeleccionado,
       timestamp: new Date().toISOString()
     };
