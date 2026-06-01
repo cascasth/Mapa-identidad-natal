@@ -719,18 +719,112 @@
     font-style: italic;
     line-height: 1.55;
   }
+
+  /* ── BARRA SUPERIOR COMO PÁGINA PRINCIPAL ── */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: rgba(6,4,15,.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,168,76,.15);
+  gap: 12px;
+}
+
+.top-nav-brand {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: var(--gold);
+  opacity: .85;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.top-nav-links {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.top-nav-link {
+  padding: 5px 13px;
+  border: 1px solid rgba(201,168,76,.18);
+  border-radius: 20px;
+  color: rgba(199,189,223,.6);
+  font-size: 12px;
+  text-decoration: none;
+  transition: all .2s;
+  white-space: nowrap;
+}
+
+.top-nav-link:hover,
+.top-nav-link.active {
+  border-color: rgba(201,168,76,.45);
+  color: var(--gold-pale);
+  background: rgba(201,168,76,.07);
+}
+
+/* baja el contenido para que no quede tapado por la barra */
+.container {
+  padding-top: 5.5rem;
+}
+
+/* ── LOGO CON SOMBRA LUMINOSA ── */
+.logo-badge {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center,
+      rgba(220,210,255,.95) 0%,
+      rgba(185,160,240,.72) 45%,
+      rgba(120,90,180,.18) 72%,
+      transparent 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 35px rgba(180,150,255,.22),
+    0 0 80px rgba(120,90,180,.14);
+  backdrop-filter: blur(10px);
+}
+
+.logo-img {
+  width: 92px;
+  height: auto;
+  filter: none;
+}
 </style>
 </head>
 <body>
+
+  <nav class="top-nav">
+  <a class="top-nav-brand" href="./">✦ Centro Ser Integral</a>
+  <div class="top-nav-links">
+    <a class="top-nav-link" href="./">Inicio</a>
+    <a class="top-nav-link active" href="tzolkin.html">🌀 Brújula Galáctica</a>
+    <a class="top-nav-link" href="./#payment-step">Solicitar Mapa</a>
+  </div>
+</nav>
+  
 <div class="container">
 
   <!-- HEADER -->
   <header class="site-header">
 
-    <div class="logo-wrap">
-      <img src="logo-centro-ser.png" class="logo-img" alt="Centro Ser Integral"
-           onerror="this.style.display='none'">
-    </div>
+<div class="logo-wrap">
+  <div class="logo-badge">
+    <img src="logo-centro-ser.png" class="logo-img" alt="Centro Ser Integral"
+         onerror="this.style.display='none'">
+  </div>
+</div>
     <span class="brand-name">Centro Ser Integral</span>
 
     <div class="glyph-row">✦ ◈ ✦ ◈ ✦</div>
