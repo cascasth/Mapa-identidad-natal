@@ -1128,6 +1128,7 @@ const TABLA_260 = {
 };
 
 
+
 // =============================================
 // IDIOMA / LANGUAGE
 // =============================================
@@ -1395,7 +1396,7 @@ function mostrarHoy() {
   const hoy = new Date();
   const kin = getKin(hoy);
   const { tono, sello, selloIdx } = kinADatos(kin);
-  const datos = TABLA_260[kin];
+  const datos = currentLang === 'en' ? TABLA_260_EN[kin] : TABLA_260[kin];
   const t = i18n[currentLang];
   const nombreSello = currentLang === 'en' ? SELLOS_EN[selloIdx] : sello.nombre;
 
@@ -1425,7 +1426,7 @@ function mostrarHoy() {
 
 function renderResultado(kinVal) {
   const { tono, sello, selloIdx } = kinADatos(kinVal);
-  const datos = TABLA_260[kinVal];
+  const datos = currentLang === 'en' ? TABLA_260_EN[kinVal] : TABLA_260[kinVal];
   const t = i18n[currentLang];
   const nombreSello = currentLang === 'en' ? SELLOS_EN[selloIdx] : sello.nombre;
 
