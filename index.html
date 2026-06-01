@@ -1115,11 +1115,42 @@ content="Descubre tu Mapa de Identidad Natal: una lectura personalizada que inte
   font-style: italic;
 }
 
+.audio-toggle{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1000;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(201,168,76,.35);
+  background: rgba(6,4,15,.82);
+  color: var(--gold-soft);
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  letter-spacing: .04em;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.35);
+}
+
+.audio-toggle:hover{
+  border-color: rgba(201,168,76,.65);
+  color: #fff1a8;
+}    
     
 </style>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBD63KT8eFB1Gc-JKsWiwVuWltNb-9N7xc&libraries=places&loading=async"></script>
 
 </head>
+
+<audio id="bg-audio" loop preload="auto">
+  <source src="ambiente-ceremonial.mp3" type="audio/mpeg">
+</audio>
+
+<button id="audio-toggle" class="audio-toggle" onclick="toggleAudio()">
+  🜂 Activar experiencia sonora
+</button>
+  
 <body>
 
 <nav class="top-nav">
@@ -1156,7 +1187,7 @@ content="Descubre tu Mapa de Identidad Natal: una lectura personalizada que inte
 
 <p class="subtitle-short">
   Siete códigos simbólicos 
-  integrados en un solo mapa.
+  <em>integrados en un solo mapa.
 </p>
 
 <p class="subtitle">
@@ -2027,6 +2058,24 @@ function mostrarFormulario() {
     return tzData.gmtOffset / 3600;
   }
 
+let audioActivo = false;
+
+function toggleAudio() {
+  const audio = document.getElementById('bg-audio');
+  const btn = document.getElementById('audio-toggle');
+
+  if (!audioActivo) {
+    audio.volume = 0.28;
+    audio.play();
+    audioActivo = true;
+    btn.textContent = 'Silenciar ambiente sonoro';
+  } else {
+    audio.pause();
+    audioActivo = false;
+    btn.textContent = '🜂 Activar experiencia sonora';
+  }
+}
+  
 </script>
 
     <!-- Disclaimer -->
