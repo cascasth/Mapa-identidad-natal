@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO e indexación para buscadores e IA -->
+<meta name="description" content="Calcula tu Camino de Vida y descubre el significado de cada número en la Numerología Pitagórica: del 1 al 9 y los números maestros 11, 22 y 33. Calculadora gratis y guía completa.">
+<meta name="keywords" content="numerología, camino de vida, números maestros, numerología pitagórica, calcular número de nacimiento, significado de los números, autoconocimiento, Centro Ser Integral">
+<meta name="author" content="Centro Ser Integral">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Numerología Pitagórica — Calcula tu Camino de Vida | Centro Ser Integral">
+<meta property="og:description" content="Pon tu fecha de nacimiento y descubre tu número de Camino de Vida, más el significado del 1 al 9 y los maestros 11, 22 y 33.">
+<meta property="og:url" content="https://centroserintegral.org/numerologia.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Centro Ser Integral">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Numerología Pitagórica: tu Camino de Vida y el significado de cada número",
+  "description": "Guía de Numerología Pitagórica con calculadora de Camino de Vida y el significado del 1 al 9 y los números maestros 11, 22 y 33.",
+  "url": "https://centroserintegral.org/numerologia.html",
+  "inLanguage": "es-MX",
+  "author": { "@type": "Organization", "name": "Centro Ser Integral" },
+  "publisher": { "@type": "Organization", "name": "Centro Ser Integral" }
+}
+</script>
+
+<title>Numerología Pitagórica — Calcula tu Camino de Vida | Centro Ser Integral</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0b14;
+    --parchment: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-pale: #e8d5a0;
+    --teal: #2a7f7f;
+    --teal-light: #4ab3b3;
+    --crimson: #8b1a2f;
+    --violet: #3d2060;
+    --glow: rgba(201, 168, 76, 0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ink);
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Starfield background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(61, 32, 96, 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(42, 127, 127, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(139, 26, 47, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── BARRA SUPERIOR ── */
+  .top-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: rgba(6,4,15,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,.15);
+    gap: 12px;
+  }
+  .top-nav-brand {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 11px;
+    letter-spacing: .2em;
+    color: var(--gold);
+    opacity: .85;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .top-nav-links {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .top-nav-link {
+    padding: 5px 13px;
+    border: 1px solid rgba(201,168,76,.18);
+    border-radius: 20px;
+    color: rgba(199,189,223,.6);
+    font-size: 12px;
+    text-decoration: none;
+    transition: all .2s;
+    white-space: nowrap;
+  }
+  .top-nav-link:hover,
+  .top-nav-link.active {
+    border-color: rgba(201,168,76,.45);
+    color: var(--gold-pale);
+    background: rgba(201,168,76,.07);
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 5.5rem 1.5rem 4rem;
+  }
+
+  /* ── HEADER ── */
+  .site-header { text-align: center; margin-bottom: 3rem; }
+
+  .logo-wrap { margin-bottom: 10px; }
+  .logo-badge {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at center,
+        rgba(220,210,255,.95) 0%,
+        rgba(185,160,240,.72) 45%,
+        rgba(120,90,180,.18) 72%,
+        transparent 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 0 35px rgba(180,150,255,.22),
+      0 0 80px rgba(120,90,180,.14);
+    backdrop-filter: blur(10px);
+  }
+  .logo-img { width: 92px; height: auto; }
+
+  .brand-name {
+    display: block;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: .75;
+    margin-bottom: 18px;
+  }
+
+  .glyph-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    opacity: 0.7;
+    letter-spacing: 0.15em;
+  }
+
+  /* ── Selector de idioma ── */
+  .header-lang {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+  }
+  .header-lang-btn {
+    padding: 5px 14px;
+    border: 1px solid rgba(201,168,76,.2);
+    border-radius: 20px;
+    background: transparent;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    color: rgba(199,189,223,.55);
+    cursor: pointer;
+    transition: all .2s;
+    letter-spacing: .04em;
+  }
+  .header-lang-btn.active {
+    border-color: rgba(201,168,76,.45);
+    color: var(--gold-pale);
+    background: rgba(201,168,76,.07);
+  }
+  .header-lang-btn:hover {
+    border-color: rgba(201,168,76,.35);
+    color: var(--gold-pale);
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+    margin-top: 0.8rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+    color: var(--gold-pale);
+    opacity: 0.7;
+    font-style: italic;
+    letter-spacing: 0.05em;
+  }
+
+  /* Nav botones secundarios */
+  .tz-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .tz-nav-btn {
+    padding: 7px 16px;
+    border: 1px solid rgba(201,168,76,.22);
+    border-radius: 20px;
+    background: rgba(13,11,20,.6);
+    color: rgba(199,189,223,.65);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all .25s;
+    letter-spacing: .04em;
+  }
+  .tz-nav-btn:hover {
+    border-color: rgba(201,168,76,.45);
+    color: var(--gold-pale);
+    background: rgba(201,168,76,.07);
+  }
+  .tz-nav-btn--active {
+    border-color: rgba(201,168,76,.4);
+    color: var(--gold-pale);
+    background: rgba(201,168,76,.08);
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2.5rem 0;
+    opacity: 0.4;
+  }
+
+  /* ── TARJETA DE SECCIÓN ── */
+  .panel {
+    background: linear-gradient(145deg, rgba(20,14,45,0.55), rgba(13,11,20,0.55));
+    border: 1px solid rgba(201,168,76,.18);
+    border-radius: 18px;
+    padding: 1.8rem 1.6rem;
+    margin-bottom: 1.6rem;
+    box-shadow: 0 14px 44px rgba(0,0,0,.35);
+  }
+  .panel-heading {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.9;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+  .panel p {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--parchment);
+    opacity: .82;
+  }
+  .panel p + p { margin-top: 0.7rem; }
+  .panel .accent { color: var(--gold-pale); font-weight: 400; }
+
+  /* ── CALCULADORA ── */
+  .calc-panel {
+    --kin-color: var(--teal);
+    background:
+      radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--teal) 22%, transparent), transparent 55%),
+      linear-gradient(145deg, rgba(20,14,45,0.92), rgba(9,49,70,0.62));
+    border: 1px solid color-mix(in srgb, var(--teal) 45%, var(--gold));
+  }
+  .calc-label {
+    display: block;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--gold-pale);
+    opacity: .8;
+    font-style: italic;
+    margin-bottom: 0.9rem;
+  }
+  .calc-inputs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 1.1rem;
+  }
+  .calc-inputs input {
+    width: 88px;
+    padding: 12px 8px;
+    background: rgba(6,4,15,.55);
+    border: 1px solid rgba(201,168,76,.3);
+    border-radius: 12px;
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    text-align: center;
+    -moz-appearance: textfield;
+  }
+  .calc-inputs input::-webkit-outer-spin-button,
+  .calc-inputs input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .calc-inputs input:focus { outline: none; border-color: var(--gold); }
+  .calc-inputs input::placeholder { color: rgba(245,240,232,.35); }
+
+  .calc-btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--violet), var(--teal));
+    border: 1px solid rgba(201,168,76,.35);
+    border-radius: 26px;
+    color: var(--parchment);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.82rem;
+    letter-spacing: .12em;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .2s;
+  }
+  .calc-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(61,32,96,.5); }
+
+  .calc-result { display: none; margin-top: 1.4rem; text-align: center; animation: fadeUp .5s ease both; }
+  .calc-result.visible { display: block; }
+  .result-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 4rem;
+    color: var(--gold-pale);
+    line-height: 1;
+    text-shadow: 0 0 32px rgba(201,168,76,.45);
+  }
+  .result-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.15rem;
+    color: var(--parchment);
+    margin-top: 0.5rem;
+    letter-spacing: .05em;
+  }
+  .result-frase {
+    font-size: 1.02rem;
+    color: var(--gold-pale);
+    font-style: italic;
+    opacity: .85;
+    margin-top: 0.5rem;
+  }
+  .result-link {
+    display: inline-block;
+    margin-top: 0.9rem;
+    font-size: 0.95rem;
+    color: var(--gold-pale);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,168,76,.35);
+    padding-bottom: 2px;
+  }
+  .calc-error { display: none; margin-top: 0.9rem; text-align: center; font-size: 0.92rem; color: #e08a98; }
+  .calc-error.visible { display: block; }
+
+  /* ── TARJETAS POR NÚMERO ── */
+  .num-grid { display: flex; flex-direction: column; gap: 11px; }
+  .num-card {
+    background: rgba(13,11,20,0.5);
+    border: 1px solid rgba(201,168,76,.16);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color .25s;
+  }
+  .num-card.open { border-color: rgba(201,168,76,.42); }
+  .num-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .num-badge {
+    flex-shrink: 0;
+    width: 46px; height: 46px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,.4);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.15rem;
+    color: var(--gold-pale);
+    background: rgba(201,168,76,.06);
+  }
+  .num-card.master .num-badge {
+    border-color: rgba(120,90,180,.6);
+    color: #cbb0ec;
+    background: rgba(61,32,96,.3);
+  }
+  .num-title {
+    flex: 1;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.98rem;
+    color: var(--parchment);
+    letter-spacing: .03em;
+  }
+  .num-title small {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem;
+    color: var(--gold-pale);
+    opacity: .6;
+    font-style: italic;
+    letter-spacing: .02em;
+    margin-top: 2px;
+  }
+  .num-toggle { flex-shrink: 0; color: var(--gold); font-size: 1.1rem; transition: transform .25s; }
+  .num-card.open .num-toggle { transform: rotate(45deg); }
+
+  .num-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .num-body-inner { padding: 0 16px 16px; }
+  .num-row {
+    display: flex;
+    gap: 10px;
+    padding: 9px 0;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    border-top: 1px solid rgba(201,168,76,.1);
+  }
+  .num-row:first-child { border-top: none; }
+  .num-row .lbl {
+    flex-shrink: 0;
+    width: 92px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.6rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: .85;
+    padding-top: 4px;
+  }
+  .num-row .val { flex: 1; color: var(--parchment); opacity: .82; }
+  .num-row.frase .val { font-style: italic; color: var(--gold-pale); opacity: .92; }
+
+  /* ── CTA ── */
+  .cta-panel { text-align: center; border-style: dashed; }
+  .cta-panel p { margin-bottom: 1.1rem; }
+  .cta-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--violet), var(--teal));
+    border: 1px solid rgba(201,168,76,.35);
+    border-radius: 26px;
+    color: var(--parchment);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.78rem;
+    letter-spacing: .12em;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .2s;
+  }
+  .cta-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(61,32,96,.5); }
+
+  /* ── FOOTER ── */
+  .tz-footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(201,168,76,.12);
+    text-align: center;
+  }
+  .tz-footer .footer-brand {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: .6;
+    margin-bottom: 8px;
+  }
+  .tz-footer .footer-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: rgba(199,189,223,.45);
+  }
+  .tz-footer .footer-contact a {
+    color: rgba(201,168,76,.55);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .tz-footer .footer-contact a:hover { color: var(--gold); }
+  .copyright { margin-top: 20px; font-size: 12px; color: rgba(199,189,223,.45); }
+  .legal {
+    margin-top: 12px;
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: rgba(199,189,223,.28);
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 420px) {
+    .top-nav-brand { font-size: 10px; letter-spacing: .12em; }
+    .top-nav-link { font-size: 11px; padding: 4px 10px; }
+    .num-row .lbl { width: 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAVEGACIÓN ══ -->
+<nav class="top-nav">
+  <a class="top-nav-brand" href="./">✦ Centro Ser Integral</a>
+  <div class="top-nav-links">
+    <a class="top-nav-link" href="./" data-i18n="top-inicio">Inicio</a>
+    <a class="top-nav-link" href="tzolkin.html" data-i18n="top-brujula">🌀 Tu Kin gratis</a>
+    <a class="top-nav-link active" href="numerologia.html" data-i18n="top-numerologia">🔢 Numerología</a>
+    <a class="top-nav-link" href="./#payment-step" data-i18n="top-solicitar">Solicitar Mapa</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- ══ HEADER ══ -->
+  <header class="site-header">
+    <div class="logo-wrap">
+      <div class="logo-badge">
+        <img src="logo-centro-ser.png" class="logo-img" alt="Centro Ser Integral" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <span class="brand-name">Centro Ser Integral</span>
+
+    <div class="glyph-row">✦ ◈ ✦ ◈ ✦</div>
+
+    <div class="header-lang">
+      <button class="header-lang-btn active lang-btn-es" id="header-lang-es" onclick="setLang('es')">🇲🇽 Español</button>
+      <button class="header-lang-btn lang-btn-en" id="header-lang-en" onclick="setLang('en')">🇺🇸 English</button>
+    </div>
+
+    <h1 data-i18n="h1">Numerología</h1>
+    <p class="subtitle" data-i18n="subtitle">Tu Camino de Vida y el sentido de cada número</p>
+
+    <nav class="tz-nav">
+      <a class="tz-nav-btn" href="index.html" data-i18n="nav-mapa">🏠 Mapa de Identidad</a>
+      <a class="tz-nav-btn tz-nav-btn--active" href="#calc-section" data-i18n="nav-num">🔢 Numerología</a>
+    </nav>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- ══ CALCULADORA ══ -->
+  <section class="panel calc-panel" id="calc-section">
+    <div class="panel-heading" data-i18n="calc-heading">Calcula tu número</div>
+    <span class="calc-label" data-i18n="calc-label">Escribe tu fecha de nacimiento</span>
+    <div class="calc-inputs">
+      <input type="number" id="dia"  data-i18n-ph="ph-dia"  placeholder="Día"  min="1" max="31"   inputmode="numeric">
+      <input type="number" id="mes"  data-i18n-ph="ph-mes"  placeholder="Mes"  min="1" max="12"   inputmode="numeric">
+      <input type="number" id="anio" data-i18n-ph="ph-anio" placeholder="Año"  min="1900" max="2050" inputmode="numeric">
+    </div>
+    <button class="calc-btn" onclick="calcularCamino()" data-i18n="calc-btn">✦ Calcular mi Camino de Vida</button>
+    <div class="calc-error" id="calc-error" data-i18n="calc-error">Revisa tu fecha: día (1–31), mes (1–12) y año (1900–2050).</div>
+
+    <div class="calc-result" id="calc-result">
+      <div class="result-num" id="result-num">—</div>
+      <div class="result-name" id="result-name"></div>
+      <div class="result-frase" id="result-frase"></div>
+      <a class="result-link" href="#significados" onclick="abrirSignificado()" data-i18n="result-link">Ver el significado completo de mi número ↓</a>
+    </div>
+  </section>
+
+  <!-- ══ QUÉ ES ══ -->
+  <section class="panel">
+    <div class="panel-heading" data-i18n="qe-heading">¿Qué es el Camino de Vida?</div>
+    <p data-i18n="qe-p1">Es el número más importante de tu numerología. Se obtiene sumando todos los dígitos de tu fecha de nacimiento hasta reducirlos a un solo número, del 1 al 9 —o a un número maestro: 11, 22 o 33.</p>
+    <p data-i18n="qe-p2">Describe la energía central que traes para esta vida: tus dones naturales, los aprendizajes que se repiten y el camino que tu alma vino a recorrer. No te limita; te ofrece un espejo para reconocerte.</p>
+    <p data-i18n="qe-p3"><span class="accent">Cómo se calcula:</span> se reducen por separado el día, el mes y el año, se suman los tres resultados y se reduce una vez más. Si en el camino aparece 11, 22 o 33, se conserva como número maestro.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ SIGNIFICADOS ══ -->
+  <section class="panel" id="significados">
+    <div class="panel-heading" data-i18n="sig-heading">El significado de cada número</div>
+    <div class="num-grid" id="num-grid"></div>
+  </section>
+
+  <!-- ══ OTROS NÚMEROS ══ -->
+  <section class="panel">
+    <div class="panel-heading" data-i18n="mas-heading">Más allá del Camino de Vida</div>
+    <p data-i18n="mas-p1">Tu Camino de Vida es solo uno de tus cuatro números pitagóricos. Los otros tres se calculan con tu <span class="accent">nombre completo</span>:</p>
+    <p data-i18n="mas-exp">✦ <span class="accent">Número de Expresión</span> — tus talentos y la forma en que te muestras al mundo.</p>
+    <p data-i18n="mas-alma">✦ <span class="accent">Número del Alma</span> — lo que tu corazón anhela en lo profundo.</p>
+    <p data-i18n="mas-pers">✦ <span class="accent">Número de Personalidad</span> — la primera impresión que proyectas.</p>
+    <p data-i18n="mas-p2">Los cuatro juntos —y entrelazados con tu zodiaco, tu Kin maya y tus demás sistemas— forman tu Mapa de Identidad completo.</p>
+  </section>
+
+  <!-- ══ CTA ══ -->
+  <section class="panel cta-panel">
+    <div class="panel-heading" data-i18n="cta-heading">Tu retrato completo</div>
+    <p data-i18n="cta-p">La numerología es una de las siete voces de tu Mapa de Identidad Natal. Descubre cómo se teje con tu astrología, tu horóscopo chino y tus calendarios ancestrales.</p>
+    <a class="cta-btn" href="./#payment-step" data-i18n="cta-btn">Solicitar mi Mapa ✦</a>
+  </section>
+
+  <!-- ══ NOTA ══ -->
+  <section class="panel">
+    <p data-i18n="disc" style="font-size:0.92rem; opacity:.7;"><span class="accent">Nota:</span> la numerología es una herramienta simbólica de autoconocimiento y reflexión personal. No es ciencia exacta ni sustituye orientación médica, psicológica, legal o profesional. Tómala como inspiración para mirarte con más claridad.</p>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="tz-footer">
+    <div class="footer-brand">Centro Ser Integral</div>
+    <div class="footer-contact">
+      <span data-i18n="footer-contact">¿Dudas o comentarios?</span>
+      <a href="mailto:centro.ser.integral@gmail.com">centro.ser.integral@gmail.com</a>
+      <span>·</span>
+      <a href="privacidad.html" target="_blank" data-i18n="footer-privacidad">Aviso de privacidad</a>
+    </div>
+    <p class="copyright">© 2026 Centro Ser Integral</p>
+    <p class="legal">
+      El contenido de este sitio, incluyendo textos, interpretaciones, metodología de integración,
+      estructura de resultados, diseño visual y sistema de lectura simbólica, constituye una obra original
+      protegida por derechos de autor. Queda prohibida su reproducción, adaptación o comercialización
+      sin autorización escrita de Centro Ser Integral.
+    </p>
+  </footer>
+
+</div>
+
+<script>
+/* ════════ DATOS — significado de cada número (tabla de Tere) ════════ */
+const NUMEROS = {
+  1: { nombre:"El Pionero / Líder",
+       proposito:"Aprender independencia, liderazgo y confianza en sí mismo.",
+       fortalezas:"Independiente, audaz, con iniciativa, pensador creativo, carismático.",
+       desafios:"Terco, egocéntrico, impaciente, difícil trabajar bajo autoridad.",
+       frase:"Confío en mi propio paso y abro camino." },
+  2: { nombre:"El Pacificador / Diplomático",
+       proposito:"Traer armonía, equilibrio y cooperación.",
+       fortalezas:"Diplomático, empático, paciente, cooperativo, excelente mediador.",
+       desafios:"Hipersensible, indeciso, evita conflictos, depende de la aprobación.",
+       frase:"Mi sensibilidad es mi fuerza, no mi debilidad." },
+  3: { nombre:"El Comunicador Creativo",
+       proposito:"Expresar creatividad, alegría y optimismo; inspirar a otros.",
+       fortalezas:"Creativo, expresivo, optimista, gran comunicador, adaptable.",
+       desafios:"Energía dispersa, superficial, sensible a las críticas, desorganizado.",
+       frase:"Expreso lo que soy y eso ilumina mi entorno." },
+  4: { nombre:"El Constructor",
+       proposito:"Establecer estabilidad, seguridad y sistemas prácticos.",
+       fortalezas:"Trabajador, disciplinado, organizado, confiable, solucionador práctico.",
+       desafios:"Rígido, excesivamente serio, difícil con la espontaneidad, terco.",
+       frase:"Construyo con paciencia lo que perdura." },
+  5: { nombre:"El Buscador de Libertad",
+       proposito:"Aprender mediante la experiencia y abrazar la libertad responsablemente.",
+       fortalezas:"Adaptable, aventurero, sociable, ingenioso, de mente abierta.",
+       desafios:"Inquieto, difícil con los compromisos, impulsivo, descuida responsabilidades.",
+       frase:"Mi libertad florece cuando elijo con conciencia." },
+  6: { nombre:"El Cuidador",
+       proposito:"Amor, responsabilidad y sanación; equilibrio entre cuidar a otros y a sí mismo.",
+       fortalezas:"Amable, compasivo, responsable, con sentido de familia, idealista.",
+       desafios:"Complacer a la gente, controlar, difícil aceptar ayuda, idealista al extremo.",
+       frase:"Cuido sin perderme; doy desde mi plenitud." },
+  7: { nombre:"El Buscador / Sabio",
+       proposito:"Buscar y compartir sabiduría, cultivar la espiritualidad interior.",
+       fortalezas:"Analítico, curioso, intuitivo, pensador profundo, independiente.",
+       desafios:"Soledad excesiva, escéptico, difícil expresar emociones, perfeccionista.",
+       frase:"En mi silencio encuentro las respuestas." },
+  8: { nombre:"El Centro de Poder",
+       proposito:"Usar el poder y la abundancia positivamente; lograr con integridad.",
+       fortalezas:"Líder natural, ambicioso, bueno con las finanzas, resistente, valiente.",
+       desafios:"Adicción al trabajo, autoritario, difícil delegar, materialismo.",
+       frase:"Mi poder crece cuando sirve a algo mayor que yo." },
+  9: { nombre:"El Guía / Sabio",
+       proposito:"Sabiduría, intuición y función de guía; ayudar a otros.",
+       fortalezas:"Sabio, comprensivo, capaz de dar un paso atrás, escucha bien, orientador.",
+       desafios:"Cargar con la emoción ajena y afectarse por las emociones de otros.",
+       frase:"Suelto con amor para hacer espacio a lo nuevo." },
+  11:{ nombre:"El Iluminador", maestro:true,
+       proposito:"Misión de alma con responsabilidad mayor; inspirar con visión espiritual.",
+       fortalezas:"Intuición elevada, inspirador, idealista, conciencia espiritual.",
+       desafios:"Ansiedad, nerviosismo, sobreidealismo, dificultad para materializar.",
+       frase:"Soy un canal de luz; mi intuición me guía." },
+  22:{ nombre:"El Constructor Maestro", maestro:true,
+       proposito:"Convertir ideales en realidades tangibles; construir a gran escala.",
+       fortalezas:"Poder de manifestación, práctico pero visionario, constructor de legados.",
+       desafios:"Abrumado por la responsabilidad, perfeccionismo extremo, estrés.",
+       frase:"Aterrizo lo grande, un paso firme a la vez." },
+  33:{ nombre:"El Maestro Sanador", maestro:true,
+       proposito:"Sanación y servicio universal; amor compasivo sin límites.",
+       fortalezas:"Compasión profunda, sanador natural, guía espiritual, altruismo.",
+       desafios:"Sobrecarga emocional, sacrificarse demasiado, dificultad con los límites.",
+       frase:"Amo y sirvo sin abandonarme en el camino." }
+};
+
+/* ════════ TRADUCCIONES DE LA INTERFAZ (el texto de cada número queda en español) ════════ */
+const i18n = {
+  es: {
+    'top-inicio':'Inicio', 'top-brujula':'🌀 Tu Kin gratis', 'top-numerologia':'🔢 Numerología', 'top-solicitar':'Solicitar Mapa',
+    'h1':'Numerología', 'subtitle':'Tu Camino de Vida y el sentido de cada número',
+    'nav-mapa':'🏠 Mapa de Identidad', 'nav-num':'🔢 Numerología',
+    'calc-heading':'Calcula tu número', 'calc-label':'Escribe tu fecha de nacimiento',
+    'ph-dia':'Día', 'ph-mes':'Mes', 'ph-anio':'Año',
+    'calc-btn':'✦ Calcular mi Camino de Vida',
+    'calc-error':'Revisa tu fecha: día (1–31), mes (1–12) y año (1900–2050).',
+    'result-link':'Ver el significado completo de mi número ↓',
+    'qe-heading':'¿Qué es el Camino de Vida?',
+    'qe-p1':'Es el número más importante de tu numerología. Se obtiene sumando todos los dígitos de tu fecha de nacimiento hasta reducirlos a un solo número, del 1 al 9 —o a un número maestro: 11, 22 o 33.',
+    'qe-p2':'Describe la energía central que traes para esta vida: tus dones naturales, los aprendizajes que se repiten y el camino que tu alma vino a recorrer. No te limita; te ofrece un espejo para reconocerte.',
+    'qe-p3':'<span class="accent">Cómo se calcula:</span> se reducen por separado el día, el mes y el año, se suman los tres resultados y se reduce una vez más. Si en el camino aparece 11, 22 o 33, se conserva como número maestro.',
+    'sig-heading':'El significado de cada número',
+    'mas-heading':'Más allá del Camino de Vida',
+    'mas-p1':'Tu Camino de Vida es solo uno de tus cuatro números pitagóricos. Los otros tres se calculan con tu <span class="accent">nombre completo</span>:',
+    'mas-exp':'✦ <span class="accent">Número de Expresión</span> — tus talentos y la forma en que te muestras al mundo.',
+    'mas-alma':'✦ <span class="accent">Número del Alma</span> — lo que tu corazón anhela en lo profundo.',
+    'mas-pers':'✦ <span class="accent">Número de Personalidad</span> — la primera impresión que proyectas.',
+    'mas-p2':'Los cuatro juntos —y entrelazados con tu zodiaco, tu Kin maya y tus demás sistemas— forman tu Mapa de Identidad completo.',
+    'cta-heading':'Tu retrato completo',
+    'cta-p':'La numerología es una de las siete voces de tu Mapa de Identidad Natal. Descubre cómo se teje con tu astrología, tu horóscopo chino y tus calendarios ancestrales.',
+    'cta-btn':'Solicitar mi Mapa ✦',
+    'disc':'<span class="accent">Nota:</span> la numerología es una herramienta simbólica de autoconocimiento y reflexión personal. No es ciencia exacta ni sustituye orientación médica, psicológica, legal o profesional. Tómala como inspiración para mirarte con más claridad.',
+    'footer-contact':'¿Dudas o comentarios?', 'footer-privacidad':'Aviso de privacidad',
+    'lbl-prop':'Propósito', 'lbl-fort':'Fortalezas', 'lbl-desaf':'Desafíos',
+    'lbl-mision':'Misión', 'lbl-luz':'Luz', 'lbl-sombra':'Sombra', 'lbl-frase':'Frase',
+    'sub-camino':'Camino de Vida', 'sub-master':'Número maestro', 'tag-master':'· Número Maestro'
+  },
+  en: {
+    'top-inicio':'Home', 'top-brujula':'🌀 Find your Kin', 'top-numerologia':'🔢 Numerology', 'top-solicitar':'Request Map',
+    'h1':'Numerology', 'subtitle':'Your Life Path and the meaning of each number',
+    'nav-mapa':'🏠 Identity Map', 'nav-num':'🔢 Numerology',
+    'calc-heading':'Calculate your number', 'calc-label':'Enter your date of birth',
+    'ph-dia':'Day', 'ph-mes':'Month', 'ph-anio':'Year',
+    'calc-btn':'✦ Calculate my Life Path',
+    'calc-error':'Check your date: day (1–31), month (1–12) and year (1900–2050).',
+    'result-link':'See the full meaning of my number ↓',
+    'qe-heading':'What is the Life Path?',
+    'qe-p1':'It is the most important number in your numerology. You get it by adding all the digits of your date of birth and reducing them to a single number, from 1 to 9 — or to a master number: 11, 22 or 33.',
+    'qe-p2':'It describes the core energy you carry for this life: your natural gifts, the lessons that keep returning, and the path your soul came to walk. It does not limit you; it offers a mirror to recognize yourself.',
+    'qe-p3':'<span class="accent">How it is calculated:</span> the day, month and year are each reduced, the three results are added, and the total is reduced once more. If 11, 22 or 33 appears along the way, it is kept as a master number.',
+    'sig-heading':'The meaning of each number',
+    'mas-heading':'Beyond the Life Path',
+    'mas-p1':'Your Life Path is only one of your four Pythagorean numbers. The other three are calculated from your <span class="accent">full name</span>:',
+    'mas-exp':'✦ <span class="accent">Expression Number</span> — your talents and the way you show up in the world.',
+    'mas-alma':'✦ <span class="accent">Soul Number</span> — what your heart longs for deep inside.',
+    'mas-pers':'✦ <span class="accent">Personality Number</span> — the first impression you project.',
+    'mas-p2':'The four together — woven with your zodiac, your Mayan Kin and your other systems — form your complete Identity Map.',
+    'cta-heading':'Your complete portrait',
+    'cta-p':'Numerology is one of the seven voices of your Natal Identity Map. Discover how it weaves with your astrology, your Chinese horoscope and your ancestral calendars.',
+    'cta-btn':'Request my Map ✦',
+    'disc':'<span class="accent">Note:</span> numerology is a symbolic tool for self-knowledge and personal reflection. It is not an exact science and does not replace medical, psychological, legal or professional guidance. Take it as inspiration to see yourself more clearly.',
+    'footer-contact':'Questions or comments?', 'footer-privacidad':'Privacy notice',
+    'lbl-prop':'Purpose', 'lbl-fort':'Strengths', 'lbl-desaf':'Challenges',
+    'lbl-mision':'Mission', 'lbl-luz':'Light', 'lbl-sombra':'Shadow', 'lbl-frase':'Mantra',
+    'sub-camino':'Life Path', 'sub-master':'Master number', 'tag-master':'· Master Number'
+  }
+};
+
+let currentLang = 'es';
+let ultimoNumero = null;
+
+/* ════════ CÁLCULO ════════ */
+function reducir(n) {
+  while (n > 9 && n !== 11 && n !== 22 && n !== 33) {
+    n = String(n).split('').reduce((a, d) => a + Number(d), 0);
+  }
+  return n;
+}
+function calcularCaminoDeVida(dia, mes, anio) {
+  const d = reducir(dia);
+  const m = reducir(mes);
+  const a = reducir(String(anio).split('').reduce((s, x) => s + Number(x), 0));
+  return reducir(d + m + a);
+}
+function calcularCamino() {
+  const dia  = parseInt(document.getElementById('dia').value);
+  const mes  = parseInt(document.getElementById('mes').value);
+  const anio = parseInt(document.getElementById('anio').value);
+  const err    = document.getElementById('calc-error');
+  const result = document.getElementById('calc-result');
+  const valido = dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && anio >= 1900 && anio <= 2050;
+  if (!valido) { err.classList.add('visible'); result.classList.remove('visible'); return; }
+  err.classList.remove('visible');
+  const num = calcularCaminoDeVida(dia, mes, anio);
+  const info = NUMEROS[num];
+  document.getElementById('result-num').textContent = num;
+  document.getElementById('result-name').textContent = info.nombre + (info.maestro ? ' ' + i18n[currentLang]['tag-master'] : '');
+  document.getElementById('result-frase').textContent = '“' + info.frase + '”';
+  result.classList.add('visible');
+  ultimoNumero = num;
+}
+function abrirSignificado() {
+  if (ultimoNumero == null) return;
+  const card = document.getElementById('card-' + ultimoNumero);
+  if (card && !card.classList.contains('open')) toggleCard(ultimoNumero);
+}
+
+/* ════════ TARJETAS ════════ */
+function toggleCard(num) {
+  const card = document.getElementById('card-' + num);
+  const body = card.querySelector('.num-body');
+  const open = card.classList.toggle('open');
+  body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
+}
+(function renderCards() {
+  const grid = document.getElementById('num-grid');
+  const orden = [1,2,3,4,5,6,7,8,9,11,22,33];
+  grid.innerHTML = orden.map(num => {
+    const i = NUMEROS[num];
+    const subKey = i.maestro ? 'sub-master' : 'sub-camino';
+    const subNum = i.maestro ? '' : ' ' + num;
+    const r1lbl = i.maestro ? 'lbl-mision' : 'lbl-prop';
+    const r2lbl = i.maestro ? 'lbl-luz'    : 'lbl-fort';
+    const r3lbl = i.maestro ? 'lbl-sombra' : 'lbl-desaf';
+    return `
+    <div class="num-card${i.maestro ? ' master' : ''}" id="card-${num}">
+      <div class="num-head" onclick="toggleCard(${num})">
+        <div class="num-badge">${num}</div>
+        <div class="num-title">${i.nombre}<small><span data-i18n="${subKey}"></span>${subNum}</small></div>
+        <div class="num-toggle">＋</div>
+      </div>
+      <div class="num-body"><div class="num-body-inner">
+        <div class="num-row"><span class="lbl" data-i18n="${r1lbl}"></span><span class="val">${i.proposito}</span></div>
+        <div class="num-row"><span class="lbl" data-i18n="${r2lbl}"></span><span class="val">${i.fortalezas}</span></div>
+        <div class="num-row"><span class="lbl" data-i18n="${r3lbl}"></span><span class="val">${i.desafios}</span></div>
+        <div class="num-row frase"><span class="lbl" data-i18n="lbl-frase"></span><span class="val">${i.frase}</span></div>
+      </div></div>
+    </div>`;
+  }).join('');
+})();
+
+/* ════════ IDIOMA ════════ */
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn-es').forEach(b => b.classList.toggle('active', lang === 'es'));
+  document.querySelectorAll('.lang-btn-en').forEach(b => b.classList.toggle('active', lang === 'en'));
+  const t = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+  // recalcular altura de tarjetas abiertas (el texto cambió de largo)
+  document.querySelectorAll('.num-card.open .num-body').forEach(b => { b.style.maxHeight = b.scrollHeight + 'px'; });
+  document.documentElement.lang = lang;
+}
+
+setLang('es');
+</script>
+
+</body>
+</html>
