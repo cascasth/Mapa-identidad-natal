@@ -2104,9 +2104,15 @@ function mostrarFormulario() {
   try {
     paypal.HostedButtons({
       hostedButtonId: "KCU4KJ4U3TFEE",
-      onApprove: function() {
+      onApprove: function(data) {
+    try {
         mostrarFormulario();
-      }
+    } catch(err) {
+        console.error('Error al mostrar formulario tras pago:', err);
+        // Plan B: redirige con ?pagado=si para que el formulario se abra igual
+        window.location.href = window.location.pathname + '?pagado=si';
+    }
+}
     }).render("#paypal-container-KCU4KJ4U3TFEE");
   } catch(e) {
     console.warn('PayPal no disponible:', e);
