@@ -43,6 +43,9 @@ export default function FeedPrivadoPage() {
       setProgress(p => {
         if (p >= 100) {
           clearInterval(t);
+          if (current < VIDEOS.length - 1) {
+            setTimeout(() => setCurrent(c => c + 1), 300);
+          }
           return 100;
         }
         return p + 2;
