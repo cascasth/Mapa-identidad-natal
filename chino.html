@@ -68,52 +68,6 @@
     z-index: 0;
   }
 
-  /* ── BARRA SUPERIOR ── */
-  .top-nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background: rgba(6,4,15,.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(201,168,76,.15);
-    gap: 12px;
-  }
-  .top-nav-brand {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 11px;
-    letter-spacing: .2em;
-    color: var(--gold);
-    opacity: .85;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  .top-nav-links {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
-  .top-nav-link {
-    padding: 5px 13px;
-    border: 1px solid rgba(201,168,76,.18);
-    border-radius: 20px;
-    color: rgba(199,189,223,.6);
-    font-size: 12px;
-    text-decoration: none;
-    transition: all .2s;
-    white-space: nowrap;
-  }
-  .top-nav-link:hover,
-  .top-nav-link.active {
-    border-color: rgba(201,168,76,.45);
-    color: var(--gold-pale);
-    background: rgba(201,168,76,.07);
-  }
-
   .container {
     position: relative;
     z-index: 1;
@@ -518,8 +472,6 @@
   }
 
   @media (max-width: 420px) {
-    .top-nav-brand { font-size: 10px; letter-spacing: .12em; }
-    .top-nav-link { font-size: 11px; padding: 4px 10px; }
     .num-row .lbl { width: 80px; }
   }
 </style>
@@ -537,18 +489,9 @@
   .num-card .num-badge { font-size: 1.5rem; }
 </style>
 </head>
-<body>
+<body data-page="chino">
 
-<nav class="top-nav">
-  <a class="top-nav-brand" href="./">✦ Centro Ser Integral</a>
-  <div class="top-nav-links">
-    <a class="top-nav-link" href="./" data-i18n="top-inicio">Inicio</a>
-    <a class="top-nav-link" href="tzolkin.html" data-i18n="top-brujula">🌀 Tu Kin gratis</a>
-    <a class="top-nav-link" href="numerologia.html" data-i18n="top-numerologia">🔢 Numerología gratis</a>
-    <a class="top-nav-link active" href="chino.html" data-i18n="top-chino">🐉 Animal chino</a>
-    <a class="top-nav-link" href="./#payment-step" data-i18n="top-solicitar">Solicitar Mapa</a>
-  </div>
-</nav>
+<div id="nav-placeholder"></div>
 
 <div class="container">
 
@@ -910,6 +853,7 @@ function setLang(lang) {
 }
 setLang('es');
 </script>
+<script src="nav-loader.js"></script>
 
 </body>
 </html>

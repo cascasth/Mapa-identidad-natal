@@ -742,54 +742,6 @@ content="Descubre tu Mapa de Identidad Natal: una lectura personalizada que inte
   opacity:.75;
 }
 
-/* ── BARRA DE NAVEGACIÓN SUPERIOR ── */
-.top-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background: rgba(6,4,15,.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(201,168,76,.15);
-  gap: 12px;
-}
-.top-nav-brand {
-  font-family: 'Cinzel', serif;
-  font-size: 11px;
-  letter-spacing: .2em;
-  color: var(--gold);
-  opacity: .85;
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.top-nav-links {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-.top-nav-link {
-  padding: 5px 13px;
-  border: 1px solid rgba(201,168,76,.18);
-  border-radius: 20px;
-  color: rgba(199,189,223,.6);
-  font-family: 'Nunito', sans-serif;
-  font-size: 12px;
-  text-decoration: none;
-  transition: all .2s;
-  white-space: nowrap;
-}
-.top-nav-link:hover,
-.top-nav-link.active {
-  border-color: rgba(201,168,76,.45);
-  color: var(--gold-soft);
-  background: rgba(201,168,76,.07);
-}    
-
 /* ── TESTIMONIOS ── */
 .testimonios-grid {
   display: flex;
@@ -1123,29 +1075,6 @@ content="Descubre tu Mapa de Identidad Natal: una lectura personalizada que inte
   font-style: italic;
 }
 
-.audio-toggle{
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 1000;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(201,168,76,.35);
-  background: rgba(6,4,15,.82);
-  color: var(--gold-soft);
-  font-family: 'Nunito', sans-serif;
-  font-size: 12px;
-  letter-spacing: .04em;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 28px rgba(0,0,0,.35);
-}
-
-.audio-toggle:hover{
-  border-color: rgba(201,168,76,.65);
-  color: #fff1a8;
-}    
-
     .footer-copyright{
       margin-top:20px;
       padding-top:15px;
@@ -1161,26 +1090,10 @@ content="Descubre tu Mapa de Identidad Natal: una lectura personalizada que inte
 
 </head>
 
-<audio id="bg-audio" loop preload="auto">
-  <source src="ambiente-ceremonial.mp3" type="audio/mpeg">
-</audio>
+<body data-page="index">
 
-<button id="audio-toggle" class="audio-toggle" onclick="toggleAudio()">
-  <span data-i18n="audio-activar">🜂 Activar experiencia sonora</span>
-</button>
-  
-<body>
+<div id="nav-placeholder"></div>
 
-<nav class="top-nav">
-  <a class="top-nav-brand" href="./">✦ Centro Ser Integral</a>
-  <div class="top-nav-links">
-    <a class="top-nav-link active" href="./" data-i18n="nav-inicio">Inicio</a>
-    <a class="top-nav-link" href="tzolkin.html" data-i18n="nav-brujula">🌀 Tu Kin gratis</a>
-    <a class="top-nav-link" href="numerologia.html" data-i18n="nav-numerologia">🔢 Numerología gratis</a>
-    <a class="top-nav-link" href="chino.html" data-i18n="nav-chino">🐉 Animal chino</a>
-    <a class="top-nav-link" href="#payment-step" data-i18n="nav-solicitar-mapa">Solicitar Mapa</a>
-  </div>
-</nav>
   
 <div class="page">
 
@@ -1615,11 +1528,11 @@ function mostrarFormulario() {
       'nav-sirve': '¿Para qué sirve?',
       'nav-solicitar': 'Solicitar mapa',
       'nav-kin': 'Kin del día',
-      'nav-inicio': 'Inicio',
-      'nav-brujula': '🌀 Tu Kin gratis',
-      'nav-numerologia': '🔢 Numerología gratis',
-      'nav-chino': '🐉 Animal chino',
-      'nav-solicitar-mapa': 'Solicitar Mapa',
+      'top-inicio': 'Inicio',
+      'top-brujula': '🌀 Tu Kin gratis',
+      'top-numerologia': '🔢 Numerología gratis',
+      'top-chino': '🐉 Animal chino',
+      'top-solicitar': 'Solicitar Mapa',
       'inc-heading': 'Tu ficha incluye',
       'inc-1': 'Zodiaco Occidental + Ascendente',
       'inc-2': 'Horóscopo Chino · año, mes y hora',
@@ -1751,11 +1664,11 @@ function mostrarFormulario() {
       'nav-sirve': 'What\'s it for?',
       'nav-solicitar': 'Get my map',
       'nav-kin': 'Kin of the day',
-      'nav-inicio': 'Home',
-      'nav-brujula': '🌀 Galactic Compass',
-      'nav-numerologia': '🔢 Free numerology',
-      'nav-chino': '🐉 Chinese animal',
-      'nav-solicitar-mapa': 'Get my Map',
+      'top-inicio': 'Home',
+      'top-brujula': '🌀 Galactic Compass',
+      'top-numerologia': '🔢 Free numerology',
+      'top-chino': '🐉 Chinese animal',
+      'top-solicitar': 'Get my Map',
       'inc-heading': 'Your profile includes',
       'inc-1': 'Western Zodiac + Rising sign',
       'inc-2': 'Chinese Horoscope · year, month & hour',
@@ -2194,28 +2107,11 @@ function mostrarFormulario() {
     return tzData.gmtOffset / 3600;
   }
 
-let audioActivo = false;
-
-function toggleAudio() {
-  const audio = document.getElementById('bg-audio');
-  const btn = document.getElementById('audio-toggle');
-  const span = btn.querySelector('[data-i18n]');
-
-  if (!audioActivo) {
-    audio.volume = 0.28;
-    audio.play();
-    audioActivo = true;
-    if (span) { span.setAttribute('data-i18n','audio-silenciar'); span.textContent = i18n[idiomaSeleccionado]['audio-silenciar']; }
-    else btn.textContent = i18n[idiomaSeleccionado]['audio-silenciar'];
-  } else {
-    audio.pause();
-    audioActivo = false;
-    if (span) { span.setAttribute('data-i18n','audio-activar'); span.textContent = i18n[idiomaSeleccionado]['audio-activar']; }
-    else btn.textContent = i18n[idiomaSeleccionado]['audio-activar'];
-  }
-}
   
 </script>
+
+<script src="nav-loader.js"></script>
+
 
     <!-- Disclaimer -->
   <section class="card-section disclaimer">
@@ -2254,4 +2150,5 @@ function toggleAudio() {
   
   </div>
 </footer>
+</body>
 </html>
