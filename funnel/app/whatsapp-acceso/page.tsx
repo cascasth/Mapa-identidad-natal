@@ -7,7 +7,7 @@ const MESSAGES = [
   { text: "Te comparto el acceso para continuar tu recorrido simbólico.", delay: 1800 },
   { text: "Es una plataforma breve con videos privados sobre los 7 códigos.", delay: 2900 },
   { text: "Puedes verla a tu ritmo.", delay: 3900 },
-  { text: "Usuario: el correo o nombre que usaste al comenzar.\nContraseña: CODIGO7", delay: 5000 },
+  { text: "Usuario: el nombre que usaste al comenzar.\nContraseña: CODIGO7", delay: 5000 },
   { text: "LINK", delay: 6200 }, // special: link
   { text: "Te recomiendo ver los videos en orden.\nEl último aclara qué es y qué no es el Mapa de Identidad Natal.", delay: 7400 },
   { text: "Cuando sientas que es tu momento, ahí mismo podrás solicitar tu mapa completo. 🌙", delay: 8600 },
