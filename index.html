@@ -1142,6 +1142,14 @@ content="Descubre tu Mapa de Identidad Natal: una lectura personalizada que inte
     <div class="includes-item" data-i18n="inc-9">Un mantra personal</div>
     <div class="includes-item" data-i18n="inc-10">Un amuleto personalizado digital</div>
     <div class="includes-item" data-i18n="inc-11">Y mucha información más</div>
+    <div class="includes-item" data-i18n="inc-datos">
+  Para generar tu mapa necesitaremos tus datos completos de nacimiento: nombre, fecha, hora y lugar.
+</div>
+
+<div class="includes-item" data-i18n="inc-hora">
+  La hora de nacimiento ayuda a que la lectura sea más precisa, especialmente para el ascendente.
+</div>
+    
   </section>
 
   <!-- Para qué sirve -->
@@ -1338,6 +1346,14 @@ Imagen geométrica sagrada generada para ti
 ⚡ Entrega automática en minutos
 </div>
 
+  <div class="includes-item" data-i18n="recibiras-7">
+📝 Para generar tu mapa necesitaremos tus datos completos de nacimiento.
+</div>
+
+<div class="includes-item" data-i18n="recibiras-8">
+⏰ Ten a la mano tu hora de nacimiento lo más exacta posible.
+</div>
+
 </section>
     
   </section>
@@ -1345,8 +1361,23 @@ Imagen geométrica sagrada generada para ti
 
   <!-- PASO 1: Pago -->
   <div class="payment-step" id="payment-step">
-    <span class="payment-step-label" data-i18n="pay-label">Paso 1 de 2 · Pago seguro</span>
-      <div id="paypal-container-KCU4KJ4U3TFEE"></div>
+  <span class="payment-step-label" data-i18n="pay-label">Paso 1 de 2 · Pago seguro</span>
+
+  <h3 data-i18n="pay-title">Obtén tu Mapa ahora</h3>
+
+  <p data-i18n="pay-desc">
+    Ficha completa · <span class="price-highlight">$415 MXN</span><br>
+    Paga con tarjeta o cuenta PayPal. Después del pago completarás tus datos de nacimiento para generar tu mapa.
+  </p>
+
+  <div data-i18n="pay-aviso" style="margin:14px 0 18px;padding:14px 16px;border:1px solid rgba(201,168,76,.25);border-radius:12px;background:rgba(201,168,76,.06);font-size:12px;color:rgba(240,234,248,.78);line-height:1.65;text-align:left;">
+    <strong style="color:#e8c97a;">Antes de pagar, ten a la mano:</strong><br>
+    Nombre completo, fecha de nacimiento, hora de nacimiento lo más exacta posible, ciudad/país de nacimiento y correo electrónico.<br><br>
+    <strong style="color:#e8c97a;">¿Por qué pedimos la hora?</strong><br>
+    La usamos para calcular elementos como el ascendente y el animal de la hora. Si no la sabes, escríbenos antes de pagar para orientarte.
+  </div>
+
+  <div id="paypal-container-KCU4KJ4U3TFEE"></div>
 
     <div style="margin-top:14px;display:flex;flex-direction:column;gap:6px;font-size:11px;color:rgba(199,189,223,.5);font-family:'Nunito',sans-serif;font-weight:300;line-height:1.5;">
       <div style="display:flex;align-items:center;gap:8px;">
@@ -1530,6 +1561,8 @@ function mostrarFormulario() {
       'inc-9': 'Un mantra personal',
       'inc-10': 'Un amuleto personalizado digital',
       'inc-11': 'Y mucha información más',
+      'inc-datos': 'Para generar tu mapa necesitaremos tus datos completos de nacimiento: nombre, fecha, hora y lugar.',
+      'inc-hora': 'La hora de nacimiento ayuda a que la lectura sea más precisa, especialmente para el ascendente.',
       'testimonios-heading': '✦ Lo que dicen quienes ya tienen su mapa',
       'recibiras-heading': 'Lo que recibirás',
       'recibiras-1': '📧 Correo 1 · Mapa de Identidad Natal completo',
@@ -1538,6 +1571,8 @@ function mostrarFormulario() {
       'recibiras-4': 'Imagen geométrica sagrada generada para ti',
       'recibiras-5': '🌎 Español o Inglés',
       'recibiras-6': '⚡ Entrega automática en minutos',
+      'recibiras-7': '📝 Para generar tu mapa necesitaremos tus datos completos de nacimiento.',
+      'recibiras-8': '⏰ Ten a la mano tu hora de nacimiento lo más exacta posible.',
       'paypal-amarillo': 'Botón amarillo · paga con tu cuenta de PayPal',
       'paypal-azul': 'Botón azul · paga con tarjeta, sin cuenta de PayPal',
       'muestra-label': '✦ Ejemplo de un fragmento de mapa ✦',
@@ -1557,7 +1592,8 @@ function mostrarFormulario() {
       'soon-3': 'Versión en inglés',
       'pay-label': 'Paso 1 de 2 · Pago seguro',
       'pay-title': 'Obtén tu Mapa ahora',
-      'pay-desc': 'Ficha completa · <span class="price-highlight">$415 MXN</span><br>Paga con tarjeta o cuenta PayPal. Al completar el pago accederás al formulario de datos.',
+      'pay-desc': 'Ficha completa · <span class="price-highlight">$415 MXN</span><br>Paga con tarjeta o cuenta PayPal. Después del pago completarás tus datos de nacimiento para generar tu mapa.',
+'pay-aviso': '<strong style="color:#e8c97a;">Antes de pagar, ten a la mano:</strong><br>Nombre completo, fecha de nacimiento, hora de nacimiento lo más exacta posible, ciudad/país de nacimiento y correo electrónico.<br><br><strong style="color:#e8c97a;">¿Por qué pedimos la hora?</strong><br>La usamos para calcular elementos como el ascendente y el animal de la hora. Si no la sabes, escríbenos antes de pagar para orientarte.',
       'step-divider': 'Paso 2 · Ingresa tus datos de nacimiento',
       'form-lang': 'Idioma',
       'form-datos': 'Tus datos',
@@ -1666,6 +1702,8 @@ function mostrarFormulario() {
       'inc-9': 'A personal mantra',
       'inc-10': 'A personalized digital amulet',
       'inc-11': 'And much more',
+      'inc-datos': 'To generate your map, we need complete birth details: name, date, time and place of birth.',
+      'inc-hora': 'Birth time helps make the reading more precise, especially for the rising sign.',
       'testimonios-heading': '✦ What those who already have their map say',
       'recibiras-heading': 'What you will receive',
       'recibiras-1': '📧 Email 1 · Complete Natal Identity Map',
@@ -1674,6 +1712,8 @@ function mostrarFormulario() {
       'recibiras-4': 'Sacred geometric image generated for you',
       'recibiras-5': '🌎 Spanish or English',
       'recibiras-6': '⚡ Automatic delivery in minutes',
+      'recibiras-7': '📝 To generate your map, we need your complete birth details.',
+      'recibiras-8': '⏰ Please have your birth time as accurate as possible.',
       'paypal-amarillo': 'Yellow button · pay with your PayPal account',
       'paypal-azul': 'Blue button · pay by card, no PayPal account needed',
       'muestra-label': '✦ Sample map fragment ✦',
@@ -1693,7 +1733,8 @@ function mostrarFormulario() {
       'soon-3': 'English version',
       'pay-label': 'Step 1 of 2 · Secure payment',
       'pay-title': 'Get your Map now',
-      'pay-desc': 'Full profile · <span class="price-highlight">$415 MXN</span><br>Pay by card or PayPal. After completing payment you\'ll access the data form.',
+       'pay-desc': 'Full profile · <span class="price-highlight">$415 MXN</span><br>Pay by card or PayPal. After payment, you’ll complete your birth details to generate your map.',
+'pay-aviso': '<strong style="color:#e8c97a;">Before paying, please have ready:</strong><br>Full name, birth date, birth time as accurate as possible, city/country of birth and email address.<br><br><strong style="color:#e8c97a;">Why do we ask for the birth time?</strong><br>We use it to calculate elements such as the rising sign and the Chinese hour animal. If you don’t know it, please contact us before paying so we can guide you.',
       'step-divider': 'Step 2 · Enter your birth details',
       'form-lang': 'Language',
       'form-datos': 'Your details',
