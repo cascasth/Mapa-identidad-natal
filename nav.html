@@ -1,0 +1,95 @@
+<style>
+/* ── BARRA DE NAVEGACIÓN SUPERIOR (compartida) ── */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: rgba(6,4,15,.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,168,76,.15);
+  gap: 12px;
+}
+.top-nav-brand {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: var(--gold, #c9a84c);
+  opacity: .85;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.top-nav-links {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+.top-nav-link {
+  padding: 5px 13px;
+  border: 1px solid rgba(201,168,76,.18);
+  border-radius: 20px;
+  color: rgba(199,189,223,.6);
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  text-decoration: none;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.top-nav-link:hover,
+.top-nav-link.active {
+  border-color: rgba(201,168,76,.45);
+  color: #e8cf8e;
+  background: rgba(201,168,76,.07);
+}
+
+/* Botón de audio, ahora integrado en la barra en vez de flotante */
+.audio-toggle-nav {
+  padding: 5px 13px;
+  border-radius: 20px;
+  border: 1px solid rgba(201,168,76,.18);
+  background: transparent;
+  color: rgba(199,189,223,.6);
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  letter-spacing: .02em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .2s;
+}
+.audio-toggle-nav:hover,
+.audio-toggle-nav.activo {
+  border-color: rgba(201,168,76,.45);
+  color: #e8cf8e;
+  background: rgba(201,168,76,.07);
+}
+
+/* En pantallas chicas, que el botón de audio no empuje los links a 3 líneas */
+@media (max-width: 480px) {
+  .top-nav-brand { font-size: 10px; letter-spacing: .12em; }
+  .top-nav-link, .audio-toggle-nav { font-size: 11px; padding: 4px 10px; }
+}
+</style>
+
+<audio id="bg-audio" loop preload="auto">
+  <source src="ambiente-ceremonial.mp3" type="audio/mpeg">
+</audio>
+
+<nav class="top-nav">
+  <a class="top-nav-brand" href="./">✦ Centro Ser Integral</a>
+  <div class="top-nav-links">
+    <a class="top-nav-link" href="./" data-i18n="top-inicio" data-page="index">Inicio</a>
+    <a class="top-nav-link" href="tzolkin.html" data-i18n="top-brujula" data-page="tzolkin">🌀 Tu Kin gratis</a>
+    <a class="top-nav-link" href="numerologia.html" data-i18n="top-numerologia" data-page="numerologia">🔢 Numerología gratis</a>
+    <a class="top-nav-link" href="chino.html" data-i18n="top-chino" data-page="chino">🐉 Animal chino</a>
+    <a class="top-nav-link" href="./#payment-step" data-i18n="top-solicitar" data-page="">Solicitar Mapa</a>
+    <button id="audio-toggle" class="audio-toggle-nav" onclick="toggleAudio()">
+      <span data-i18n="audio-activar">🜂 Activar experiencia sonora</span>
+    </button>
+  </div>
+</nav>
