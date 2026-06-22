@@ -12,7 +12,7 @@ function SymbolicAvatar() {
       <div className="absolute w-24 h-24 rounded-full border border-amber-400/30 animate-pulse-ring" />
       <div className="absolute w-20 h-20 rounded-full border border-amber-400/20 animate-pulse-ring" style={{ animationDelay: "0.5s" }} />
       <div className="w-16 h-16 rounded-full overflow-hidden border border-amber-400/40">
-        <Image src="/avatar-centro-ser.jpg" alt="Centro Ser Integral" width={64} height={64} className="object-cover w-full h-full" />
+        <Image src="/avatar-centro-ser.jpg.png" alt="Centro Ser Integral" width={64} height={64} className="object-cover w-full h-full" />
       </div>
     </div>
   );
