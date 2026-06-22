@@ -122,18 +122,8 @@ export default function IncomingCallPage() {
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-8" style={bgStyle}>
 
-      {/* Portal circular de fondo */}
-      <div className="fixed inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        {[280, 360, 440, 520].map((size, i) => (
-          <div key={i} className="absolute rounded-full border border-amber-400/5"
-            style={{ width: size, height: size }} />
-        ))}
-        <div className="absolute rounded-full border border-amber-400/8"
-          style={{ width: 600, height: 600, boxShadow: "0 0 80px rgba(180,130,40,0.03)" }} />
-      </div>
-
       {screen === "incoming" && (
-        <div className="animate-fade-in w-full max-w-xs mx-auto relative z-10">
+        <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
           <div className="rounded-2xl p-8 flex flex-col items-center gap-6 relative" style={cardStyle}>
             <CornerDecor pos="tl" /><CornerDecor pos="tr" /><CornerDecor pos="bl" /><CornerDecor pos="br" />
 
@@ -186,7 +176,7 @@ export default function IncomingCallPage() {
       )}
 
       {screen === "active" && (
-        <div className="animate-fade-in w-full max-w-xs mx-auto relative z-10">
+        <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
           <div className="rounded-2xl p-8 flex flex-col items-center gap-6 relative" style={cardStyle}>
             <CornerDecor pos="tl" /><CornerDecor pos="tr" /><CornerDecor pos="bl" /><CornerDecor pos="br" />
             <p className="text-amber-400/60 text-xs tracking-[0.2em] uppercase">Llamada en curso</p>
@@ -206,7 +196,7 @@ export default function IncomingCallPage() {
       )}
 
       {screen === "ended" && (
-        <div className="animate-fade-in w-full max-w-xs mx-auto relative z-10">
+        <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
           <div className="rounded-2xl p-8 flex flex-col items-center gap-6 relative text-center" style={cardStyle}>
             <CornerDecor pos="tl" /><CornerDecor pos="tr" /><CornerDecor pos="bl" /><CornerDecor pos="br" />
             <Moon className="w-10 h-10 text-amber-400/50" style={{ filter: "drop-shadow(0 0 8px rgba(180,130,40,0.4))" }} />
