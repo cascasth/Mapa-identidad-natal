@@ -187,7 +187,7 @@ export default function VerificacionPage() {
             <div>
               <h1 className="text-white text-xl font-light tracking-wide">Lectura inicial de tu tríada simbólica</h1>
               <p className="text-slate-400 text-sm mt-3 leading-relaxed">
-                Antes de abrir los 7 Espejos, revela tres señales básicas de tu fecha de nacimiento. No necesitas escribir tu nombre, hora ni lugar todavía.
+                Antes de abrir los 7 Espejos, revela tres señales básicas de tu fecha de nacimiento. No necesitas escribir tu nombre, hora ni lugar, ni guardaremos tus datos.
               </p>
               <p className="text-amber-400/50 text-xs mt-3 leading-relaxed">
                 Esta primera lectura no es tu mapa completo. Es una puerta de entrada: una forma sencilla y real de reconocer tres códigos iniciales antes de continuar.
