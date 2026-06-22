@@ -73,6 +73,18 @@ function WaveformAnimation() {
   );
 }
 
+function EndedAudio() {
+  const ref = useRef<HTMLAudioElement | null>(null);
+  useEffect(() => {
+    const audio = new Audio("/ended-audio.mp3");
+    audio.loop = true;
+    ref.current = audio;
+    audio.play().catch(() => {});
+    return () => { audio.pause(); };
+  }, []);
+  return null;
+}
+
 // Esquinas ceremoniales
 function CornerDecor({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
   const base = "absolute w-4 h-4";
@@ -197,6 +209,7 @@ export default function IncomingCallPage() {
 
       {screen === "ended" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
+          <EndedAudio />
           <div className="rounded-2xl overflow-hidden relative" style={{ boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
             <CornerDecor pos="tl" /><CornerDecor pos="tr" /><CornerDecor pos="bl" /><CornerDecor pos="br" />
             {/* Video de fondo */}
