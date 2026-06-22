@@ -1,164 +1,295 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Star, TreePine, Hash } from "lucide-react";
 
-type Phase = "loading" | "form" | "scanning" | "done";
-
-const LOADING_LINES = [
-  "Iniciando lectura simbólica...",
-  "Preparando tus datos base...",
-  "Los 7 códigos se construyen a partir de información personal.",
+// ── ZODIAC OCCIDENTAL ─────────────────────────────────────────────────────────
+const ZODIAC_RANGES: { sign: string; desc: string; start: [number, number]; end: [number, number] }[] = [
+  { sign: "Capricornio", desc: "Disciplina, estructura y visión a largo plazo.", start: [12, 22], end: [1, 19] },
+  { sign: "Acuario",     desc: "Originalidad, visión colectiva y pensamiento propio.", start: [1, 20], end: [2, 18] },
+  { sign: "Piscis",      desc: "Sensibilidad, intuición y conexión con lo sutil.", start: [2, 19], end: [3, 20] },
+  { sign: "Aries",       desc: "Impulso, iniciativa y energía de comienzo.", start: [3, 21], end: [4, 19] },
+  { sign: "Tauro",       desc: "Presencia, constancia y arraigo en lo material.", start: [4, 20], end: [5, 20] },
+  { sign: "Géminis",     desc: "Curiosidad, adaptabilidad y movimiento mental.", start: [5, 21], end: [6, 20] },
+  { sign: "Cáncer",      desc: "Memoria, cuidado y profundidad emocional.", start: [6, 21], end: [7, 22] },
+  { sign: "Leo",         desc: "Expresión, presencia y generosidad creativa.", start: [7, 23], end: [8, 22] },
+  { sign: "Virgo",       desc: "Análisis, servicio y atención al detalle.", start: [8, 23], end: [9, 22] },
+  { sign: "Libra",       desc: "Equilibrio, belleza y búsqueda de armonía.", start: [9, 23], end: [10, 22] },
+  { sign: "Escorpio",    desc: "Profundidad, transformación y mirada interna.", start: [10, 23], end: [11, 21] },
+  { sign: "Sagitario",   desc: "Expansión, búsqueda de sentido y libertad.", start: [11, 22], end: [12, 21] },
 ];
 
-const SCAN_LINES = [
-  "Datos recibidos.",
-  "Preparando capas simbólicas...",
-  "Cielo.",
-  "Nombre.",
-  "Linaje.",
-  "Tiempo sagrado.",
-  "Raíz.",
-  "Espejo del alma.",
-  "Personaje interior.",
-  "Lectura inicial preparada.",
+function getSolarSign(day: number, month: number): { sign: string; desc: string } {
+  for (const z of ZODIAC_RANGES) {
+    const [sm, sd] = z.start;
+    const [em, ed] = z.end;
+    if (sm === em) {
+      if (month === sm && day >= sd && day <= ed) return z;
+    } else if (sm > em) {
+      // crosses year boundary (Capricornio)
+      if ((month === sm && day >= sd) || (month === em && day <= ed)) return z;
+    } else {
+      if ((month === sm && day >= sd) || (month === em && day <= ed) ||
+          (month > sm && month < em)) return z;
+    }
+  }
+  return { sign: "Capricornio", desc: "Disciplina, estructura y visión a largo plazo." };
+}
+
+// ── SIGNO CHINO ───────────────────────────────────────────────────────────────
+// Tabla de fechas de Año Nuevo Lunar (año gregoriano → [mes, día])
+const LUNAR_NEW_YEAR: Record<number, [number, number]> = {
+  1900:[1,31],1901:[2,19],1902:[2,8],1903:[1,29],1904:[2,16],1905:[2,4],
+  1906:[1,25],1907:[2,13],1908:[2,2],1909:[1,22],1910:[2,10],1911:[1,30],
+  1912:[2,18],1913:[2,6],1914:[1,26],1915:[2,14],1916:[2,3],1917:[1,23],
+  1918:[2,11],1919:[2,1],1920:[2,20],1921:[2,8],1922:[1,28],1923:[2,16],
+  1924:[2,5],1925:[1,24],1926:[2,13],1927:[2,2],1928:[1,23],1929:[2,10],
+  1930:[1,30],1931:[2,17],1932:[2,6],1933:[1,26],1934:[2,14],1935:[2,4],
+  1936:[1,24],1937:[2,11],1938:[1,31],1939:[2,19],1940:[2,8],1941:[1,27],
+  1942:[2,15],1943:[2,5],1944:[1,25],1945:[2,13],1946:[2,2],1947:[1,22],
+  1948:[2,10],1949:[1,29],1950:[2,17],1951:[2,6],1952:[1,27],1953:[2,14],
+  1954:[2,3],1955:[1,24],1956:[2,12],1957:[1,31],1958:[2,18],1959:[2,8],
+  1960:[1,28],1961:[2,15],1962:[2,5],1963:[1,25],1964:[2,13],1965:[2,2],
+  1966:[1,21],1967:[2,9],1968:[1,30],1969:[2,17],1970:[2,6],1971:[1,27],
+  1972:[2,15],1973:[2,3],1974:[1,23],1975:[2,11],1976:[1,31],1977:[2,18],
+  1978:[2,7],1979:[1,28],1980:[2,16],1981:[2,5],1982:[1,25],1983:[2,13],
+  1984:[2,2],1985:[2,20],1986:[2,9],1987:[1,29],1988:[2,17],1989:[2,6],
+  1990:[1,27],1991:[2,15],1992:[2,4],1993:[1,23],1994:[2,10],1995:[1,31],
+  1996:[2,19],1997:[2,7],1998:[1,28],1999:[2,16],2000:[2,5],2001:[1,24],
+  2002:[2,12],2003:[2,1],2004:[1,22],2005:[2,9],2006:[1,29],2007:[2,18],
+  2008:[2,7],2009:[1,26],2010:[2,14],2011:[2,3],2012:[1,23],2013:[2,10],
+  2014:[1,31],2015:[2,19],2016:[2,8],2017:[1,28],2018:[2,16],2019:[2,5],
+  2020:[1,25],2021:[2,12],2022:[2,1],2023:[1,22],2024:[2,10],2025:[1,29],
+  2026:[2,17],2027:[2,6],2028:[1,26],2029:[2,13],2030:[2,3],2031:[1,23],
+};
+
+const CHINESE_ANIMALS = ["Rata","Buey","Tigre","Conejo","Dragón","Serpiente","Caballo","Cabra","Mono","Gallo","Perro","Cerdo"];
+const CHINESE_DESCS: Record<string, string> = {
+  "Rata":     "Inteligencia, adaptabilidad y recursos internos.",
+  "Buey":     "Perseverancia, solidez y confianza en el proceso.",
+  "Tigre":    "Valentía, magnetismo y impulso transformador.",
+  "Conejo":   "Sensibilidad, diplomacia y refugio interno.",
+  "Dragón":   "Fuerza, visión y presencia simbólica potente.",
+  "Serpiente":"Intuición profunda, misterio y sabiduría silenciosa.",
+  "Caballo":  "Libertad, movimiento y energía expansiva.",
+  "Cabra":    "Creatividad, cuidado y sensibilidad estética.",
+  "Mono":     "Ingenio, versatilidad y pensamiento ágil.",
+  "Gallo":    "Precisión, orgullo y claridad en la expresión.",
+  "Perro":    "Lealtad, justicia y búsqueda de lo verdadero.",
+  "Cerdo":    "Generosidad, abundancia y apertura sincera.",
+};
+
+// Año base: 1900 es Rata (índice 0)
+const BASE_YEAR = 1900;
+
+function getChineseSign(day: number, month: number, year: number): { sign: string; desc: string } {
+  let chineseYear = year;
+  const lny = LUNAR_NEW_YEAR[year];
+  if (lny) {
+    const [lnyMonth, lnyDay] = lny;
+    const beforeLNY = month < lnyMonth || (month === lnyMonth && day < lnyDay);
+    if (beforeLNY) chineseYear = year - 1;
+  }
+  const idx = ((chineseYear - BASE_YEAR) % 12 + 12) % 12;
+  const sign = CHINESE_ANIMALS[idx];
+  return { sign, desc: CHINESE_DESCS[sign] };
+}
+
+// ── NUMEROLOGÍA ───────────────────────────────────────────────────────────────
+const MASTER = new Set([11, 22, 33]);
+const LIFE_PATH_DESCS: Record<number, string> = {
+  1:  "Liderazgo, autonomía y apertura de caminos.",
+  2:  "Cooperación, intuición y equilibrio relacional.",
+  3:  "Expresión creativa, comunicación y alegría.",
+  4:  "Estructura, trabajo profundo y construcción sólida.",
+  5:  "Libertad, cambio y experiencia como maestra.",
+  6:  "Responsabilidad, belleza y amor como vocación.",
+  7:  "Investigación, espiritualidad y búsqueda de verdad.",
+  8:  "Poder, abundancia y dominio de lo material.",
+  9:  "Humanidad, cierre de ciclos y sabiduría universal.",
+  11: "Número maestro: inspiración, sensibilidad elevada.",
+  22: "Número maestro: construcción en gran escala.",
+  33: "Número maestro: servicio y amor incondicional.",
+};
+
+function reduce(n: number): number {
+  if (n <= 9 || MASTER.has(n)) return n;
+  return reduce(String(n).split("").reduce((a, d) => a + Number(d), 0));
+}
+
+function getLifePath(day: number, month: number, year: number): { number: number; desc: string } {
+  const digits = `${String(day).padStart(2,"0")}${String(month).padStart(2,"0")}${year}`;
+  const sum = digits.split("").reduce((a, d) => a + Number(d), 0);
+  const number = reduce(sum);
+  return { number, desc: LIFE_PATH_DESCS[number] ?? "" };
+}
+
+// ── VALIDACIÓN DE FECHA ───────────────────────────────────────────────────────
+function isValidDate(day: number, month: number, year: number): boolean {
+  const d = new Date(year, month - 1, day);
+  return d.getFullYear() === year && d.getMonth() === month - 1 && d.getDate() === day;
+}
+
+// ── COMPONENTE ────────────────────────────────────────────────────────────────
+type Phase = "form" | "loading" | "result";
+
+interface Result {
+  solar: { sign: string; desc: string };
+  chinese: { sign: string; desc: string };
+  lifePath: { number: number; desc: string };
+}
+
+const DAYS = Array.from({ length: 31 }, (_, i) => i + 1);
+const MONTHS = [
+  "Enero","Febrero","Marzo","Abril","Mayo","Junio",
+  "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
 ];
+const currentYear = new Date().getFullYear();
+const YEARS = Array.from({ length: currentYear - 1899 }, (_, i) => currentYear - i);
 
 export default function VerificacionPage() {
-  const [phase, setPhase] = useState<Phase>("loading");
-  const [loadingIdx, setLoadingIdx] = useState(0);
-  const [scanIdx, setScanIdx] = useState(0);
-  const [nombre, setNombre] = useState("");
-  const [fecha, setFecha] = useState("");
-  const [hora, setHora] = useState("");
-  const [noSabe, setNoSabe] = useState(false);
-  const [ciudad, setCiudad] = useState("");
-  const [idioma, setIdioma] = useState("");
+  const [phase, setPhase] = useState<Phase>("form");
+  const [day, setDay]   = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear]   = useState("");
+  const [error, setError] = useState("");
+  const [result, setResult] = useState<Result | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    if (phase !== "loading") return;
-    if (loadingIdx >= LOADING_LINES.length) {
-      setTimeout(() => setPhase("form"), 600);
-      return;
-    }
-    const t = setTimeout(() => setLoadingIdx(i => i + 1), 900);
-    return () => clearTimeout(t);
-  }, [phase, loadingIdx]);
+  const handleReveal = () => {
+    setError("");
+    if (!day || !month || !year) { setError("Por favor elige día, mes y año."); return; }
+    const d = Number(day), m = Number(month), y = Number(year);
+    if (!isValidDate(d, m, y)) { setError("Esa fecha no existe. Revisa el día y el mes."); return; }
+    if (new Date(y, m - 1, d) > new Date()) { setError("La fecha no puede ser futura."); return; }
 
-  useEffect(() => {
-    if (phase !== "scanning") return;
-    if (scanIdx >= SCAN_LINES.length) {
-      setTimeout(() => setPhase("done"), 600);
-      return;
-    }
-    const t = setTimeout(() => setScanIdx(i => i + 1), 500);
-    return () => clearTimeout(t);
-  }, [phase, scanIdx]);
-
-  const canSubmit = nombre.trim() && fecha && ciudad.trim() && idioma && (hora || noSabe);
+    setPhase("loading");
+    setTimeout(() => {
+      setResult({
+        solar: getSolarSign(d, m),
+        chinese: getChineseSign(d, m, y),
+        lifePath: getLifePath(d, m, y),
+      });
+      setPhase("result");
+    }, 1800);
+  };
 
   const bg = "linear-gradient(160deg, #0a0c1a 0%, #0d1020 60%, #1a1408 100%)";
+  const selectClass = "w-full bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400/50 appearance-none";
 
   return (
-    <main className="min-h-screen flex items-center justify-center px-4 py-10"
-      style={{ background: bg }}>
+    <main className="min-h-screen flex items-center justify-center px-4 py-10" style={{ background: bg }}>
+      <div className="w-full max-w-sm mx-auto">
 
-      {(phase === "loading" || phase === "form") && (
-        <div className="w-full max-w-sm mx-auto animate-fade-in">
-          <div className="rounded-3xl border border-amber-400/20 bg-slate-900/80 p-8 flex flex-col gap-5 shadow-2xl">
-
-            {/* Terminal loading lines */}
-            <div className="font-mono text-xs text-emerald-400/80 space-y-1 min-h-[64px]">
-              {LOADING_LINES.slice(0, loadingIdx).map((l, i) => (
-                <p key={i} className="animate-fade-in">{l}</p>
-              ))}
+        {/* FORM */}
+        {phase === "form" && (
+          <div className="animate-fade-in rounded-3xl border border-amber-400/20 bg-slate-900/80 p-8 flex flex-col gap-5 shadow-2xl">
+            <div>
+              <h1 className="text-white text-xl font-light tracking-wide">Lectura inicial de tu tríada simbólica</h1>
+              <p className="text-slate-400 text-sm mt-3 leading-relaxed">
+                Antes de abrir los 7 Espejos, revela tres señales básicas de tu fecha de nacimiento. No necesitas escribir tu nombre, hora ni lugar todavía.
+              </p>
+              <p className="text-amber-400/50 text-xs mt-3 leading-relaxed">
+                Esta primera lectura no es tu mapa completo. Es una puerta de entrada: una forma sencilla y real de reconocer tres códigos iniciales antes de continuar.
+              </p>
             </div>
 
-            {phase === "form" && (
-              <div className="animate-fade-in flex flex-col gap-4">
-                <div>
-                  <h1 className="text-white text-lg font-light tracking-wide">Verificación inicial</h1>
-                  <p className="text-slate-400 text-xs mt-2 leading-relaxed">
-                    Ingresa tus datos para iniciar una lectura simbólica personalizada. Esta experiencia no predice tu futuro ni entrega una verdad absoluta: abre una forma más integrada de mirarte.
-                  </p>
-                </div>
-
-                <input
-                  type="text" placeholder="Nombre completo" value={nombre}
-                  onChange={e => setNombre(e.target.value)}
-                  className="w-full bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-amber-400/50" />
-
-                <input
-                  type="date" value={fecha} onChange={e => setFecha(e.target.value)}
-                  placeholder="Fecha de nacimiento"
-                  className="w-full bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400/50" />
-
-                <div>
-                  <input
-                    type="time" value={hora} onChange={e => setHora(e.target.value)}
-                    disabled={noSabe}
-                    placeholder="Hora de nacimiento"
-                    className="w-full bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400/50 disabled:opacity-40" />
-                  <p className="text-slate-500 text-xs mt-1">Si no conoces la hora exacta, escribe la más cercana o selecciona &apos;No la sé&apos;.</p>
-                  <label className="flex items-center gap-2 mt-2 cursor-pointer">
-                    <input type="checkbox" checked={noSabe} onChange={e => { setNoSabe(e.target.checked); if (e.target.checked) setHora(""); }}
-                      className="accent-amber-400" />
-                    <span className="text-slate-400 text-xs">No la sé</span>
-                  </label>
-                </div>
-
-                <input
-                  type="text" placeholder="Ciudad y país de nacimiento" value={ciudad}
-                  onChange={e => setCiudad(e.target.value)}
-                  className="w-full bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-amber-400/50" />
-
-                <div>
-                  <p className="text-slate-400 text-xs mb-2">Idioma de entrega</p>
-                  <div className="flex gap-3">
-                    {["Español", "Inglés"].map(lang => (
-                      <button key={lang} onClick={() => setIdioma(lang)}
-                        className={`flex-1 py-2 rounded-xl text-sm border transition-all ${idioma === lang ? "border-amber-400/60 bg-amber-400/10 text-amber-200" : "border-slate-700 text-slate-400 bg-slate-800/40"}`}>
-                        {lang}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <button
-                  disabled={!canSubmit}
-                  onClick={() => { setPhase("scanning"); setScanIdx(0); }}
-                  className="w-full py-4 rounded-2xl text-sm tracking-wide transition-all active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed"
-                  style={{ background: canSubmit ? "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))" : undefined, border: "1px solid rgba(180,130,40,0.3)", color: "#e8c87a" }}>
-                  Verificar mis datos
-                </button>
+            <div className="flex flex-col gap-3">
+              <div>
+                <label className="text-slate-400 text-xs mb-1 block">Día</label>
+                <select value={day} onChange={e => setDay(e.target.value)} className={selectClass}
+                  style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}>
+                  <option value="">Día</option>
+                  {DAYS.map(d => <option key={d} value={d}>{d}</option>)}
+                </select>
               </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {(phase === "scanning" || phase === "done") && (
-        <div className="animate-fade-in w-full max-w-sm mx-auto">
-          <div className="rounded-3xl border border-amber-400/20 bg-slate-900/80 p-8 flex flex-col gap-3 shadow-2xl">
-            <div className="font-mono text-xs text-emerald-400/80 space-y-1">
-              {SCAN_LINES.slice(0, scanIdx).map((l, i) => (
-                <p key={i} className="animate-fade-in">{l}</p>
-              ))}
+              <div>
+                <label className="text-slate-400 text-xs mb-1 block">Mes</label>
+                <select value={month} onChange={e => setMonth(e.target.value)} className={selectClass}
+                  style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}>
+                  <option value="">Mes</option>
+                  {MONTHS.map((m, i) => <option key={i+1} value={i+1}>{m}</option>)}
+                </select>
+              </div>
+              <div>
+                <label className="text-slate-400 text-xs mb-1 block">Año</label>
+                <select value={year} onChange={e => setYear(e.target.value)} className={selectClass}
+                  style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}>
+                  <option value="">Año</option>
+                  {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
+                </select>
+              </div>
             </div>
 
-            {phase === "done" && (
-              <div className="animate-fade-in mt-4 flex flex-col gap-4">
-                <p className="text-slate-300 text-sm leading-relaxed">Tus datos abren una parte del mapa.<br />Ahora falta una lectura breve sobre tu momento actual.</p>
-                <button onClick={() => router.push("/codigo-activo")}
-                  className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all"
-                  style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.3)", color: "#e8c87a" }}>
-                  Responder quiz breve
-                </button>
-              </div>
-            )}
+            {error && <p className="text-red-400 text-xs animate-fade-in">{error}</p>}
+
+            <button onClick={handleReveal}
+              className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all"
+              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.3)", color: "#e8c87a" }}>
+              Revelar mi tríada inicial
+            </button>
           </div>
-        </div>
-      )}
+        )}
+
+        {/* LOADING */}
+        {phase === "loading" && (
+          <div className="animate-fade-in rounded-3xl border border-amber-400/20 bg-slate-900/80 p-8 text-center shadow-2xl">
+            <p className="text-emerald-400/80 text-sm font-mono animate-pulse">
+              Trazando tus primeras coordenadas simbólicas…
+            </p>
+          </div>
+        )}
+
+        {/* RESULT */}
+        {phase === "result" && result && (
+          <div className="animate-fade-in flex flex-col gap-4">
+            <div className="rounded-3xl border border-amber-400/20 bg-slate-900/80 p-6 shadow-2xl">
+              <h2 className="text-amber-300 text-lg font-light mb-4">Tu primera tríada simbólica</h2>
+
+              {/* Tarjeta 1 — Solar */}
+              <div className="rounded-2xl border border-slate-700 bg-slate-800/50 p-4 mb-3 flex gap-3">
+                <Star className="w-5 h-5 text-amber-400/70 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-amber-400/60 text-xs tracking-wide uppercase mb-1">Código del Cielo inicial</p>
+                  <p className="text-white text-base font-light">{result.solar.sign}</p>
+                  <p className="text-slate-400 text-xs mt-1 leading-snug">{result.solar.desc}</p>
+                </div>
+              </div>
+
+              {/* Tarjeta 2 — Chino */}
+              <div className="rounded-2xl border border-slate-700 bg-slate-800/50 p-4 mb-3 flex gap-3">
+                <TreePine className="w-5 h-5 text-amber-400/70 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-amber-400/60 text-xs tracking-wide uppercase mb-1">Código del Linaje inicial</p>
+                  <p className="text-white text-base font-light">{result.chinese.sign}</p>
+                  <p className="text-slate-400 text-xs mt-1 leading-snug">{result.chinese.desc}</p>
+                </div>
+              </div>
+
+              {/* Tarjeta 3 — Numerología */}
+              <div className="rounded-2xl border border-slate-700 bg-slate-800/50 p-4 mb-4 flex gap-3">
+                <Hash className="w-5 h-5 text-amber-400/70 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-amber-400/60 text-xs tracking-wide uppercase mb-1">Código de Fecha inicial</p>
+                  <p className="text-white text-base font-light">Camino de vida {result.lifePath.number}</p>
+                  <p className="text-slate-400 text-xs mt-1 leading-snug">{result.lifePath.desc}</p>
+                </div>
+              </div>
+
+              {/* Aclaración */}
+              <p className="text-slate-500 text-xs leading-relaxed border-t border-slate-700 pt-4">
+                Esta es una primera tríada simbólica. El Mapa de Identidad Natal completo integra tus 7 códigos con tus datos completos: nombre, hora y lugar de nacimiento, calendarios simbólicos, arquetipo, mantra y sello visual personalizado.
+              </p>
+            </div>
+
+            <button onClick={() => router.push("/codigo-activo")}
+              className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all"
+              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.3)", color: "#e8c87a" }}>
+              Continuar al Código Activo del Momento
+            </button>
+          </div>
+        )}
+      </div>
     </main>
   );
 }
