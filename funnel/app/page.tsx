@@ -197,16 +197,24 @@ export default function IncomingCallPage() {
 
       {screen === "ended" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
-          <div className="rounded-2xl p-8 flex flex-col items-center gap-6 relative text-center" style={cardStyle}>
+          <div className="rounded-2xl overflow-hidden relative" style={{ boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
             <CornerDecor pos="tl" /><CornerDecor pos="tr" /><CornerDecor pos="bl" /><CornerDecor pos="br" />
-            <Moon className="w-10 h-10 text-amber-400/50" style={{ filter: "drop-shadow(0 0 8px rgba(180,130,40,0.4))" }} />
-            <p className="text-white text-xl font-light">Centro Ser Integral</p>
-            <p className="text-slate-400 text-sm">Archivo de Identidad</p>
-            <button onClick={() => router.push("/verificacion-codigos")}
-              className="mt-2 w-full py-4 rounded-xl text-amber-200 text-sm tracking-wide active:scale-95 transition-all"
-              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.3), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.35)", boxShadow: "0 0 20px rgba(180,130,40,0.1)" }}>
-              Comenzar mi recorrido simbólico
-            </button>
+            {/* Video de fondo */}
+            <video
+              src="/pantalla-llamada-ended.mp4"
+              autoPlay loop muted playsInline
+              className="w-full block"
+              style={{ aspectRatio: "550/750", objectFit: "cover" }}
+            />
+            {/* Botón superpuesto en la parte inferior */}
+            <div className="absolute bottom-0 left-0 right-0 p-6"
+              style={{ background: "linear-gradient(0deg, rgba(6,8,15,0.95) 0%, transparent 100%)" }}>
+              <button onClick={() => router.push("/verificacion-codigos")}
+                className="w-full py-4 rounded-xl text-amber-200 text-sm tracking-wide active:scale-95 transition-all animate-pulse"
+                style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.5)", boxShadow: "0 0 24px rgba(180,130,40,0.2)" }}>
+                Comenzar mi recorrido simbólico
+              </button>
+            </div>
           </div>
         </div>
       )}
