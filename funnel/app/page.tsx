@@ -1,7 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Archive, PhoneOff, Phone, Moon } from "lucide-react";
+import { PhoneOff, Phone, Moon } from "lucide-react";
+import Image from "next/image";
 
 type Screen = "incoming" | "active" | "ended";
 
@@ -10,8 +11,8 @@ function SymbolicAvatar() {
     <div className="relative flex items-center justify-center w-24 h-24">
       <div className="absolute w-24 h-24 rounded-full border border-amber-400/30 animate-pulse-ring" />
       <div className="absolute w-20 h-20 rounded-full border border-amber-400/20 animate-pulse-ring" style={{ animationDelay: "0.5s" }} />
-      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 border border-amber-400/40 flex items-center justify-center">
-        <Archive className="w-7 h-7 text-amber-300" />
+      <div className="w-16 h-16 rounded-full overflow-hidden border border-amber-400/40">
+        <Image src="/avatar-centro-ser.jpg" alt="Centro Ser Integral" width={64} height={64} className="object-cover w-full h-full" />
       </div>
     </div>
   );
@@ -31,15 +32,36 @@ function WaveformAnimation() {
 
 export default function IncomingCallPage() {
   const [screen, setScreen] = useState<Screen>("incoming");
-  const [seconds, setSeconds] = useState(45);
+  const [seconds, setSeconds] = useState(48);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const router = useRouter();
 
+  // Iniciar audio y timer al aceptar
+  const handleAccept = () => {
+    setScreen("active");
+    const audio = new Audio("/llamada.mp3");
+    audioRef.current = audio;
+    audio.play().catch(() => {});
+    audio.onended = () => setScreen("ended");
+  };
+
+  // Timer de respaldo por si el audio tarda o falla
   useEffect(() => {
     if (screen !== "active") return;
-    if (seconds <= 0) { setScreen("ended"); return; }
+    if (seconds <= 0) {
+      audioRef.current?.pause();
+      setScreen("ended");
+      return;
+    }
     const t = setTimeout(() => setSeconds(s => s - 1), 1000);
     return () => clearTimeout(t);
   }, [screen, seconds]);
+
+  // Detener audio si cuelga
+  const handleHangUp = () => {
+    audioRef.current?.pause();
+    setScreen("ended");
+  };
 
   const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -66,7 +88,7 @@ export default function IncomingCallPage() {
                 </div>
                 <span className="text-red-400/70 text-xs">Rechazar</span>
               </button>
-              <button onClick={() => setScreen("active")} className="flex flex-col items-center gap-2 group">
+              <button onClick={handleAccept} className="flex flex-col items-center gap-2 group">
                 <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center group-active:scale-95 transition-transform">
                   <Phone className="w-6 h-6 text-emerald-400" />
                 </div>
@@ -85,7 +107,7 @@ export default function IncomingCallPage() {
             <p className="text-white text-xl font-light">Centro Ser Integral</p>
             <p className="text-amber-300 text-2xl font-mono tracking-widest">00:{pad(seconds)}</p>
             <WaveformAnimation />
-            <button onClick={() => setScreen("ended")}
+            <button onClick={handleHangUp}
               className="w-14 h-14 rounded-full bg-red-500/20 border border-red-400/40 flex items-center justify-center active:scale-95 transition-transform">
               <PhoneOff className="w-6 h-6 text-red-400" />
             </button>
