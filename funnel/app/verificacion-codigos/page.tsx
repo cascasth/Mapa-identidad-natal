@@ -175,7 +175,9 @@ export default function VerificacionPage() {
   };
 
   const bg = "linear-gradient(160deg, #0a0c1a 0%, #0d1020 60%, #1a1408 100%)";
-  const selectClass = "w-full bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400/50 appearance-none";
+  const selectClass = "w-full bg-transparent border border-amber-400/25 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400/60 appearance-none cursor-pointer";
+  const selectStyle = { backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" };
+  const btnStyle = { background: "transparent", border: "1px solid rgba(180,130,40,0.5)", color: "#e8c87a", boxShadow: "0 0 12px rgba(180,130,40,0.1)" };
 
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-10" style={{ background: bg }}>
@@ -198,7 +200,7 @@ export default function VerificacionPage() {
               <div>
                 <label className="text-slate-400 text-xs mb-1 block">Día</label>
                 <select value={day} onChange={e => setDay(e.target.value)} className={selectClass}
-                  style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}>
+                  style={selectStyle}>
                   <option value="">Día</option>
                   {DAYS.map(d => <option key={d} value={d}>{d}</option>)}
                 </select>
@@ -206,7 +208,7 @@ export default function VerificacionPage() {
               <div>
                 <label className="text-slate-400 text-xs mb-1 block">Mes</label>
                 <select value={month} onChange={e => setMonth(e.target.value)} className={selectClass}
-                  style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}>
+                  style={selectStyle}>
                   <option value="">Mes</option>
                   {MONTHS.map((m, i) => <option key={i+1} value={i+1}>{m}</option>)}
                 </select>
@@ -214,7 +216,7 @@ export default function VerificacionPage() {
               <div>
                 <label className="text-slate-400 text-xs mb-1 block">Año</label>
                 <select value={year} onChange={e => setYear(e.target.value)} className={selectClass}
-                  style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}>
+                  style={selectStyle}>
                   <option value="">Año</option>
                   {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
                 </select>
@@ -225,7 +227,7 @@ export default function VerificacionPage() {
 
             <button onClick={handleReveal}
               className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all"
-              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.3)", color: "#e8c87a" }}>
+              style={btnStyle}>
               Revelar mi tríada inicial
             </button>
           </div>

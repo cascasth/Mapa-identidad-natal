@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import AmbientAudio from "./ambient-audio";
 
 export const metadata: Metadata = {
   title: "Archivo de Identidad | Centro Ser Integral",
@@ -9,7 +10,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body style={{ minWidth: "320px" }}>{children}</body>
+      <body style={{ minWidth: "320px" }}>
+        <AmbientAudio />
+        {children}
+      </body>
     </html>
   );
 }
