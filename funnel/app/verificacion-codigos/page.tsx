@@ -185,51 +185,35 @@ export default function VerificacionPage() {
 
         {/* FORM */}
         {phase === "form" && (
-          <div className="animate-fade-in rounded-3xl border border-amber-400/20 bg-slate-900/80 p-8 flex flex-col gap-5 shadow-2xl">
-            <div>
-              <h1 className="text-white text-xl font-light tracking-wide">Lectura inicial de tu tríada simbólica</h1>
-              <p className="text-slate-400 text-sm mt-3 leading-relaxed">
-                Antes de abrir los 7 Espejos, revela tres señales básicas de tu fecha de nacimiento. No necesitas escribir tu nombre, ni lugar, ni correo, ni guardaremos tus datos.
-              </p>
-              <p className="text-amber-400/50 text-xs mt-3 leading-relaxed">
-                Esta primera lectura no es tu mapa completo. Es una puerta de entrada: una forma sencilla y real de reconocer tres códigos iniciales antes de continuar.
-              </p>
+          <div className="animate-fade-in relative rounded-2xl overflow-hidden shadow-2xl"
+            style={{ boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
+            {/* Imagen de fondo */}
+            <img src="/bg-verificacion.png" alt="" className="w-full block" style={{ objectFit: "cover" }} />
+            {/* Campos superpuestos — posicionados sobre los campos de la imagen */}
+            <div className="absolute inset-0 flex flex-col justify-end pb-[12%] px-[8%] gap-3">
+              {/* Día */}
+              <select value={day} onChange={e => setDay(e.target.value)} className={selectClass} style={selectStyle}>
+                <option value=""></option>
+                {DAYS.map(d => <option key={d} value={d}>{d}</option>)}
+              </select>
+              {/* Mes */}
+              <select value={month} onChange={e => setMonth(e.target.value)} className={selectClass} style={selectStyle}>
+                <option value=""></option>
+                {MONTHS.map((m, i) => <option key={i+1} value={i+1}>{m}</option>)}
+              </select>
+              {/* Año */}
+              <select value={year} onChange={e => setYear(e.target.value)} className={selectClass} style={selectStyle}>
+                <option value=""></option>
+                {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
+              </select>
+              {error && <p className="text-red-400 text-xs animate-fade-in text-center">{error}</p>}
+              {/* Botón */}
+              <button onClick={handleReveal}
+                className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all animate-pulse"
+                style={btnStyle}>
+                Revelar mi tríada inicial
+              </button>
             </div>
-
-            <div className="flex flex-col gap-3">
-              <div>
-                <label className="text-slate-400 text-xs mb-1 block">Día</label>
-                <select value={day} onChange={e => setDay(e.target.value)} className={selectClass}
-                  style={selectStyle}>
-                  <option value="">Día</option>
-                  {DAYS.map(d => <option key={d} value={d}>{d}</option>)}
-                </select>
-              </div>
-              <div>
-                <label className="text-slate-400 text-xs mb-1 block">Mes</label>
-                <select value={month} onChange={e => setMonth(e.target.value)} className={selectClass}
-                  style={selectStyle}>
-                  <option value="">Mes</option>
-                  {MONTHS.map((m, i) => <option key={i+1} value={i+1}>{m}</option>)}
-                </select>
-              </div>
-              <div>
-                <label className="text-slate-400 text-xs mb-1 block">Año</label>
-                <select value={year} onChange={e => setYear(e.target.value)} className={selectClass}
-                  style={selectStyle}>
-                  <option value="">Año</option>
-                  {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
-                </select>
-              </div>
-            </div>
-
-            {error && <p className="text-red-400 text-xs animate-fade-in">{error}</p>}
-
-            <button onClick={handleReveal}
-              className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all"
-              style={btnStyle}>
-              Revelar mi tríada inicial
-            </button>
           </div>
         )}
 
