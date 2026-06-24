@@ -149,52 +149,85 @@ export default function CodigoActivoPage() {
 
       {screen === "quiz" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto">
-          <div className="rounded-3xl border border-amber-400/20 bg-slate-900/80 p-6 flex flex-col gap-4 shadow-2xl">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-amber-400/60 text-xs">Pregunta {qIdx + 1} de {QUESTIONS.length}</span>
-              {qIdx > 0 && (
-                <button onClick={() => { setQIdx(i => i - 1); setAnswers(a => a.slice(0, -1)); }}
-                  className="text-slate-500 text-xs underline">volver</button>
-              )}
+          <div className="rounded-2xl p-6 flex flex-col gap-4"
+            style={{ background: "#080d1c", border: "1px solid rgba(180,130,40,0.18)", boxShadow: "0 0 0 1px rgba(180,130,40,0.06), 0 20px 60px rgba(0,0,0,0.6)" }}>
+
+            {/* Progreso */}
+            <div className="flex items-center gap-3">
+              <div className="flex gap-1 flex-1">
+                {QUESTIONS.map((_, i) => (
+                  <div key={i} className="flex-1 h-0.5 rounded-full"
+                    style={{ background: i < qIdx ? "rgba(180,130,40,0.7)" : i === qIdx ? "rgba(180,130,40,0.35)" : "rgba(255,255,255,0.08)" }} />
+                ))}
+              </div>
+              <span className="text-xs flex-shrink-0" style={{ color: "rgba(207,201,189,0.35)" }}>{qIdx + 1} / {QUESTIONS.length}</span>
             </div>
-            <div className="w-full h-1 rounded-full bg-slate-700">
-              <div className="h-1 rounded-full bg-amber-400/50 transition-all" style={{ width: `${((qIdx) / QUESTIONS.length) * 100}%` }} />
+
+            {/* Separador decorativo */}
+            <div className="flex items-center gap-2">
+              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.12)" }} />
+              <span className="text-amber-400/30 text-xs">✦</span>
+              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.12)" }} />
             </div>
-            <p className="text-white text-base font-light leading-snug">{QUESTIONS[qIdx].text}</p>
+
+            {/* Pregunta */}
+            <p className="text-base font-light leading-relaxed" style={{ color: "#D8D3C8" }}>
+              {QUESTIONS[qIdx].text}
+            </p>
+
+            {/* Opciones */}
             <div className="flex flex-col gap-2 mt-1">
               {QUESTIONS[qIdx].options.map(opt => (
                 <button key={opt.code} onClick={() => selectOption(opt.code)}
-                  className="w-full text-left px-4 py-3 rounded-xl border border-slate-700 text-slate-300 text-sm leading-snug hover:border-amber-400/40 hover:bg-amber-400/5 active:scale-95 transition-all">
+                  className="w-full text-left px-4 py-3 rounded-xl text-sm leading-snug active:scale-95 transition-all"
+                  style={{ background: "rgba(180,130,40,0.05)", border: "1px solid rgba(180,130,40,0.18)", color: "#CFC9BD" }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(180,130,40,0.12)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(180,130,40,0.4)"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(180,130,40,0.05)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(180,130,40,0.18)"; }}>
                   {opt.label}
                 </button>
               ))}
             </div>
+
+            {/* Volver */}
+            {qIdx > 0 && (
+              <button onClick={() => { setQIdx(i => i - 1); setAnswers(a => a.slice(0, -1)); }}
+                className="text-xs text-center w-full pt-1 active:opacity-70 transition-opacity"
+                style={{ color: "rgba(207,201,189,0.3)" }}>
+                ← volver
+              </button>
+            )}
           </div>
         </div>
       )}
 
       {screen === "loading" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto text-center">
-          <div className="rounded-3xl border border-amber-400/20 bg-slate-900/80 p-8 flex flex-col gap-4 shadow-2xl">
-            <div className="font-mono text-xs text-emerald-400/80 space-y-1 text-left">
-              {LOADING_TEXTS.slice(0, loadingText).map((t, i) => (
-                <p key={i} className="animate-fade-in">{t}</p>
-              ))}
-            </div>
+          <div className="rounded-2xl p-8 flex flex-col gap-3"
+            style={{ background: "#080d1c", border: "1px solid rgba(180,130,40,0.18)" }}>
+            <span className="text-amber-400/40 text-lg animate-pulse">✦</span>
+            {LOADING_TEXTS.slice(0, loadingText).map((t, i) => (
+              <p key={i} className="text-xs animate-fade-in" style={{ color: "rgba(207,201,189,0.55)" }}>{t}</p>
+            ))}
           </div>
         </div>
       )}
 
       {screen === "result" && result && (
         <div className="animate-fade-in w-full max-w-sm mx-auto">
-          <div className="rounded-3xl border border-amber-400/20 bg-slate-900/80 p-8 flex flex-col gap-5 shadow-2xl">
-            <h2 className="text-amber-300 text-lg font-light">{RESULTS[result].title}</h2>
+          <div className="rounded-2xl p-6 flex flex-col gap-4"
+            style={{ background: "#080d1c", border: "1px solid rgba(180,130,40,0.18)", boxShadow: "0 0 0 1px rgba(180,130,40,0.06), 0 20px 60px rgba(0,0,0,0.6)" }}>
+            <div className="flex items-center gap-2 mb-1">
+              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.15)" }} />
+              <span className="text-amber-400/40 text-xs">✦</span>
+              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.15)" }} />
+            </div>
+            <h2 className="text-base font-light" style={{ color: "#D8D3C8" }}>{RESULTS[result].title}</h2>
             {RESULTS[result].body.split("\n\n").map((para, i) => (
-              <p key={i} className="text-slate-300 text-sm leading-relaxed">{para}</p>
+              <p key={i} className="text-sm leading-relaxed" style={{ color: "rgba(207,201,189,0.6)" }}>{para}</p>
             ))}
             <button onClick={() => router.push("/ruta-7-espejos")}
-              className="mt-2 w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all"
-              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.3)", color: "#e8c87a" }}>
+              className="mt-2 w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all"
+              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.4)", color: "#e8c87a" }}>
               {RESULTS[result].cta}
             </button>
           </div>
