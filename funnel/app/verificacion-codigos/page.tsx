@@ -304,8 +304,8 @@ export default function VerificacionPage() {
               </div>
 
               <button onClick={() => router.push("/codigo-activo")}
-                className="w-full py-2.5 rounded-xl text-sm tracking-wide active:scale-95 transition-all mt-1"
-                style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.45)", color: "#e8c87a" }}>
+                className="btn-shimmer w-full py-2.5 rounded-xl text-sm tracking-wide active:scale-95 transition-all mt-1"
+                style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.55)", color: "#e8c87a" }}>
                 Continuar al Código Activo del Momento
               </button>
             </div>
