@@ -262,7 +262,7 @@ export default function VerificacionPage() {
               backgroundImage: "url('/bg-triada-resultado.png')",
               backgroundSize: "cover",
               backgroundPosition: "top center",
-              paddingTop: "59%",       /* ~43% del alto de la imagen */
+              paddingTop: "49%",       /* subido 10% */
               paddingLeft: "15%",
               paddingRight: "15%",
               paddingBottom: "22%",    /* deja espacio al disclaimer de la imagen */
