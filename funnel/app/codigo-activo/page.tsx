@@ -228,7 +228,7 @@ export default function CodigoActivoPage() {
             <button onClick={() => router.push("/ruta-7-espejos")}
               className="mt-2 w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all"
               style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.4)", color: "#e8c87a" }}>
-              {RESULTS[result].cta}
+              Entrar a la Cámara de los Espejos
             </button>
           </div>
         </div>
