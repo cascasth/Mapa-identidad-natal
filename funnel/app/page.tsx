@@ -209,13 +209,12 @@ export default function IncomingCallPage() {
 
       {screen === "ended" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
-          <EndedAudio />
           <div className="rounded-2xl overflow-hidden relative" style={{ boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
             <CornerDecor pos="tl" /><CornerDecor pos="tr" /><CornerDecor pos="bl" /><CornerDecor pos="br" />
-            {/* Video de fondo */}
+            {/* Video de fondo — sin muted para que suene el audio del video */}
             <video
               src="/pantalla-llamada-ended.mp4"
-              autoPlay loop muted playsInline
+              autoPlay loop playsInline
               className="w-full block"
               style={{ aspectRatio: "550/750", objectFit: "cover" }}
             />
