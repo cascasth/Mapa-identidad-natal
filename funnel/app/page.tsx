@@ -224,7 +224,7 @@ export default function IncomingCallPage() {
               <button onClick={() => router.push("/verificacion-codigos")}
                 className="w-full py-4 rounded-xl text-amber-200 text-sm tracking-wide active:scale-95 transition-all animate-pulse"
                 style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.5)", boxShadow: "0 0 24px rgba(180,130,40,0.2)" }}>
-                Comenzar mi recorrido simbólico
+                Comenzar
               </button>
             </div>
           </div>
