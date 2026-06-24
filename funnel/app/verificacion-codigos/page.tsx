@@ -247,8 +247,9 @@ export default function VerificacionPage() {
 
         {/* LOADING */}
         {phase === "loading" && (
-          <div className="animate-fade-in rounded-3xl border border-amber-400/20 bg-slate-900/80 p-8 text-center shadow-2xl">
-            <p className="text-emerald-400/80 text-sm font-mono animate-pulse">
+          <div className="animate-fade-in rounded-2xl p-8 text-center"
+            style={{ background: "#080d1c", border: "1px solid rgba(180,130,40,0.12)" }}>
+            <p className="text-sm animate-pulse" style={{ color: "#CFC9BD" }}>
               Trazando tus primeras coordenadas simbólicas…
             </p>
           </div>
@@ -256,49 +257,55 @@ export default function VerificacionPage() {
 
         {/* RESULT */}
         {phase === "result" && result && (
-          <div className="animate-fade-in flex flex-col gap-4">
-            <div className="rounded-3xl border border-amber-400/20 bg-slate-900/80 p-6 shadow-2xl">
-              <h2 className="text-amber-300 text-lg font-light mb-4">Tu primera tríada simbólica</h2>
+          <div className="animate-fade-in flex flex-col gap-3">
 
-              {/* Tarjeta 1 — Solar */}
-              <div className="rounded-2xl border border-slate-700 bg-slate-800/50 p-4 mb-3 flex gap-3">
-                <Star className="w-5 h-5 text-amber-400/70 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-amber-400/60 text-xs tracking-wide uppercase mb-1">Código del Cielo inicial</p>
-                  <p className="text-white text-base font-light">{result.solar.sign}</p>
-                  <p className="text-slate-400 text-xs mt-1 leading-snug">{result.solar.desc}</p>
-                </div>
-              </div>
-
-              {/* Tarjeta 2 — Chino */}
-              <div className="rounded-2xl border border-slate-700 bg-slate-800/50 p-4 mb-3 flex gap-3">
-                <TreePine className="w-5 h-5 text-amber-400/70 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-amber-400/60 text-xs tracking-wide uppercase mb-1">Código del Linaje inicial</p>
-                  <p className="text-white text-base font-light">{result.chinese.sign}</p>
-                  <p className="text-slate-400 text-xs mt-1 leading-snug">{result.chinese.desc}</p>
-                </div>
-              </div>
-
-              {/* Tarjeta 3 — Numerología */}
-              <div className="rounded-2xl border border-slate-700 bg-slate-800/50 p-4 mb-4 flex gap-3">
-                <Hash className="w-5 h-5 text-amber-400/70 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-amber-400/60 text-xs tracking-wide uppercase mb-1">Código de Fecha inicial</p>
-                  <p className="text-white text-base font-light">Camino de vida {result.lifePath.number}</p>
-                  <p className="text-slate-400 text-xs mt-1 leading-snug">{result.lifePath.desc}</p>
-                </div>
-              </div>
-
-              {/* Aclaración */}
-              <p className="text-slate-500 text-xs leading-relaxed border-t border-slate-700 pt-4">
-                Esta es una primera tríada simbólica. El Mapa de Identidad Natal completo integra tus 7 códigos con tus datos completos: nombre, hora y lugar de nacimiento, calendarios simbólicos, arquetipo, mantra y sello visual personalizado.
-              </p>
+            {/* Encabezado */}
+            <div className="text-center py-2">
+              <span className="text-amber-400/50 text-base">·</span>
+              <p className="text-xs tracking-[0.2em] uppercase mt-1" style={{ color: "rgba(207,201,189,0.5)" }}>Tu primera tríada simbólica</p>
             </div>
 
+            {/* Tarjeta 1 — Solar */}
+            <div className="rounded-2xl p-4 flex gap-3"
+              style={{ background: "#080d1c", border: "1px solid rgba(180,130,40,0.14)" }}>
+              <span className="text-amber-400/40 text-sm mt-0.5 flex-shrink-0">✦</span>
+              <div>
+                <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(207,201,189,0.45)" }}>Código del Cielo</p>
+                <p className="text-base font-light" style={{ color: "#D8D3C8" }}>{result.solar.sign}</p>
+                <p className="text-xs mt-1.5 leading-relaxed" style={{ color: "rgba(207,201,189,0.55)" }}>{result.solar.desc}</p>
+              </div>
+            </div>
+
+            {/* Tarjeta 2 — Chino */}
+            <div className="rounded-2xl p-4 flex gap-3"
+              style={{ background: "#080d1c", border: "1px solid rgba(180,130,40,0.14)" }}>
+              <span className="text-amber-400/40 text-sm mt-0.5 flex-shrink-0">✦</span>
+              <div>
+                <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(207,201,189,0.45)" }}>Código del Linaje</p>
+                <p className="text-base font-light" style={{ color: "#D8D3C8" }}>{result.chinese.sign}</p>
+                <p className="text-xs mt-1.5 leading-relaxed" style={{ color: "rgba(207,201,189,0.55)" }}>{result.chinese.desc}</p>
+              </div>
+            </div>
+
+            {/* Tarjeta 3 — Numerología */}
+            <div className="rounded-2xl p-4 flex gap-3"
+              style={{ background: "#080d1c", border: "1px solid rgba(180,130,40,0.14)" }}>
+              <span className="text-amber-400/40 text-sm mt-0.5 flex-shrink-0">✦</span>
+              <div>
+                <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(207,201,189,0.45)" }}>Código de Fecha</p>
+                <p className="text-base font-light" style={{ color: "#D8D3C8" }}>Camino de vida {result.lifePath.number}</p>
+                <p className="text-xs mt-1.5 leading-relaxed" style={{ color: "rgba(207,201,189,0.55)" }}>{result.lifePath.desc}</p>
+              </div>
+            </div>
+
+            {/* Aclaración */}
+            <p className="text-xs leading-relaxed text-center px-2 pt-1" style={{ color: "rgba(207,201,189,0.35)" }}>
+              Esta es una primera tríada simbólica. El Mapa completo integra tus 7 códigos con nombre, hora y lugar de nacimiento, arquetipo, mantra y sello visual.
+            </p>
+
             <button onClick={() => router.push("/codigo-activo")}
-              className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all"
-              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.3)", color: "#e8c87a" }}>
+              className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all mt-1"
+              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.4)", color: "#e8c87a" }}>
               Continuar al Código Activo del Momento
             </button>
           </div>
