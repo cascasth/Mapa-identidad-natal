@@ -4,13 +4,62 @@ import { useRouter } from "next/navigation";
 import { Star, Sparkles, TreePine, Clock, Anchor, Eye, UserCircle } from "lucide-react";
 
 const MIRRORS = [
-  { name: "El Cielo", desc: "Tu energía natal y tu forma de habitar el mundo.", Icon: Star, img: "/espejo-cielo.png" },
-  { name: "El Nombre", desc: "La vibración simbólica de cómo eres llamada.", Icon: Sparkles, img: "/espejo-nombre.png" },
-  { name: "El Linaje", desc: "Las raíces, memorias y ciclos que acompañan tu historia.", Icon: TreePine, img: "/espejo-linaje.png" },
-  { name: "El Tiempo Sagrado", desc: "El ritmo simbólico del día en que naciste.", Icon: Clock, img: "/espejo-tiempo.png" },
-  { name: "La Raíz Ancestral", desc: "La sensación de origen, pertenencia y sostén.", Icon: Anchor, img: "/espejo-raiz.png" },
-  { name: "El Espejo del Alma", desc: "Una imagen interna para observar tus aprendizajes.", Icon: Eye, img: "/espejo-alma.png" },
-  { name: "El Personaje Interior", desc: "El arquetipo que acompaña tu manera de actuar y transformarte.", Icon: UserCircle, img: "/espejo-personaje.png" },
+  {
+    name: "El Cielo",
+    desc: "Tu energía natal y tu forma de habitar el mundo.",
+    Icon: Star,
+    img: "/espejo-cielo.png",
+    body: "Este espejo habla de tu forma de orientarte, de buscar sentido y de mirar tu vida desde una perspectiva más amplia. Puede mostrarte qué parte de ti necesita recordar su dirección, su visión y aquello que la inspira a seguir.\n\nNo se trata de predecir tu destino, sino de observar qué símbolos pueden ayudarte a reconocer mejor tu forma de avanzar.",
+    question: "¿En qué área de tu vida necesitas volver a confiar en tu propia dirección?",
+  },
+  {
+    name: "El Nombre",
+    desc: "La vibración simbólica de cómo eres llamada.",
+    Icon: Sparkles,
+    img: "/espejo-nombre.png",
+    body: "Este espejo habla de tu voz, tu expresión y la huella simbólica que portas cuando dices "yo soy". Puede mostrarte qué parte de ti necesita nombrarse con más claridad, recuperar presencia y dejar de esconder su propia energía.\n\nTu nombre no es solo una etiqueta: también puede funcionar como una puerta para mirar talentos, deseos internos y formas de mostrarte ante el mundo.",
+    question: "¿Qué parte de ti pide ser expresada con más verdad?",
+  },
+  {
+    name: "El Linaje",
+    desc: "Las raíces, memorias y ciclos que acompañan tu historia.",
+    Icon: TreePine,
+    img: "/espejo-linaje.png",
+    body: "Este espejo habla de raíces, memorias, herencias emocionales y formas de pertenecer que pueden haber influido en tu manera de amar, protegerte, decidir o sostener a otros.\n\nNo viene a señalar culpas ni a definir tu historia. Viene a mostrar que algunas partes de ti no nacieron aisladas: también se formaron dentro de un tejido familiar, cultural y simbólico.",
+    question: "¿Qué herencia emocional estás lista para comprender de otra manera?",
+  },
+  {
+    name: "El Tiempo Sagrado",
+    desc: "El ritmo simbólico del día en que naciste.",
+    Icon: Clock,
+    img: "/espejo-tiempo.png",
+    body: "Este espejo habla de ciclos, ritmos internos, etapas de cambio y momentos que no siempre pueden acelerarse. Puede mostrarte qué parte de ti necesita dejar de forzar respuestas y empezar a escuchar el ritmo profundo de su propio proceso.\n\nA veces no estás detenida: estás madurando. A veces no estás perdida: estás entre una versión de ti y otra.",
+    question: "¿Qué ciclo de tu vida necesita ser entendido antes de ser apresurado?",
+  },
+  {
+    name: "La Raíz Ancestral",
+    desc: "La sensación de origen, pertenencia y sostén.",
+    Icon: Anchor,
+    img: "/espejo-raiz.png",
+    body: "Este espejo habla de pertenencia profunda, memoria simbólica y conexión con aquello que viene de antes de ti. Puede mostrarte qué parte de tu fuerza nace de raíces antiguas, incluso si todavía no sabes nombrarlas.",
+    question: "¿Qué raíz interior necesita ser reconocida para sostener mejor tu presente?",
+  },
+  {
+    name: "El Espejo del Alma",
+    desc: "Una imagen interna para observar tus aprendizajes.",
+    Icon: Eye,
+    img: "/espejo-alma.png",
+    body: "Este espejo habla de tu mundo interior, de tus deseos profundos, tus contradicciones y las preguntas que vuelven una y otra vez. Puede mostrarte qué parte de ti necesita ser escuchada sin juicio y contemplada con más ternura.",
+    question: "¿Qué verdad interior has sentido, pero todavía no has terminado de mirar?",
+  },
+  {
+    name: "El Personaje Interior",
+    desc: "El arquetipo que acompaña tu manera de actuar y transformarte.",
+    Icon: UserCircle,
+    img: "/espejo-personaje.png",
+    body: "Este espejo habla del arquetipo que actúa dentro de ti: la forma en que enfrentas retos, tomas decisiones, te proteges, creas o acompañas a otros. Puede mostrarte qué papel has estado representando y cuál podrías elegir con más conciencia.",
+    question: "¿Qué personaje interior ha guiado tus decisiones últimamente?",
+  },
 ];
 
 const bg = "linear-gradient(160deg, #06080f 0%, #0a0c1a 60%, #0d0f1a 100%)";
@@ -82,8 +131,8 @@ export default function Ruta7EspejosPage() {
             {selected !== null && (
               <div className="rounded-2xl overflow-hidden flex flex-col" style={cardStyle}>
 
-                {/* Imagen del espejo — 550×300px */}
-                <div style={{ aspectRatio: "550/300", background: "rgba(180,130,40,0.06)" }}>
+                {/* Imagen del espejo — reducida */}
+                <div style={{ aspectRatio: "550/180", background: "rgba(180,130,40,0.06)" }}>
                   <img
                     src={MIRRORS[selected].img}
                     alt=""
@@ -108,17 +157,27 @@ export default function Ruta7EspejosPage() {
 
                   <Divider />
 
-                  <p className="text-sm leading-relaxed" style={{ color: "rgba(207,201,189,0.65)" }}>
-                    Este espejo puede revelar una parte importante de ti.
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgba(207,201,189,0.5)" }}>
-                    Pero una identidad no se comprende desde una sola capa. Por eso el siguiente paso es ver cómo los 7 códigos pueden integrarse en un solo mapa.
+                  {/* Cuerpo del espejo */}
+                  {MIRRORS[selected].body.split("\n\n").map((para, i) => (
+                    <p key={i} className="text-sm leading-relaxed" style={{ color: "rgba(207,201,189,0.65)" }}>{para}</p>
+                  ))}
+
+                  {/* Pregunta de reflexión */}
+                  <div className="rounded-xl px-4 py-3" style={{ background: "rgba(180,130,40,0.07)", border: "1px solid rgba(180,130,40,0.2)" }}>
+                    <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "rgba(180,130,40,0.5)" }}>Pregunta para ti</p>
+                    <p className="text-sm leading-relaxed font-light italic" style={{ color: "#CFC9BD" }}>{MIRRORS[selected].question}</p>
+                  </div>
+
+                  <Divider />
+
+                  <p className="text-xs leading-relaxed text-center" style={{ color: "rgba(207,201,189,0.4)" }}>
+                    Una identidad no se comprende desde una sola capa. El siguiente paso es ver cómo los 7 códigos se integran en un solo mapa.
                   </p>
 
                   <button onClick={() => router.push("/explicacion-principal")}
-                    className="w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all mt-1"
+                    className="btn-shimmer w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all mt-1"
                     style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.4)", color: "#e8c87a" }}>
-                    Ver explicación principal
+                    Descubrir qué incluye el Mapa completo
                   </button>
                 </div>
               </div>
