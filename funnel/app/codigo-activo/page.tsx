@@ -127,17 +127,22 @@ export default function CodigoActivoPage() {
 
       {screen === "intro" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto">
-          <div className="rounded-3xl border border-amber-400/20 bg-slate-900/80 p-8 flex flex-col gap-5 shadow-2xl text-center">
-            <h1 className="text-white text-xl font-light tracking-wide">Código activo del momento</h1>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Tus datos muestran una parte de tu mapa. Tus respuestas muestran qué símbolo parece estar más activo en esta etapa de tu vida.
-            </p>
-            <p className="text-amber-400/60 text-xs">No hay respuestas correctas. Elige lo que más se parece a tu momento actual.</p>
-            <button onClick={() => setScreen("quiz")}
-              className="mt-2 w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all"
-              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.3)", color: "#e8c87a" }}>
-              Comenzar quiz
-            </button>
+          <div className="relative rounded-2xl overflow-hidden"
+            style={{
+              aspectRatio: "550/750",
+              backgroundImage: "url('/bg-codigo-activo.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "top center",
+              boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)",
+            }}>
+            {/* Botón superpuesto en la parte inferior */}
+            <div className="absolute bottom-[5%] left-[15%] right-[15%]">
+              <button onClick={() => setScreen("quiz")}
+                className="w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all"
+                style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.5)", color: "#e8c87a", boxShadow: "0 0 20px rgba(180,130,40,0.15)" }}>
+                ✦ Comenzar
+              </button>
+            </div>
           </div>
         </div>
       )}
