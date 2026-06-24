@@ -190,32 +190,41 @@ export default function VerificacionPage() {
 
             {/* Campos superpuestos — sin etiquetas (la imagen ya las tiene) */}
             <div className="absolute left-[15%] right-[15%] flex flex-col gap-2" style={{ top: "57%" }}>
-              <select value={day} onChange={e => setDay(e.target.value)}
+              <div>
+                <p className="text-amber-400/70 text-xs tracking-widest uppercase mb-1 pl-1">Día</p>
+                <select value={day} onChange={e => setDay(e.target.value)}
                 className="w-full rounded-lg px-3 py-2 text-white text-sm focus:outline-none appearance-none cursor-pointer"
                 style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.35)",
                   backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
                   backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
                 <option value="">—</option>
                 {DAYS.map(d => <option key={d} value={d}>{d}</option>)}
-              </select>
+                </select>
+              </div>
 
-              <select value={month} onChange={e => setMonth(e.target.value)}
-                className="w-full rounded-lg px-3 py-2 text-white text-sm focus:outline-none appearance-none cursor-pointer"
-                style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.35)",
-                  backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
-                  backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
-                <option value="">—</option>
-                {MONTHS.map((m, i) => <option key={i+1} value={i+1}>{m}</option>)}
-              </select>
+              <div>
+                <p className="text-amber-400/70 text-xs tracking-widest uppercase mb-1 pl-1">Mes</p>
+                <select value={month} onChange={e => setMonth(e.target.value)}
+                  className="w-full rounded-lg px-3 py-2 text-white text-sm focus:outline-none appearance-none cursor-pointer"
+                  style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.35)",
+                    backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
+                    backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
+                  <option value="">—</option>
+                  {MONTHS.map((m, i) => <option key={i+1} value={i+1}>{m}</option>)}
+                </select>
+              </div>
 
-              <select value={year} onChange={e => setYear(e.target.value)}
-                className="w-full rounded-lg px-3 py-2 text-white text-sm focus:outline-none appearance-none cursor-pointer"
-                style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.35)",
-                  backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
-                  backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
-                <option value="">—</option>
-                {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
-              </select>
+              <div>
+                <p className="text-amber-400/70 text-xs tracking-widest uppercase mb-1 pl-1">Año</p>
+                <select value={year} onChange={e => setYear(e.target.value)}
+                  className="w-full rounded-lg px-3 py-2 text-white text-sm focus:outline-none appearance-none cursor-pointer"
+                  style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.35)",
+                    backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
+                    backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
+                  <option value="">—</option>
+                  {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
+                </select>
+              </div>
 
               {error && <p className="text-red-400 text-xs text-center animate-fade-in">{error}</p>}
 
