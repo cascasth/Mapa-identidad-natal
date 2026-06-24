@@ -136,7 +136,7 @@ export default function CodigoActivoPage() {
               boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)",
             }}>
             {/* Botón superpuesto en la parte inferior */}
-            <div className="absolute bottom-[5%] left-[15%] right-[15%]">
+            <div className="absolute bottom-[10%] left-[15%] right-[15%]">
               <button onClick={() => setScreen("quiz")}
                 className="w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all"
                 style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.5)", color: "#e8c87a", boxShadow: "0 0 20px rgba(180,130,40,0.15)" }}>
