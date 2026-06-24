@@ -190,33 +190,33 @@ export default function VerificacionPage() {
             {/* Imagen de fondo */}
             <img src="/bg-verificacion.png" alt="" className="w-full block" style={{ objectFit: "cover" }} />
             {/* Campos superpuestos — posicionados sobre los campos de la imagen */}
-            <div className="absolute inset-0 px-[8%]">
+            <div className="absolute inset-0">
               {/* Día */}
-              <div className="absolute w-[84%]" style={{ top: "54%", left: "8%" }}>
+              <div className="absolute" style={{ top: "63.9%", left: "14.9%", width: "72.4%" }}>
                 <select value={day} onChange={e => setDay(e.target.value)} className={selectClass} style={selectStyle}>
                   <option value=""></option>
                   {DAYS.map(d => <option key={d} value={d}>{d}</option>)}
                 </select>
               </div>
               {/* Mes */}
-              <div className="absolute w-[84%]" style={{ top: "66%", left: "8%" }}>
+              <div className="absolute" style={{ top: "74.4%", left: "14.9%", width: "72.4%" }}>
                 <select value={month} onChange={e => setMonth(e.target.value)} className={selectClass} style={selectStyle}>
                   <option value=""></option>
                   {MONTHS.map((m, i) => <option key={i+1} value={i+1}>{m}</option>)}
                 </select>
               </div>
               {/* Año */}
-              <div className="absolute w-[84%]" style={{ top: "78%", left: "8%" }}>
+              <div className="absolute" style={{ top: "85.2%", left: "14.9%", width: "72.4%" }}>
                 <select value={year} onChange={e => setYear(e.target.value)} className={selectClass} style={selectStyle}>
                   <option value=""></option>
                   {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
                 </select>
               </div>
-              {error && <p className="absolute text-red-400 text-xs animate-fade-in text-center w-[84%]" style={{ top: "88%", left: "8%" }}>{error}</p>}
+              {error && <p className="absolute text-red-400 text-xs animate-fade-in text-center" style={{ top: "93%", left: "14.9%", width: "72.4%" }}>{error}</p>}
               {/* Botón */}
-              <div className="absolute w-[84%]" style={{ top: "90%", left: "8%" }}>
+              <div className="absolute" style={{ top: "91%", left: "14.9%", width: "72.4%" }}>
                 <button onClick={handleReveal}
-                  className="w-full py-3 rounded-2xl text-sm tracking-wide active:scale-95 transition-all animate-pulse"
+                  className="w-full py-2 rounded-xl text-sm tracking-wide active:scale-95 transition-all animate-pulse"
                   style={btnStyle}>
                   Revelar mi tríada inicial
                 </button>
