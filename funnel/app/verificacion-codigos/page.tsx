@@ -176,7 +176,7 @@ export default function VerificacionPage() {
 
   const bg = "linear-gradient(160deg, #0a0c1a 0%, #0d1020 60%, #1a1408 100%)";
   const selectClass = "w-full bg-transparent border border-amber-400/25 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400/60 appearance-none cursor-pointer";
-  const selectStyle = { backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" };
+  const selectStyle = { backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center", backgroundColor: "#040b17" };
   const btnStyle = { background: "transparent", border: "1px solid rgba(180,130,40,0.5)", color: "#e8c87a", boxShadow: "0 0 12px rgba(180,130,40,0.1)" };
 
   return (
@@ -192,29 +192,29 @@ export default function VerificacionPage() {
             {/* Campos superpuestos — posicionados sobre los campos de la imagen */}
             <div className="absolute inset-0">
               {/* Día */}
-              <div className="absolute" style={{ top: "63.9%", left: "14.9%", width: "72.4%" }}>
+              <div className="absolute" style={{ top: "43%", left: "14.9%", width: "72.4%" }}>
                 <select value={day} onChange={e => setDay(e.target.value)} className={selectClass} style={selectStyle}>
                   <option value=""></option>
                   {DAYS.map(d => <option key={d} value={d}>{d}</option>)}
                 </select>
               </div>
               {/* Mes */}
-              <div className="absolute" style={{ top: "74.4%", left: "14.9%", width: "72.4%" }}>
+              <div className="absolute" style={{ top: "54%", left: "14.9%", width: "72.4%" }}>
                 <select value={month} onChange={e => setMonth(e.target.value)} className={selectClass} style={selectStyle}>
                   <option value=""></option>
                   {MONTHS.map((m, i) => <option key={i+1} value={i+1}>{m}</option>)}
                 </select>
               </div>
               {/* Año */}
-              <div className="absolute" style={{ top: "85.2%", left: "14.9%", width: "72.4%" }}>
+              <div className="absolute" style={{ top: "65%", left: "14.9%", width: "72.4%" }}>
                 <select value={year} onChange={e => setYear(e.target.value)} className={selectClass} style={selectStyle}>
                   <option value=""></option>
                   {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
                 </select>
               </div>
-              {error && <p className="absolute text-red-400 text-xs animate-fade-in text-center" style={{ top: "93%", left: "14.9%", width: "72.4%" }}>{error}</p>}
+              {error && <p className="absolute text-red-400 text-xs animate-fade-in text-center" style={{ top: "75%", left: "14.9%", width: "72.4%" }}>{error}</p>}
               {/* Botón */}
-              <div className="absolute" style={{ top: "91%", left: "14.9%", width: "72.4%" }}>
+              <div className="absolute" style={{ top: "76%", left: "14.9%", width: "72.4%" }}>
                 <button onClick={handleReveal}
                   className="w-full py-2 rounded-xl text-sm tracking-wide active:scale-95 transition-all animate-pulse"
                   style={btnStyle}>
