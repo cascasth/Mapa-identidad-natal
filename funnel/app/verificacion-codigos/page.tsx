@@ -257,57 +257,58 @@ export default function VerificacionPage() {
 
         {/* RESULT */}
         {phase === "result" && result && (
-          <div className="animate-fade-in flex flex-col gap-3">
+          <div className="animate-fade-in rounded-2xl overflow-hidden"
+            style={{
+              backgroundImage: "url('/bg-triada-resultado.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "top center",
+              paddingTop: "59%",       /* ~43% del alto de la imagen */
+              paddingLeft: "15%",
+              paddingRight: "15%",
+              paddingBottom: "22%",    /* deja espacio al disclaimer de la imagen */
+              boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)",
+            }}>
 
-            {/* Encabezado */}
-            <div className="text-center py-2">
-              <span className="text-amber-400/50 text-base">·</span>
-              <p className="text-xs tracking-[0.2em] uppercase mt-1" style={{ color: "rgba(207,201,189,0.5)" }}>Tu primera tríada simbólica</p>
-            </div>
-
-            {/* Tarjeta 1 — Solar */}
-            <div className="rounded-2xl p-4 flex gap-3"
-              style={{ background: "#080d1c", border: "1px solid rgba(180,130,40,0.14)" }}>
-              <span className="text-amber-400/40 text-sm mt-0.5 flex-shrink-0">✦</span>
-              <div>
-                <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(207,201,189,0.45)" }}>Código del Cielo</p>
-                <p className="text-base font-light" style={{ color: "#D8D3C8" }}>{result.solar.sign}</p>
-                <p className="text-xs mt-1.5 leading-relaxed" style={{ color: "rgba(207,201,189,0.55)" }}>{result.solar.desc}</p>
+            <div className="flex flex-col gap-2">
+              {/* Tarjeta 1 — Solar */}
+              <div className="rounded-xl p-3 flex gap-3"
+                style={{ background: "rgba(4,11,23,0.85)", border: "1px solid rgba(180,130,40,0.2)" }}>
+                <span className="text-amber-400/40 text-xs mt-0.5 flex-shrink-0">✦</span>
+                <div>
+                  <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(207,201,189,0.45)" }}>Coordenada del Cielo</p>
+                  <p className="text-sm font-light" style={{ color: "#D8D3C8" }}>{result.solar.sign}</p>
+                  <p className="text-xs mt-1 leading-relaxed" style={{ color: "rgba(207,201,189,0.55)" }}>{result.solar.desc}</p>
+                </div>
               </div>
-            </div>
 
-            {/* Tarjeta 2 — Chino */}
-            <div className="rounded-2xl p-4 flex gap-3"
-              style={{ background: "#080d1c", border: "1px solid rgba(180,130,40,0.14)" }}>
-              <span className="text-amber-400/40 text-sm mt-0.5 flex-shrink-0">✦</span>
-              <div>
-                <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(207,201,189,0.45)" }}>Código del Linaje</p>
-                <p className="text-base font-light" style={{ color: "#D8D3C8" }}>{result.chinese.sign}</p>
-                <p className="text-xs mt-1.5 leading-relaxed" style={{ color: "rgba(207,201,189,0.55)" }}>{result.chinese.desc}</p>
+              {/* Tarjeta 2 — Chino */}
+              <div className="rounded-xl p-3 flex gap-3"
+                style={{ background: "rgba(4,11,23,0.85)", border: "1px solid rgba(180,130,40,0.2)" }}>
+                <span className="text-amber-400/40 text-xs mt-0.5 flex-shrink-0">✦</span>
+                <div>
+                  <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(207,201,189,0.45)" }}>Coordenada del Linaje</p>
+                  <p className="text-sm font-light" style={{ color: "#D8D3C8" }}>{result.chinese.sign}</p>
+                  <p className="text-xs mt-1 leading-relaxed" style={{ color: "rgba(207,201,189,0.55)" }}>{result.chinese.desc}</p>
+                </div>
               </div>
-            </div>
 
-            {/* Tarjeta 3 — Numerología */}
-            <div className="rounded-2xl p-4 flex gap-3"
-              style={{ background: "#080d1c", border: "1px solid rgba(180,130,40,0.14)" }}>
-              <span className="text-amber-400/40 text-sm mt-0.5 flex-shrink-0">✦</span>
-              <div>
-                <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(207,201,189,0.45)" }}>Código de Fecha</p>
-                <p className="text-base font-light" style={{ color: "#D8D3C8" }}>Camino de vida {result.lifePath.number}</p>
-                <p className="text-xs mt-1.5 leading-relaxed" style={{ color: "rgba(207,201,189,0.55)" }}>{result.lifePath.desc}</p>
+              {/* Tarjeta 3 — Numerología */}
+              <div className="rounded-xl p-3 flex gap-3"
+                style={{ background: "rgba(4,11,23,0.85)", border: "1px solid rgba(180,130,40,0.2)" }}>
+                <span className="text-amber-400/40 text-xs mt-0.5 flex-shrink-0">✦</span>
+                <div>
+                  <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(207,201,189,0.45)" }}>Coordenada de Fecha</p>
+                  <p className="text-sm font-light" style={{ color: "#D8D3C8" }}>Camino de vida {result.lifePath.number}</p>
+                  <p className="text-xs mt-1 leading-relaxed" style={{ color: "rgba(207,201,189,0.55)" }}>{result.lifePath.desc}</p>
+                </div>
               </div>
+
+              <button onClick={() => router.push("/codigo-activo")}
+                className="w-full py-2.5 rounded-xl text-sm tracking-wide active:scale-95 transition-all mt-1"
+                style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.45)", color: "#e8c87a" }}>
+                Continuar al Código Activo del Momento
+              </button>
             </div>
-
-            {/* Aclaración */}
-            <p className="text-xs leading-relaxed text-center px-2 pt-1" style={{ color: "rgba(207,201,189,0.35)" }}>
-              Esta es una primera tríada simbólica. El Mapa completo integra tus 7 códigos con nombre, hora y lugar de nacimiento, arquetipo, mantra y sello visual.
-            </p>
-
-            <button onClick={() => router.push("/codigo-activo")}
-              className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all mt-1"
-              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.4)", color: "#e8c87a" }}>
-              Continuar al Código Activo del Momento
-            </button>
           </div>
         )}
       </div>
