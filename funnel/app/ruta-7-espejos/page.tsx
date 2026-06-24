@@ -4,13 +4,13 @@ import { useRouter } from "next/navigation";
 import { Star, Sparkles, TreePine, Clock, Anchor, Eye, UserCircle } from "lucide-react";
 
 const MIRRORS = [
-  { name: "El Cielo", desc: "Tu energía natal y tu forma de habitar el mundo.", Icon: Star },
-  { name: "El Nombre", desc: "La vibración simbólica de cómo eres llamada.", Icon: Sparkles },
-  { name: "El Linaje", desc: "Las raíces, memorias y ciclos que acompañan tu historia.", Icon: TreePine },
-  { name: "El Tiempo Sagrado", desc: "El ritmo simbólico del día en que naciste.", Icon: Clock },
-  { name: "La Raíz Ancestral", desc: "La sensación de origen, pertenencia y sostén.", Icon: Anchor },
-  { name: "El Espejo del Alma", desc: "Una imagen interna para observar tus aprendizajes.", Icon: Eye },
-  { name: "El Personaje Interior", desc: "El arquetipo que acompaña tu manera de actuar y transformarte.", Icon: UserCircle },
+  { name: "El Cielo", desc: "Tu energía natal y tu forma de habitar el mundo.", Icon: Star, img: "/espejo-cielo.png" },
+  { name: "El Nombre", desc: "La vibración simbólica de cómo eres llamada.", Icon: Sparkles, img: "/espejo-nombre.png" },
+  { name: "El Linaje", desc: "Las raíces, memorias y ciclos que acompañan tu historia.", Icon: TreePine, img: "/espejo-linaje.png" },
+  { name: "El Tiempo Sagrado", desc: "El ritmo simbólico del día en que naciste.", Icon: Clock, img: "/espejo-tiempo.png" },
+  { name: "La Raíz Ancestral", desc: "La sensación de origen, pertenencia y sostén.", Icon: Anchor, img: "/espejo-raiz.png" },
+  { name: "El Espejo del Alma", desc: "Una imagen interna para observar tus aprendizajes.", Icon: Eye, img: "/espejo-alma.png" },
+  { name: "El Personaje Interior", desc: "El arquetipo que acompaña tu manera de actuar y transformarte.", Icon: UserCircle, img: "/espejo-personaje.png" },
 ];
 
 const bg = "linear-gradient(160deg, #06080f 0%, #0a0c1a 60%, #0d0f1a 100%)";
@@ -79,35 +79,50 @@ export default function Ruta7EspejosPage() {
           </>
         ) : (
           <div className="animate-fade-in flex flex-col gap-4 pt-4">
-            <div className="rounded-2xl p-6 flex flex-col gap-4" style={cardStyle}>
-              <Divider />
+            {selected !== null && (
+              <div className="rounded-2xl overflow-hidden flex flex-col" style={cardStyle}>
 
-              {selected !== null && (() => {
-                const Icon = MIRRORS[selected].Icon;
-                return (
-                  <div className="text-center py-2">
-                    <Icon className="w-8 h-8 mx-auto mb-3" style={{ color: "rgba(180,130,40,0.5)" }} />
-                    <p className="text-xs tracking-widest uppercase" style={{ color: "rgba(207,201,189,0.4)" }}>Espejo seleccionado</p>
-                    <p className="text-base font-light mt-1" style={{ color: "#D8D3C8" }}>{MIRRORS[selected].name}</p>
-                  </div>
-                );
-              })()}
+                {/* Imagen del espejo — 550×300px */}
+                <div style={{ aspectRatio: "550/300", background: "rgba(180,130,40,0.06)" }}>
+                  <img
+                    src={MIRRORS[selected].img}
+                    alt=""
+                    className="w-full h-full object-cover"
+                    onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                  />
+                </div>
 
-              <Divider />
+                <div className="p-6 flex flex-col gap-4">
+                  <Divider />
 
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(207,201,189,0.65)" }}>
-                Este espejo puede revelar una parte importante de ti.
-              </p>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(207,201,189,0.5)" }}>
-                Pero una identidad no se comprende desde una sola capa. Por eso el siguiente paso es ver cómo los 7 códigos pueden integrarse en un solo mapa.
-              </p>
+                  {(() => {
+                    const Icon = MIRRORS[selected].Icon;
+                    return (
+                      <div className="text-center">
+                        <Icon className="w-7 h-7 mx-auto mb-2" style={{ color: "rgba(180,130,40,0.5)" }} />
+                        <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(207,201,189,0.4)" }}>Espejo seleccionado</p>
+                        <p className="text-base font-light" style={{ color: "#D8D3C8" }}>{MIRRORS[selected].name}</p>
+                      </div>
+                    );
+                  })()}
 
-              <button onClick={() => router.push("/explicacion-principal")}
-                className="w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all mt-1"
-                style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.4)", color: "#e8c87a" }}>
-                Ver explicación principal
-              </button>
-            </div>
+                  <Divider />
+
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(207,201,189,0.65)" }}>
+                    Este espejo puede revelar una parte importante de ti.
+                  </p>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(207,201,189,0.5)" }}>
+                    Pero una identidad no se comprende desde una sola capa. Por eso el siguiente paso es ver cómo los 7 códigos pueden integrarse en un solo mapa.
+                  </p>
+
+                  <button onClick={() => router.push("/explicacion-principal")}
+                    className="w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all mt-1"
+                    style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.4)", color: "#e8c87a" }}>
+                    Ver explicación principal
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
