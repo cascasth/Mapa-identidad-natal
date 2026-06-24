@@ -45,6 +45,14 @@ const QUESTIONS = [
   },
 ];
 
+const RESULT_IMAGES: Record<string, string> = {
+  A: "/resultado-cielo.png",
+  B: "/resultado-nombre.png",
+  C: "/resultado-linaje.png",
+  D: "/resultado-alma.png",
+  E: "/resultado-integracion.png",
+};
+
 const RESULTS: Record<string, { title: string; body: string; cta: string }> = {
   A: {
     title: "Tu código activo es: El Cielo",
@@ -214,22 +222,35 @@ export default function CodigoActivoPage() {
 
       {screen === "result" && result && (
         <div className="animate-fade-in w-full max-w-sm mx-auto">
-          <div className="rounded-2xl p-6 flex flex-col gap-4"
+          <div className="rounded-2xl overflow-hidden flex flex-col"
             style={{ background: "#080d1c", border: "1px solid rgba(180,130,40,0.18)", boxShadow: "0 0 0 1px rgba(180,130,40,0.06), 0 20px 60px rgba(0,0,0,0.6)" }}>
-            <div className="flex items-center gap-2 mb-1">
-              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.15)" }} />
-              <span className="text-amber-400/40 text-xs">✦</span>
-              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.15)" }} />
+
+            {/* Imagen del código — 550×300px */}
+            <div style={{ aspectRatio: "550/300", background: "rgba(180,130,40,0.06)" }}>
+              <img
+                src={RESULT_IMAGES[result]}
+                alt=""
+                className="w-full h-full object-cover"
+                onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+              />
             </div>
-            <h2 className="text-base font-light" style={{ color: "#D8D3C8" }}>{RESULTS[result].title}</h2>
-            {RESULTS[result].body.split("\n\n").map((para, i) => (
-              <p key={i} className="text-sm leading-relaxed" style={{ color: "rgba(207,201,189,0.6)" }}>{para}</p>
-            ))}
-            <button onClick={() => router.push("/ruta-7-espejos")}
-              className="mt-2 w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all"
-              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.4)", color: "#e8c87a" }}>
-              Entrar a la Cámara de los Espejos
-            </button>
+
+            <div className="p-6 flex flex-col gap-4">
+              <div className="flex items-center gap-2">
+                <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.15)" }} />
+                <span className="text-amber-400/40 text-xs">✦</span>
+                <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.15)" }} />
+              </div>
+              <h2 className="text-base font-light" style={{ color: "#D8D3C8" }}>{RESULTS[result].title}</h2>
+              {RESULTS[result].body.split("\n\n").map((para, i) => (
+                <p key={i} className="text-sm leading-relaxed" style={{ color: "rgba(207,201,189,0.6)" }}>{para}</p>
+              ))}
+              <button onClick={() => router.push("/ruta-7-espejos")}
+                className="mt-1 w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all"
+                style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.4)", color: "#e8c87a" }}>
+                Entrar a la Cámara de los Espejos
+              </button>
+            </div>
           </div>
         </div>
       )}
