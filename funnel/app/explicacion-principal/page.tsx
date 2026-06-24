@@ -1,120 +1,112 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Play, Pause, Moon } from "lucide-react";
-
-type PlayerState = "cover" | "loading" | "playing" | "paused" | "done";
-
-const DURATION = 180; // 3 min simulated
-const LOADING_TEXTS = [
-  "Preparando tus códigos…",
-  "Integrando tus capas simbólicas…",
-  "Organizando tu lectura…",
-  "Creando tu ruta personalizada…",
-  "Tu mapa está casi listo para abrirse…",
-];
+import { Play, Pause } from "lucide-react";
 
 export default function ExplicacionPrincipalPage() {
-  const [state, setState] = useState<PlayerState>("cover");
+  const [started, setStarted] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [loadingIdx, setLoadingIdx] = useState(0);
+  const [done, setDone] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter();
 
-  // Loading animation
-  useEffect(() => {
-    if (state !== "loading") return;
-    if (loadingIdx >= LOADING_TEXTS.length) {
-      setState("playing");
-      return;
-    }
-    const t = setTimeout(() => setLoadingIdx(i => i + 1), 600);
-    return () => clearTimeout(t);
-  }, [state, loadingIdx]);
+  const handleStart = () => {
+    setStarted(true);
+    setTimeout(() => {
+      videoRef.current?.play().catch(() => {});
+      setPlaying(true);
+    }, 100);
+  };
 
-  // Progress bar
-  useEffect(() => {
-    if (state !== "playing") return;
-    if (progress >= 100) { setState("done"); return; }
-    const t = setTimeout(() => setProgress(p => Math.min(p + 100 / DURATION, 100)), 1000);
-    return () => clearTimeout(t);
-  }, [state, progress]);
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (playing) { videoRef.current.pause(); setPlaying(false); }
+    else { videoRef.current.play().catch(() => {}); setPlaying(true); }
+  };
 
-  const bg = "linear-gradient(160deg, #0a0c1a 0%, #0d1020 60%, #1a1408 100%)";
-  const pct = `${progress.toFixed(1)}%`;
+  const handleTimeUpdate = () => {
+    const v = videoRef.current;
+    if (!v || !v.duration) return;
+    setProgress((v.currentTime / v.duration) * 100);
+  };
+
+  const handleEnded = () => { setPlaying(false); setDone(true); };
+
+  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    const v = videoRef.current;
+    if (!v) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    v.currentTime = ((e.clientX - rect.left) / rect.width) * v.duration;
+  };
+
+  const bg = "linear-gradient(160deg, #06080f 0%, #0a0c1a 60%, #0d0f1a 100%)";
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-4 py-10" style={{ background: bg }}>
       <div className="w-full max-w-sm mx-auto flex flex-col gap-4">
 
+        {/* Encabezado */}
         <div className="animate-fade-in text-center">
-          <p className="text-amber-400/60 text-xs tracking-widest uppercase mb-1">Mapa de Identidad Natal</p>
-          <h1 className="text-white text-lg font-light">Ruta de los 7 Códigos</h1>
+          <p className="text-xs tracking-[0.25em] uppercase mb-1" style={{ color: "rgba(207,201,189,0.35)" }}>Mapa de Identidad Natal</p>
+          <h1 className="text-lg font-light" style={{ color: "#D8D3C8" }}>Ruta de los 7 Códigos</h1>
         </div>
 
-        {/* Player container 9:16 ratio */}
-        <div className="relative w-full rounded-3xl overflow-hidden border border-amber-400/20 bg-slate-900/80 shadow-2xl"
-          style={{ aspectRatio: "9/16", maxHeight: "60vh" }}>
+        {/* Contenedor del video */}
+        <div className="relative w-full rounded-2xl overflow-hidden"
+          style={{ aspectRatio: "9/16", background: "#040810", border: "1px solid rgba(180,130,40,0.2)", boxShadow: "0 0 0 1px rgba(180,130,40,0.06), 0 20px 60px rgba(0,0,0,0.7)" }}>
 
-          {/* Cover */}
-          {state === "cover" && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 animate-fade-in">
-              <div className="w-20 h-20 rounded-full border border-amber-400/30 flex items-center justify-center">
-                <Moon className="w-8 h-8 text-amber-400/70" />
-              </div>
-              <button onClick={() => { setState("loading"); setLoadingIdx(0); }}
-                className="w-16 h-16 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center active:scale-95 transition-transform">
-                <Play className="w-7 h-7 text-amber-300 ml-1" />
+          {/* Video real */}
+          <video
+            ref={videoRef}
+            src="/vsl-principal.mp4"
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 w-full h-full object-cover"
+            onTimeUpdate={handleTimeUpdate}
+            onEnded={handleEnded}
+          />
+
+          {/* Cover — antes de iniciar */}
+          {!started && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 animate-fade-in"
+              style={{ background: "rgba(4,8,16,0.7)" }}>
+              <p className="text-xs tracking-widest uppercase" style={{ color: "rgba(207,201,189,0.4)" }}>Toca para comenzar</p>
+              <button onClick={handleStart}
+                className="w-16 h-16 rounded-full flex items-center justify-center active:scale-95 transition-all"
+                style={{ background: "rgba(180,130,40,0.15)", border: "1px solid rgba(180,130,40,0.45)", boxShadow: "0 0 24px rgba(180,130,40,0.2)" }}>
+                <Play className="w-7 h-7 ml-1" style={{ color: "#e8c87a" }} />
               </button>
             </div>
           )}
 
-          {/* Loading */}
-          {state === "loading" && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-8 animate-fade-in">
-              <div className="font-mono text-xs text-emerald-400/80 space-y-1 text-left w-full">
-                {LOADING_TEXTS.slice(0, loadingIdx).map((t, i) => (
-                  <p key={i} className="animate-fade-in">{t}</p>
-                ))}
+          {/* Controles durante reproducción */}
+          {started && !done && (
+            <div className="absolute bottom-0 left-0 right-0 p-4"
+              style={{ background: "linear-gradient(0deg, rgba(4,8,16,0.9) 0%, transparent 100%)" }}>
+              {/* Barra de progreso */}
+              <div className="h-1 rounded-full mb-3 cursor-pointer" style={{ background: "rgba(255,255,255,0.1)" }} onClick={handleSeek}>
+                <div className="h-1 rounded-full transition-all" style={{ width: `${progress}%`, background: "rgba(180,130,40,0.7)" }} />
               </div>
-            </div>
-          )}
-
-          {/* Playing / Paused */}
-          {(state === "playing" || state === "paused") && (
-            <div className="absolute inset-0 flex flex-col items-center justify-between p-6 animate-fade-in">
-              <div className="w-full flex justify-center pt-4">
-                <Moon className="w-8 h-8 text-amber-400/40" />
+              <div className="flex justify-center">
+                <button onClick={togglePlay}
+                  className="w-10 h-10 rounded-full flex items-center justify-center active:scale-95 transition-all"
+                  style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }}>
+                  {playing
+                    ? <Pause className="w-4 h-4 text-white" />
+                    : <Play className="w-4 h-4 text-white ml-0.5" />}
+                </button>
               </div>
-              <button onClick={() => setState(s => s === "playing" ? "paused" : "playing")}
-                className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center active:scale-95 transition-transform">
-                {state === "playing"
-                  ? <Pause className="w-5 h-5 text-white" />
-                  : <Play className="w-5 h-5 text-white ml-0.5" />}
-              </button>
-              <div className="w-full">
-                <div className="h-1 rounded-full bg-slate-700 mb-2">
-                  <div className="h-1 rounded-full bg-amber-400/70 transition-all" style={{ width: pct }} />
-                </div>
-                <p className="text-slate-500 text-xs text-center">Continuar con calma</p>
-              </div>
-            </div>
-          )}
-
-          {/* Done */}
-          {state === "done" && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 p-6 text-center animate-fade-in">
-              <Moon className="w-10 h-10 text-amber-400/60" />
-              <p className="text-white text-sm font-light">Ruta de los 7 Códigos</p>
-              <div className="w-full h-1 rounded-full bg-amber-400/50" />
             </div>
           )}
         </div>
 
-        {state === "done" && (
+        {/* CTA al terminar el video */}
+        {done && (
           <div className="animate-fade-in">
-            <button onClick={() => router.push("/whatsapp-acceso")}
-              className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all"
-              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.3)", color: "#e8c87a" }}>
+            <button onClick={() => router.push("/feed-privado")}
+              className="btn-shimmer w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all"
+              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.5)", color: "#e8c87a" }}>
               Seguir mi recorrido
             </button>
           </div>
