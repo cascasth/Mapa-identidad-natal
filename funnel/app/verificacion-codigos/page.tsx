@@ -188,57 +188,40 @@ export default function VerificacionPage() {
           <div className="animate-fade-in relative rounded-2xl overflow-hidden shadow-2xl"
             style={{ aspectRatio: "550/750", backgroundImage: "url('/bg-verificacion.png')", backgroundSize: "cover", backgroundPosition: "top center", boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
 
-            {/* Recuadro dorado con campos — posicionado absolutamente al 57% del alto */}
-            <div className="absolute left-[14%] right-[14%]" style={{ top: "57%" }}>
-              <div className="rounded-2xl p-4 flex flex-col gap-3"
-                style={{ background: "rgba(4,11,23,0.88)", border: "1px solid rgba(180,130,40,0.35)", boxShadow: "0 0 24px rgba(180,130,40,0.12)" }}>
+            {/* Campos superpuestos — sin etiquetas (la imagen ya las tiene) */}
+            <div className="absolute left-[15%] right-[15%] flex flex-col gap-2" style={{ top: "57%" }}>
+              <select value={day} onChange={e => setDay(e.target.value)}
+                className="w-full rounded-lg px-3 py-2 text-white text-sm focus:outline-none appearance-none cursor-pointer"
+                style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.35)",
+                  backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
+                  backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
+                <option value="">—</option>
+                {DAYS.map(d => <option key={d} value={d}>{d}</option>)}
+              </select>
 
-                {/* Día */}
-                <div>
-                  <label className="block text-amber-400/70 text-xs tracking-widest uppercase mb-1.5">Día</label>
-                  <select value={day} onChange={e => setDay(e.target.value)}
-                    className="w-full rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none appearance-none cursor-pointer"
-                    style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.3)",
-                      backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
-                      backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
-                    <option value="">—</option>
-                    {DAYS.map(d => <option key={d} value={d}>{d}</option>)}
-                  </select>
-                </div>
+              <select value={month} onChange={e => setMonth(e.target.value)}
+                className="w-full rounded-lg px-3 py-2 text-white text-sm focus:outline-none appearance-none cursor-pointer"
+                style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.35)",
+                  backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
+                  backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
+                <option value="">—</option>
+                {MONTHS.map((m, i) => <option key={i+1} value={i+1}>{m}</option>)}
+              </select>
 
-                {/* Mes */}
-                <div>
-                  <label className="block text-amber-400/70 text-xs tracking-widest uppercase mb-1.5">Mes</label>
-                  <select value={month} onChange={e => setMonth(e.target.value)}
-                    className="w-full rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none appearance-none cursor-pointer"
-                    style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.3)",
-                      backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
-                      backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
-                    <option value="">—</option>
-                    {MONTHS.map((m, i) => <option key={i+1} value={i+1}>{m}</option>)}
-                  </select>
-                </div>
+              <select value={year} onChange={e => setYear(e.target.value)}
+                className="w-full rounded-lg px-3 py-2 text-white text-sm focus:outline-none appearance-none cursor-pointer"
+                style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.35)",
+                  backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
+                  backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
+                <option value="">—</option>
+                {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
+              </select>
 
-                {/* Año */}
-                <div>
-                  <label className="block text-amber-400/70 text-xs tracking-widest uppercase mb-1.5">Año</label>
-                  <select value={year} onChange={e => setYear(e.target.value)}
-                    className="w-full rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none appearance-none cursor-pointer"
-                    style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.3)",
-                      backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
-                      backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
-                    <option value="">—</option>
-                    {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
-                  </select>
-                </div>
-              </div>
+              {error && <p className="text-red-400 text-xs text-center animate-fade-in">{error}</p>}
 
-              {error && <p className="text-red-400 text-xs mt-2 text-center animate-fade-in">{error}</p>}
-
-              {/* Botón */}
               <button onClick={handleReveal}
-                className="w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all mt-3"
-                style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.55)", color: "#e8c87a", boxShadow: "0 0 20px rgba(180,130,40,0.15)" }}>
+                className="w-full py-2 rounded-lg text-sm tracking-wide active:scale-95 transition-all"
+                style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.35), rgba(180,130,40,0.15))", border: "1px solid rgba(180,130,40,0.55)", color: "#e8c87a" }}>
                 ✦ Revelar mi tríada inicial ✦
               </button>
             </div>
