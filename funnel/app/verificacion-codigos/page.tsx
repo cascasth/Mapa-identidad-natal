@@ -188,24 +188,21 @@ export default function VerificacionPage() {
           <div className="animate-fade-in relative rounded-2xl overflow-hidden shadow-2xl"
             style={{ aspectRatio: "550/750", backgroundImage: "url('/bg-verificacion.png')", backgroundSize: "cover", backgroundPosition: "top center", boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
 
-            {/* Spacer: empuja contenido a 57.2% del alto (429/750) */}
-            <div style={{ height: "57.2%" }} />
-
-            {/* Recuadro dorado con campos */}
-            <div className="px-[14%]">
+            {/* Recuadro dorado con campos — posicionado absolutamente al 57% del alto */}
+            <div className="absolute left-[14%] right-[14%]" style={{ top: "57%" }}>
               <div className="rounded-2xl p-4 flex flex-col gap-3"
-                style={{ background: "rgba(4,11,23,0.88)", border: "1px solid rgba(180,130,40,0.35)", boxShadow: "0 0 24px rgba(180,130,40,0.12), inset 0 0 30px rgba(0,0,0,0.3)" }}>
+                style={{ background: "rgba(4,11,23,0.88)", border: "1px solid rgba(180,130,40,0.35)", boxShadow: "0 0 24px rgba(180,130,40,0.12)" }}>
 
                 {/* Día */}
                 <div>
                   <label className="block text-amber-400/70 text-xs tracking-widest uppercase mb-1.5">Día</label>
                   <select value={day} onChange={e => setDay(e.target.value)}
                     className="w-full rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none appearance-none cursor-pointer"
-                    style={{ background: "#040b17", border: "1px solid rgba(180,130,40,0.3)", colorScheme: "dark",
+                    style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.3)",
                       backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
                       backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
-                    <option value="" style={{ background: "#040b17" }}>—</option>
-                    {DAYS.map(d => <option key={d} value={d} style={{ background: "#040b17" }}>{d}</option>)}
+                    <option value="">—</option>
+                    {DAYS.map(d => <option key={d} value={d}>{d}</option>)}
                   </select>
                 </div>
 
@@ -214,11 +211,11 @@ export default function VerificacionPage() {
                   <label className="block text-amber-400/70 text-xs tracking-widest uppercase mb-1.5">Mes</label>
                   <select value={month} onChange={e => setMonth(e.target.value)}
                     className="w-full rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none appearance-none cursor-pointer"
-                    style={{ background: "#040b17", border: "1px solid rgba(180,130,40,0.3)", colorScheme: "dark",
+                    style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.3)",
                       backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
                       backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
-                    <option value="" style={{ background: "#040b17" }}>—</option>
-                    {MONTHS.map((m, i) => <option key={i+1} value={i+1} style={{ background: "#040b17" }}>{m}</option>)}
+                    <option value="">—</option>
+                    {MONTHS.map((m, i) => <option key={i+1} value={i+1}>{m}</option>)}
                   </select>
                 </div>
 
@@ -227,11 +224,11 @@ export default function VerificacionPage() {
                   <label className="block text-amber-400/70 text-xs tracking-widest uppercase mb-1.5">Año</label>
                   <select value={year} onChange={e => setYear(e.target.value)}
                     className="w-full rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none appearance-none cursor-pointer"
-                    style={{ background: "#040b17", border: "1px solid rgba(180,130,40,0.3)", colorScheme: "dark",
+                    style={{ backgroundColor: "#040b17", border: "1px solid rgba(180,130,40,0.3)",
                       backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8860b' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")",
                       backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center" }}>
-                    <option value="" style={{ background: "#040b17" }}>—</option>
-                    {YEARS.map(y => <option key={y} value={y} style={{ background: "#040b17" }}>{y}</option>)}
+                    <option value="">—</option>
+                    {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
                   </select>
                 </div>
               </div>
