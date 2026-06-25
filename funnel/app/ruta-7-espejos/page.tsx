@@ -17,7 +17,7 @@ const MIRRORS = [
     desc: "La vibración simbólica de cómo eres llamada.",
     Icon: Sparkles,
     img: "/espejo-nombre.png",
-    body: "Este espejo habla de tu voz, tu expresión y la huella simbólica que portas cuando dices "yo soy". Puede mostrarte qué parte de ti necesita nombrarse con más claridad, recuperar presencia y dejar de esconder su propia energía.\n\nTu nombre no es solo una etiqueta: también puede funcionar como una puerta para mirar talentos, deseos internos y formas de mostrarte ante el mundo.",
+    body: "Este espejo habla de tu voz, tu expresión y la huella simbólica que portas cuando dices 'yo soy'. Puede mostrarte qué parte de ti necesita nombrarse con más claridad, recuperar presencia y dejar de esconder su propia energía.\n\nTu nombre no es solo una etiqueta: también puede funcionar como una puerta para mirar talentos, deseos internos y formas de mostrarte ante el mundo.",
     question: "¿Qué parte de ti pide ser expresada con más verdad?",
   },
   {
