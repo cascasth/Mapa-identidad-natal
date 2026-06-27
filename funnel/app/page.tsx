@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { PhoneOff, Phone, Moon } from "lucide-react";
 import Image from "next/image";
 
-type Screen = "incoming" | "active" | "ended";
+type Screen = "incoming" | "active" | "ended" | "transition";
 
 // 7 puntos radiales alrededor del avatar
 function RadialSeals() {
@@ -211,23 +211,32 @@ export default function IncomingCallPage() {
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
           <div className="rounded-2xl overflow-hidden relative" style={{ boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
             <CornerDecor pos="tl" /><CornerDecor pos="tr" /><CornerDecor pos="bl" /><CornerDecor pos="br" />
-            {/* Video de fondo — sin muted para que suene el audio del video */}
             <video
               src="/pantalla-llamada-ended.mp4"
               autoPlay loop playsInline
               className="w-full block"
               style={{ aspectRatio: "550/750", objectFit: "cover" }}
             />
-            {/* Botón superpuesto en la parte inferior */}
             <div className="absolute bottom-0 left-0 right-0 p-6"
               style={{ background: "linear-gradient(0deg, rgba(6,8,15,0.95) 0%, transparent 100%)" }}>
-              <button onClick={() => router.push("/verificacion-codigos")}
+              <button onClick={() => setScreen("transition")}
                 className="w-full py-4 rounded-xl text-amber-200 text-sm tracking-wide active:scale-95 transition-all animate-pulse"
                 style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.5)", boxShadow: "0 0 24px rgba(180,130,40,0.2)" }}>
                 Comenzar
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {screen === "transition" && (
+        <div className="fixed inset-0 z-50 bg-black">
+          <video
+            src="/transicion-camara.mp4"
+            autoPlay playsInline
+            className="w-full h-full object-cover"
+            onEnded={() => router.push("/verificacion-codigos")}
+          />
         </div>
       )}
     </main>
