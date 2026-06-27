@@ -99,7 +99,7 @@ function CornerDecor({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
 
 export default function IncomingCallPage() {
   const [screen, setScreen] = useState<Screen>("incoming");
-  const [seconds, setSeconds] = useState(50);
+  const [seconds, setSeconds] = useState(49);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const router = useRouter();
 
