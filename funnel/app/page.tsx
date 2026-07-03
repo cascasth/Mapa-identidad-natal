@@ -189,20 +189,73 @@ export default function IncomingCallPage() {
 
       {screen === "active" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
-          <div className="rounded-2xl p-8 flex flex-col items-center gap-6 relative" style={cardStyle}>
+          <div className="rounded-2xl flex flex-col items-center relative overflow-hidden" style={{ ...cardStyle, paddingTop: "2rem", paddingBottom: "2rem" }}>
             <CornerDecor pos="tl" /><CornerDecor pos="tr" /><CornerDecor pos="bl" /><CornerDecor pos="br" />
-            <p className="text-amber-400/60 text-xs tracking-[0.2em] uppercase">Llamada en curso</p>
-            <SymbolicAvatar />
-            <p className="text-white text-xl font-light">Centro Ser Integral</p>
-            <p className="text-amber-300 text-3xl font-mono tracking-widest"
-              style={{ textShadow: "0 0 20px rgba(180,130,40,0.4)" }}>
+
+            {/* Etiqueta tipo WhatsApp */}
+            <div className="flex items-center gap-1.5 mb-1">
+              <Phone className="w-3 h-3 text-amber-400/50" />
+              <p className="text-xs tracking-[0.2em] uppercase" style={{ color: "rgba(207,201,189,0.45)" }}>Llamada de WhatsApp</p>
+            </div>
+
+            {/* Nombre */}
+            <p className="text-white text-2xl font-light tracking-wide mb-1">Centro Ser Integral</p>
+
+            {/* Timer */}
+            <p className="font-mono text-sm mb-6" style={{ color: "rgba(207,201,189,0.5)" }}>
               00:{pad(seconds)}
             </p>
-            <WaveformAnimation />
-            <button onClick={handleHangUp} className="w-16 h-16 rounded-full flex items-center justify-center active:scale-95 transition-all"
-              style={{ background: "rgba(220,50,50,0.12)", border: "1px solid rgba(220,80,80,0.3)", boxShadow: "0 0 0 4px rgba(220,50,50,0.06)" }}>
-              <PhoneOff className="w-6 h-6 text-red-400" />
-            </button>
+
+            {/* Avatar */}
+            <SymbolicAvatar />
+
+            {/* Waveform */}
+            <div className="mt-5 mb-2">
+              <WaveformAnimation />
+            </div>
+
+            {/* Frase mística */}
+            <div className="flex items-center gap-2 mb-6 px-6">
+              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.2)" }} />
+              <p className="text-xs tracking-[0.18em] uppercase text-center" style={{ color: "rgba(180,130,40,0.6)" }}>
+                Señal desde el centro del universo
+              </p>
+              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.2)" }} />
+            </div>
+
+            {/* Controles inferiores */}
+            <div className="flex items-end justify-center gap-10 w-full px-8">
+              {/* Altavoz (decorativo) */}
+              <div className="flex flex-col items-center gap-1.5 opacity-40">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H2v6h4l5 4V5z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.54 8.46a5 5 0 010 7.07" />
+                  </svg>
+                </div>
+                <span className="text-xs" style={{ color: "rgba(207,201,189,0.4)" }}>altavoz</span>
+              </div>
+
+              {/* Colgar */}
+              <div className="flex flex-col items-center gap-1.5">
+                <button onClick={handleHangUp} className="w-16 h-16 rounded-full flex items-center justify-center active:scale-95 transition-all"
+                  style={{ background: "rgba(220,50,50,0.18)", border: "1px solid rgba(220,80,80,0.4)", boxShadow: "0 0 0 4px rgba(220,50,50,0.08)" }}>
+                  <PhoneOff className="w-6 h-6 text-red-400" />
+                </button>
+                <span className="text-xs" style={{ color: "rgba(207,201,189,0.4)" }}>colgar</span>
+              </div>
+
+              {/* Silenciar (decorativo) */}
+              <div className="flex flex-col items-center gap-1.5 opacity-40">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 1a3 3 0 013 3v8a3 3 0 01-6 0V4a3 3 0 013-3z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 10a7 7 0 01-14 0M12 19v4M8 23h8" />
+                  </svg>
+                </div>
+                <span className="text-xs" style={{ color: "rgba(207,201,189,0.4)" }}>silenciar</span>
+              </div>
+            </div>
           </div>
         </div>
       )}
