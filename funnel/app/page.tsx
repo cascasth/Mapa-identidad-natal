@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { PhoneOff, Phone, Moon } from "lucide-react";
 import Image from "next/image";
 
-type Screen = "incoming" | "active" | "ended" | "transition";
+type Screen = "intro" | "incoming" | "active" | "ended" | "transition";
 
 // 7 puntos radiales alrededor del avatar
 function RadialSeals() {
@@ -98,7 +98,7 @@ function CornerDecor({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
 }
 
 export default function IncomingCallPage() {
-  const [screen, setScreen] = useState<Screen>("incoming");
+  const [screen, setScreen] = useState<Screen>("intro");
   const [seconds, setSeconds] = useState(49);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const router = useRouter();
@@ -133,6 +133,17 @@ export default function IncomingCallPage() {
 
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-8" style={bgStyle}>
+
+      {screen === "intro" && (
+        <div className="fixed inset-0 z-50 bg-black">
+          <video
+            src="/sabia-marcando.mp4"
+            autoPlay playsInline
+            className="w-full h-full object-cover"
+            onEnded={() => setScreen("incoming")}
+          />
+        </div>
+      )}
 
       {screen === "incoming" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
