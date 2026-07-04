@@ -82,13 +82,14 @@ export default function Ruta7EspejosPage() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    if (!afterSelection) return;
     const t = setTimeout(() => {
-      const audio = new Audio("/audio-codigo.mp3");
+      const audio = new Audio("/audio-espejos.mp3");
       audioRef.current = audio;
       audio.play().catch(() => {});
     }, 2000);
     return () => { clearTimeout(t); audioRef.current?.pause(); };
-  }, []);
+  }, [afterSelection]);
 
   return (
     <main className="min-h-screen px-4 py-10" style={{ background: bg }}>

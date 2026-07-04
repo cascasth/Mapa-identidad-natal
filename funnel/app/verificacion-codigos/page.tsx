@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Star, TreePine, Hash } from "lucide-react";
 
@@ -155,6 +155,17 @@ export default function VerificacionPage() {
   const [error, setError] = useState("");
   const [result, setResult] = useState<Result | null>(null);
   const router = useRouter();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (phase !== "result") return;
+    const t = setTimeout(() => {
+      const audio = new Audio("/audio-triada.mp3");
+      audioRef.current = audio;
+      audio.play().catch(() => {});
+    }, 2000);
+    return () => { clearTimeout(t); audioRef.current?.pause(); };
+  }, [phase]);
 
   const handleReveal = () => {
     setError("");

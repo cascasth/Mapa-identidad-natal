@@ -109,13 +109,14 @@ export default function CodigoActivoPage() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    if (screen !== "result") return;
     const t = setTimeout(() => {
-      const audio = new Audio("/audio-triada.mp3");
+      const audio = new Audio("/audio-codigo.mp3");
       audioRef.current = audio;
       audio.play().catch(() => {});
     }, 2000);
     return () => { clearTimeout(t); audioRef.current?.pause(); };
-  }, []);
+  }, [screen]);
 
   useEffect(() => {
     if (screen !== "loading") return;
