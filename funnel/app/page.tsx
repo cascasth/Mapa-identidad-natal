@@ -135,64 +135,53 @@ export default function IncomingCallPage() {
     <main className="min-h-screen flex items-center justify-center px-4 py-8" style={bgStyle}>
 
       {screen === "incoming" && (
-        <div className="animate-fade-in fixed inset-0 flex flex-col" style={bgStyle}>
+        <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
+          <div className="rounded-2xl flex flex-col items-center relative overflow-hidden py-10 px-6" style={cardStyle}>
 
-          {/* Zona superior — nombre y etiqueta */}
-          <div className="flex flex-col items-center pt-20 px-8 text-center">
             {/* Etiqueta WhatsApp */}
-            <div className="flex items-center gap-1.5 mb-4">
+            <div className="flex items-center gap-1.5 mb-3">
               <Phone className="w-3.5 h-3.5" style={{ color: "rgba(180,130,40,0.6)" }} />
               <span className="text-xs tracking-[0.2em] uppercase" style={{ color: "rgba(207,201,189,0.45)" }}>Llamada de WhatsApp</span>
             </div>
 
             {/* Nombre */}
-            <h1 className="text-white text-3xl font-light tracking-wide mb-2">Centro Ser Integral</h1>
+            <h1 className="text-white text-2xl font-light tracking-wide mb-1">Centro Ser Integral</h1>
 
-            {/* Número / subtítulo */}
-            <p className="text-sm" style={{ color: "rgba(180,130,40,0.55)" }}>✦ Archivo de Identidad ✦</p>
-          </div>
+            {/* Subtítulo */}
+            <p className="text-sm mb-8" style={{ color: "rgba(180,130,40,0.55)" }}>✦ Archivo de Identidad ✦</p>
 
-          {/* Avatar centrado */}
-          <div className="flex-1 flex items-center justify-center">
-            <div className="relative flex items-center justify-center" style={{ width: 200, height: 200 }}>
-              {/* halos */}
-              <div className="absolute w-44 h-44 rounded-full border border-amber-400/15 animate-pulse-ring" />
-              <div className="absolute w-36 h-36 rounded-full border border-amber-400/20 animate-pulse-ring" style={{ animationDelay: "0.7s" }} />
-              <div className="absolute w-32 h-32 rounded-full"
-                style={{ background: "radial-gradient(circle, rgba(180,130,40,0.1) 0%, transparent 70%)" }} />
-              {/* foto */}
-              <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-amber-400/30 relative z-10">
-                <Image src="/avatar-centro-ser.jpg.png" alt="Centro Ser Integral" width={112} height={112} className="object-cover w-full h-full" />
+            {/* Avatar */}
+            <div className="relative flex items-center justify-center mb-10" style={{ width: 180, height: 180 }}>
+              <div className="absolute w-40 h-40 rounded-full border border-amber-400/15 animate-pulse-ring" />
+              <div className="absolute w-32 h-32 rounded-full border border-amber-400/20 animate-pulse-ring" style={{ animationDelay: "0.7s" }} />
+              <div className="absolute w-28 h-28 rounded-full" style={{ background: "radial-gradient(circle, rgba(180,130,40,0.1) 0%, transparent 70%)" }} />
+              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-amber-400/30 relative z-10">
+                <Image src="/avatar-centro-ser.jpg.png" alt="Centro Ser Integral" width={96} height={96} className="object-cover w-full h-full" />
               </div>
             </div>
-          </div>
 
-          {/* Botones inferiores */}
-          <div className="pb-16 px-8">
-            <div className="flex justify-around items-end">
-              {/* Rechazar */}
-              <button onClick={() => setScreen("ended")} className="flex flex-col items-center gap-3 group">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center transition-all group-active:scale-95"
-                  style={{ background: "rgba(220,50,50,0.85)", boxShadow: "0 4px 20px rgba(220,50,50,0.4)" }}>
-                  <PhoneOff className="w-7 h-7 text-white" />
+            {/* Botones */}
+            <div className="flex justify-around items-end w-full">
+              <button onClick={() => setScreen("ended")} className="flex flex-col items-center gap-2 group">
+                <div className="w-14 h-14 rounded-full flex items-center justify-center transition-all group-active:scale-95"
+                  style={{ background: "rgba(220,50,50,0.85)", boxShadow: "0 4px 20px rgba(220,50,50,0.35)" }}>
+                  <PhoneOff className="w-6 h-6 text-white" />
                 </div>
                 <span className="text-white/70 text-sm">Rechazar</span>
               </button>
 
-              {/* Aceptar */}
-              <button onClick={handleAccept} className="flex flex-col items-center gap-3 group">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center transition-all group-active:scale-95"
-                  style={{ background: "rgba(37,190,100,0.9)", boxShadow: "0 4px 20px rgba(37,190,100,0.4)" }}>
-                  <Phone className="w-7 h-7 text-white" />
+              <button onClick={handleAccept} className="flex flex-col items-center gap-2 group">
+                <div className="w-14 h-14 rounded-full flex items-center justify-center transition-all group-active:scale-95"
+                  style={{ background: "rgba(37,190,100,0.9)", boxShadow: "0 4px 20px rgba(37,190,100,0.35)" }}>
+                  <Phone className="w-6 h-6 text-white" />
                 </div>
                 <span className="text-white/70 text-sm">Aceptar</span>
               </button>
 
-              {/* Mensaje (decorativo) */}
-              <div className="flex flex-col items-center gap-3 opacity-60">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center"
+              <div className="flex flex-col items-center gap-2 opacity-50">
+                <div className="w-14 h-14 rounded-full flex items-center justify-center"
                   style={{ background: "rgba(255,255,255,0.12)" }}>
-                  <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
                 </div>
