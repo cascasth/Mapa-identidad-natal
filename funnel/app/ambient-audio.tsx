@@ -8,20 +8,20 @@ export default function AmbientAudio() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const pathname = usePathname();
 
-  // Iniciar audio cuando llegamos a la pantalla ended (/) y continuar en verificacion
   useEffect(() => {
-    if (pathname === "/" ) return; // la página raíz maneja su propio audio
     if (AMBIENT_PAGES.includes(pathname)) {
       if (!audioRef.current) {
         const audio = new Audio("/ended-audio.mp3");
         audio.loop = true;
         audioRef.current = audio;
       }
-      audioRef.current.play().catch(() => {});
+      // Solo reproduce si no estaba ya sonando (evita reinicio al cambiar de página)
+      if (audioRef.current.paused) {
+        audioRef.current.play().catch(() => {});
+      }
     } else {
       audioRef.current?.pause();
     }
-    return () => {};
   }, [pathname]);
 
   return null;

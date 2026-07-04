@@ -42,20 +42,20 @@ function RadialSeals() {
 
 function SymbolicAvatar() {
   return (
-    <div className="relative flex items-center justify-center" style={{ width: 160, height: 160 }}>
+    <div className="relative flex items-center justify-center" style={{ width: 220, height: 220 }}>
       <RadialSeals />
       {/* halo exterior */}
-      <div className="absolute w-28 h-28 rounded-full border border-amber-400/20 animate-pulse-ring" />
-      <div className="absolute w-24 h-24 rounded-full border border-amber-400/15 animate-pulse-ring" style={{ animationDelay: "0.7s" }} />
+      <div className="absolute w-48 h-48 rounded-full border border-amber-400/20 animate-pulse-ring" />
+      <div className="absolute w-40 h-40 rounded-full border border-amber-400/15 animate-pulse-ring" style={{ animationDelay: "0.7s" }} />
       {/* sello luminoso */}
-      <div className="absolute w-20 h-20 rounded-full"
+      <div className="absolute w-36 h-36 rounded-full"
         style={{ background: "radial-gradient(circle, rgba(180,130,40,0.15) 0%, transparent 70%)", boxShadow: "0 0 20px rgba(180,130,40,0.2)" }} />
       {/* borde doble del avatar */}
-      <div className="absolute w-[72px] h-[72px] rounded-full border-2 border-amber-400/30" />
-      <div className="absolute w-16 h-16 rounded-full border border-amber-400/50" />
+      <div className="absolute w-32 h-32 rounded-full border-2 border-amber-400/30" />
+      <div className="absolute w-28 h-28 rounded-full border border-amber-400/50" />
       {/* imagen */}
-      <div className="w-14 h-14 rounded-full overflow-hidden relative z-10">
-        <Image src="/avatar-sabia.jpg" alt="Centro Ser Integral" width={56} height={56} className="object-cover w-full h-full" />
+      <div className="w-24 h-24 rounded-full overflow-hidden relative z-10">
+        <Image src="/avatar-sabia.jpg" alt="Centro Ser Integral" width={96} height={96} className="object-cover w-full h-full" />
       </div>
     </div>
   );
@@ -136,32 +136,22 @@ export default function IncomingCallPage() {
 
       {screen === "splash" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
-          <div className="rounded-2xl flex flex-col items-center py-16 px-8 text-center relative" style={cardStyle}>
-            <CornerDecor pos="tl" /><CornerDecor pos="tr" /><CornerDecor pos="bl" /><CornerDecor pos="br" />
-
-            {/* Logo / avatar */}
-            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-amber-400/30 mb-6">
-              <Image src="/avatar-sabia.jpg" alt="" width={80} height={80} className="object-cover w-full h-full" />
+          <div className="rounded-2xl overflow-hidden relative"
+            style={{
+              backgroundImage: "url('/splash-portada.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "top center",
+              aspectRatio: "550/750",
+              boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)",
+            }}>
+            {/* Botón centrado en la parte inferior */}
+            <div className="absolute bottom-[8%] left-[15%] right-[15%]">
+              <button onClick={() => setScreen("intro")}
+                className="btn-shimmer w-full py-4 rounded-xl text-sm tracking-wide active:scale-95 transition-all"
+                style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.5)", color: "#e8c87a" }}>
+                ✦ Toca para iniciar ✦
+              </button>
             </div>
-
-            <p className="text-xs tracking-[0.25em] uppercase mb-2" style={{ color: "rgba(180,130,40,0.5)" }}>Centro Ser Integral</p>
-            <h1 className="text-xl font-light mb-2" style={{ color: "#D8D3C8" }}>Mapa de Identidad Natal</h1>
-
-            <div className="flex items-center gap-2 w-full my-5">
-              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.15)" }} />
-              <span className="text-amber-400/30 text-xs">✦</span>
-              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.15)" }} />
-            </div>
-
-            <p className="text-sm leading-relaxed mb-8" style={{ color: "rgba(207,201,189,0.5)" }}>
-              Tienes una llamada esperando.<br />Toca para recibirla.
-            </p>
-
-            <button onClick={() => setScreen("intro")}
-              className="btn-shimmer w-full py-4 rounded-xl text-sm tracking-wide active:scale-95 transition-all"
-              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.5)", color: "#e8c87a" }}>
-              ✦ Toca para iniciar ✦
-            </button>
           </div>
         </div>
       )}
@@ -197,12 +187,12 @@ export default function IncomingCallPage() {
             <p className="text-sm mb-8" style={{ color: "rgba(180,130,40,0.55)" }}>✦ Archivo de Identidad ✦</p>
 
             {/* Avatar */}
-            <div className="relative flex items-center justify-center mb-10" style={{ width: 180, height: 180 }}>
-              <div className="absolute w-40 h-40 rounded-full border border-amber-400/15 animate-pulse-ring" />
-              <div className="absolute w-32 h-32 rounded-full border border-amber-400/20 animate-pulse-ring" style={{ animationDelay: "0.7s" }} />
-              <div className="absolute w-28 h-28 rounded-full" style={{ background: "radial-gradient(circle, rgba(180,130,40,0.1) 0%, transparent 70%)" }} />
-              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-amber-400/30 relative z-10">
-                <Image src="/avatar-sabia.jpg" alt="Centro Ser Integral" width={96} height={96} className="object-cover w-full h-full" />
+            <div className="relative flex items-center justify-center mb-10" style={{ width: 220, height: 220 }}>
+              <div className="absolute w-52 h-52 rounded-full border border-amber-400/15 animate-pulse-ring" />
+              <div className="absolute w-44 h-44 rounded-full border border-amber-400/20 animate-pulse-ring" style={{ animationDelay: "0.7s" }} />
+              <div className="absolute w-40 h-40 rounded-full" style={{ background: "radial-gradient(circle, rgba(180,130,40,0.1) 0%, transparent 70%)" }} />
+              <div className="w-36 h-36 rounded-full overflow-hidden border-2 border-amber-400/30 relative z-10">
+                <Image src="/avatar-sabia.jpg" alt="Centro Ser Integral" width={144} height={144} className="object-cover w-full h-full" />
               </div>
             </div>
 
