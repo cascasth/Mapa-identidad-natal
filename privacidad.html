@@ -3,62 +3,177 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aviso de privacidad</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Aviso de privacidad | Centro Ser Integral</title>
+<link rel="canonical" href="https://centroserintegral.org/privacidad.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
   :root {
-    --void:#06040f; --gold:#c9a84c; --gold-soft:#e8c97a; --mist:#f0eaf8; --fog:#c7bddf; --border:rgba(201,168,76,.18);
+    --dark-bg:      #06060e;
+    --dark-mid:     #0d0d1f;
+    --gold:         #c9a84c;
+    --gold-bright:  #e8c96a;
+    --copper:       #b07030;
+    --cream:        #f0ede4;
+    --text-light:   #ddd8cc;
+    --text-muted:   #8a8070;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Nunito',sans-serif;background:var(--void);color:var(--mist);min-height:100vh;padding:48px 22px;line-height:1.75}
-  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 10%,rgba(107,63,160,.25),transparent 45%),radial-gradient(ellipse at 85% 85%,rgba(196,122,138,.15),transparent 40%);pointer-events:none;z-index:-1;filter:blur(8px)}
-  .page{max-width:760px;margin:0 auto;background:rgba(12,8,28,.76);border:1px solid var(--border);border-radius:22px;padding:36px 28px;box-shadow:0 14px 50px rgba(0,0,0,.45)}
-  .brand{font-family:'Cinzel',serif;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-size:11px;text-align:center;margin-bottom:18px}
-  h1{font-family:'Cinzel',serif;font-weight:300;font-size:clamp(30px,6vw,44px);line-height:1.15;text-align:center;margin-bottom:28px;color:var(--mist)}
-  h2{font-family:'Cinzel',serif;font-size:15px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-soft);margin:28px 0 10px}
-  p,li{color:var(--fog);font-size:14px;font-weight:300}
-  ul{padding-left:22px;margin-top:8px}
-  a{color:var(--gold-soft);text-decoration:none}
-  .note{font-size:12px;color:rgba(199,189,223,.62);margin-top:28px;border-top:1px solid var(--border);padding-top:18px}
-  .back{display:inline-block;margin-top:28px;border:1px solid var(--border);border-radius:999px;padding:10px 18px;color:var(--gold-soft)}
+
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.75;
+    min-height: 100vh;
+    padding: 100px 22px 60px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(107,63,160,.2), transparent 45%),
+      radial-gradient(ellipse at 85% 85%, rgba(196,122,138,.12), transparent 40%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    background: rgba(6, 6, 14, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-logo .star { font-size: 1.2rem; animation: navSpin 20s linear infinite; }
+  @keyframes navSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    background: rgba(13,13,31,.6);
+    border: 1px solid rgba(201,168,76,.18);
+    border-radius: 18px;
+    padding: 2.6rem 2rem;
+    box-shadow: 0 14px 50px rgba(0,0,0,.45);
+  }
+  .brand {
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-size: 0.68rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    opacity: .85;
+  }
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--cream);
+    letter-spacing: 1px;
+  }
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    margin: 1.8rem 0 0.6rem;
+  }
+  p, li { color: var(--text-light); font-size: 0.98rem; font-weight: 300; }
+  ul { padding-left: 1.4rem; margin-top: 0.5rem; }
+  a { color: var(--gold-bright); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 1.8rem;
+    border-top: 1px solid rgba(201,168,76,.18);
+    padding-top: 1.2rem;
+  }
+  .back {
+    display: inline-block;
+    margin-top: 1.8rem;
+    border: 1px solid rgba(201,168,76,.25);
+    border-radius: 999px;
+    padding: 0.6rem 1.2rem;
+    color: var(--gold-bright);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.85rem;
+    transition: all .3s;
+  }
+  .back:hover { border-color: var(--gold); background: rgba(201,168,76,.08); text-decoration: none; }
 </style>
 </head>
 <body>
-  <main class="page">
-    <div class="brand">Centro Ser Integral</div>
-    <h1>Aviso de privacidad</h1>
 
-    <p>El presente aviso informa cómo se recopilan, usan y protegen los datos proporcionados al solicitar el Mapa de Identidad Natal.</p>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="star">✦</span>
+    Centro Ser Integral
+  </a>
+</nav>
 
-    <h2>Responsable</h2>
-    <p>Centro Ser Integral, bajo la responsabilidad de Teresa Helena Castañeda Castro la cuál es responsable del tratamiento de los datos personales proporcionados por la persona usuaria.</p>
+<main class="page">
+  <div class="brand">Centro Ser Integral</div>
+  <h1>Aviso de privacidad</h1>
 
-    <h2>Datos que se solicitan</h2>
-    <ul>
-      <li>Nombre completo.</li>
-      <li>Correo electrónico.</li>
-      <li>Fecha, hora y ciudad de nacimiento.</li>
-      <li>Ascendente, únicamente si la persona decide proporcionarlo.</li>
-    </ul>
+  <p>El presente aviso informa cómo se recopilan, usan y protegen los datos proporcionados al solicitar el Mapa de Identidad Natal.</p>
 
-    <h2>Finalidad del uso de datos</h2>
-    <p>Los datos se utilizan exclusivamente para generar y enviar la ficha solicitada del Mapa de Identidad Natal, así como para atender dudas relacionadas con la compra o entrega del servicio.</p>
+  <h2>Responsable</h2>
+  <p>Centro Ser Integral, bajo la responsabilidad de Teresa Helena Castañeda Castro la cuál es responsable del tratamiento de los datos personales proporcionados por la persona usuaria.</p>
 
-    <h2>Confidencialidad</h2>
-    <p>La información proporcionada no se vende ni se comparte con terceros para fines comerciales. Solo podrá utilizarse en herramientas necesarias para procesar el pago, recibir la solicitud, generar la ficha y enviarla al correo indicado.</p>
+  <h2>Datos que se solicitan</h2>
+  <ul>
+    <li>Nombre completo.</li>
+    <li>Correo electrónico.</li>
+    <li>Fecha, hora y ciudad de nacimiento.</li>
+    <li>Ascendente, únicamente si la persona decide proporcionarlo.</li>
+  </ul>
 
-    <h2>Conservación de datos</h2>
-    <p>Los datos podrán conservarse durante el tiempo necesario para entregar el servicio, resolver aclaraciones y mantener respaldo administrativo básico de la operación.</p>
+  <h2>Finalidad del uso de datos</h2>
+  <p>Los datos se utilizan exclusivamente para generar y enviar la ficha solicitada del Mapa de Identidad Natal, así como para atender dudas relacionadas con la compra o entrega del servicio.</p>
 
-    <h2>Derechos de acceso, rectificación o eliminación</h2>
-    <p>La persona usuaria puede solicitar acceso, corrección o eliminación de sus datos escribiendo a <a href="mailto:centro.ser.integral@gmail.com">centro.ser.integral@gmail.com</a>.</p>
+  <h2>Confidencialidad</h2>
+  <p>La información proporcionada no se vende ni se comparte con terceros para fines comerciales. Solo podrá utilizarse en herramientas necesarias para procesar el pago, recibir la solicitud, generar la ficha y enviarla al correo indicado.</p>
 
-    <h2>Importante</h2>
-    <p>El Mapa de Identidad Natal es una interpretación simbólica y reflexiva. No sustituye orientación médica, psicológica, legal, financiera ni profesional.</p>
+  <h2>Conservación de datos</h2>
+  <p>Los datos podrán conservarse durante el tiempo necesario para entregar el servicio, resolver aclaraciones y mantener respaldo administrativo básico de la operación.</p>
 
-    <p class="note">Última actualización: mayo de 2026. Este documento es una versión básica para informar al usuario sobre el uso de sus datos. Para operaciones más amplias o campañas pagadas, conviene revisarlo legalmente.</p>
+  <h2>Derechos de acceso, rectificación o eliminación</h2>
+  <p>La persona usuaria puede solicitar acceso, corrección o eliminación de sus datos escribiendo a <a href="mailto:centro.ser.integral@gmail.com">centro.ser.integral@gmail.com</a>.</p>
 
-    <a class="back" href="index.html">← Volver a la página principal</a>
-  </main>
+  <h2>Importante</h2>
+  <p>El Mapa de Identidad Natal es una interpretación simbólica y reflexiva. No sustituye orientación médica, psicológica, legal, financiera ni profesional.</p>
+
+  <p class="note">Última actualización: mayo de 2026. Este documento es una versión básica para informar al usuario sobre el uso de sus datos. Para operaciones más amplias o campañas pagadas, conviene revisarlo legalmente.</p>
+
+  <a class="back" href="index.html">← Volver a la página principal</a>
+</main>
 </body>
 </html>

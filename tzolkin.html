@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tzolkin Dreamspell</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #0d0b14;
@@ -19,6 +19,106 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── NAV COMPARTIDO (mismo diseño que la página principal) ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    background: rgba(6, 6, 14, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  }
+  .nav-left { display: flex; align-items: center; gap: 1rem; }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+  .nav-logo .star { font-size: 1.2rem; animation: navSpin 20s linear infinite; }
+  @keyframes navSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-btn {
+    background: transparent;
+    border: 1px solid rgba(201,168,76,.25);
+    color: rgba(199,189,223,.7);
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    transition: all .3s;
+  }
+  .nav-dropdown-btn:hover { border-color: var(--gold); color: var(--gold-pale); }
+  .nav-dropdown.open .nav-dropdown-btn { border-color: var(--gold); color: var(--gold-pale); }
+  .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    min-width: 210px;
+    background: rgba(6,4,15,.97);
+    border: 1px solid rgba(201,168,76,.25);
+    border-radius: 10px;
+    padding: 0.4rem;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 1001;
+    box-shadow: 0 14px 34px rgba(0,0,0,.5);
+  }
+  .nav-dropdown.open .nav-dropdown-menu { display: flex; }
+  .nav-dropdown-menu a {
+    display: flex; align-items: center; gap: 8px;
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: rgba(199,189,223,.7);
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .nav-dropdown-menu a:hover, .nav-dropdown-menu a.active { background: rgba(201,168,76,.08); color: var(--gold-pale); }
+  .nav-links { display: flex; list-style: none; gap: 1.6rem; }
+  .nav-links a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem;
+    color: rgba(199,189,223,.6);
+    text-decoration: none;
+    transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--gold-pale); }
+  .nav-cta a.btn-nav-primary {
+    background: linear-gradient(135deg, var(--gold) 0%, #b07030 100%);
+    color: var(--ink);
+    padding: 0.45rem 1.2rem;
+    border-radius: 25px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all .3s;
+  }
+  .nav-cta a.btn-nav-primary:hover { transform: translateY(-2px); }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    nav { padding: 0 1rem; }
+    .nav-logo { font-size: 0; }
+    .nav-logo .star { font-size: 1.2rem; }
+  }
 
   body {
     background: var(--ink);
@@ -66,7 +166,7 @@
   }
 
   h1 {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: clamp(1.4rem, 4vw, 2rem);
     color: var(--gold);
     letter-spacing: 0.08em;
@@ -117,7 +217,7 @@
   }
 
   .hoy-label {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: 0.6rem;
     letter-spacing: 0.35em;
     text-transform: uppercase;
@@ -141,7 +241,7 @@
   }
 
   .kin-numero {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: clamp(3rem, 12vw, 5.5rem);
     color: var(--gold);
     line-height: 1;
@@ -159,7 +259,7 @@
   }
 
   .sello-nombre {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: clamp(1.28rem, 4vw, 2rem);
     margin: 1rem 0 0.35rem;
     letter-spacing: 0.075em;
@@ -243,7 +343,7 @@
   }
 
   .dia-item-label {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: 0.5rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -278,7 +378,7 @@
   }
 
   .section-title {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: 0.65rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -343,7 +443,7 @@
     background: linear-gradient(135deg, var(--violet), var(--teal));
     border: 1px solid rgba(201,168,76,0.35);
     color: var(--gold-pale);
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: 0.75rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -394,7 +494,7 @@
   }
 
   .res-kin {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: clamp(2rem, 8vw, 3.5rem);
     color: var(--gold);
     text-shadow: 0 0 30px rgba(201,168,76,0.5);
@@ -403,7 +503,7 @@
   }
 
   .res-nombre {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: clamp(1rem, 3vw, 1.4rem);
     letter-spacing: 0.04em;
     margin: 0.6rem 0 0.3rem;
@@ -447,7 +547,7 @@
     padding: 0.55rem 1.2rem;
     border: 1px solid var(--gold);
     color: var(--gold);
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: 0.6rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -544,7 +644,7 @@
 
   .brand-name {
     display: block;
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: 9px;
     letter-spacing: .3em;
     text-transform: uppercase;
@@ -592,7 +692,7 @@
     text-align: center;
   }
   .tz-footer .footer-brand {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: 10px;
     letter-spacing: .2em;
     text-transform: uppercase;
@@ -665,7 +765,7 @@
   }
 
   .onda-eyebrow {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: 0.6rem;
     letter-spacing: 0.35em;
     text-transform: uppercase;
@@ -694,7 +794,7 @@
   .onda-guia-texto { text-align: left; }
 
   .onda-titulo {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: clamp(0.95rem, 3.2vw, 1.45rem);
     color: var(--gold);
     letter-spacing: 0.04em;
@@ -773,7 +873,7 @@
   }
 
   .oc-tono {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: 0.52rem;
     color: var(--gold-pale);
     opacity: 0.45;
@@ -820,7 +920,7 @@
 
   .opb-tono-label {
     display: block;
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: 0.58rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -883,8 +983,32 @@
 </head>
 <body data-page="tzolkin">
 
-<div id="nav-placeholder"></div>
-  
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">
+      <span class="star">✦</span>
+      Centro Ser Integral
+    </a>
+    <div class="nav-dropdown" id="navDropdown">
+      <button class="nav-dropdown-btn" onclick="toggleNavDropdown(event)">☰ Gratis ▾</button>
+      <div class="nav-dropdown-menu">
+        <a href="tzolkin.html" class="active">🌙 Kin del día · Tzolkin</a>
+        <a href="numerologia.html">🔢 Numerología gratis</a>
+        <a href="chino.html">🐉 Animal chino</a>
+      </div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#codigos">Códigos</a></li>
+    <li><a href="index.html#para-que">Propósito</a></li>
+    <li><a href="index.html#ejemplo">Ejemplo</a></li>
+    <li><a href="index.html#testimonios">Testimonios</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="index.html#cta" class="btn-nav-primary">Solicitar Mapa</a>
+  </div>
+</nav>
+
 <div class="container">
 
   <!-- HEADER -->
@@ -1947,8 +2071,15 @@ function setLang(lang) {
 // INIT
 // =============================================
 setLang('es');
-  
+
+function toggleNavDropdown(e) {
+  e.stopPropagation();
+  document.getElementById('navDropdown').classList.toggle('open');
+}
+document.addEventListener('click', () => {
+  const dd = document.getElementById('navDropdown');
+  if (dd) dd.classList.remove('open');
+});
 </script>
-<script src="nav-loader.js"></script>
 </body>
 </html>
