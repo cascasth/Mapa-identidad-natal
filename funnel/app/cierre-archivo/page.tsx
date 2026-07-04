@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 type Slide = {
   tag: string;
@@ -88,12 +87,11 @@ function Divider() {
 
 export default function CierreArchivoPage() {
   const [idx, setIdx] = useState(0);
-  const router = useRouter();
   const slide = SLIDES[idx];
 
   const handleCta = () => {
     if (slide.isFinal) {
-      router.push("/mapa-identidad-natal");
+      window.location.href = "https://centroserintegral.org/#payment-step";
     } else {
       setIdx(i => i + 1);
     }
