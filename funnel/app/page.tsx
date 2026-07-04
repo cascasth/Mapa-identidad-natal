@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { PhoneOff, Phone, Moon } from "lucide-react";
 import Image from "next/image";
 
-type Screen = "intro" | "incoming" | "active" | "ended" | "transition";
+type Screen = "splash" | "intro" | "incoming" | "active" | "ended" | "transition";
 
 // 7 puntos radiales alrededor del avatar
 function RadialSeals() {
@@ -98,7 +98,7 @@ function CornerDecor({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
 }
 
 export default function IncomingCallPage() {
-  const [screen, setScreen] = useState<Screen>("intro");
+  const [screen, setScreen] = useState<Screen>("splash");
   const [seconds, setSeconds] = useState(49);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const router = useRouter();
@@ -134,12 +134,44 @@ export default function IncomingCallPage() {
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-8" style={bgStyle}>
 
+      {screen === "splash" && (
+        <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
+          <div className="rounded-2xl flex flex-col items-center py-16 px-8 text-center relative" style={cardStyle}>
+            <CornerDecor pos="tl" /><CornerDecor pos="tr" /><CornerDecor pos="bl" /><CornerDecor pos="br" />
+
+            {/* Logo / avatar */}
+            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-amber-400/30 mb-6">
+              <Image src="/avatar-sabia.jpg" alt="" width={80} height={80} className="object-cover w-full h-full" />
+            </div>
+
+            <p className="text-xs tracking-[0.25em] uppercase mb-2" style={{ color: "rgba(180,130,40,0.5)" }}>Centro Ser Integral</p>
+            <h1 className="text-xl font-light mb-2" style={{ color: "#D8D3C8" }}>Mapa de Identidad Natal</h1>
+
+            <div className="flex items-center gap-2 w-full my-5">
+              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.15)" }} />
+              <span className="text-amber-400/30 text-xs">✦</span>
+              <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.15)" }} />
+            </div>
+
+            <p className="text-sm leading-relaxed mb-8" style={{ color: "rgba(207,201,189,0.5)" }}>
+              Tienes una llamada esperando.<br />Toca para recibirla.
+            </p>
+
+            <button onClick={() => setScreen("intro")}
+              className="btn-shimmer w-full py-4 rounded-xl text-sm tracking-wide active:scale-95 transition-all"
+              style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.5)", color: "#e8c87a" }}>
+              ✦ Toca para iniciar ✦
+            </button>
+          </div>
+        </div>
+      )}
+
       {screen === "intro" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
           <div className="rounded-2xl overflow-hidden" style={{ boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
             <video
               src="/sabia-marcando.mp4"
-              autoPlay playsInline muted
+              autoPlay playsInline
               className="w-full block"
               style={{ aspectRatio: "9/16", objectFit: "cover" }}
               onEnded={() => setScreen("incoming")}
