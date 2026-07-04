@@ -135,13 +135,16 @@ export default function IncomingCallPage() {
     <main className="min-h-screen flex items-center justify-center px-4 py-8" style={bgStyle}>
 
       {screen === "intro" && (
-        <div className="fixed inset-0 z-50 bg-black">
-          <video
-            src="/sabia-marcando.mp4"
-            autoPlay playsInline
-            className="w-full h-full object-cover"
-            onEnded={() => setScreen("incoming")}
-          />
+        <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
+          <div className="rounded-2xl overflow-hidden" style={{ boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
+            <video
+              src="/sabia-marcando.mp4"
+              autoPlay playsInline muted
+              className="w-full block"
+              style={{ aspectRatio: "9/16", objectFit: "cover" }}
+              onEnded={() => setScreen("incoming")}
+            />
+          </div>
         </div>
       )}
 
