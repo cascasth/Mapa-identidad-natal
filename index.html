@@ -137,6 +137,64 @@
             to   { transform: rotate(360deg); }
         }
 
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav-dropdown { position: relative; }
+
+        .nav-dropdown-btn {
+            background: transparent;
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            color: var(--silver);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .nav-dropdown-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .nav-dropdown.open .nav-dropdown-btn { border-color: var(--gold); color: var(--gold); }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            min-width: 230px;
+            background: rgba(6, 6, 14, 0.97);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 10px;
+            padding: 0.4rem;
+            display: none;
+            flex-direction: column;
+            gap: 2px;
+            z-index: 1001;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-dropdown.open .nav-dropdown-menu { display: flex; }
+
+        .nav-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.65rem 0.8rem;
+            border-radius: 6px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            color: var(--silver);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-dropdown-menu a:hover { background: rgba(201, 168, 76, 0.08); color: var(--gold); }
+
         .nav-links {
             display: flex;
             list-style: none;
@@ -446,18 +504,20 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
+            align-items: start;
         }
 
         .codes-mandala {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
+            padding-top: 1.5rem;
         }
 
         .codes-mandala img {
             width: 100%;
-            max-width: 420px;
+            max-width: 320px;
+            max-height: 60vh;
             height: auto;
             animation: spin-slow 60s linear infinite;
             filter: sepia(0.3) saturate(1.5) brightness(0.85);
@@ -1236,6 +1296,18 @@
             .nav-links {
                 display: none;
             }
+            .nav-logo {
+                font-size: 0;
+            }
+            .nav-logo .star {
+                font-size: 1.4rem;
+            }
+            .nav-dropdown-btn span {
+                display: none;
+            }
+            .nav-dropdown-btn {
+                padding: 0.4rem 0.6rem;
+            }
             .hero h1 {
                 font-size: 2rem;
             }
@@ -1284,19 +1356,29 @@
 
     <!-- ─── NAVEGACIÓN ─── -->
     <nav>
-        <a href="#" class="nav-logo">
-            <span class="star">✦</span>
-            Centro Ser Integral
-        </a>
+        <div class="nav-left">
+            <a href="#" class="nav-logo">
+                <span class="star">✦</span>
+                Centro Ser Integral
+            </a>
+            <div class="nav-dropdown" id="navDropdown">
+                <button class="nav-dropdown-btn" onclick="toggleNavDropdown(event)">☰ <span data-i18n="nav-gratis">Gratis</span> ▾</button>
+                <div class="nav-dropdown-menu">
+                    <a href="tzolkin.html">🌙 <span data-i18n="nav-tzolkin">Kin del día · Tzolkin</span></a>
+                    <a href="numerologia.html">🔢 <span data-i18n="nav-numerologia">Numerología gratis</span></a>
+                    <a href="chino.html">🐉 <span data-i18n="nav-chino">Animal chino</span></a>
+                </div>
+            </div>
+        </div>
         <ul class="nav-links">
-            <li><a href="#codigos">Códigos</a></li>
-            <li><a href="#para-que">Propósito</a></li>
-            <li><a href="#ejemplo">Ejemplo</a></li>
-            <li><a href="#testimonios">Testimonios</a></li>
+            <li><a href="#codigos" data-i18n="nav-codigos">Códigos</a></li>
+            <li><a href="#para-que" data-i18n="nav-proposito">Propósito</a></li>
+            <li><a href="#ejemplo" data-i18n="nav-ejemplo">Ejemplo</a></li>
+            <li><a href="#testimonios" data-i18n="nav-testimonios">Testimonios</a></li>
         </ul>
         <div class="nav-cta">
-            <button class="btn-lang">🇲🇽 ES · 🇺🇸 EN</button>
-            <button class="btn-nav-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Solicitar Mapa</button>
+            <button class="btn-lang" id="btnLangToggle" onclick="toggleLangGlobal()">🇲🇽 ES · 🇺🇸 EN</button>
+            <button class="btn-nav-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})" data-i18n="nav-solicitar">Solicitar Mapa</button>
         </div>
     </nav>
 
@@ -1305,19 +1387,19 @@
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <p class="hero-eyebrow">Centro Ser Integral · Siete códigos simbólicos</p>
-            <h1>Descubre tu<br><em>Mapa de Identidad Natal</em></h1>
-            <p class="hero-tagline">El antiguo conocimiento de las estrellas, revelado para ti</p>
-            <p class="hero-desc">
+            <p class="hero-eyebrow" data-i18n="hero-eyebrow">Centro Ser Integral · Siete códigos simbólicos</p>
+            <h1 data-i18n="hero-title">Descubre tu<br><em>Mapa de Identidad Natal</em></h1>
+            <p class="hero-tagline" data-i18n="hero-tagline">El antiguo conocimiento de las estrellas, revelado para ti</p>
+            <p class="hero-desc" data-i18n="hero-desc">
                 Astrología occidental, horóscopo chino, numerología, tradiciones mayas, el calendario sagrado del Anáhuac y el Tarot convergen en un solo mapa para revelar tu arquetipo central, tu misión de vida y un símbolo visual único creado exclusivamente para ti.
             </p>
             <div class="hero-buttons">
-                <button class="btn-primary" onclick="document.getElementById('para-que').scrollIntoView({behavior:'smooth'})">🔮 ¿Para qué sirve?</button>
-                <button class="btn-outline" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">✦ Solicitar mi mapa</button>
+                <button class="btn-primary" onclick="document.getElementById('para-que').scrollIntoView({behavior:'smooth'})" data-i18n="hero-btn-purpose">🔮 ¿Para qué sirve?</button>
+                <button class="btn-outline" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})" data-i18n="hero-btn-solicitar">✦ Solicitar mi mapa</button>
             </div>
         </div>
         <div class="hero-scroll" id="heroScroll">
-            <span>Descubrir</span>
+            <span data-i18n="hero-scroll">Descubrir</span>
             <div class="arrow"></div>
         </div>
     </section>
@@ -1331,9 +1413,9 @@
     <section class="codes-section" id="codigos">
         <div class="section-inner">
             <div class="section-header reveal">
-                <p class="section-label">Lo que contiene tu mapa</p>
-                <h2 class="section-title">Los Siete Códigos Simbólicos</h2>
-                <p class="section-subtitle">Cada sistema revela una capa distinta de tu identidad</p>
+                <p class="section-label" data-i18n="codes-label">Lo que contiene tu mapa</p>
+                <h2 class="section-title" data-i18n="codes-title">Los Siete Códigos Simbólicos</h2>
+                <p class="section-subtitle" data-i18n="codes-subtitle">Cada sistema revela una capa distinta de tu identidad</p>
             </div>
             <div class="codes-layout">
                 <div class="codes-mandala">
@@ -1342,43 +1424,43 @@
                 <div class="codes-list">
                     <div class="code-item reveal">
                         <div class="code-icon">♌</div>
-                        <div class="code-name">Zodiaco Occidental</div>
-                        <div class="code-desc">Signo solar y ascendente para una lectura profunda de tu naturaleza.</div>
+                        <div class="code-name" data-i18n="code-1-name">Zodiaco Occidental</div>
+                        <div class="code-desc" data-i18n="code-1-desc">Signo solar y ascendente para una lectura profunda de tu naturaleza.</div>
                     </div>
                     <div class="code-item reveal">
                         <div class="code-icon">🐉</div>
-                        <div class="code-name">Horóscopo Chino</div>
-                        <div class="code-desc">Año, mes y hora de nacimiento — precisión máxima.</div>
+                        <div class="code-name" data-i18n="code-2-name">Horóscopo Chino</div>
+                        <div class="code-desc" data-i18n="code-2-desc">Año, mes y hora de nacimiento — precisión máxima.</div>
                     </div>
                     <div class="code-item reveal">
                         <div class="code-icon">🔢</div>
-                        <div class="code-name">Numerología Pitagórica</div>
-                        <div class="code-desc">Cuatro números clave que revelan tu esencia numérica.</div>
+                        <div class="code-name" data-i18n="code-3-name">Numerología Pitagórica</div>
+                        <div class="code-desc" data-i18n="code-3-desc">Cuatro números clave que revelan tu esencia numérica.</div>
                     </div>
                     <div class="code-item reveal">
                         <div class="code-icon">🌙</div>
-                        <div class="code-name">Tzolkin Maya</div>
-                        <div class="code-desc">Calendario sagrado maya: GMT tradicional y Dreamspell.</div>
+                        <div class="code-name" data-i18n="code-4-name">Tzolkin Maya</div>
+                        <div class="code-desc" data-i18n="code-4-desc">Calendario sagrado maya: GMT tradicional y Dreamspell.</div>
                     </div>
                     <div class="code-item reveal">
                         <div class="code-icon">☀️</div>
-                        <div class="code-name">Tonalpohualli Azteca</div>
-                        <div class="code-desc">Correlación GMT del calendario sagrado del Anáhuac.</div>
+                        <div class="code-name" data-i18n="code-5-name">Tonalpohualli Azteca</div>
+                        <div class="code-desc" data-i18n="code-5-desc">Correlación GMT del calendario sagrado del Anáhuac.</div>
                     </div>
                     <div class="code-item reveal">
                         <div class="code-icon">🃏</div>
-                        <div class="code-name">Arcano Mayor del Tarot</div>
-                        <div class="code-desc">Tu carta del alma que guía tu camino espiritual.</div>
+                        <div class="code-name" data-i18n="code-6-name">Arcano Mayor del Tarot</div>
+                        <div class="code-desc" data-i18n="code-6-desc">Tu carta del alma que guía tu camino espiritual.</div>
                     </div>
                     <div class="code-item reveal">
                         <div class="code-icon">🎭</div>
-                        <div class="code-name">Arquetipo de Jung</div>
-                        <div class="code-desc">Tu patrón psicológico profundo revelado.</div>
+                        <div class="code-name" data-i18n="code-7-name">Arquetipo de Jung</div>
+                        <div class="code-desc" data-i18n="code-7-desc">Tu patrón psicológico profundo revelado.</div>
                     </div>
                     <div class="code-item reveal">
                         <div class="code-icon">✨</div>
-                        <div class="code-name">La Integración</div>
-                        <div class="code-desc">El hilo que une todos tus códigos en una sola verdad.</div>
+                        <div class="code-name" data-i18n="code-8-name">La Integración</div>
+                        <div class="code-desc" data-i18n="code-8-desc">El hilo que une todos tus códigos en una sola verdad.</div>
                     </div>
                 </div>
             </div>
@@ -1395,34 +1477,34 @@
         <div class="purpose-overlay"></div>
         <div class="section-inner" style="position:relative;z-index:5;">
             <div class="section-header reveal">
-                <p class="section-label">Tu camino de autoconocimiento</p>
-                <h2 class="section-title">¿Para Qué Te Sirve?</h2>
-                <p class="section-subtitle">Este mapa no pretende decirte quién "debes" ser. Te ofrece una lectura simbólica para mirarte desde distintos lenguajes.</p>
+                <p class="section-label" data-i18n="purpose-label">Tu camino de autoconocimiento</p>
+                <h2 class="section-title" data-i18n="purpose-title">¿Para Qué Te Sirve?</h2>
+                <p class="section-subtitle" data-i18n="purpose-subtitle">Este mapa no pretende decirte quién "debes" ser. Te ofrece una lectura simbólica para mirarte desde distintos lenguajes.</p>
             </div>
             <div class="purpose-grid">
                 <div class="purpose-card">
                     <div class="purpose-number">01</div>
                     <div class="purpose-icon">🔍</div>
-                    <h3>Reconocer</h3>
-                    <p>Fortalezas, talentos y cualidades que pueden estar presentes en tu forma de actuar y relacionarte con el mundo.</p>
+                    <h3 data-i18n="purpose-1-title">Reconocer</h3>
+                    <p data-i18n="purpose-1-desc">Fortalezas, talentos y cualidades que pueden estar presentes en tu forma de actuar y relacionarte con el mundo.</p>
                 </div>
                 <div class="purpose-card">
                     <div class="purpose-number">02</div>
                     <div class="purpose-icon">🔄</div>
-                    <h3>Reflexionar</h3>
-                    <p>Sobre patrones personales, decisiones y ciclos que se repiten en tu vida, con una mirada simbólica y compasiva.</p>
+                    <h3 data-i18n="purpose-2-title">Reflexionar</h3>
+                    <p data-i18n="purpose-2-desc">Sobre patrones personales, decisiones y ciclos que se repiten en tu vida, con una mirada simbólica y compasiva.</p>
                 </div>
                 <div class="purpose-card">
                     <div class="purpose-number">03</div>
                     <div class="purpose-icon">🧭</div>
-                    <h3>Conectar</h3>
-                    <p>Con una intención personal para orientar tu etapa actual y alinear tus acciones con tu esencia más profunda.</p>
+                    <h3 data-i18n="purpose-3-title">Conectar</h3>
+                    <p data-i18n="purpose-3-desc">Con una intención personal para orientar tu etapa actual y alinear tus acciones con tu esencia más profunda.</p>
                 </div>
                 <div class="purpose-card">
                     <div class="purpose-number">04</div>
                     <div class="purpose-icon">📖</div>
-                    <h3>Explorar</h3>
-                    <p>Usarlo como punto de partida para journaling, meditación o trabajo interior en tu proceso de crecimiento.</p>
+                    <h3 data-i18n="purpose-4-title">Explorar</h3>
+                    <p data-i18n="purpose-4-desc">Usarlo como punto de partida para journaling, meditación o trabajo interior en tu proceso de crecimiento.</p>
                 </div>
             </div>
         </div>
@@ -1437,58 +1519,58 @@
     <section class="example-section" id="ejemplo">
         <div class="section-inner">
             <div class="section-header reveal">
-                <p class="section-label">Fragmento ilustrativo</p>
-                <h2 class="section-title">Ejemplo de Mapa</h2>
-                <p class="section-subtitle">Así luce una lectura real — cada mapa es único e irrepetible</p>
+                <p class="section-label" data-i18n="example-label">Fragmento ilustrativo</p>
+                <h2 class="section-title" data-i18n="example-title">Ejemplo de Mapa</h2>
+                <p class="section-subtitle" data-i18n="example-subtitle">Así luce una lectura real — cada mapa es único e irrepetible</p>
             </div>
             <div class="example-frame reveal">
                 <div class="example-header">
                     <div class="example-name">Rosario María</div>
-                    <div class="example-birth">6 · agosto · 2008 · 05:56 · Tlaxco, Tlaxcala, México</div>
+                    <div class="example-birth" data-i18n="example-birth">6 · agosto · 2008 · 05:56 · Tlaxco, Tlaxcala, México</div>
                 </div>
                 <div class="example-codes-grid">
                     <div class="ex-code">
-                        <div class="ex-code-label">Zodiaco</div>
+                        <div class="ex-code-label" data-i18n="ex-label-1">Zodiaco</div>
                         <div class="ex-code-value">♌ Leo · Asc. ♋ Cáncer</div>
                     </div>
                     <div class="ex-code">
-                        <div class="ex-code-label">Horóscopo Chino</div>
-                        <div class="ex-code-value">🐀 Rata de Tierra Yang</div>
+                        <div class="ex-code-label" data-i18n="ex-label-2">Horóscopo Chino</div>
+                        <div class="ex-code-value" data-i18n="ex-value-2">🐀 Rata de Tierra Yang</div>
                     </div>
                     <div class="ex-code">
-                        <div class="ex-code-label">Numerología</div>
-                        <div class="ex-code-value">Camino 6 · Exp. 11 · Alma 33</div>
+                        <div class="ex-code-label" data-i18n="ex-label-3">Numerología</div>
+                        <div class="ex-code-value" data-i18n="ex-value-3">Camino 6 · Exp. 11 · Alma 33</div>
                     </div>
                     <div class="ex-code">
-                        <div class="ex-code-label">Tzolkin Maya</div>
+                        <div class="ex-code-label" data-i18n="ex-label-4">Tzolkin Maya</div>
                         <div class="ex-code-value">Ak'bal · Tono 2</div>
                     </div>
                     <div class="ex-code">
-                        <div class="ex-code-label">Dreamspell</div>
-                        <div class="ex-code-value">Perro Blanco Magnético</div>
+                        <div class="ex-code-label" data-i18n="ex-label-5">Dreamspell</div>
+                        <div class="ex-code-value" data-i18n="ex-value-5">Perro Blanco Magnético</div>
                     </div>
                     <div class="ex-code">
-                        <div class="ex-code-label">Tonalpohualli</div>
+                        <div class="ex-code-label" data-i18n="ex-label-6">Tonalpohualli</div>
                         <div class="ex-code-value">9 Atl</div>
                     </div>
                     <div class="ex-code" style="grid-column: span 2; border-right: none;">
-                        <div class="ex-code-label">Arcano del Tarot</div>
-                        <div class="ex-code-value">VI · Los Amantes</div>
+                        <div class="ex-code-label" data-i18n="ex-label-7">Arcano del Tarot</div>
+                        <div class="ex-code-value" data-i18n="ex-value-7">VI · Los Amantes</div>
                     </div>
                 </div>
                 <div class="example-body">
-                    <div class="example-archetype">✦ Arquetipo Central: La Sanadora Leal que Elige</div>
-                    <p class="example-text">
+                    <div class="example-archetype" data-i18n="example-archetype">✦ Arquetipo Central: La Sanadora Leal que Elige</div>
+                    <p class="example-text" data-i18n="example-text">
                         Rosario integra un Leo solar con ascendente Cáncer: fuego que protege, luz que acoge. Su Rata de Tierra Yang aporta astucia constructiva y movimiento inteligente. Su numerología muestra un Camino 6 de responsabilidad del corazón, una Expresión 11 de intuición amplificada y un Alma 33 de sanación profunda. Ak'bal le da visión nocturna; Perro Blanco Magnético, lealtad que atrae; 9 Atl, profundidad emocional; y Los Amantes, la elección consciente como camino del alma.
                     </p>
-                    <div class="example-mantra">
+                    <div class="example-mantra" data-i18n="example-mantra">
                         <strong>Mantra Ceremonial:</strong><br>
                         Yo soy fuego que acoge, luz que no quema. Vengo de aguas profundas, de visiones nocturnas donde vi lo que otros temerían ver. <em>Yo soy lealtad sin sumisión. Yo soy poder sin arrogancia. Yo soy amor sin pérdida de mí.</em>
                     </div>
                 </div>
                 <div class="example-cta">
-                    <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">✦ Quiero el mío</button>
-                    <p class="example-note">Nombre ficticio · Contenido generado con IA como ilustración</p>
+                    <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})" data-i18n="example-cta-btn">✦ Quiero el mío</button>
+                    <p class="example-note" data-i18n="example-note">Nombre ficticio · Contenido generado con IA como ilustración</p>
                 </div>
             </div>
         </div>
@@ -1503,28 +1585,28 @@
     <section class="testimonials-section" id="testimonios">
         <div class="section-inner">
             <div class="section-header reveal">
-                <p class="section-label">Voces de quienes ya lo recibieron</p>
-                <h2 class="section-title">Lo Que Dicen</h2>
+                <p class="section-label" data-i18n="testimonials-label">Voces de quienes ya lo recibieron</p>
+                <h2 class="section-title" data-i18n="testimonials-title">Lo Que Dicen</h2>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-quote">"</div>
-                    <p class="testimonial-text">Ya me llegó mi carta!!! Me fascinó!!!! Está padrísimo. Entre otras cosas que dice, soy Águila — siempre que me preguntan qué animal me gustaría ser, siempre he dicho Águila. 🦅</p>
+                    <p class="testimonial-text" data-i18n="test-1">Ya me llegó mi carta!!! Me fascinó!!!! Está padrísimo. Entre otras cosas que dice, soy Águila — siempre que me preguntan qué animal me gustaría ser, siempre he dicho Águila. 🦅</p>
                     <div class="testimonial-author">— A.H.</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-quote">"</div>
-                    <p class="testimonial-text">Ya leí el mapa de identidad de mi hijo. Está súper bien, sí lo describe. Me sorprendió la precisión con la que captura su personalidad.</p>
-                    <div class="testimonial-author">— A.H. · sobre el mapa de su hijo</div>
+                    <p class="testimonial-text" data-i18n="test-2">Ya leí el mapa de identidad de mi hijo. Está súper bien, sí lo describe. Me sorprendió la precisión con la que captura su personalidad.</p>
+                    <div class="testimonial-author" data-i18n="test-2-autor">— A.H. · sobre el mapa de su hijo</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-quote">"</div>
-                    <p class="testimonial-text">Está muy completo. 😱 Lo imprimiremos y lo pondremos en un lugar especial. Es una herramienta de autoconocimiento realmente poderosa.</p>
+                    <p class="testimonial-text" data-i18n="test-3">Está muy completo. 😱 Lo imprimiremos y lo pondremos en un lugar especial. Es una herramienta de autoconocimiento realmente poderosa.</p>
                     <div class="testimonial-author">— M.T.G.</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-quote">"</div>
-                    <p class="testimonial-text">Me encantó. 💕 Cada sección resonó profundamente conmigo. Es como si alguien finalmente hubiera puesto en palabras lo que siempre sentí.</p>
+                    <p class="testimonial-text" data-i18n="test-4">Me encantó. 💕 Cada sección resonó profundamente conmigo. Es como si alguien finalmente hubiera puesto en palabras lo que siempre sentí.</p>
                     <div class="testimonial-author">— M.F.O.</div>
                 </div>
             </div>
@@ -1540,36 +1622,36 @@
     <section class="delivery-section">
         <div class="section-inner">
             <div class="section-header reveal">
-                <p class="section-label">Tu entrega</p>
-                <h2 class="section-title">Lo Que Recibirás</h2>
+                <p class="section-label" data-i18n="delivery-label">Tu entrega</p>
+                <h2 class="section-title" data-i18n="delivery-title">Lo Que Recibirás</h2>
             </div>
             <div class="delivery-grid">
                 <div class="delivery-item reveal">
                     <div class="delivery-icon">📧</div>
                     <div class="delivery-text">
-                        <strong>Correo 1 · Mapa Completo</strong>
-                        <span>Fichas personalizadas, guía de integración y lectura profunda de tus 7 códigos simbólicos con arquetipo central y misión de vida.</span>
+                        <strong data-i18n="delivery-1-strong">Correo 1 · Mapa Completo</strong>
+                        <span data-i18n="delivery-1-span">Fichas personalizadas, guía de integración y lectura profunda de tus 7 códigos simbólicos con arquetipo central y misión de vida.</span>
                     </div>
                 </div>
                 <div class="delivery-item reveal">
                     <div class="delivery-icon">🔮</div>
                     <div class="delivery-text">
-                        <strong>Correo 2 · Sello de Identidad</strong>
-                        <span>Imagen geométrica sagrada generada exclusivamente para ti, que integra tus siete símbolos en un amuleto digital único.</span>
+                        <strong data-i18n="delivery-2-strong">Correo 2 · Sello de Identidad</strong>
+                        <span data-i18n="delivery-2-span">Imagen geométrica sagrada generada exclusivamente para ti, que integra tus siete símbolos en un amuleto digital único.</span>
                     </div>
                 </div>
                 <div class="delivery-item reveal">
                     <div class="delivery-icon">🌎</div>
                     <div class="delivery-text">
-                        <strong>Español o Inglés</strong>
-                        <span>Elige el idioma en que deseas recibir tu mapa para una experiencia completamente personalizada.</span>
+                        <strong data-i18n="delivery-3-strong">Español o Inglés</strong>
+                        <span data-i18n="delivery-3-span">Elige el idioma en que deseas recibir tu mapa para una experiencia completamente personalizada.</span>
                     </div>
                 </div>
                 <div class="delivery-item reveal">
                     <div class="delivery-icon">⚡</div>
                     <div class="delivery-text">
-                        <strong>Entrega Automática</strong>
-                        <span>Recibes tu mapa en minutos directamente en tu correo electrónico, sin esperas innecesarias.</span>
+                        <strong data-i18n="delivery-4-strong">Entrega Automática</strong>
+                        <span data-i18n="delivery-4-span">Recibes tu mapa en minutos directamente en tu correo electrónico, sin esperas innecesarias.</span>
                     </div>
                 </div>
             </div>
@@ -1589,10 +1671,10 @@
                 <p class="cta-price-note" data-i18n="pay-desc">Ficha completa · Paga con tarjeta o cuenta PayPal</p>
 
                 <div class="cta-features">
-                    <span class="cta-badge">✦ 7 Códigos Simbólicos</span>
-                    <span class="cta-badge">✦ Sello de Identidad</span>
-                    <span class="cta-badge">✦ Mantra Ceremonial</span>
-                    <span class="cta-badge">✦ Entrega en minutos</span>
+                    <span class="cta-badge" data-i18n="cta-badge-1">✦ 7 Códigos Simbólicos</span>
+                    <span class="cta-badge" data-i18n="cta-badge-2">✦ Sello de Identidad</span>
+                    <span class="cta-badge" data-i18n="cta-badge-3">✦ Mantra Ceremonial</span>
+                    <span class="cta-badge" data-i18n="cta-badge-4">✦ Entrega en minutos</span>
                     <span class="cta-badge">✦ ES · EN</span>
                 </div>
 
@@ -1734,7 +1816,7 @@
                 <button class="btn-otro" data-i18n="btn-otro" onclick="reiniciar()">Solicitar otra ficha →</button>
             </div>
 
-            <p class="cta-disclaimer">
+            <p class="cta-disclaimer" data-i18n="cta-disclaimer">
                 Antes de pagar, ten a la mano: nombre completo, fecha de nacimiento, hora de nacimiento (lo más exacta posible), ciudad/país de nacimiento y correo electrónico.<br>
                 <em>Si no conoces tu hora de nacimiento, escríbenos antes de pagar para orientarte.</em>
             </p>
@@ -1746,12 +1828,12 @@
         <div class="footer-logo">✦ Centro Ser Integral ✦</div>
         <div class="footer-links">
             <a href="mailto:centro.ser.integral@gmail.com">centro.ser.integral@gmail.com</a>
-            <a href="privacidad.html">Política de Privacidad</a>
-            <a href="tzolkin.html">Tzolkin Gratis</a>
-            <a href="numerologia.html">Numerología Gratis</a>
-            <a href="chino.html">Animal Chino</a>
+            <a href="privacidad.html" data-i18n="footer-privacidad">Política de Privacidad</a>
+            <a href="tzolkin.html" data-i18n="footer-tzolkin">Tzolkin Gratis</a>
+            <a href="numerologia.html" data-i18n="footer-numerologia">Numerología Gratis</a>
+            <a href="chino.html" data-i18n="footer-chino">Animal Chino</a>
         </div>
-        <p class="footer-copy">© 2026 Centro Ser Integral · Todos los derechos reservados</p>
+        <p class="footer-copy" data-i18n="footer-copy">© 2026 Centro Ser Integral · Todos los derechos reservados</p>
     </footer>
 
     <script>
@@ -1860,6 +1942,99 @@
 
     const i18n = {
         es: {
+            'nav-gratis': 'Gratis',
+            'nav-tzolkin': 'Kin del día · Tzolkin',
+            'nav-numerologia': 'Numerología gratis',
+            'nav-chino': 'Animal chino',
+            'nav-codigos': 'Códigos',
+            'nav-proposito': 'Propósito',
+            'nav-ejemplo': 'Ejemplo',
+            'nav-testimonios': 'Testimonios',
+            'nav-solicitar': 'Solicitar Mapa',
+            'hero-eyebrow': 'Centro Ser Integral · Siete códigos simbólicos',
+            'hero-title': 'Descubre tu<br><em>Mapa de Identidad Natal</em>',
+            'hero-tagline': 'El antiguo conocimiento de las estrellas, revelado para ti',
+            'hero-desc': 'Astrología occidental, horóscopo chino, numerología, tradiciones mayas, el calendario sagrado del Anáhuac y el Tarot convergen en un solo mapa para revelar tu arquetipo central, tu misión de vida y un símbolo visual único creado exclusivamente para ti.',
+            'hero-btn-purpose': '🔮 ¿Para qué sirve?',
+            'hero-btn-solicitar': '✦ Solicitar mi mapa',
+            'hero-scroll': 'Descubrir',
+            'codes-label': 'Lo que contiene tu mapa',
+            'codes-title': 'Los Siete Códigos Simbólicos',
+            'codes-subtitle': 'Cada sistema revela una capa distinta de tu identidad',
+            'code-1-name': 'Zodiaco Occidental',
+            'code-1-desc': 'Signo solar y ascendente para una lectura profunda de tu naturaleza.',
+            'code-2-name': 'Horóscopo Chino',
+            'code-2-desc': 'Año, mes y hora de nacimiento — precisión máxima.',
+            'code-3-name': 'Numerología Pitagórica',
+            'code-3-desc': 'Cuatro números clave que revelan tu esencia numérica.',
+            'code-4-name': 'Tzolkin Maya',
+            'code-4-desc': 'Calendario sagrado maya: GMT tradicional y Dreamspell.',
+            'code-5-name': 'Tonalpohualli Azteca',
+            'code-5-desc': 'Correlación GMT del calendario sagrado del Anáhuac.',
+            'code-6-name': 'Arcano Mayor del Tarot',
+            'code-6-desc': 'Tu carta del alma que guía tu camino espiritual.',
+            'code-7-name': 'Arquetipo de Jung',
+            'code-7-desc': 'Tu patrón psicológico profundo revelado.',
+            'code-8-name': 'La Integración',
+            'code-8-desc': 'El hilo que une todos tus códigos en una sola verdad.',
+            'purpose-label': 'Tu camino de autoconocimiento',
+            'purpose-title': '¿Para Qué Te Sirve?',
+            'purpose-subtitle': 'Este mapa no pretende decirte quién "debes" ser. Te ofrece una lectura simbólica para mirarte desde distintos lenguajes.',
+            'purpose-1-title': 'Reconocer',
+            'purpose-1-desc': 'Fortalezas, talentos y cualidades que pueden estar presentes en tu forma de actuar y relacionarte con el mundo.',
+            'purpose-2-title': 'Reflexionar',
+            'purpose-2-desc': 'Sobre patrones personales, decisiones y ciclos que se repiten en tu vida, con una mirada simbólica y compasiva.',
+            'purpose-3-title': 'Conectar',
+            'purpose-3-desc': 'Con una intención personal para orientar tu etapa actual y alinear tus acciones con tu esencia más profunda.',
+            'purpose-4-title': 'Explorar',
+            'purpose-4-desc': 'Usarlo como punto de partida para journaling, meditación o trabajo interior en tu proceso de crecimiento.',
+            'example-label': 'Fragmento ilustrativo',
+            'example-title': 'Ejemplo de Mapa',
+            'example-subtitle': 'Así luce una lectura real — cada mapa es único e irrepetible',
+            'example-birth': '6 · agosto · 2008 · 05:56 · Tlaxco, Tlaxcala, México',
+            'ex-label-1': 'Zodiaco',
+            'ex-label-2': 'Horóscopo Chino',
+            'ex-value-2': '🐀 Rata de Tierra Yang',
+            'ex-label-3': 'Numerología',
+            'ex-value-3': 'Camino 6 · Exp. 11 · Alma 33',
+            'ex-label-4': 'Tzolkin Maya',
+            'ex-label-5': 'Dreamspell',
+            'ex-value-5': 'Perro Blanco Magnético',
+            'ex-label-6': 'Tonalpohualli',
+            'ex-label-7': 'Arcano del Tarot',
+            'ex-value-7': 'VI · Los Amantes',
+            'example-archetype': '✦ Arquetipo Central: La Sanadora Leal que Elige',
+            'example-text': 'Rosario integra un Leo solar con ascendente Cáncer: fuego que protege, luz que acoge. Su Rata de Tierra Yang aporta astucia constructiva y movimiento inteligente. Su numerología muestra un Camino 6 de responsabilidad del corazón, una Expresión 11 de intuición amplificada y un Alma 33 de sanación profunda. Ak\'bal le da visión nocturna; Perro Blanco Magnético, lealtad que atrae; 9 Atl, profundidad emocional; y Los Amantes, la elección consciente como camino del alma.',
+            'example-mantra': '<strong>Mantra Ceremonial:</strong><br>Yo soy fuego que acoge, luz que no quema. Vengo de aguas profundas, de visiones nocturnas donde vi lo que otros temerían ver. <em>Yo soy lealtad sin sumisión. Yo soy poder sin arrogancia. Yo soy amor sin pérdida de mí.</em>',
+            'example-cta-btn': '✦ Quiero el mío',
+            'example-note': 'Nombre ficticio · Contenido generado con IA como ilustración',
+            'testimonials-label': 'Voces de quienes ya lo recibieron',
+            'testimonials-title': 'Lo Que Dicen',
+            'test-1': 'Ya me llegó mi carta!!! Me fascinó!!!! Está padrísimo. Entre otras cosas que dice, soy Águila — siempre que me preguntan qué animal me gustaría ser, siempre he dicho Águila. 🦅',
+            'test-2': 'Ya leí el mapa de identidad de mi hijo. Está súper bien, sí lo describe. Me sorprendió la precisión con la que captura su personalidad.',
+            'test-2-autor': '— A.H. · sobre el mapa de su hijo',
+            'test-3': 'Está muy completo. 😱 Lo imprimiremos y lo pondremos en un lugar especial. Es una herramienta de autoconocimiento realmente poderosa.',
+            'test-4': 'Me encantó. 💕 Cada sección resonó profundamente conmigo. Es como si alguien finalmente hubiera puesto en palabras lo que siempre sentí.',
+            'delivery-label': 'Tu entrega',
+            'delivery-title': 'Lo Que Recibirás',
+            'delivery-1-strong': 'Correo 1 · Mapa Completo',
+            'delivery-1-span': 'Fichas personalizadas, guía de integración y lectura profunda de tus 7 códigos simbólicos con arquetipo central y misión de vida.',
+            'delivery-2-strong': 'Correo 2 · Sello de Identidad',
+            'delivery-2-span': 'Imagen geométrica sagrada generada exclusivamente para ti, que integra tus siete símbolos en un amuleto digital único.',
+            'delivery-3-strong': 'Español o Inglés',
+            'delivery-3-span': 'Elige el idioma en que deseas recibir tu mapa para una experiencia completamente personalizada.',
+            'delivery-4-strong': 'Entrega Automática',
+            'delivery-4-span': 'Recibes tu mapa en minutos directamente en tu correo electrónico, sin esperas innecesarias.',
+            'cta-badge-1': '✦ 7 Códigos Simbólicos',
+            'cta-badge-2': '✦ Sello de Identidad',
+            'cta-badge-3': '✦ Mantra Ceremonial',
+            'cta-badge-4': '✦ Entrega en minutos',
+            'cta-disclaimer': 'Antes de pagar, ten a la mano: nombre completo, fecha de nacimiento, hora de nacimiento (lo más exacta posible), ciudad/país de nacimiento y correo electrónico.<br><em>Si no conoces tu hora de nacimiento, escríbenos antes de pagar para orientarte.</em>',
+            'footer-privacidad': 'Política de Privacidad',
+            'footer-tzolkin': 'Tzolkin Gratis',
+            'footer-numerologia': 'Numerología Gratis',
+            'footer-chino': 'Animal Chino',
+            'footer-copy': '© 2026 Centro Ser Integral · Todos los derechos reservados',
             'pay-label': 'Paso 1 de 2 · Pago seguro',
             'pay-title': 'Obtén Tu Mapa Ahora',
             'pay-desc': 'Ficha completa · <span class="price-highlight">$415 MXN</span><br>Paga con tarjeta o cuenta PayPal. Después del pago completarás tus datos de nacimiento para generar tu mapa.',
@@ -1908,6 +2083,99 @@
             'loading-send': '✦ Enviando tu solicitud...'
         },
         en: {
+            'nav-gratis': 'Free',
+            'nav-tzolkin': "Day's Kin · Tzolkin",
+            'nav-numerologia': 'Free numerology',
+            'nav-chino': 'Chinese animal',
+            'nav-codigos': 'Codes',
+            'nav-proposito': 'Purpose',
+            'nav-ejemplo': 'Example',
+            'nav-testimonios': 'Testimonials',
+            'nav-solicitar': 'Get My Map',
+            'hero-eyebrow': 'Centro Ser Integral · Seven symbolic codes',
+            'hero-title': 'Discover Your<br><em>Birth Identity Map</em>',
+            'hero-tagline': 'The ancient knowledge of the stars, revealed for you',
+            'hero-desc': 'Western astrology, Chinese horoscope, numerology, Mayan traditions, the sacred calendar of Anáhuac and Tarot converge into a single map to reveal your core archetype, your life mission and a unique visual symbol created exclusively for you.',
+            'hero-btn-purpose': '🔮 What is it for?',
+            'hero-btn-solicitar': '✦ Get my map',
+            'hero-scroll': 'Discover',
+            'codes-label': 'What your map contains',
+            'codes-title': 'The Seven Symbolic Codes',
+            'codes-subtitle': 'Each system reveals a distinct layer of your identity',
+            'code-1-name': 'Western Zodiac',
+            'code-1-desc': 'Sun sign and rising sign for a deep reading of your nature.',
+            'code-2-name': 'Chinese Horoscope',
+            'code-2-desc': 'Year, month and hour of birth — maximum precision.',
+            'code-3-name': 'Pythagorean Numerology',
+            'code-3-desc': 'Four key numbers that reveal your numeric essence.',
+            'code-4-name': 'Mayan Tzolkin',
+            'code-4-desc': 'Sacred Mayan calendar: traditional GMT and Dreamspell.',
+            'code-5-name': 'Aztec Tonalpohualli',
+            'code-5-desc': 'GMT correlation of the sacred Anáhuac calendar.',
+            'code-6-name': 'Tarot Major Arcana',
+            'code-6-desc': 'Your soul card, guiding your spiritual path.',
+            'code-7-name': 'Jungian Archetype',
+            'code-7-desc': 'Your deep psychological pattern revealed.',
+            'code-8-name': 'The Integration',
+            'code-8-desc': 'The thread that binds all your codes into a single truth.',
+            'purpose-label': 'Your path of self-knowledge',
+            'purpose-title': 'What Is It For?',
+            'purpose-subtitle': 'This map does not claim to tell you who you "should" be. It offers a symbolic reading to see yourself through different languages.',
+            'purpose-1-title': 'Recognize',
+            'purpose-1-desc': 'Strengths, talents and qualities that may be present in how you act and relate to the world.',
+            'purpose-2-title': 'Reflect',
+            'purpose-2-desc': 'On personal patterns, decisions and cycles that repeat in your life, with a symbolic and compassionate view.',
+            'purpose-3-title': 'Connect',
+            'purpose-3-desc': 'With a personal intention to guide your current stage and align your actions with your deepest essence.',
+            'purpose-4-title': 'Explore',
+            'purpose-4-desc': 'Use it as a starting point for journaling, meditation or inner work in your growth process.',
+            'example-label': 'Illustrative fragment',
+            'example-title': 'Map Example',
+            'example-subtitle': 'This is what a real reading looks like — every map is unique and unrepeatable',
+            'example-birth': 'August 6, 2008 · 05:56 · Tlaxco, Tlaxcala, Mexico',
+            'ex-label-1': 'Zodiac',
+            'ex-label-2': 'Chinese Horoscope',
+            'ex-value-2': '🐀 Earth Yang Rat',
+            'ex-label-3': 'Numerology',
+            'ex-value-3': 'Life Path 6 · Exp. 11 · Soul 33',
+            'ex-label-4': 'Mayan Tzolkin',
+            'ex-label-5': 'Dreamspell',
+            'ex-value-5': 'White Magnetic Dog',
+            'ex-label-6': 'Tonalpohualli',
+            'ex-label-7': 'Tarot Arcana',
+            'ex-value-7': 'VI · The Lovers',
+            'example-archetype': '✦ Core Archetype: The Loyal Healer Who Chooses',
+            'example-text': 'Rosario blends a solar Leo with Cancer rising: fire that protects, light that welcomes. Her Earth Rat Yang brings constructive cunning and intelligent movement. Her numerology shows a Life Path 6 of heart responsibility, an Expression 11 of amplified intuition and a Soul 33 of deep healing. Ak\'bal gives her night vision; White Magnetic Dog, loyalty that attracts; 9 Atl, emotional depth; and The Lovers, conscious choice as the soul\'s path.',
+            'example-mantra': '<strong>Ceremonial Mantra:</strong><br>I am fire that welcomes, light that does not burn. I come from deep waters, from night visions where I saw what others would fear to see. <em>I am loyalty without submission. I am power without arrogance. I am love without losing myself.</em>',
+            'example-cta-btn': '✦ I want mine',
+            'example-note': 'Fictional name · AI-generated content as illustration',
+            'testimonials-label': 'Voices of those who already received it',
+            'testimonials-title': 'What They Say',
+            'test-1': 'My profile arrived!!! I loved it!!!! It\'s amazing. Among other things it says I am Eagle — whenever people ask what animal I\'d like to be, I\'ve always said Eagle. 🦅',
+            'test-2': 'I read my son\'s identity map. It\'s spot on, it really describes him. I was surprised by how precisely it captured his personality.',
+            'test-2-autor': '— A.H. · about her son\'s map',
+            'test-3': 'It\'s very complete. 😱 We\'ll print it and put it somewhere special. It\'s a truly powerful self-knowledge tool.',
+            'test-4': 'I loved it. 💕 Every section resonated deeply with me. It\'s as if someone finally put into words what I always felt.',
+            'delivery-label': 'Your delivery',
+            'delivery-title': 'What You Will Receive',
+            'delivery-1-strong': 'Email 1 · Full Map',
+            'delivery-1-span': 'Personalized profiles, integration guide and deep reading of your 7 symbolic codes with core archetype and life mission.',
+            'delivery-2-strong': 'Email 2 · Identity Seal',
+            'delivery-2-span': 'Sacred geometric image generated exclusively for you, integrating your seven symbols into a unique digital amulet.',
+            'delivery-3-strong': 'Spanish or English',
+            'delivery-3-span': 'Choose the language in which you want to receive your map for a fully personalized experience.',
+            'delivery-4-strong': 'Automatic Delivery',
+            'delivery-4-span': 'You receive your map in minutes directly in your email, with no unnecessary waiting.',
+            'cta-badge-1': '✦ 7 Symbolic Codes',
+            'cta-badge-2': '✦ Identity Seal',
+            'cta-badge-3': '✦ Ceremonial Mantra',
+            'cta-badge-4': '✦ Delivery in minutes',
+            'cta-disclaimer': 'Before paying, have ready: full name, date of birth, birth time (as exact as possible), city/country of birth and email.<br><em>If you don\'t know your birth time, write to us before paying and we\'ll help.</em>',
+            'footer-privacidad': 'Privacy Policy',
+            'footer-tzolkin': 'Free Tzolkin',
+            'footer-numerologia': 'Free Numerology',
+            'footer-chino': 'Chinese Animal',
+            'footer-copy': '© 2026 Centro Ser Integral · All rights reserved',
             'pay-label': 'Step 1 of 2 · Secure payment',
             'pay-title': 'Get Your Map Now',
             'pay-desc': 'Full profile · <span class="price-highlight">$415 MXN</span><br>Pay by card or PayPal. After payment, you’ll complete your birth details to generate your map.',
@@ -1983,7 +2251,24 @@
                 ? 'We are weaving your profile through seven symbolic systems. You will receive your Identity Map in less than 5 minutes at <span class="success-name" id="success-email"></span>.'
                 : 'Estamos tejiendo tu perfil a través de siete sistemas simbólicos. En menos de 5 minutos recibirás tu Mapa de Identidad en <span class="success-name" id="success-email"></span>.';
         }
+
+        const btnLang = document.getElementById('btnLangToggle');
+        if (btnLang) btnLang.innerHTML = lang === 'en' ? '🇺🇸 EN · 🇲🇽 es' : '🇲🇽 ES · 🇺🇸 en';
     }
+
+    function toggleLangGlobal() {
+        setLang(idiomaSeleccionado === 'es' ? 'en' : 'es');
+    }
+
+    function toggleNavDropdown(e) {
+        e.stopPropagation();
+        document.getElementById('navDropdown').classList.toggle('open');
+    }
+
+    document.addEventListener('click', () => {
+        const dd = document.getElementById('navDropdown');
+        if (dd) dd.classList.remove('open');
+    });
 
     function mostrarFormulario() {
         document.getElementById('payment-step').style.display = 'none';
