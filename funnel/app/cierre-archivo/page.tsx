@@ -2,7 +2,17 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const SLIDES = [
+type Slide = {
+  tag: string;
+  title: string;
+  body: string[];
+  isList?: boolean;
+  cta: string;
+  microcopy?: string;
+  isFinal?: boolean;
+};
+
+const SLIDES: Slide[] = [
   {
     tag: "Archivo de Identidad",
     title: "Lo que viviste fue solo la puerta",
@@ -16,42 +26,45 @@ const SLIDES = [
     cta: "Continuar",
   },
   {
-    tag: "Los 7 Códigos",
-    title: "Los 7 sistemas se leen juntos",
+    tag: "El Mapa",
+    title: "¿Qué es el Mapa de Identidad Natal?",
     body: [
-      "El Mapa de Identidad Natal reúne:",
+      "Es una lectura simbólica personalizada que reúne distintos sistemas de identidad para observarte desde varias capas.",
       "",
-      "Cielo · Nombre · Linaje · Tiempo Sagrado · Raíz Ancestral · Espejo del Alma · Personaje Interior",
-      "",
-      "No para etiquetarte.",
-      "Sino para mirar tus símbolos en conjunto.",
+      "No es una predicción.",
+      "No es una etiqueta.",
+      "Es un mapa para contemplar cómo dialogan tus símbolos personales.",
     ],
+    cta: "Ver qué integra",
+  },
+  {
+    tag: "Tu Mapa Integra",
+    title: "Tu mapa integra",
+    body: [
+      "Zodiaco Occidental + Ascendente",
+      "Horóscopo Chino: año, mes y hora",
+      "Numerología Pitagórica: 4 números",
+      "Tzolkin Maya: GMT tradicional + Dreamspell",
+      "Tonalpohualli Azteca: correlación GMT",
+      "Arcano Mayor del Tarot: carta del alma",
+      "Arquetipo de Jung",
+      "La Integración: el hilo que une todo",
+      "Mantra personal",
+      "Amuleto digital personalizado",
+    ],
+    isList: true,
     cta: "Continuar",
   },
   {
     tag: "Tu Mapa Completo",
-    title: "Qué recibes en tu mapa completo",
+    title: "Para crear tu mapa completo",
     body: [
-      "✦  Lectura integrada de tus 7 códigos",
-      "✦  Arquetipo central",
-      "✦  Mantra personal",
-      "✦  Sello visual personalizado",
-      "✦  Guía breve de integración",
-      "✦  Entrega digital automática",
-    ],
-    cta: "Continuar",
-  },
-  {
-    tag: "Antes de comenzar",
-    title: "Antes de abrir tu mapa",
-    body: [
-      "No predice tu futuro.",
-      "No diagnostica.",
-      "No define todo lo que eres.",
+      "Después de la compra se solicitan tus datos completos de nacimiento y nombre.",
       "",
-      "Es una herramienta simbólica para observarte con más claridad.",
+      "Con ellos se genera una lectura personalizada para que puedas volver a ti desde distintos lenguajes simbólicos.",
     ],
     cta: "Recibir mi Mapa de Identidad Natal",
+    microcopy: "Entrega digital automática. Incluye lectura + mantra + amuleto personalizado.",
     isFinal: true,
   },
 ];
@@ -119,18 +132,29 @@ export default function CierreArchivoPage() {
           <Divider />
 
           {/* Cuerpo */}
-          <div className="flex flex-col gap-1.5">
-            {slide.body.map((line, i) =>
-              line === "" ? (
-                <div key={i} className="h-2" />
-              ) : (
-                <p key={i} className="text-sm leading-relaxed"
-                  style={{ color: line.startsWith("✦") ? "#CFC9BD" : "rgba(207,201,189,0.6)" }}>
-                  {line}
-                </p>
-              )
-            )}
-          </div>
+          {slide.isList ? (
+            <div className="flex flex-col gap-2">
+              {slide.body.map((item, i) => (
+                <div key={i} className="flex items-start gap-2.5">
+                  <span className="text-amber-400/40 text-xs mt-0.5 flex-shrink-0">✦</span>
+                  <p className="text-sm leading-snug" style={{ color: "#CFC9BD" }}>{item}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col gap-1.5">
+              {slide.body.map((line, i) =>
+                line === "" ? (
+                  <div key={i} className="h-2" />
+                ) : (
+                  <p key={i} className="text-sm leading-relaxed"
+                    style={{ color: "rgba(207,201,189,0.6)" }}>
+                    {line}
+                  </p>
+                )
+              )}
+            </div>
+          )}
 
           <Divider />
 
@@ -141,6 +165,11 @@ export default function CierreArchivoPage() {
               style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.5)", color: "#e8c87a" }}>
               {slide.cta}
             </button>
+            {slide.microcopy && (
+              <p className="text-center text-xs leading-relaxed" style={{ color: "rgba(207,201,189,0.3)" }}>
+                {slide.microcopy}
+              </p>
+            )}
             {idx > 0 && (
               <button onClick={() => setIdx(i => i - 1)}
                 className="w-full py-2 text-xs text-center active:opacity-70 transition-opacity"
