@@ -55,7 +55,7 @@ function SymbolicAvatar() {
       <div className="absolute w-16 h-16 rounded-full border border-amber-400/50" />
       {/* imagen */}
       <div className="w-14 h-14 rounded-full overflow-hidden relative z-10">
-        <Image src="/avatar-centro-ser.jpg.png" alt="Centro Ser Integral" width={56} height={56} className="object-cover w-full h-full" />
+        <Image src="/avatar-sabia.jpg" alt="Centro Ser Integral" width={56} height={56} className="object-cover w-full h-full" />
       </div>
     </div>
   );
@@ -156,7 +156,7 @@ export default function IncomingCallPage() {
               <div className="absolute w-32 h-32 rounded-full border border-amber-400/20 animate-pulse-ring" style={{ animationDelay: "0.7s" }} />
               <div className="absolute w-28 h-28 rounded-full" style={{ background: "radial-gradient(circle, rgba(180,130,40,0.1) 0%, transparent 70%)" }} />
               <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-amber-400/30 relative z-10">
-                <Image src="/avatar-centro-ser.jpg.png" alt="Centro Ser Integral" width={96} height={96} className="object-cover w-full h-full" />
+                <Image src="/avatar-sabia.jpg" alt="Centro Ser Integral" width={96} height={96} className="object-cover w-full h-full" />
               </div>
             </div>
 
