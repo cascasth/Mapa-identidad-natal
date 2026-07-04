@@ -9,7 +9,17 @@ export default function ExplicacionPrincipalPage() {
   const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const introAudioRef = useRef<HTMLAudioElement | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const audio = new Audio("/audio-espejos.mp3");
+      introAudioRef.current = audio;
+      audio.play().catch(() => {});
+    }, 2000);
+    return () => { clearTimeout(t); introAudioRef.current?.pause(); };
+  }, []);
 
   const handleStart = () => {
     setStarted(true);

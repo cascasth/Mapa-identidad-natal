@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Star, Sparkles, TreePine, Clock, Anchor, Eye, UserCircle } from "lucide-react";
 
@@ -79,6 +79,16 @@ export default function Ruta7EspejosPage() {
   const [selected, setSelected] = useState<number | null>(null);
   const [afterSelection, setAfterSelection] = useState(false);
   const router = useRouter();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const audio = new Audio("/audio-codigo.mp3");
+      audioRef.current = audio;
+      audio.play().catch(() => {});
+    }, 2000);
+    return () => { clearTimeout(t); audioRef.current?.pause(); };
+  }, []);
 
   return (
     <main className="min-h-screen px-4 py-10" style={{ background: bg }}>

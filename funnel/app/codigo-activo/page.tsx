@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 const QUESTIONS = [
@@ -106,6 +106,16 @@ export default function CodigoActivoPage() {
   const [loadingText, setLoadingText] = useState(0);
   const [result, setResult] = useState("");
   const router = useRouter();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const audio = new Audio("/audio-triada.mp3");
+      audioRef.current = audio;
+      audio.play().catch(() => {});
+    }, 2000);
+    return () => { clearTimeout(t); audioRef.current?.pause(); };
+  }, []);
 
   useEffect(() => {
     if (screen !== "loading") return;
