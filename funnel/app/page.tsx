@@ -218,7 +218,7 @@ export default function IncomingCallPage() {
             <div className="flex items-center gap-2 mb-6 px-6">
               <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.2)" }} />
               <p className="text-xs tracking-[0.18em] uppercase text-center" style={{ color: "rgba(180,130,40,0.6)" }}>
-                Señal desde el centro del universo
+                ✦ Señal desde el centro del universo ✦
               </p>
               <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.2)" }} />
             </div>
