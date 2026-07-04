@@ -100,8 +100,20 @@ function CornerDecor({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
 export default function IncomingCallPage() {
   const [screen, setScreen] = useState<Screen>("splash");
   const [seconds, setSeconds] = useState(49);
+  const [transVisible, setTransVisible] = useState(false);
+  const [transFading, setTransFading] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    if (screen === "transition") {
+      const t = setTimeout(() => setTransVisible(true), 50);
+      return () => clearTimeout(t);
+    } else {
+      setTransVisible(false);
+      setTransFading(false);
+    }
+  }, [screen]);
 
   const handleAccept = () => {
     setScreen("active");
@@ -172,7 +184,7 @@ export default function IncomingCallPage() {
 
       {screen === "incoming" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
-          <div className="rounded-2xl flex flex-col items-center relative overflow-hidden py-10 px-6" style={cardStyle}>
+          <div className="rounded-2xl flex flex-col items-center relative overflow-hidden py-10 px-6" style={{ ...cardStyle, minHeight: "520px" }}>
 
             {/* Etiqueta WhatsApp */}
             <div className="flex items-center gap-1.5 mb-3">
@@ -303,7 +315,7 @@ export default function IncomingCallPage() {
 
       {screen === "ended" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
-          <div className="rounded-2xl overflow-hidden relative" style={{ boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
+          <div className="rounded-2xl overflow-hidden relative" style={{ minHeight: "520px", boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
             <CornerDecor pos="tl" /><CornerDecor pos="tr" /><CornerDecor pos="bl" /><CornerDecor pos="br" />
             <video
               src="/pantalla-llamada-ended.mp4"
@@ -324,11 +336,19 @@ export default function IncomingCallPage() {
       )}
 
       {screen === "transition" && (
-        <div className="fixed inset-0 z-50 bg-black">
+        <div className="fixed inset-0 z-50 bg-black"
+          style={{ opacity: transFading ? 0 : transVisible ? 1 : 0, transition: "opacity 0.8s ease" }}>
           <video
             src="/transicion-camara.mp4"
             autoPlay playsInline
             className="w-full h-full object-cover"
+            onTimeUpdate={(e) => {
+              const v = e.currentTarget;
+              if (v.duration && v.currentTime > v.duration - 0.8 && !transFading) {
+                setTransFading(true);
+                setTimeout(() => router.push("/verificacion-codigos"), 800);
+              }
+            }}
             onEnded={() => router.push("/verificacion-codigos")}
           />
         </div>

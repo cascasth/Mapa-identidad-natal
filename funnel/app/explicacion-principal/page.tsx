@@ -80,6 +80,21 @@ export default function ExplicacionPrincipalPage() {
             </div>
           )}
 
+          {/* Overlay al terminar */}
+          {done && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 animate-fade-in px-8"
+              style={{ background: "linear-gradient(160deg, #06080f 0%, #0a0c1a 100%)" }}>
+              <p className="text-xs tracking-[0.25em] uppercase" style={{ color: "rgba(180,130,40,0.5)" }}>Mapa de Identidad Natal</p>
+              <div className="flex items-center gap-2 w-full">
+                <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.18)" }} />
+                <span className="text-amber-400/30 text-xs">✦</span>
+                <div className="flex-1 h-px" style={{ background: "rgba(180,130,40,0.18)" }} />
+              </div>
+              <h2 className="text-base font-light text-center leading-snug" style={{ color: "#D8D3C8" }}>Tu camino ya tiene forma</h2>
+              <p className="text-sm text-center leading-relaxed" style={{ color: "rgba(207,201,189,0.5)" }}>El siguiente paso es abrir tu Mapa completo.</p>
+            </div>
+          )}
+
           {/* Controles durante reproducción */}
           {started && !done && (
             <div className="absolute bottom-0 left-0 right-0 p-4"
