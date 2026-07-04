@@ -115,6 +115,19 @@ export default function IncomingCallPage() {
     }
   }, [screen]);
 
+  const incomingAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (screen === "incoming") {
+      const audio = new Audio("/audio-llamada-entrante.mp3");
+      incomingAudioRef.current = audio;
+      audio.play().catch(() => {});
+    } else {
+      incomingAudioRef.current?.pause();
+      incomingAudioRef.current = null;
+    }
+  }, [screen]);
+
   const handleAccept = () => {
     setScreen("active");
     const audio = new Audio("/llamada.mp3");
