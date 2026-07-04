@@ -104,7 +104,7 @@ export default function ExplicacionPrincipalPage() {
         {/* CTA al terminar el video */}
         {done && (
           <div className="animate-fade-in">
-            <button onClick={() => router.push("/feed-privado")}
+            <button onClick={() => router.push("/cierre-archivo")}
               className="btn-shimmer w-full py-3 rounded-xl text-sm tracking-wide active:scale-95 transition-all"
               style={{ background: "linear-gradient(135deg, rgba(180,130,40,0.4), rgba(180,130,40,0.2))", border: "1px solid rgba(180,130,40,0.5)", color: "#e8c87a" }}>
               Seguir mi recorrido
