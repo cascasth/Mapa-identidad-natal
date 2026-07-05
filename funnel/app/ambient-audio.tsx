@@ -27,7 +27,7 @@ export default function AmbientAudio() {
 
     } else if (CIERRE_AMBIENT.includes(pathname)) {
       // Pausar main si estaba activo
-      mainRef.current?.pause();
+      try { getMainAudio().pause(); } catch {}
 
       if (!cierreRef.current) {
         const audio = new Audio("/ambiente-cierre.mp3");
