@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { getMainAudio } from "./audio-store";
 
 const MAIN_AMBIENT = ["/verificacion-codigos", "/codigo-activo", "/ruta-7-espejos"];
-const CIERRE_AMBIENT = ["/explicacion-principal", "/cierre-archivo"];
+const CIERRE_AMBIENT = ["/cierre-archivo"];
 // Páginas donde hay audio explicativo — bajar el ambiente principal
 const NARRATION_PAGES = ["/codigo-activo", "/ruta-7-espejos"];
 // Primera triada: volumen reducido (50% del normal)
