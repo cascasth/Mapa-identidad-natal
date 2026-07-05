@@ -326,6 +326,8 @@ export default function IncomingCallPage() {
         </div>
       )}
 
+      {(screen === "ended" || screen === "transition") && <EndedAudio />}
+
       {screen === "ended" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
           <div className="rounded-2xl overflow-hidden relative" style={{ minHeight: "520px", boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)" }}>
