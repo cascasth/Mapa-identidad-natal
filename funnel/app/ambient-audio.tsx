@@ -21,8 +21,8 @@ export default function AmbientAudio() {
 
       const audio = getMainAudio();
       if (audio.paused) audio.play().catch(() => {});
-      audio.volume = NARRATION_PAGES.includes(pathname) ? 0.15
-        : HALF_VOLUME_PAGES.includes(pathname) ? 0.3
+      audio.volume = NARRATION_PAGES.includes(pathname) ? 0.06
+        : HALF_VOLUME_PAGES.includes(pathname) ? 0.25
         : 0.6;
 
     } else if (CIERRE_AMBIENT.includes(pathname)) {
