@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { getMainAudio } from "./audio-store";
 
 const MAIN_AMBIENT = ["/verificacion-codigos", "/codigo-activo", "/ruta-7-espejos"];
 const CIERRE_AMBIENT = ["/explicacion-principal", "/cierre-archivo"];
@@ -10,7 +11,6 @@ const NARRATION_PAGES = ["/codigo-activo", "/ruta-7-espejos"];
 const HALF_VOLUME_PAGES = ["/verificacion-codigos"];
 
 export default function AmbientAudio() {
-  const mainRef = useRef<HTMLAudioElement | null>(null);
   const cierreRef = useRef<HTMLAudioElement | null>(null);
   const pathname = usePathname();
 
@@ -19,13 +19,9 @@ export default function AmbientAudio() {
       // Pausar cierre si estaba activo
       cierreRef.current?.pause();
 
-      if (!mainRef.current) {
-        const audio = new Audio("/ended-audio.mp3");
-        audio.loop = true;
-        mainRef.current = audio;
-      }
-      if (mainRef.current.paused) mainRef.current.play().catch(() => {});
-      mainRef.current.volume = NARRATION_PAGES.includes(pathname) ? 0.15
+      const audio = getMainAudio();
+      if (audio.paused) audio.play().catch(() => {});
+      audio.volume = NARRATION_PAGES.includes(pathname) ? 0.15
         : HALF_VOLUME_PAGES.includes(pathname) ? 0.3
         : 0.6;
 
@@ -42,7 +38,7 @@ export default function AmbientAudio() {
       cierreRef.current.volume = 0.4;
 
     } else {
-      mainRef.current?.pause();
+      try { getMainAudio().pause(); } catch {}
       cierreRef.current?.pause();
     }
   }, [pathname]);
