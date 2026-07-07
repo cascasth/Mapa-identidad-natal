@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { trackEvent } from "../meta-pixel";
 
 type Slide = {
   tag: string;
@@ -89,8 +90,11 @@ export default function CierreArchivoPage() {
   const [idx, setIdx] = useState(0);
   const slide = SLIDES[idx];
 
+  useEffect(() => { trackEvent("Lead"); }, []);
+
   const handleCta = () => {
     if (slide.isFinal) {
+      trackEvent("InitiateCheckout");
       window.location.href = "https://centroserintegral.org/#payment-step";
     } else {
       setIdx(i => i + 1);
