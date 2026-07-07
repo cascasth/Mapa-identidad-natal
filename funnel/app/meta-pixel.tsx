@@ -1,7 +1,7 @@
 "use client";
 import Script from "next/script";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const PIXEL_ID = "1389833309683131";
 
@@ -20,8 +20,11 @@ export function trackEvent(event: string, params?: Record<string, unknown>) {
 
 export default function MetaPixel() {
   const pathname = usePathname();
+  const lastPathname = useRef("");
 
   useEffect(() => {
+    if (pathname === lastPathname.current) return;
+    lastPathname.current = pathname;
     trackEvent("PageView");
   }, [pathname]);
 
