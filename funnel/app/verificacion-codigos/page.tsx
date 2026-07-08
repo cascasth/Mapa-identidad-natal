@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Star, TreePine, Hash } from "lucide-react";
+import { getMainAudio } from "../audio-store";
 
 // ── ZODIAC OCCIDENTAL ─────────────────────────────────────────────────────────
 const ZODIAC_RANGES: { sign: string; desc: string; start: [number, number]; end: [number, number] }[] = [
@@ -163,6 +164,7 @@ export default function VerificacionPage() {
       const audio = new Audio("/audio-triada.mp3");
       audioRef.current = audio;
       audio.play().catch(() => {});
+      try { getMainAudio().volume = 0.06; } catch {}
     }, 2000);
     return () => { clearTimeout(t); audioRef.current?.pause(); };
   }, [phase]);

@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { PhoneOff, Phone, Moon } from "lucide-react";
 import Image from "next/image";
+import { getMainAudio } from "./audio-store";
 
 type Screen = "splash" | "intro" | "incoming" | "active" | "ended" | "transition";
 
@@ -74,13 +75,11 @@ function WaveformAnimation() {
 }
 
 function EndedAudio() {
-  const ref = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {
-    const audio = new Audio("/ended-audio.mp3");
-    audio.loop = true;
-    ref.current = audio;
-    audio.play().catch(() => {});
-    return () => { audio.pause(); };
+    const audio = getMainAudio();
+    if (audio.paused) audio.play().catch(() => {});
+    audio.volume = 0.6;
+    // No pausar al desmontar — AmbientAudio toma el relevo
   }, []);
   return null;
 }
@@ -325,6 +324,8 @@ export default function IncomingCallPage() {
           </div>
         </div>
       )}
+
+      {(screen === "ended" || screen === "transition") && <EndedAudio />}
 
       {screen === "ended" && (
         <div className="animate-fade-in w-full max-w-sm mx-auto relative z-10">
