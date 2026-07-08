@@ -98,7 +98,7 @@ function CornerDecor({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
 
 export default function IncomingCallPage() {
   const [screen, setScreen] = useState<Screen>("splash");
-  const [seconds, setSeconds] = useState(49);
+  const [seconds, setSeconds] = useState(29);
   const [transVisible, setTransVisible] = useState(false);
   const [transFading, setTransFading] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
