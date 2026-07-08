@@ -132,6 +132,13 @@
             animation: spin-slow 20s linear infinite;
         }
 
+        .nav-logo-img {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
         @keyframes spin-slow {
             from { transform: rotate(0deg); }
             to   { transform: rotate(360deg); }
@@ -320,6 +327,27 @@
             color: var(--gold);
             margin-bottom: 1.5rem;
             opacity: 0.85;
+        }
+
+        .sound-toggle {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: var(--gold-dim);
+            padding: 0.5rem 1.3rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            margin-bottom: 1.8rem;
+        }
+
+        .sound-toggle:hover, .sound-toggle.activo {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201, 168, 76, 0.08);
         }
 
         .hero h1 {
@@ -1354,11 +1382,15 @@
     <!-- Canvas de partículas -->
     <canvas id="particles-canvas"></canvas>
 
+    <audio id="bg-audio" loop preload="auto">
+        <source src="ambiente-ceremonial.mp3" type="audio/mpeg">
+    </audio>
+
     <!-- ─── NAVEGACIÓN ─── -->
     <nav>
         <div class="nav-left">
             <a href="#" class="nav-logo">
-                <span class="star">✦</span>
+                <img src="logo-centro-ser.png" class="nav-logo-img" alt="Centro Ser Integral">
                 Centro Ser Integral
             </a>
             <div class="nav-dropdown" id="navDropdown">
@@ -1388,6 +1420,9 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <p class="hero-eyebrow" data-i18n="hero-eyebrow">Centro Ser Integral · Siete códigos simbólicos</p>
+            <button class="sound-toggle" id="soundToggle" onclick="toggleAudio()">
+                <span id="soundToggleText" data-i18n="sound-activar">🜂 Activar experiencia sonora</span>
+            </button>
             <h1 data-i18n="hero-title">Descubre tu<br><em>Mapa de Identidad Natal</em></h1>
             <p class="hero-tagline" data-i18n="hero-tagline">El antiguo conocimiento de las estrellas, revelado para ti</p>
             <p class="hero-desc" data-i18n="hero-desc">
@@ -1942,6 +1977,8 @@
 
     const i18n = {
         es: {
+            'sound-activar': '🜂 Activar experiencia sonora',
+            'sound-silenciar': '🜂 Silenciar ambiente sonoro',
             'nav-gratis': 'Gratis',
             'nav-tzolkin': 'Kin del día · Tzolkin',
             'nav-numerologia': 'Numerología gratis',
@@ -2083,6 +2120,8 @@
             'loading-send': '✦ Enviando tu solicitud...'
         },
         en: {
+            'sound-activar': '🜂 Activate sonic experience',
+            'sound-silenciar': '🜂 Mute ambient sound',
             'nav-gratis': 'Free',
             'nav-tzolkin': "Day's Kin · Tzolkin",
             'nav-numerologia': 'Free numerology',
@@ -2258,6 +2297,29 @@
 
     function toggleLangGlobal() {
         setLang(idiomaSeleccionado === 'es' ? 'en' : 'es');
+    }
+
+    let audioActivo = false;
+    function toggleAudio() {
+        const audio = document.getElementById('bg-audio');
+        const btn = document.getElementById('soundToggle');
+        const span = document.getElementById('soundToggleText');
+        if (!audio || !btn) return;
+        const t = i18n[idiomaSeleccionado];
+        if (!audioActivo) {
+            audio.volume = 0.28;
+            audio.play().catch(() => {});
+            audioActivo = true;
+            btn.classList.add('activo');
+            span.setAttribute('data-i18n', 'sound-silenciar');
+            span.textContent = t['sound-silenciar'];
+        } else {
+            audio.pause();
+            audioActivo = false;
+            btn.classList.remove('activo');
+            span.setAttribute('data-i18n', 'sound-activar');
+            span.textContent = t['sound-activar'];
+        }
     }
 
     function toggleNavDropdown(e) {
