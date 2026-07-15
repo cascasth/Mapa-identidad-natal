@@ -679,6 +679,33 @@
             line-height: 1.7;
         }
 
+        /* ─── VIDEO EXPLICATIVO ──────────────────────────────── */
+        .video-section {
+            background: var(--dark-section);
+            border-top: 1px solid rgba(201, 168, 76, 0.12);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+        }
+
+        .video-frame {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(201, 168, 76, 0.02);
+        }
+
+        .video-frame iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
         /* ─── EJEMPLO DE MAPA ────────────────────────────────── */
         .example-section {
             background: var(--dark-mid);
@@ -1537,6 +1564,25 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         <img src="divider_ornament.png" alt="">
     </div>
 
+    <!-- ─── VIDEO EXPLICATIVO ─── -->
+    <section class="video-section" id="video">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <p class="section-label" data-i18n="video-label">Míralo en acción</p>
+                <h2 class="section-title" data-i18n="video-title">Cómo Funciona el Mapa de Identidad Natal</h2>
+                <p class="section-subtitle" data-i18n="video-subtitle">Una breve explicación de qué es y cómo se genera tu mapa</p>
+            </div>
+            <div class="video-frame reveal">
+                <iframe src="https://www.youtube.com/embed/3ZSL7DalGXY" title="Cómo funciona el Mapa de Identidad Natal" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divisor ornamental -->
+    <div class="ornament-divider">
+        <img src="divider_ornament.png" alt="">
+    </div>
+
     <!-- ─── PARA QUÉ SIRVE ─── -->
     <section class="purpose-section" id="para-que">
         <div class="purpose-overlay"></div>
@@ -2045,6 +2091,9 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'code-7-desc': 'Tu patrón psicológico profundo revelado.',
             'code-8-name': 'La Integración',
             'code-8-desc': 'El hilo que une todos tus códigos en una sola verdad.',
+            'video-label': 'Míralo en acción',
+            'video-title': 'Cómo Funciona el Mapa de Identidad Natal',
+            'video-subtitle': 'Una breve explicación de qué es y cómo se genera tu mapa',
             'purpose-label': 'Tu camino de autoconocimiento',
             'purpose-title': '¿Para Qué Te Sirve?',
             'purpose-subtitle': 'Este mapa no pretende decirte quién "debes" ser. Te ofrece una lectura simbólica para mirarte desde distintos lenguajes.',
@@ -2189,6 +2238,9 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'code-7-desc': 'Your deep psychological pattern revealed.',
             'code-8-name': 'The Integration',
             'code-8-desc': 'The thread that binds all your codes into a single truth.',
+            'video-label': 'See it in action',
+            'video-title': 'How the Birth Identity Map Works',
+            'video-subtitle': 'A short explanation of what it is and how your map is created',
             'purpose-label': 'Your path of self-knowledge',
             'purpose-title': 'What Is It For?',
             'purpose-subtitle': 'This map does not claim to tell you who you "should" be. It offers a symbolic reading to see yourself through different languages.',
