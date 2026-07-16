@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Calcula tu signo ascendente gratis con tu fecha, hora y lugar de nacimiento exactos. Descubre tu máscara social, tu primera impresión y cómo te perciben los demás.">
+<meta name="keywords" content="ascendente, signo ascendente, calculadora ascendente, calcular ascendente, carta natal, astrología, Centro Ser Integral">
+<meta name="author" content="Centro Ser Integral">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+
+<meta property="og:title" content="Calculadora de Ascendente — Signo Ascendente Gratis | Centro Ser Integral">
+<meta property="og:description" content="Descubre tu signo ascendente con tu fecha, hora y lugar de nacimiento. Calculadora gratis.">
+<meta property="og:url" content="https://centroserintegral.org/ascendente.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Centro Ser Integral">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ascendente: qué es, cómo se calcula y qué revela sobre ti",
+  "description": "Guía del signo ascendente con calculadora gratuita basada en fecha, hora y lugar de nacimiento.",
+  "url": "https://centroserintegral.org/ascendente.html",
+  "inLanguage": "es-MX",
+  "author": { "@type": "Organization", "name": "Centro Ser Integral" },
+  "publisher": { "@type": "Organization", "name": "Centro Ser Integral" }
+}
+</script>
+
+<title>Calculadora de Ascendente — Signo Ascendente Gratis | Centro Ser Integral</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBD63KT8eFB1Gc-JKsWiwVuWltNb-9N7xc&libraries=places&loading=async"></script>
+<style>
+  :root {
+    --ink: #0d0b14;
+    --parchment: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-pale: #e8d5a0;
+    --teal: #2a7f7f;
+    --teal-light: #4ab3b3;
+    --crimson: #8b1a2f;
+    --violet: #3d2060;
+    --glow: rgba(201, 168, 76, 0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── NAV COMPARTIDO (mismo diseño que la página principal) ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    background: rgba(6, 6, 14, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  }
+  .nav-left { display: flex; align-items: center; gap: 1rem; }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+  .nav-logo .star { font-size: 1.2rem; animation: navSpin 20s linear infinite; }
+  @keyframes navSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-btn {
+    background: transparent;
+    border: 1px solid rgba(201,168,76,.25);
+    color: rgba(199,189,223,.7);
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    transition: all .3s;
+  }
+  .nav-dropdown-btn:hover { border-color: var(--gold); color: var(--gold-pale); }
+  .nav-dropdown.open .nav-dropdown-btn { border-color: var(--gold); color: var(--gold-pale); }
+  .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    min-width: 210px;
+    background: rgba(6,4,15,.97);
+    border: 1px solid rgba(201,168,76,.25);
+    border-radius: 10px;
+    padding: 0.4rem;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 1001;
+    box-shadow: 0 14px 34px rgba(0,0,0,.5);
+  }
+  .nav-dropdown.open .nav-dropdown-menu { display: flex; }
+  .nav-dropdown-menu a {
+    display: flex; align-items: center; gap: 8px;
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: rgba(199,189,223,.7);
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .nav-dropdown-menu a:hover, .nav-dropdown-menu a.active { background: rgba(201,168,76,.08); color: var(--gold-pale); }
+  .nav-links { display: flex; list-style: none; gap: 1.6rem; }
+  .nav-links a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem;
+    color: rgba(199,189,223,.6);
+    text-decoration: none;
+    transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--gold-pale); }
+  .nav-cta a.btn-nav-primary {
+    background: linear-gradient(135deg, var(--gold) 0%, #b07030 100%);
+    color: var(--ink);
+    padding: 0.45rem 1.2rem;
+    border-radius: 25px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all .3s;
+  }
+  .nav-cta a.btn-nav-primary:hover { transform: translateY(-2px); }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    nav { padding: 0 1rem; }
+    .nav-logo { font-size: 0; }
+    .nav-logo .star { font-size: 1.2rem; }
+  }
+
+  body {
+    background: var(--ink);
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Starfield background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(61, 32, 96, 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(42, 127, 127, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(139, 26, 47, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 5.5rem 1.5rem 4rem;
+  }
+
+  /* ── HEADER ── */
+  .site-header { text-align: center; margin-bottom: 3rem; }
+
+.logo-wrap { margin-bottom: 6px; }
+  .logo-badge {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-img { width: 115px; height: auto; }
+
+  .brand-name {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: .75;
+    margin-bottom: 18px;
+  }
+
+  .glyph-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    opacity: 0.7;
+    letter-spacing: 0.15em;
+  }
+
+  /* ── Selector de idioma ── */
+  .header-lang {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+  }
+  .header-lang-btn {
+    padding: 5px 14px;
+    border: 1px solid rgba(201,168,76,.2);
+    border-radius: 20px;
+    background: transparent;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    color: rgba(199,189,223,.55);
+    cursor: pointer;
+    transition: all .2s;
+    letter-spacing: .04em;
+  }
+  .header-lang-btn.active {
+    border-color: rgba(201,168,76,.45);
+    color: var(--gold-pale);
+    background: rgba(201,168,76,.07);
+  }
+  .header-lang-btn:hover {
+    border-color: rgba(201,168,76,.35);
+    color: var(--gold-pale);
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+    margin-top: 0.8rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+    color: var(--gold-pale);
+    opacity: 0.7;
+    font-style: italic;
+    letter-spacing: 0.05em;
+  }
+
+  /* Nav botones secundarios */
+  .tz-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .tz-nav-btn {
+    padding: 7px 16px;
+    border: 1px solid rgba(201,168,76,.22);
+    border-radius: 20px;
+    background: rgba(13,11,20,.6);
+    color: rgba(199,189,223,.65);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all .25s;
+    letter-spacing: .04em;
+  }
+  .tz-nav-btn:hover {
+    border-color: rgba(201,168,76,.45);
+    color: var(--gold-pale);
+    background: rgba(201,168,76,.07);
+  }
+  .tz-nav-btn--active {
+    border-color: rgba(201,168,76,.4);
+    color: var(--gold-pale);
+    background: rgba(201,168,76,.08);
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2.5rem 0;
+    opacity: 0.4;
+  }
+
+  /* ── TARJETA DE SECCIÓN ── */
+  .panel {
+    background: linear-gradient(145deg, rgba(20,14,45,0.55), rgba(13,11,20,0.55));
+    border: 1px solid rgba(201,168,76,.18);
+    border-radius: 18px;
+    padding: 1.8rem 1.6rem;
+    margin-bottom: 1.6rem;
+    box-shadow: 0 14px 44px rgba(0,0,0,.35);
+  }
+  .panel-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.9;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+  .panel p {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--parchment);
+    opacity: .82;
+  }
+  .panel p + p { margin-top: 0.7rem; }
+  .panel .accent { color: var(--gold-pale); font-weight: 400; }
+
+  /* ── CALCULADORA ── */
+  .calc-panel {
+    --kin-color: var(--teal);
+    background:
+      radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--teal) 22%, transparent), transparent 55%),
+      linear-gradient(145deg, rgba(20,14,45,0.92), rgba(9,49,70,0.62));
+    border: 1px solid color-mix(in srgb, var(--teal) 45%, var(--gold));
+  }
+  .calc-label {
+    display: block;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--gold-pale);
+    opacity: .8;
+    font-style: italic;
+    margin-bottom: 0.9rem;
+  }
+  .calc-inputs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 1.1rem;
+  }
+  .calc-inputs input {
+    width: 88px;
+    padding: 12px 8px;
+    background: rgba(6,4,15,.55);
+    border: 1px solid rgba(201,168,76,.3);
+    border-radius: 12px;
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    text-align: center;
+    -moz-appearance: textfield;
+  }
+  .calc-inputs input::-webkit-outer-spin-button,
+  .calc-inputs input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .calc-inputs input:focus { outline: none; border-color: var(--gold); }
+  .calc-inputs input::placeholder { color: rgba(245,240,232,.35); }
+
+  .calc-ciudad-wrap { position: relative; max-width: 320px; margin: 0 auto 0.5rem; }
+  .calc-ciudad-wrap input {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(6,4,15,.55);
+    border: 1px solid rgba(201,168,76,.3);
+    border-radius: 12px;
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+  }
+  .calc-ciudad-wrap input:focus { outline: none; border-color: var(--gold); }
+  .calc-ciudad-wrap input::placeholder { color: rgba(245,240,232,.35); }
+  .ciudad-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: rgba(6,4,15,.98);
+    border: 1px solid rgba(201,168,76,.28);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    z-index: 200;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  .ciudad-option {
+    padding: 0.6rem 0.9rem;
+    font-size: 0.88rem;
+    color: var(--parchment);
+    cursor: pointer;
+    border-bottom: 1px solid rgba(201,168,76,.08);
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .ciudad-option:last-child { border-bottom: none; }
+  .ciudad-option:hover { background: rgba(201,168,76,.1); color: var(--gold-pale); }
+
+  .calc-btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--violet), var(--teal));
+    border: 1px solid rgba(201,168,76,.35);
+    border-radius: 26px;
+    color: var(--parchment);
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    letter-spacing: .12em;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .2s;
+    margin-top: 0.6rem;
+  }
+  .calc-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(61,32,96,.5); }
+  .calc-btn:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+  .calc-result { display: none; margin-top: 1.4rem; text-align: center; animation: fadeUp .5s ease both; }
+  .calc-result.visible { display: block; }
+  .result-emoji { font-size: 4.2rem; line-height: 1; text-shadow: 0 0 32px rgba(201,168,76,.45); }
+  .result-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--parchment);
+    margin-top: 0.5rem;
+    letter-spacing: .05em;
+  }
+  .result-frase {
+    font-size: 1.02rem;
+    color: var(--gold-pale);
+    font-style: italic;
+    opacity: .85;
+    margin-top: 0.5rem;
+  }
+  .result-link {
+    display: inline-block;
+    margin-top: 0.9rem;
+    font-size: 0.95rem;
+    color: var(--gold-pale);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,168,76,.35);
+    padding-bottom: 2px;
+  }
+  .calc-error { display: none; margin-top: 0.9rem; text-align: center; font-size: 0.92rem; color: #e08a98; }
+  .calc-error.visible { display: block; }
+  .calc-sublabel {
+    display:block; text-align:center; font-size:0.85rem; color:var(--gold-pale);
+    opacity:.6; font-style:italic; margin: 0.3rem 0 1rem;
+  }
+
+  /* ── TARJETAS POR SIGNO ── */
+  .num-grid { display: flex; flex-direction: column; gap: 11px; }
+  .num-card {
+    background: rgba(13,11,20,0.5);
+    border: 1px solid rgba(201,168,76,.16);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color .25s;
+  }
+  .num-card.open { border-color: rgba(201,168,76,.42); }
+  .num-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .num-badge {
+    flex-shrink: 0;
+    width: 46px; height: 46px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,.4);
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--gold-pale);
+    background: rgba(201,168,76,.06);
+  }
+  .num-title {
+    flex: 1;
+    font-family: 'Cinzel', serif;
+    font-size: 0.98rem;
+    color: var(--parchment);
+    letter-spacing: .03em;
+  }
+  .num-title small {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem;
+    color: var(--gold-pale);
+    opacity: .6;
+    font-style: italic;
+    letter-spacing: .02em;
+    margin-top: 2px;
+  }
+  .num-toggle { flex-shrink: 0; color: var(--gold); font-size: 1.1rem; transition: transform .25s; }
+  .num-card.open .num-toggle { transform: rotate(45deg); }
+
+  .num-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .num-body-inner { padding: 0 16px 16px; }
+  .num-row {
+    display: flex;
+    gap: 10px;
+    padding: 9px 0;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    border-top: 1px solid rgba(201,168,76,.1);
+  }
+  .num-row:first-child { border-top: none; }
+  .num-row .lbl {
+    flex-shrink: 0;
+    width: 92px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: .85;
+    padding-top: 4px;
+  }
+  .num-row .val { flex: 1; color: var(--parchment); opacity: .82; }
+  .num-row.frase .val { font-style: italic; color: var(--gold-pale); opacity: .92; }
+
+  /* ── CTA ── */
+  .cta-panel { text-align: center; border-style: dashed; }
+  .cta-panel p { margin-bottom: 1.1rem; }
+  .cta-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--violet), var(--teal));
+    border: 1px solid rgba(201,168,76,.35);
+    border-radius: 26px;
+    color: var(--parchment);
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: .12em;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .2s;
+  }
+  .cta-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(61,32,96,.5); }
+
+  /* ── FOOTER ── */
+  .tz-footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(201,168,76,.12);
+    text-align: center;
+  }
+  .tz-footer .footer-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: .6;
+    margin-bottom: 8px;
+  }
+  .tz-footer .footer-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: rgba(199,189,223,.45);
+  }
+  .tz-footer .footer-contact a {
+    color: rgba(201,168,76,.55);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .tz-footer .footer-contact a:hover { color: var(--gold); }
+  .copyright { margin-top: 20px; font-size: 12px; color: rgba(199,189,223,.45); }
+  .legal {
+    margin-top: 12px;
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: rgba(199,189,223,.28);
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 420px) {
+    .num-row .lbl { width: 80px; }
+  }
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1389833309683131');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+</head>
+<body data-page="ascendente">
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">
+      <span class="star">✦</span>
+      Centro Ser Integral
+    </a>
+    <div class="nav-dropdown" id="navDropdown">
+      <button class="nav-dropdown-btn" onclick="toggleNavDropdown(event)">☰ Gratis ▾</button>
+      <div class="nav-dropdown-menu">
+        <a href="tzolkin.html">🌙 Kin del día · Tzolkin</a>
+        <a href="numerologia.html">🔢 Numerología gratis</a>
+        <a href="chino.html">🐉 Animal chino</a>
+        <a href="ascendente.html" class="active">🌅 Ascendente</a>
+      </div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#codigos">Códigos</a></li>
+    <li><a href="index.html#para-que">Propósito</a></li>
+    <li><a href="index.html#ejemplo">Ejemplo</a></li>
+    <li><a href="index.html#testimonios">Testimonios</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="index.html#cta" class="btn-nav-primary">Solicitar Mapa</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="site-header">
+    <div class="logo-wrap">
+      <div class="logo-badge">
+        <img src="logo-centro-ser.png" class="logo-img" alt="Centro Ser Integral" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <span class="brand-name">Centro Ser Integral</span>
+
+    <div class="glyph-row">✦ ◈ ✦ ◈ ✦</div>
+
+    <div class="header-lang">
+      <button class="header-lang-btn active lang-btn-es" id="header-lang-es" onclick="setLang('es')">🇲🇽 Español</button>
+      <button class="header-lang-btn lang-btn-en" id="header-lang-en" onclick="setLang('en')">🇺🇸 English</button>
+    </div>
+
+    <h1 data-i18n="h1">Calculadora de Ascendente</h1>
+    <p class="subtitle" data-i18n="subtitle">Tu máscara social y la primera impresión que das al mundo</p>
+
+    <nav class="tz-nav">
+      <a class="tz-nav-btn" href="index.html" data-i18n="nav-mapa">🏠 Mapa de Identidad</a>
+      <a class="tz-nav-btn tz-nav-btn--active" href="#calc-section" data-i18n="nav-ascendente">🌅 Mi ascendente</a>
+    </nav>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- CALCULADORA -->
+  <section class="panel calc-panel" id="calc-section">
+    <div class="panel-heading" data-i18n="calc-heading">Calcula tu ascendente</div>
+    <span class="calc-label" data-i18n="calc-label">Fecha de nacimiento</span>
+    <div class="calc-inputs">
+      <input type="number" id="dia"  data-i18n-ph="ph-dia"  placeholder="Día"  min="1" max="31"     inputmode="numeric">
+      <input type="number" id="mes"  data-i18n-ph="ph-mes"  placeholder="Mes"  min="1" max="12"     inputmode="numeric">
+      <input type="number" id="anio" data-i18n-ph="ph-anio" placeholder="Año"  min="1924" max="2050" inputmode="numeric">
+    </div>
+    <span class="calc-label" data-i18n="calc-hora-label">Hora exacta de nacimiento</span>
+    <div class="calc-inputs">
+      <input type="number" id="hora"     data-i18n-ph="ph-hora"     placeholder="Hora (0-23)" min="0" max="23" inputmode="numeric" style="width:130px;">
+      <input type="number" id="minutos"  data-i18n-ph="ph-minutos"  placeholder="Min (0-59)"  min="0" max="59" inputmode="numeric" style="width:130px;">
+    </div>
+    <span class="calc-label" data-i18n="calc-ciudad-label">Ciudad de nacimiento</span>
+    <div class="calc-ciudad-wrap">
+      <input type="text" id="ciudad" data-i18n-ph="ph-ciudad" placeholder="Escribe tu ciudad de nacimiento…" autocomplete="off">
+      <div class="ciudad-dropdown" id="ciudad-dropdown"></div>
+    </div>
+    <span class="calc-sublabel" data-i18n="calc-hint">📍 El ascendente cambia de grado cada pocos minutos: entre más exacta tu hora y ciudad, más preciso el resultado.</span>
+    <button class="calc-btn" id="calc-btn" onclick="calcularAscendenteUI()" data-i18n="calc-btn">✦ Calcular mi ascendente</button>
+    <div class="calc-error" id="calc-error"></div>
+
+    <div class="calc-result" id="calc-result">
+      <div class="result-emoji" id="result-emoji">♈</div>
+      <div class="result-name" id="result-name"></div>
+      <div class="result-frase" id="result-sub"></div>
+      <div class="result-frase" id="result-impresion" style="margin-top:.6rem;"></div>
+      <a class="result-link" href="#significados" onclick="abrirSignificado()" data-i18n="result-link">Ver el significado completo de mi ascendente ↓</a>
+    </div>
+  </section>
+
+  <!-- QUÉ ES -->
+  <section class="panel">
+    <div class="panel-heading" data-i18n="qe-heading">Qué es el Ascendente</div>
+    <p data-i18n="qe-p1">El Ascendente es el signo zodiacal que se levantaba en el horizonte este exactamente en el momento y lugar de tu nacimiento. Por eso necesita tu <span class="accent">hora y ciudad exactas</span>: cambia de signo aproximadamente cada dos horas, y de grado cada pocos minutos.</p>
+    <p data-i18n="qe-p2">Se le conoce como tu <span class="accent">máscara social</span>: la forma en que los demás te perciben al conocerte, tu manera instintiva de reaccionar ante el mundo y, muchas veces, hasta tu apariencia física.</p>
+    <p data-i18n="qe-p3">A diferencia de tu signo solar (basado solo en la fecha), el Ascendente requiere datos precisos de nacimiento — por eso muchas personas no lo conocen aunque sepan su signo zodiacal de toda la vida.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SIGNIFICADOS -->
+  <section class="panel" id="significados">
+    <div class="panel-heading" data-i18n="sig-heading">El Ascendente en los 12 signos</div>
+    <div class="num-grid" id="num-grid"></div>
+  </section>
+
+  <!-- MÁS ALLÁ -->
+  <section class="panel">
+    <div class="panel-heading" data-i18n="mas-heading">Más allá del Ascendente</div>
+    <p data-i18n="mas-p1">El Ascendente es solo una pieza de tu carta natal completa: junto con tu Sol, tu Luna y los demás planetas, forma tu <span class="accent">Zodiaco Occidental</span> — uno de los siete códigos simbólicos de tu Mapa de Identidad. Ahí se entrelaza con tu horóscopo chino, tu numerología, tus calendarios ancestrales y tu Tarot.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="panel cta-panel">
+    <div class="panel-heading" data-i18n="cta-heading">Tu retrato completo</div>
+    <p data-i18n="cta-p">El Ascendente es apenas el punto de partida de tu astrología. Descubre cómo se entreteje con tu Sol, tu Luna y las demás voces de tu Mapa de Identidad Natal.</p>
+    <a class="cta-btn" href="./#payment-step" data-i18n="cta-btn">Solicitar mi Mapa ✦</a>
+  </section>
+
+  <!-- NOTA -->
+  <section class="panel">
+    <p data-i18n="disc" style="font-size:0.92rem; opacity:.7;"><span class="accent">Nota:</span> el Ascendente se calcula con fórmulas astronómicas estándar a partir de tu fecha, hora y lugar de nacimiento. Es una herramienta simbólica de autoconocimiento y reflexión personal; no sustituye una carta natal profesional ni orientación médica, psicológica, legal o profesional. Si no conoces tu hora exacta de nacimiento, el resultado puede variar.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="tz-footer">
+    <div class="footer-brand">Centro Ser Integral</div>
+    <div class="footer-contact">
+      <span data-i18n="footer-contact">¿Dudas o comentarios?</span>
+      <a href="mailto:centro.ser.integral@gmail.com">centro.ser.integral@gmail.com</a>
+      <span>·</span>
+      <a href="privacidad.html" target="_blank" data-i18n="footer-privacidad">Aviso de privacidad</a>
+    </div>
+    <p class="copyright">© 2026 Centro Ser Integral</p>
+    <p class="legal">
+      El contenido de este sitio, incluyendo textos, interpretaciones, metodología de integración,
+      estructura de resultados, diseño visual y sistema de lectura simbólica, constituye una obra original
+      protegida por derechos de autor. Queda prohibida su reproducción, adaptación o comercialización
+      sin autorización escrita de Centro Ser Integral.
+    </p>
+  </footer>
+
+</div>
+
+<script>
+/* ════════ DATOS — los 12 signos y su Ascendente ════════ */
+const SIGNOS       = ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
+const SIGNOS_EN     = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
+const SIGNO_SYMBOL = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+
+const SIGNOS_DATA = {
+  'Aries':        { elem:'Fuego',  elemEn:'Fire',  ruler:'Marte',   rulerEn:'Mars',
+    impresion:'Enérgica, directa y decidida — pareces estar siempre lista para empezar algo nuevo.',
+    impresionEn:'Energetic, direct and decisive — you seem always ready to start something new.',
+    cuerpo:'Paso firme, mirada frontal, gestos rápidos y una presencia que se hace notar de inmediato.',
+    cuerpoEn:'A firm stride, direct gaze, quick gestures and a presence that is noticed right away.',
+    reto:'Moderar la impulsividad y la impaciencia en el primer contacto con los demás.',
+    retoEn:'Toning down impulsiveness and impatience in first encounters with others.',
+    frase:'Mi presencia abre camino.', fraseEn:'My presence opens the way.' },
+  'Tauro':        { elem:'Tierra', elemEn:'Earth', ruler:'Venus',   rulerEn:'Venus',
+    impresion:'Serena, cálida y con los pies en la tierra — transmites calma y solidez desde el primer momento.',
+    impresionEn:'Calm, warm and grounded — you convey stability from the very first moment.',
+    cuerpo:'Presencia estable, voz pausada, gusto por lo sensorial y lo bien hecho.',
+    cuerpoEn:'A steady presence, unhurried voice, and an appreciation for the sensory and well-made.',
+    reto:'Salir de la zona de confort cuando el cambio es necesario.',
+    retoEn:'Leaving your comfort zone when change is necessary.',
+    frase:'Mi calma es mi fortaleza.', fraseEn:'My calm is my strength.' },
+  'Géminis':      { elem:'Aire',   elemEn:'Air',   ruler:'Mercurio', rulerEn:'Mercury',
+    impresion:'Curiosa, comunicativa y ágil mentalmente — das la impresión de estar siempre pensando o por decir algo interesante.',
+    impresionEn:'Curious, communicative and quick-witted — you always seem about to say something interesting.',
+    cuerpo:'Gestos expresivos, mirada inquieta, energía juvenil.',
+    cuerpoEn:'Expressive gestures, a restless gaze, and youthful energy.',
+    reto:'Sostener la atención y el compromiso más allá del primer interés.',
+    retoEn:'Sustaining attention and commitment beyond the initial spark of interest.',
+    frase:'Mi palabra conecta mundos.', fraseEn:'My words connect worlds.' },
+  'Cáncer':       { elem:'Agua',   elemEn:'Water', ruler:'Luna',    rulerEn:'Moon',
+    impresion:'Cálida, protectora y sensible — inspiras confianza y ganas de compartir lo íntimo.',
+    impresionEn:'Warm, protective and sensitive — you inspire trust and the desire to share intimate things.',
+    cuerpo:'Mirada receptiva, presencia suave, cambios de ánimo visibles en el rostro.',
+    cuerpoEn:'A receptive gaze, a gentle presence, and mood shifts that show on your face.',
+    reto:'Poner límites sin sentir culpa al cuidar de ti misma primero.',
+    retoEn:'Setting boundaries without guilt when putting yourself first.',
+    frase:'Mi ternura es mi fuerza.', fraseEn:'My tenderness is my strength.' },
+  'Leo':          { elem:'Fuego',  elemEn:'Fire',  ruler:'Sol',     rulerEn:'Sun',
+    impresion:'Segura, cálida y magnética — atraes miradas sin proponértelo.',
+    impresionEn:'Confident, warm and magnetic — you draw attention without trying.',
+    cuerpo:'Porte erguido, expresividad generosa, presencia luminosa.',
+    cuerpoEn:'An upright posture, generous expressiveness, and a radiant presence.',
+    reto:'Compartir el protagonismo y recibir crítica sin tomarla como ataque.',
+    retoEn:'Sharing the spotlight and taking criticism without feeling attacked.',
+    frase:'Brillo porque soy, no porque lo busco.', fraseEn:'I shine because I am, not because I seek it.' },
+  'Virgo':        { elem:'Tierra', elemEn:'Earth', ruler:'Mercurio', rulerEn:'Mercury',
+    impresion:'Ordenada, atenta y observadora — pareces estar siempre evaluando los detalles.',
+    impresionEn:'Neat, attentive and observant — you always seem to be assessing the details.',
+    cuerpo:'Movimientos precisos, cuidado en la apariencia, mirada analítica.',
+    cuerpoEn:'Precise movements, careful appearance, and an analytical gaze.',
+    reto:'Soltar el perfeccionismo y aceptar lo imperfecto en ti y en otros.',
+    retoEn:'Letting go of perfectionism and accepting imperfection in yourself and others.',
+    frase:'Mi atención al detalle es un acto de amor.', fraseEn:'My attention to detail is an act of love.' },
+  'Libra':        { elem:'Aire',   elemEn:'Air',   ruler:'Venus',   rulerEn:'Venus',
+    impresion:'Amable, diplomática y estéticamente cuidadosa — buscas equilibrio en cada interacción.',
+    impresionEn:'Kind, diplomatic and aesthetically minded — you seek balance in every interaction.',
+    cuerpo:'Presencia armoniosa, sonrisa fácil, gusto por la belleza.',
+    cuerpoEn:'A harmonious presence, an easy smile, and an appreciation for beauty.',
+    reto:'Tomar decisiones propias sin depender de la aprobación ajena.',
+    retoEn:'Making your own decisions without relying on others\' approval.',
+    frase:'Mi armonía nace de mi propio centro.', fraseEn:'My harmony comes from my own center.' },
+  'Escorpio':     { elem:'Agua',   elemEn:'Water', ruler:'Plutón',  rulerEn:'Pluto',
+    impresion:'Intensa, magnética y reservada — das la sensación de guardar profundidades ocultas.',
+    impresionEn:'Intense, magnetic and reserved — you give the sense of hidden depths.',
+    cuerpo:'Mirada penetrante, presencia magnética, pocas palabras pero certeras.',
+    cuerpoEn:'A piercing gaze, a magnetic presence, and few but precise words.',
+    reto:'Confiar y soltar el control antes de que la desconfianza tome la delantera.',
+    retoEn:'Trusting and releasing control before suspicion takes over.',
+    frase:'Mi profundidad transforma lo que toco.', fraseEn:'My depth transforms what I touch.' },
+  'Sagitario':    { elem:'Fuego',  elemEn:'Fire',  ruler:'Júpiter', rulerEn:'Jupiter',
+    impresion:'Optimista, franca y aventurera — transmites ganas de explorar y libertad.',
+    impresionEn:'Optimistic, frank and adventurous — you convey a love of exploration and freedom.',
+    cuerpo:'Energía expansiva, risa fácil, gestos amplios.',
+    cuerpoEn:'Expansive energy, an easy laugh, and broad gestures.',
+    reto:'Aterrizar los planes y sostener el compromiso a largo plazo.',
+    retoEn:'Grounding your plans and sustaining long-term commitment.',
+    frase:'Mi horizonte siempre se expande.', fraseEn:'My horizon is always expanding.' },
+  'Capricornio':  { elem:'Tierra', elemEn:'Earth', ruler:'Saturno', rulerEn:'Saturn',
+    impresion:'Seria, responsable y con autoridad natural — pareces mayor o más experimentada de lo que eres.',
+    impresionEn:'Serious, responsible and naturally authoritative — you seem older or more experienced than you are.',
+    cuerpo:'Postura firme, expresión contenida, presencia que impone respeto.',
+    cuerpoEn:'A firm posture, restrained expression, and a presence that commands respect.',
+    reto:'Permitirte vulnerabilidad y disfrutar sin medir todo en logros.',
+    retoEn:'Allowing yourself vulnerability and enjoyment without measuring everything in achievements.',
+    frase:'Mi disciplina construye lo permanente.', fraseEn:'My discipline builds what lasts.' },
+  'Acuario':      { elem:'Aire',   elemEn:'Air',   ruler:'Urano',   rulerEn:'Uranus',
+    impresion:'Original, independiente y algo distante — das la impresión de pensar diferente a los demás.',
+    impresionEn:'Original, independent and somewhat distant — you seem to think differently from others.',
+    cuerpo:'Estilo peculiar, mirada observadora, presencia poco convencional.',
+    cuerpoEn:'A distinctive style, an observant gaze, and an unconventional presence.',
+    reto:'Permitir la cercanía emocional sin refugiarte solo en la razón.',
+    retoEn:'Allowing emotional closeness instead of retreating only into reason.',
+    frase:'Mi diferencia es mi aporte al mundo.', fraseEn:'My difference is my contribution to the world.' },
+  'Piscis':       { elem:'Agua',   elemEn:'Water', ruler:'Neptuno', rulerEn:'Neptune',
+    impresion:'Soñadora, empática y difícil de definir — pareces estar siempre entre dos mundos.',
+    impresionEn:'Dreamy, empathetic and hard to pin down — you seem to always be between two worlds.',
+    cuerpo:'Mirada acuosa, presencia suave, energía cambiante y sensible.',
+    cuerpoEn:'A watery gaze, a soft presence, and a shifting, sensitive energy.',
+    reto:'Sostener límites claros sin absorber las emociones ajenas.',
+    retoEn:'Holding clear boundaries without absorbing others\' emotions.',
+    frase:'Mi sensibilidad es un puente hacia lo invisible.', fraseEn:'My sensitivity is a bridge to the invisible.' }
+};
+
+/* ════════ TRADUCCIONES DE LA INTERFAZ ════════ */
+const i18n = {
+  es: {
+    'h1':'Calculadora de Ascendente','subtitle':'Tu máscara social y la primera impresión que das al mundo',
+    'nav-mapa':'🏠 Mapa de Identidad','nav-ascendente':'🌅 Mi ascendente',
+    'calc-heading':'Calcula tu ascendente','calc-label':'Fecha de nacimiento',
+    'calc-hora-label':'Hora exacta de nacimiento','calc-ciudad-label':'Ciudad de nacimiento',
+    'calc-hint':'📍 El ascendente cambia de grado cada pocos minutos: entre más exacta tu hora y ciudad, más preciso el resultado.',
+    'ph-dia':'Día','ph-mes':'Mes','ph-anio':'Año','ph-hora':'Hora (0-23)','ph-minutos':'Min (0-59)',
+    'ph-ciudad':'Escribe tu ciudad de nacimiento…',
+    'calc-btn':'✦ Calcular mi ascendente',
+    'err-fecha':'Revisa tu fecha y hora: día (1–31), mes (1–12), año (1924–2050) y hora (0–23).',
+    'err-ciudad':'Por favor selecciona tu ciudad de la lista de sugerencias que aparece al escribir.',
+    'err-tz':'Hubo un problema al detectar la zona horaria. Intenta de nuevo.',
+    'loading-tz':'🕐 Calculando…',
+    'result-link':'Ver el significado completo de mi ascendente ↓',
+    'qe-heading':'Qué es el Ascendente',
+    'qe-p1':'El Ascendente es el signo zodiacal que se levantaba en el horizonte este exactamente en el momento y lugar de tu nacimiento. Por eso necesita tu <span class="accent">hora y ciudad exactas</span>: cambia de signo aproximadamente cada dos horas, y de grado cada pocos minutos.',
+    'qe-p2':'Se le conoce como tu <span class="accent">máscara social</span>: la forma en que los demás te perciben al conocerte, tu manera instintiva de reaccionar ante el mundo y, muchas veces, hasta tu apariencia física.',
+    'qe-p3':'A diferencia de tu signo solar (basado solo en la fecha), el Ascendente requiere datos precisos de nacimiento — por eso muchas personas no lo conocen aunque sepan su signo zodiacal de toda la vida.',
+    'sig-heading':'El Ascendente en los 12 signos',
+    'mas-heading':'Más allá del Ascendente',
+    'mas-p1':'El Ascendente es solo una pieza de tu carta natal completa: junto con tu Sol, tu Luna y los demás planetas, forma tu <span class="accent">Zodiaco Occidental</span> — uno de los siete códigos simbólicos de tu Mapa de Identidad. Ahí se entrelaza con tu horóscopo chino, tu numerología, tus calendarios ancestrales y tu Tarot.',
+    'cta-heading':'Tu retrato completo',
+    'cta-p':'El Ascendente es apenas el punto de partida de tu astrología. Descubre cómo se entreteje con tu Sol, tu Luna y las demás voces de tu Mapa de Identidad Natal.',
+    'cta-btn':'Solicitar mi Mapa ✦',
+    'disc':'<span class="accent">Nota:</span> el Ascendente se calcula con fórmulas astronómicas estándar a partir de tu fecha, hora y lugar de nacimiento. Es una herramienta simbólica de autoconocimiento y reflexión personal; no sustituye una carta natal profesional ni orientación médica, psicológica, legal o profesional. Si no conoces tu hora exacta de nacimiento, el resultado puede variar.',
+    'footer-contact':'¿Dudas o comentarios?','footer-privacidad':'Aviso de privacidad',
+    'lbl-impresion':'Impresión','lbl-cuerpo':'Tu estilo','lbl-reto':'Tu reto','lbl-frase':'Frase',
+    'result-name-prefix':'Ascendente en'
+  },
+  en: {
+    'h1':'Rising Sign Calculator','subtitle':'Your social mask and the first impression you give the world',
+    'nav-mapa':'🏠 Identity Map','nav-ascendente':'🌅 My rising sign',
+    'calc-heading':'Calculate your rising sign','calc-label':'Date of birth',
+    'calc-hora-label':'Exact time of birth','calc-ciudad-label':'City of birth',
+    'calc-hint':'📍 The rising sign changes by a degree every few minutes: the more exact your time and city, the more precise the result.',
+    'ph-dia':'Day','ph-mes':'Month','ph-anio':'Year','ph-hora':'Hour (0-23)','ph-minutos':'Min (0-59)',
+    'ph-ciudad':'Enter your city of birth…',
+    'calc-btn':'✦ Calculate my rising sign',
+    'err-fecha':'Check your date and time: day (1–31), month (1–12), year (1924–2050) and hour (0–23).',
+    'err-ciudad':'Please select your city from the suggestion list that appears as you type.',
+    'err-tz':'There was a problem detecting the timezone. Please try again.',
+    'loading-tz':'🕐 Calculating…',
+    'result-link':'See the full meaning of my rising sign ↓',
+    'qe-heading':'What is the Ascendant',
+    'qe-p1':'The Ascendant (or Rising Sign) is the zodiac sign that was rising on the eastern horizon at the exact moment and place of your birth. That is why it needs your <span class="accent">exact time and city</span>: it changes sign roughly every two hours, and by degree every few minutes.',
+    'qe-p2':'It is known as your <span class="accent">social mask</span>: how others perceive you when they first meet you, your instinctive way of reacting to the world and, often, even your physical appearance.',
+    'qe-p3':'Unlike your sun sign (based only on the date), the Ascendant requires precise birth data — that is why many people don\'t know it even though they\'ve known their zodiac sign their whole life.',
+    'sig-heading':'The Ascendant in the 12 signs',
+    'mas-heading':'Beyond the Ascendant',
+    'mas-p1':'The Ascendant is just one piece of your full birth chart: together with your Sun, Moon and the other planets, it forms your <span class="accent">Western Zodiac</span> — one of the seven symbolic codes of your Identity Map. There it weaves together with your Chinese zodiac, your numerology, your ancestral calendars and your Tarot.',
+    'cta-heading':'Your complete portrait',
+    'cta-p':'The Ascendant is only the starting point of your astrology. Discover how it weaves together with your Sun, your Moon and the other voices of your Natal Identity Map.',
+    'cta-btn':'Request my Map ✦',
+    'disc':'<span class="accent">Note:</span> the Ascendant is calculated with standard astronomical formulas from your date, time and place of birth. It is a symbolic tool for self-knowledge and personal reflection; it does not replace a professional birth chart or medical, psychological, legal or professional guidance. If you don\'t know your exact time of birth, the result may vary.',
+    'footer-contact':'Questions or comments?','footer-privacidad':'Privacy notice',
+    'lbl-impresion':'Impression','lbl-cuerpo':'Your style','lbl-reto':'Your challenge','lbl-frase':'Mantra',
+    'result-name-prefix':'Ascendant in'
+  }
+};
+
+let currentLang = 'es';
+let ultimoSigno = null;
+
+/* ════════ CÁLCULO ASTRONÓMICO DEL ASCENDENTE ════════ */
+function toJulianDay(anio, mes, dia, hora, minutos) {
+  let y = anio, m = mes;
+  const dayFrac = dia + (hora + minutos / 60) / 24;
+  if (m <= 2) { y -= 1; m += 12; }
+  const A = Math.floor(y / 100);
+  const B = 2 - A + Math.floor(A / 4);
+  return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + dayFrac + B - 1524.5;
+}
+
+function toUTC(anio, mes, dia, hora, minutos, offsetHoras) {
+  const base = new Date(Date.UTC(anio, mes - 1, dia, 0, 0, 0));
+  base.setUTCMinutes(base.getUTCMinutes() + Math.round((hora * 60 + minutos) - offsetHoras * 60));
+  return { anio: base.getUTCFullYear(), mes: base.getUTCMonth() + 1, dia: base.getUTCDate(), hora: base.getUTCHours(), minutos: base.getUTCMinutes() };
+}
+
+function normalizeDeg(d) { d = d % 360; return d < 0 ? d + 360 : d; }
+
+function calcularAscendenteGrados(anio, mes, dia, hora, minutos, offsetHoras, lat, lng) {
+  const utc = toUTC(anio, mes, dia, hora, minutos, offsetHoras);
+  const jd  = toJulianDay(utc.anio, utc.mes, utc.dia, utc.hora, utc.minutos);
+  const T   = (jd - 2451545.0) / 36525;
+
+  let gmst = 280.46061837 + 360.98564736629 * (jd - 2451545.0) + 0.000387933 * T * T - (T * T * T) / 38710000;
+  gmst = normalizeDeg(gmst);
+
+  const lstDeg = normalizeDeg(gmst + lng);
+  const ramc   = lstDeg * Math.PI / 180;
+  const eps    = 23.4392911 * Math.PI / 180;
+  const latRad = lat * Math.PI / 180;
+
+  const y = Math.cos(ramc);
+  const x = -(Math.sin(ramc) * Math.cos(eps) + Math.tan(latRad) * Math.sin(eps));
+  let asc = Math.atan2(y, x) * 180 / Math.PI;
+  return normalizeDeg(asc);
+}
+
+function formatGrado(g) {
+  const deg = Math.floor(g);
+  let min = Math.round((g - deg) * 60);
+  let d = deg;
+  if (min === 60) { min = 0; d += 1; }
+  return d + '°' + String(min).padStart(2, '0') + "'";
+}
+
+async function calcularAscendenteUI() {
+  const dia      = parseInt(document.getElementById('dia').value);
+  const mes      = parseInt(document.getElementById('mes').value);
+  const anio     = parseInt(document.getElementById('anio').value);
+  const hora     = parseInt(document.getElementById('hora').value);
+  const minutos  = parseInt(document.getElementById('minutos').value) || 0;
+  const err      = document.getElementById('calc-error');
+  const result   = document.getElementById('calc-result');
+  const btn      = document.getElementById('calc-btn');
+  const t        = i18n[currentLang];
+
+  err.classList.remove('visible');
+  result.classList.remove('visible');
+
+  const fechaValida = dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && anio >= 1924 && anio <= 2050 &&
+                       hora >= 0 && hora <= 23 && minutos >= 0 && minutos <= 59;
+  if (!fechaValida) { err.textContent = t['err-fecha']; err.classList.add('visible'); return; }
+
+  if (!ciudadLat || !ciudadLng) { err.textContent = t['err-ciudad']; err.classList.add('visible'); return; }
+
+  const originalBtnText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = t['loading-tz'];
+
+  let offsetHoras;
+  try {
+    offsetHoras = await obtenerTimezone(ciudadLat, ciudadLng, dia, mes, anio, hora, minutos);
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = originalBtnText;
+    err.textContent = t['err-tz'];
+    err.classList.add('visible');
+    return;
+  }
+
+  const ascDeg = calcularAscendenteGrados(anio, mes, dia, hora, minutos, offsetHoras, ciudadLat, ciudadLng);
+  const idx = Math.floor(ascDeg / 30) % 12;
+  const gradoEnSigno = ascDeg % 30;
+  const signo = SIGNOS[idx];
+  const info = SIGNOS_DATA[signo];
+
+  const nombre = (currentLang === 'en') ? SIGNOS_EN[idx] : signo;
+  const elem   = (currentLang === 'en') ? info.elemEn : info.elem;
+  const ruler  = (currentLang === 'en') ? info.rulerEn : info.ruler;
+  const impresion = (currentLang === 'en') ? info.impresionEn : info.impresion;
+
+  document.getElementById('result-emoji').textContent = SIGNO_SYMBOL[idx];
+  document.getElementById('result-name').textContent  = t['result-name-prefix'] + ' ' + nombre;
+  document.getElementById('result-sub').textContent   = formatGrado(gradoEnSigno) + ' · ' + elem + ' · ' + ruler;
+  document.getElementById('result-impresion').textContent = '“' + impresion + '”';
+
+  btn.disabled = false;
+  btn.textContent = originalBtnText;
+  result.classList.add('visible');
+  ultimoSigno = signo;
+  setTimeout(() => result.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
+
+function abrirSignificado() {
+  if (!ultimoSigno) return;
+  const id = 'card-' + ultimoSigno.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const card = document.getElementById(id);
+  if (card && !card.classList.contains('open')) toggleCard(id);
+}
+
+/* ════════ TARJETAS ════════ */
+function toggleCard(id) {
+  const card = document.getElementById(id);
+  const body = card.querySelector('.num-body');
+  const open = card.classList.toggle('open');
+  body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
+}
+(function renderCards() {
+  const grid = document.getElementById('num-grid');
+  grid.innerHTML = SIGNOS.map((signo, i) => {
+    const info = SIGNOS_DATA[signo];
+    const id = 'card-' + signo.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return `
+    <div class="num-card" id="${id}">
+      <div class="num-head" onclick="toggleCard('${id}')">
+        <div class="num-badge">${SIGNO_SYMBOL[i]}</div>
+        <div class="num-title" data-signo="${signo}">${signo}<small>${info.elem} · ${info.ruler}</small></div>
+        <div class="num-toggle">＋</div>
+      </div>
+      <div class="num-body"><div class="num-body-inner">
+        <div class="num-row"><span class="lbl" data-i18n="lbl-impresion"></span><span class="val" data-field="impresion">${info.impresion}</span></div>
+        <div class="num-row"><span class="lbl" data-i18n="lbl-cuerpo"></span><span class="val" data-field="cuerpo">${info.cuerpo}</span></div>
+        <div class="num-row"><span class="lbl" data-i18n="lbl-reto"></span><span class="val" data-field="reto">${info.reto}</span></div>
+        <div class="num-row frase"><span class="lbl" data-i18n="lbl-frase"></span><span class="val" data-field="frase">${info.frase}</span></div>
+      </div></div>
+    </div>`;
+  }).join('');
+})();
+
+/* ════════ IDIOMA ════════ */
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn-es').forEach(b => b.classList.toggle('active', lang === 'es'));
+  document.querySelectorAll('.lang-btn-en').forEach(b => b.classList.toggle('active', lang === 'en'));
+  const t = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+  // nombres de signos y campos en EN
+  document.querySelectorAll('.num-title[data-signo]').forEach((el, i) => {
+    const signo = el.getAttribute('data-signo');
+    const idx = SIGNOS.indexOf(signo);
+    const nombre = (lang === 'en') ? SIGNOS_EN[idx] : signo;
+    el.childNodes[0].nodeValue = nombre;
+    const small = el.querySelector('small');
+    const info = SIGNOS_DATA[signo];
+    small.textContent = (lang === 'en') ? (info.elemEn + ' · ' + info.rulerEn) : (info.elem + ' · ' + info.ruler);
+  });
+  document.querySelectorAll('.num-card').forEach(card => {
+    const signo = card.querySelector('.num-title').getAttribute('data-signo');
+    const info = SIGNOS_DATA[signo];
+    card.querySelector('[data-field="impresion"]').textContent = (lang === 'en') ? info.impresionEn : info.impresion;
+    card.querySelector('[data-field="cuerpo"]').textContent    = (lang === 'en') ? info.cuerpoEn    : info.cuerpo;
+    card.querySelector('[data-field="reto"]').textContent      = (lang === 'en') ? info.retoEn      : info.reto;
+    card.querySelector('[data-field="frase"]').textContent     = (lang === 'en') ? info.fraseEn     : info.frase;
+  });
+  document.querySelectorAll('.num-card.open .num-body').forEach(b => { b.style.maxHeight = b.scrollHeight + 'px'; });
+  document.documentElement.lang = lang;
+}
+setLang('es');
+
+function toggleNavDropdown(e) {
+  e.stopPropagation();
+  document.getElementById('navDropdown').classList.toggle('open');
+}
+document.addEventListener('click', () => {
+  const dd = document.getElementById('navDropdown');
+  if (dd) dd.classList.remove('open');
+});
+
+/* ════════ Google Places (New API): autocompletado de ciudad ════════ */
+let ciudadLat = null;
+let ciudadLng = null;
+let autocompleteTimeout = null;
+let sessionToken = null;
+
+async function initAutocomplete() {
+  try {
+    const { AutocompleteSuggestion, AutocompleteSessionToken } = await google.maps.importLibrary("places");
+    const input = document.getElementById('ciudad');
+    const dropdown = document.getElementById('ciudad-dropdown');
+    sessionToken = new AutocompleteSessionToken();
+
+    input.addEventListener('input', () => {
+      ciudadLat = null;
+      ciudadLng = null;
+      clearTimeout(autocompleteTimeout);
+      const query = input.value.trim();
+      if (query.length < 2) { dropdown.innerHTML = ''; dropdown.style.display = 'none'; return; }
+
+      autocompleteTimeout = setTimeout(async () => {
+        try {
+          const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
+            input: query,
+            includedPrimaryTypes: ['locality', 'administrative_area_level_3', 'administrative_area_level_2'],
+            sessionToken
+          });
+          dropdown.innerHTML = '';
+          if (!suggestions || suggestions.length === 0) { dropdown.style.display = 'none'; return; }
+          suggestions.slice(0, 6).forEach(s => {
+            const item = document.createElement('div');
+            item.className = 'ciudad-option';
+            item.textContent = s.placePrediction.text.toString();
+            item.addEventListener('mousedown', async (e) => {
+              e.preventDefault();
+              input.value = s.placePrediction.text.toString();
+              dropdown.style.display = 'none';
+              try {
+                const place = s.placePrediction.toPlace();
+                await place.fetchFields({ fields: ['location', 'formattedAddress'] });
+                ciudadLat = place.location.lat();
+                ciudadLng = place.location.lng();
+                sessionToken = new AutocompleteSessionToken();
+              } catch (e) { console.warn('Error obteniendo lugar:', e); }
+            });
+            dropdown.appendChild(item);
+          });
+          dropdown.style.display = 'block';
+        } catch (e) { console.warn('Error en sugerencias:', e); }
+      }, 300);
+    });
+
+    input.addEventListener('blur', () => { setTimeout(() => { dropdown.style.display = 'none'; }, 150); });
+  } catch (e) { console.warn('Google Places no disponible:', e); }
+}
+window.addEventListener('load', initAutocomplete);
+
+/* ════════ TimeZoneDB: timezone histórico exacto para la fecha de nacimiento ════════ */
+async function obtenerTimezone(lat, lng, dia, mes, anio, hora, minutos) {
+  const fechaNac = new Date(Date.UTC(anio, mes - 1, dia, hora, minutos, 0));
+  const unixTimestamp = Math.floor(fechaNac.getTime() / 1000);
+  const tzRes = await fetch(`https://api.timezonedb.com/v2.1/get-time-zone?key=0VFM6NACW7MC&format=json&by=position&lat=${lat}&lng=${lng}&time=${unixTimestamp}`);
+  const tzData = await tzRes.json();
+  return tzData.gmtOffset / 3600;
+}
+</script>
+
+</body>
+</html>
