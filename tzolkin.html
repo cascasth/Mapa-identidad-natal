@@ -911,11 +911,19 @@
   /* Pregunta del tono */
   .onda-pregunta-bloque {
     margin-top: 1rem;
-    padding: 1.1rem 1.2rem;
     text-align: center;
     border-top: 1px solid rgba(201,168,76,0.13);
     background: rgba(61,32,96,0.12);
     border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .opb-sub {
+    padding: 1.1rem 1.2rem;
+  }
+
+  .opb-sub + .opb-sub {
+    border-top: 1px solid rgba(201,168,76,0.13);
   }
 
   .opb-tono-label {
@@ -935,13 +943,12 @@
     font-style: italic;
     opacity: 0.88;
     line-height: 1.55;
-    margin-bottom: 0.55rem;
   }
 
   .opb-onda-q {
-    font-size: 0.82rem;
+    font-size: 0.88rem;
     color: var(--gold-pale);
-    opacity: 0.5;
+    opacity: 0.78;
     font-style: italic;
     line-height: 1.55;
   }
@@ -1684,8 +1691,8 @@ const i18n = {
     'onda-de-label': 'Onda de',
     'onda-dia':      'Día',
     'onda-de13':     'de 13',
-    'onda-pregunta-label': 'Reflexión del día',
-    'onda-ciclo-label':    'Reflexión del ciclo (cada 20 días)',
+    'onda-pregunta-label': 'Pregunta de hoy',
+    'onda-ciclo-label':    'Pregunta de esta Onda · cada 13 días',
     dias:  ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'],
     meses: ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],
     fecha: (d, num, mes, anio) => `${d}, ${num} de ${mes} de ${anio}`,
@@ -1767,8 +1774,8 @@ const i18n = {
     'onda-de-label': 'Wave of',
     'onda-dia':      'Day',
     'onda-de13':     'of 13',
-    'onda-pregunta-label': "Daily reflection",
-    'onda-ciclo-label':    "Cycle reflection (every 20 days)",
+    'onda-pregunta-label': "Today's question",
+    'onda-ciclo-label':    "This Wave's question · every 13 days",
     dias:  ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
     meses: ['January','February','March','April','May','June','July','August','September','October','November','December'],
     fecha: (d, num, mes, anio) => `${d}, ${mes} ${num}, ${anio}`,
@@ -1918,10 +1925,14 @@ function mostrarOnda() {
       <div class="onda-grid">${cardsHtml}</div>
     </div>
     <div class="onda-pregunta-bloque">
-      <span class="opb-tono-label">${tonoInfo.accion} · ${t['onda-pregunta-label']}</span>
-      <p class="opb-pregunta">"${tonoInfo.pregunta}"</p>
-      <span class="opb-tono-label" style="margin-top:10px;display:block;">${t['onda-ciclo-label']}</span>
-      <p class="opb-onda-q">${onda.preguntaOnda}</p>
+      <div class="opb-sub">
+        <span class="opb-tono-label">${tonoInfo.accion} · ${t['onda-pregunta-label']}</span>
+        <p class="opb-pregunta">"${tonoInfo.pregunta}"</p>
+      </div>
+      <div class="opb-sub">
+        <span class="opb-tono-label">${t['onda-ciclo-label']}</span>
+        <p class="opb-onda-q">${onda.preguntaOnda}</p>
+      </div>
     </div>`;
 
   document.getElementById('onda-section').innerHTML = html;
