@@ -8,6 +8,7 @@ const title = "Archivo de Identidad";
 const description = "Abre tu Archivo de Identidad y descubre cómo tus primeros códigos simbólicos comienzan a revelar un mapa más profundo de ti.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://experiencia.centroserintegral.org"),
   title,
   description,
   openGraph: {
