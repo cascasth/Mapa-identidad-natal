@@ -114,7 +114,7 @@ export default function VerificacionPage() {
               paddingTop: "58%",  /* deja el campo justo debajo del texto de cabecera, sin el hueco que dejaban los selectores de mes/año eliminados */
               paddingLeft: "15%",
               paddingRight: "15%",
-              paddingBottom: "5%",
+              paddingBottom: "50%",  /* mantiene la altura total de la tarjeta (imagen 550×750 completa, sin recortar) igual que en el diseño original */
               boxShadow: "0 0 0 1px rgba(180,130,40,0.2), 0 20px 60px rgba(0,0,0,0.7)",
             }}>
 
