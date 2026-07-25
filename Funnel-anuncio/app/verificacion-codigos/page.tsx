@@ -66,9 +66,12 @@ export default function VerificacionPage() {
   useEffect(() => {
     if (phase !== "result") return;
     const t = setTimeout(() => {
-      const audio = new Audio("/audio-triada.mp3");
-      audioRef.current = audio;
-      audio.play().catch(() => {});
+      const audio = audioRef.current;
+      if (audio) {
+        audio.currentTime = 0;
+        audio.volume = 1;
+        audio.play().catch(() => {});
+      }
       try { getMainAudio().volume = 0.06; } catch {}
     }, 2000);
     return () => { clearTimeout(t); audioRef.current?.pause(); };
@@ -79,6 +82,14 @@ export default function VerificacionPage() {
     if (!sign) { setError("Por favor elige tu signo zodiacal."); return; }
     const info = getSignInfo(sign);
     if (!info) { setError("Signo no reconocido."); return; }
+
+    // Crear y "desbloquear" el audio dentro del gesto de clic real del usuario —
+    // Safari/iOS y los navegadores integrados de Instagram/Facebook bloquean en
+    // silencio el audio.play() si se dispara desde un setTimeout sin gesto directo.
+    const audio = new Audio("/audio-triada.mp3");
+    audio.volume = 0;
+    audio.play().then(() => audio.pause()).catch(() => {});
+    audioRef.current = audio;
 
     setPhase("loading");
     setTimeout(() => {
@@ -100,7 +111,7 @@ export default function VerificacionPage() {
               backgroundImage: "url('/bg-verificacion.png')",
               backgroundSize: "cover",
               backgroundPosition: "top center",
-              paddingTop: "95%",  /* altura de la imagen (550×750) hasta la posición del selector "mes" del layout anterior, expresado como % del ancho */
+              paddingTop: "58%",  /* deja el campo justo debajo del texto de cabecera, sin el hueco que dejaban los selectores de mes/año eliminados */
               paddingLeft: "15%",
               paddingRight: "15%",
               paddingBottom: "5%",
