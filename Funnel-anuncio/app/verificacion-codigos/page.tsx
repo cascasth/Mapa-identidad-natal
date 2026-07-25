@@ -100,7 +100,7 @@ export default function VerificacionPage() {
               backgroundImage: "url('/bg-verificacion.png')",
               backgroundSize: "cover",
               backgroundPosition: "top center",
-              paddingTop: "77.7%",  /* 57% de la altura de la imagen (550×750) expresado como % del ancho */
+              paddingTop: "95%",  /* altura de la imagen (550×750) hasta la posición del selector "mes" del layout anterior, expresado como % del ancho */
               paddingLeft: "15%",
               paddingRight: "15%",
               paddingBottom: "5%",
