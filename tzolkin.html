@@ -261,6 +261,32 @@
     line-height: 1.5;
   }
 
+  .anio-nuevo-banner {
+    max-width: 640px;
+    margin: 0 auto 1.6rem;
+    padding: 1rem 1.4rem;
+    text-align: center;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 10px;
+  }
+
+  .anio-nuevo-titulo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .anio-nuevo-nota {
+    font-size: 0.92rem;
+    letter-spacing: 0.05em;
+    color: var(--gold-pale);
+    opacity: 0.85;
+    font-style: italic;
+  }
+
   .kin-grande {
     position: relative;
     margin-bottom: 0.5rem;
@@ -1097,6 +1123,12 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
     <p data-i18n="tzolkin-intro">El Tzolkin es un calendario sagrado de 260 días originario de Mesoamérica. Cada día tiene una energía propia — una combinación única de sello y tono — que funciona como lente para observar el momento con más consciencia. No es horóscopo ni predicción: es un sistema para leer el tiempo.</p>
   </div>
 
+  <!-- AÑO NUEVO MAYA -->
+  <div class="anio-nuevo-banner" id="anio-nuevo-banner" style="display:none;">
+    <p class="anio-nuevo-titulo" id="anio-nuevo-titulo"></p>
+    <p class="anio-nuevo-nota" id="anio-nuevo-nota"></p>
+  </div>
+
   <!-- TZOLKIN DE HOY -->
   <section class="hoy-section" id="hoy-section">
     <p class="hoy-label" data-i18n="hoy-label">✦ El portal de hoy ✦</p>
@@ -1704,6 +1736,10 @@ const i18n = {
     'hoy-label':     '✦ El portal de hoy ✦',
     'dfot-badge':    '✦ Día Fuera del Tiempo ✦',
     'dfot-nota':     'Un día que existe fuera del conteo anual — pausa entre un ciclo y otro.',
+    'anio-nuevo-manana-titulo': '✦ Mañana inicia un nuevo Año Maya ✦',
+    'anio-nuevo-manana-nota':   'El ciclo de trece lunas comienza el 26 de julio.',
+    'anio-nuevo-hoy-titulo':    '✦ Hoy inicia un nuevo Año Maya ✦',
+    'anio-nuevo-hoy-nota':      'Un nuevo ciclo de trece lunas comienza hoy.',
     'section-title': '✦ Descubre tu sello galáctico ✦',
     'section-intro': 'Ingresa tu fecha de nacimiento y revela tu Kin Dreamspell',
     'lbl-fecha':     'Fecha de nacimiento',
@@ -1789,6 +1825,10 @@ const i18n = {
     'hoy-label':     "✦ Today's portal ✦",
     'dfot-badge':    '✦ Day Out of Time ✦',
     'dfot-nota':     'A day that exists outside the annual count — a pause between one cycle and the next.',
+    'anio-nuevo-manana-titulo': '✦ Tomorrow begins a new Maya Year ✦',
+    'anio-nuevo-manana-nota':   'The thirteen-moon cycle begins July 26.',
+    'anio-nuevo-hoy-titulo':    '✦ Today begins a new Maya Year ✦',
+    'anio-nuevo-hoy-nota':      'A new thirteen-moon cycle begins today.',
     'section-title': '✦ Discover your galactic seal ✦',
     'section-intro': 'Enter your date of birth and reveal your Dreamspell Kin',
     'lbl-fecha':     'Date of birth',
@@ -1990,6 +2030,21 @@ function mostrarHoy() {
 
   const esDiaFueraDelTiempo = hoy.getMonth() === 6 && hoy.getDate() === 25;
   document.getElementById("dfot-badge").style.display = esDiaFueraDelTiempo ? "block" : "none";
+
+  const mesHoy = hoy.getMonth();
+  const diaHoy = hoy.getDate();
+  const anioNuevoBanner = document.getElementById("anio-nuevo-banner");
+  if (mesHoy === 6 && (diaHoy === 24 || diaHoy === 25)) {
+    document.getElementById("anio-nuevo-titulo").textContent = t['anio-nuevo-manana-titulo'];
+    document.getElementById("anio-nuevo-nota").textContent = t['anio-nuevo-manana-nota'];
+    anioNuevoBanner.style.display = "block";
+  } else if (mesHoy === 6 && diaHoy === 26) {
+    document.getElementById("anio-nuevo-titulo").textContent = t['anio-nuevo-hoy-titulo'];
+    document.getElementById("anio-nuevo-nota").textContent = t['anio-nuevo-hoy-nota'];
+    anioNuevoBanner.style.display = "block";
+  } else {
+    anioNuevoBanner.style.display = "none";
+  }
 
   document.getElementById("hoy-kin-num").textContent = kin;
 
