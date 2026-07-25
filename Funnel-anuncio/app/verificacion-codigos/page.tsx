@@ -111,7 +111,7 @@ export default function VerificacionPage() {
               backgroundImage: "url('/bg-verificacion.png')",
               backgroundSize: "cover",
               backgroundPosition: "top center",
-              paddingTop: "95%",  /* altura de la imagen (550×750) hasta la posición del selector "mes" del layout anterior, expresado como % del ancho */
+              paddingTop: "58%",  /* deja el campo justo debajo del texto de cabecera, sin el hueco que dejaban los selectores de mes/año eliminados */
               paddingLeft: "15%",
               paddingRight: "15%",
               paddingBottom: "5%",
