@@ -235,6 +235,32 @@
     font-style: italic;
   }
 
+  .dfot-badge {
+    margin: 0 auto 1.6rem;
+    padding: 0.85rem 1.1rem;
+    max-width: 380px;
+    border: 1px solid rgba(201,168,76,0.3);
+    background: rgba(61,32,96,0.14);
+    border-radius: 10px;
+  }
+
+  .dfot-badge-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .dfot-badge-nota {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--gold-pale);
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+
   .kin-grande {
     position: relative;
     margin-bottom: 0.5rem;
@@ -1075,6 +1101,10 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
   <section class="hoy-section" id="hoy-section">
     <p class="hoy-label" data-i18n="hoy-label">✦ El portal de hoy ✦</p>
     <p class="fecha-hoy" id="fecha-hoy-texto"></p>
+    <div class="dfot-badge" id="dfot-badge" style="display:none;">
+      <p class="dfot-badge-text" data-i18n="dfot-badge">✦ Día Fuera del Tiempo ✦</p>
+      <p class="dfot-badge-nota" data-i18n="dfot-nota">Un día que existe fuera del conteo anual — pausa entre un ciclo y otro.</p>
+    </div>
     <div class="kin-grande">
       <span class="kin-numero" id="hoy-kin-num">—</span>
       <span class="kin-label-small">KIN</span>
@@ -1672,6 +1702,8 @@ const i18n = {
     'top-chino': '🐉 Animal chino',
    'top-solicitar': 'Solicitar Mapa',
     'hoy-label':     '✦ El portal de hoy ✦',
+    'dfot-badge':    '✦ Día Fuera del Tiempo ✦',
+    'dfot-nota':     'Un día que existe fuera del conteo anual — pausa entre un ciclo y otro.',
     'section-title': '✦ Descubre tu sello galáctico ✦',
     'section-intro': 'Ingresa tu fecha de nacimiento y revela tu Kin Dreamspell',
     'lbl-fecha':     'Fecha de nacimiento',
@@ -1755,6 +1787,8 @@ const i18n = {
     'top-chino': '🐉 Chinese animal',
     'top-solicitar': 'Request Map',
     'hoy-label':     "✦ Today's portal ✦",
+    'dfot-badge':    '✦ Day Out of Time ✦',
+    'dfot-nota':     'A day that exists outside the annual count — a pause between one cycle and the next.',
     'section-title': '✦ Discover your galactic seal ✦',
     'section-intro': 'Enter your date of birth and reveal your Dreamspell Kin',
     'lbl-fecha':     'Date of birth',
@@ -1953,6 +1987,10 @@ function mostrarHoy() {
 
   const fechaTxt = t.fecha(t.dias[hoy.getDay()], hoy.getDate(), t.meses[hoy.getMonth()], hoy.getFullYear());
   document.getElementById("fecha-hoy-texto").textContent = fechaTxt;
+
+  const esDiaFueraDelTiempo = hoy.getMonth() === 6 && hoy.getDate() === 25;
+  document.getElementById("dfot-badge").style.display = esDiaFueraDelTiempo ? "block" : "none";
+
   document.getElementById("hoy-kin-num").textContent = kin;
 
   const hoyGlifo = document.getElementById("hoy-glifo");
