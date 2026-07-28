@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora Numerológica</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia',serif;background:#f5f0eb;color:#2d2d2d;min-height:100vh;padding:24px}
+.app{max-width:760px;margin:0 auto}
+h1{text-align:center;font-size:24px;font-weight:600;color:#5a3e6b;margin-bottom:4px;letter-spacing:1px}
+.sub{text-align:center;font-size:13px;color:#8a7a9a;margin-bottom:24px;font-family:sans-serif}
+.card{background:#fff;border-radius:12px;border:1px solid #e0d5f0;padding:20px;margin-bottom:16px}
+.card h2{font-size:14px;font-weight:600;color:#5a3e6b;margin-bottom:12px;font-family:sans-serif;letter-spacing:.5px;text-transform:uppercase}
+label{display:block;font-size:10px;color:#8a7a9a;margin-bottom:4px;font-family:sans-serif;text-transform:uppercase;letter-spacing:.5px}
+input[type=text]{width:100%;padding:10px 14px;border:1px solid #d8cce8;border-radius:8px;font-size:16px;font-family:'Georgia',serif;background:#faf8ff;color:#2d2d2d;outline:none}
+input[type=text]:focus{border-color:#9b7bb8}
+.btn{display:block;width:100%;padding:12px;background:#5a3e6b;color:#fff;border:none;border-radius:10px;font-size:15px;font-family:sans-serif;cursor:pointer;letter-spacing:.5px;margin-top:10px}
+.btn:hover{background:#7a5a8f}
+.btn-sec{background:#fff;color:#5a3e6b;border:1px solid #c0a0e0;margin-top:8px}
+.btn-sec:hover{background:#f5f0fb}
+.results{display:none}
+
+/* Tabla de desglose */
+.tabla-wrap{overflow-x:auto;margin-bottom:16px}
+.tabla{border-collapse:collapse;font-size:14px;font-family:monospace;white-space:nowrap}
+.tabla td{padding:6px 10px;border:1px solid #e0d5f0;text-align:center;min-width:32px}
+.tletra{background:#f0e8ff;font-weight:700;color:#5a3e6b;font-size:15px}
+.tnum{background:#faf8ff;color:#5a3e6b;font-size:14px}
+.tsum{background:#e8dff5;font-weight:700;color:#3d2c52;font-size:14px}
+
+/* Resultado principal */
+.resultado-box{text-align:center;padding:20px;background:#f5f0fb;border-radius:12px;border:1px solid #ddd0ef;margin-bottom:16px}
+.resultado-num{font-size:52px;font-weight:700;color:#5a3e6b;line-height:1}
+.resultado-label{font-size:12px;color:#9b7bb8;font-family:sans-serif;text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+.resultado-sig{font-size:16px;color:#3d2c52;font-family:sans-serif;margin-top:10px;font-weight:600}
+.resultado-desc{font-size:13px;color:#666;font-family:sans-serif;margin-top:6px;line-height:1.6;font-style:italic}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;margin-top:8px;font-family:sans-serif}
+.tag-k{background:#fff8ee;color:#b8860b;border:1px solid #e8c97a}
+.tag-d{background:#eefaf6;color:#2a9d7c;border:1px solid #7acbb0}
+.tag-m{background:#f0e8ff;color:#5a3e6b;border:1px solid #c0a0e0}
+
+/* Pasos */
+.pasos{font-family:sans-serif;font-size:13px;color:#666;line-height:2;margin-top:4px}
+.pasos span{color:#5a3e6b;font-weight:700}
+
+/* Historial */
+.historial-item{border-bottom:1px solid #f0e8ff;padding:10px 0;font-family:sans-serif}
+.historial-item:last-child{border-bottom:none}
+.hist-palabra{font-size:15px;font-weight:700;color:#5a3e6b}
+.hist-num{font-size:13px;color:#7b5a8e}
+.hist-sig{font-size:12px;color:#888;font-style:italic}
+
+/* Ref table */
+.ref-table{width:100%;border-collapse:collapse;font-size:12px;font-family:sans-serif}
+.ref-table th{background:#e8dff5;color:#5a3e6b;padding:5px 8px;text-align:left;font-weight:600}
+.ref-table td{padding:4px 8px;border-bottom:1px solid #f0e8ff;color:#444;vertical-align:top}
+.ref-table tr:hover td{background:#faf8ff}
+.sec-title{font-size:11px;color:#9b7bb8;font-family:sans-serif;text-transform:uppercase;letter-spacing:.5px;margin:14px 0 6px;font-weight:600}
+.ausente-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.ausente-badge{background:#ede4f7;color:#5a3e6b;border-radius:20px;padding:3px 12px;font-size:14px;font-weight:700;font-family:sans-serif;display:inline-block}
+.ausente-item{background:#faf8ff;border:1px solid #e0d5f0;border-radius:8px;padding:10px 14px;margin-top:8px}
+.ausente-item .an{font-size:11px;font-weight:700;color:#5a3e6b;font-family:sans-serif;margin-bottom:3px}
+.ausente-item .ad{font-size:12px;color:#555;font-family:sans-serif;line-height:1.5}
+
+@media print{
+  .no-print{display:none!important}
+  body{background:#fff}
+  .app{max-width:100%}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <h1>✦ Calculadora Numerológica ✦</h1>
+  <p class="sub">Palabras · Nombres de empresas · Síntomas · Conceptos</p>
+
+  <div class="card no-print">
+    <label>Escribe la palabra o frase a calcular</label>
+    <input type="text" id="entrada" placeholder="ej. Ansiedad, Google, Amor propio..." />
+    <button class="btn" onclick="calcular()">Calcular</button>
+    <button class="btn btn-sec" id="btn-limpiar" style="display:none" onclick="limpiar()">↺ Nueva consulta</button>
+  </div>
+
+  <div class="results" id="results">
+
+    <div class="card">
+      <h2>Desglose por letra</h2>
+      <div class="tabla-wrap" id="tabla-out"></div>
+      <div class="pasos" id="pasos-out"></div>
+    </div>
+
+    <div class="card">
+      <h2>Resultado</h2>
+      <div class="resultado-box" id="resultado-box"></div>
+    </div>
+
+    <div class="card" id="ausentes-card">
+      <h2>Ausentes</h2>
+      <div id="ausentes-out"></div>
+    </div>
+
+    <div class="card" id="resolucion-card">
+      <h2>Resolución</h2>
+      <div class="resultado-box" id="resolucion-box"></div>
+    </div>
+
+  </div>
+
+  <!-- Historial -->
+  <div class="card" id="historial-card" style="display:none">
+    <h2>Historial de esta sesión</h2>
+    <div id="historial-list"></div>
+  </div>
+
+  <!-- Referencia -->
+  <div class="card">
+    <h2>Tabla de referencia</h2>
+    <div class="sec-title">Valores de letras</div>
+    <table class="ref-table">
+      <tr><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr>
+      <tr><td>A J S</td><td>B K T</td><td>C L U</td><td>D M V</td><td>E N W Ñ</td><td>F O X</td><td>G P Y</td><td>H Q Z</td><td>I R</td></tr>
+    </table>
+        <div class="sec-title">Números básicos</div>
+    <table class="ref-table">
+      <tr><th>Nº</th><th>Significado</th></tr>
+      <tr><td>1</td><td><strong>Inicio y Liderazgo.</strong> Energía de valientes que inician proyectos y empoderan a otros. Misión: sanar la relación con el padre.</td></tr>
+      <tr><td>2</td><td><strong>Emociones y Diplomacia.</strong> Capacidad de mediación y empatía. Riesgo: no poner límites y sacrificarse por otros.</td></tr>
+      <tr><td>3</td><td><strong>Creación y Optimismo.</strong> Alegría, humor y agilidad mental. Misión: expresar sentimientos verdaderos.</td></tr>
+      <tr><td>4</td><td><strong>Estructura y Tierra.</strong> Organización, disciplina y atención al detalle. Necesidad de estabilidad.</td></tr>
+      <tr><td>5</td><td><strong>Libertad y Transformación.</strong> Adaptabilidad y pensamiento fuera de la caja. Riesgo: impulsividad e inconstancia.</td></tr>
+      <tr><td>6</td><td><strong>Amor Propio y Armonía.</strong> La gran madre, protectora y responsable. Desafío: equilibrar el dar con el autocuidado.</td></tr>
+      <tr><td>7</td><td><strong>Consciencia y Sabiduría.</strong> El número de Dios y el saber. Buscadores de la verdad que a menudo se sienten incomprendidos.</td></tr>
+      <tr><td>8</td><td><strong>Poder y Autenticidad.</strong> Autoridad, éxito y abundancia. El número del infinito y del karma: lo que siembras, cosechas.</td></tr>
+      <tr><td>9</td><td><strong>Entrega y Cierre.</strong> Humanitarismo y trascendencia. Representa el perdón y la culminación de ciclos.</td></tr>
+    </table>
+    <div class="sec-title">Maestros</div>
+    <table class="ref-table">
+      <tr><th>Nº</th><th>Significado</th></tr>
+      <tr><td>10</td><td><strong>Maestro de las Herramientas.</strong> El Ángel. Contiene la información sagrada de los linajes masculino y femenino para avanzar.</td></tr>
+      <tr><td>11</td><td><strong>Maestro del Autoconocimiento.</strong> Intuición y despertar espiritual. Portadores de luz que guían a otros tras sanar sus propias tragedias.</td></tr>
+      <tr><td>22</td><td><strong>Maestro de las Emociones y Constructor.</strong> Capacidad de materializar grandes visiones. Misión: comunicar con amor.</td></tr>
+      <tr><td>33</td><td><strong>Maestro Crístico y Compasión.</strong> La frecuencia más elevada. Misión: unir a la humanidad para elevar la conciencia universal.</td></tr>
+    </table>
+    <div class="sec-title">Karmas <span class="tag tag-k">(K)</span> y Dharmas <span class="tag tag-d">(D)</span></div>
+    <table class="ref-table">
+      <tr><th>Nº</th><th></th><th>Significado</th></tr>
+      <tr style="background:#fff8ee"><td>12</td><td><span class="tag tag-k">(K)</span></td><td>Madurar, camino nuevo. Salir de la inmadurez para crecer y reconectar con el Niño Interior mágico.</td></tr>
+      <tr style="background:#fff8ee"><td>13</td><td><span class="tag tag-k">(K)</span></td><td>Reconocer la incoherencia entre lo que pienso, siento y digo para evitar la enfermedad física.</td></tr>
+      <tr style="background:#fff8ee"><td>14</td><td><span class="tag tag-k">(K)</span></td><td>Falta de compromiso. El desafío es comprometerse con los cambios de maduración propios.</td></tr>
+      <tr style="background:#fff8ee"><td>15</td><td><span class="tag tag-k">(K)</span></td><td>Soltar el control y las adicciones para lograr el reconocimiento interno.</td></tr>
+      <tr style="background:#fff8ee"><td>16</td><td><span class="tag tag-k">(K)</span></td><td>Sanar la desvalorización y la dependencia de la validación externa. Autovaloración.</td></tr>
+      <tr style="background:#eefaf6"><td>17</td><td><span class="tag tag-d">(D)</span></td><td>Camino espiritual y conexión divina. Energía de buscadores de la verdad.</td></tr>
+      <tr style="background:#eefaf6"><td>18</td><td><span class="tag tag-d">(D)</span></td><td>Liderazgo con límites sanos. Poder equilibrado al servicio de una estrategia grande. Dejar de ser víctima.</td></tr>
+      <tr style="background:#fff8ee"><td>19</td><td><span class="tag tag-k">(K)</span></td><td>Soltar la ira y la sensación de injusticia. Sanación del árbol familiar y caída de máscaras.</td></tr>
+      <tr style="background:#fff8ee"><td>20</td><td><span class="tag tag-k">(K)</span></td><td>Gestión de emociones desbordadas. Aprender inteligencia emocional para no enfermar el cuerpo.</td></tr>
+      <tr><td>21</td><td></td><td>La magia. Descubrir lo oculto en el inconsciente para renacer al amor. Investigador.</td></tr>
+      <tr><td>22</td><td><span class="tag tag-m">(M)</span></td><td>Maestro de las Emociones y Constructor. Misión: comunicar con amor.</td></tr>
+      <tr><td>23</td><td></td><td>El mapa. Saber hacia dónde ir mediante la compasión y la empatía. Un nuevo camino a seguir.</td></tr>
+      <tr><td>24</td><td></td><td>Equilibrar las emociones. Energía de investigación y maestría en soledad.</td></tr>
+      <tr><td>25</td><td></td><td>Liberarse del programa familiar para no apegarse a nada ni a nadie y ser libre.</td></tr>
+      <tr style="background:#eefaf6"><td>26</td><td><span class="tag tag-d">(D)</span></td><td>Amor propio profundo y aceptación incondicional. Energía de resistencia y empoderamiento.</td></tr>
+      <tr style="background:#eefaf6"><td>27</td><td><span class="tag tag-d">(D)</span></td><td>Maestría del sentir. Conciencia emocional que lleva a la liberación y el renacimiento.</td></tr>
+      <tr><td>28</td><td></td><td>Frustración y vacío. Catalizador necesario para salir de la vida antigua y buscar un propósito.</td></tr>
+      <tr><td>29</td><td></td><td>Maestro en lo oculto. Capacidad de transformar la vida de otros a través del maestro interno.</td></tr>
+      <tr><td>30</td><td></td><td>Fluir con el todo y tener la fuerza para volver a empezar desde una maestría universal.</td></tr>
+      <tr><td>31</td><td></td><td>El viajero del mundo. Rebeldes sin causa que buscan cambiar el mundo a través de la aventura espiritual.</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<script>
+const LETRAS={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8,'Ñ':5};
+const MAESTROS=new Set([10,11,22,33]);
+const KS=new Set([12,13,14,15,16,19,20]);
+const DS=new Set([17,18,26,27]);
+const KARMAS={
+  12:'Madurar, camino nuevo. Salir de la inmadurez para crecer y reconectar con el Niño Interior mágico.',
+  13:'Reconocer la incoherencia entre lo que pienso, siento y digo para evitar la enfermedad física.',
+  14:'Falta de compromiso. El desafío es comprometerse con los cambios de maduración propios.',
+  15:'Soltar el control y las adicciones para lograr el reconocimiento interno.',
+  16:'Sanar la desvalorización y la dependencia de la validación externa. Autovaloración.',
+  17:'Camino espiritual y conexión divina. Energía de buscadores de la verdad.',
+  18:'Liderazgo con límites sanos. Poder equilibrado al servicio de una estrategia grande. Dejar de ser víctima.',
+  19:'Soltar la ira y la sensación de injusticia. Sanación del árbol familiar y caída de máscaras.',
+  20:'Gestión de emociones desbordadas. Aprender inteligencia emocional para no enfermar el cuerpo.',
+  21:'La magia. Descubrir lo oculto en el inconsciente para renacer al amor. Investigador.',
+  22:'Mejorar la comunicación.',
+  23:'El mapa. Saber hacia dónde ir mediante la compasión y la empatía. Un nuevo camino a seguir.',
+  24:'Equilibrar las emociones. Energía de investigación y maestría en soledad.',
+  25:'Liberarse del programa familiar para no apegarse a nada ni a nadie y ser libre.',
+  26:'Amor propio profundo y aceptación incondicional. Energía de resistencia y empoderamiento.',
+  27:'Maestría del sentir. Conciencia emocional que lleva a la liberación y el renacimiento.',
+  28:'Frustración y vacío. Catalizador necesario para salir de la vida antigua y buscar un propósito.',
+  29:'Maestro en lo oculto. Capacidad de transformar la vida de otros a través del maestro interno.',
+  30:'Fluir con el todo y tener la fuerza para volver a empezar desde una maestría universal.',
+  31:'El viajero del mundo. Rebeldes sin causa que buscan cambiar el mundo a través de la aventura espiritual.'
+};
+const SIGNIF={
+  1:'Inicio y Liderazgo. Energía de valientes que inician proyectos y empoderan a otros. Misión: sanar la relación con el padre.',
+  2:'Emociones y Diplomacia. Capacidad de mediación y empatía. Riesgo: no poner límites y sacrificarse por otros.',
+  3:'Creación y Optimismo. Alegría, humor y agilidad mental. Misión: expresar sentimientos verdaderos.',
+  4:'Estructura y Tierra. Organización, disciplina y atención al detalle. Necesidad de estabilidad.',
+  5:'Libertad y Transformación. Adaptabilidad y pensamiento fuera de la caja. Riesgo: impulsividad e inconstancia.',
+  6:'Amor Propio y Armonía. La gran madre, protectora y responsable. Desafío: equilibrar el dar con el autocuidado.',
+  7:'Consciencia y Sabiduría. El número de Dios y el saber. Buscadores de la verdad que a menudo se sienten incomprendidos.',
+  8:'Poder y Autenticidad. Autoridad, éxito y abundancia. El número del infinito y del karma: lo que siembras, cosechas.',
+  9:'Entrega y Cierre. Humanitarismo y trascendencia. Representa el perdón y la culminación de ciclos.',
+  10:'Maestro de las Herramientas. El Ángel. Contiene la información sagrada de los linajes masculino y femenino para avanzar.',
+  11:'Maestro del Autoconocimiento. Intuición y despertar espiritual. Portadores de luz que guían a otros tras sanar sus propias tragedias.',
+  22:'Maestro de las Emociones y Constructor. Capacidad de materializar grandes visiones. Misión: comunicar con amor.',
+  33:'Maestro Crístico y Compasión. La frecuencia más elevada. Misión: unir a la humanidad para elevar la conciencia universal.'
+};
+
+const historial=[];
+
+function limpiar_str(s){return s.toUpperCase().replace(/[^A-ZÑ]/g,'');}
+
+function reducirSimple(n){
+  while(n>9&&!MAESTROS.has(n)){
+    let s=0; String(n).split('').forEach(d=>s+=+d); n=s;
+  }
+  return n;
+}
+
+function reducir(n){
+  if(MAESTROS.has(n)) return{comp:n,red:n,tipo:'maestro'};
+  if(n>=12&&n<=30&&KARMAS[n]) return{comp:n,red:reducirSimple(n),tipo:KS.has(n)?'karma':DS.has(n)?'dharma':'compuesto'};
+  if(n<=9) return{comp:n,red:n,tipo:'simple'};
+  return{comp:n,red:reducirSimple(n),tipo:'compuesto'};
+}
+
+function getTipo(info){
+  if(info.tipo==='karma') return`<span class="tag tag-k">(K)</span>`;
+  if(info.tipo==='dharma') return`<span class="tag tag-d">(D)</span>`;
+  if(info.tipo==='maestro') return`<span class="tag tag-m">(M)</span>`;
+  return'';
+}
+
+function getSig(info){
+  if(info.tipo==='maestro') return SIGNIF[info.red]||'';
+  if(info.tipo==='karma'||info.tipo==='dharma') return KARMAS[info.comp]||'';
+  return SIGNIF[info.red]||KARMAS[info.comp]||'';
+}
+
+function getSigRed(info){
+  return SIGNIF[info.red]||'';
+}
+
+function calcular(){
+  const entrada=document.getElementById('entrada').value.trim();
+  if(!entrada) return;
+
+  // Separar por palabras para mostrar desglose por palabra
+  const palabras=entrada.split(/\s+/).filter(x=>x);
+
+  let tabHtml='';
+  let pasosParts=[];
+  let totalGlobal=0;
+
+  palabras.forEach(palabra=>{
+    const letras=limpiar_str(palabra).split('');
+    if(letras.length===0) return;
+
+    const valores=letras.map(l=>({l,v:LETRAS[l]||0}));
+    const suma=valores.reduce((a,x)=>a+x.v,0);
+    const info=reducir(suma);
+    totalGlobal+=info.red;
+
+    // Tabla de esta palabra
+    tabHtml+=`<div style="margin-bottom:12px">`;
+    if(palabras.length>1) tabHtml+=`<div style="font-size:11px;color:#9b7bb8;font-family:sans-serif;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">${palabra}</div>`;
+    tabHtml+=`<table class="tabla"><tr>`;
+    valores.forEach(({l})=>tabHtml+=`<td class="tletra">${l}</td>`);
+    tabHtml+=`</tr><tr>`;
+    valores.forEach(({v})=>tabHtml+=`<td class="tnum">${v}</td>`);
+    tabHtml+=`</tr><tr><td colspan="${valores.length}" class="tsum">`;
+    if(info.tipo==='karma'||info.tipo==='dharma') tabHtml+=`${valores.map(x=>x.v).join('+')}=${info.comp}/${info.red}`;
+    else if(info.comp!==info.red) tabHtml+=`${valores.map(x=>x.v).join('+')}=${info.comp}→${info.red}`;
+    else tabHtml+=`${valores.map(x=>x.v).join('+')}=${info.red}`;
+    tabHtml+=`</td></tr></table></div>`;
+
+    if(palabras.length>1){
+      let dispPalabra=info.comp!==info.red?`${info.comp}/${info.red}`:String(info.red);
+      pasosParts.push(`<span>${palabra}:</span> ${dispPalabra}`);
+    }
+  });
+
+  document.getElementById('tabla-out').innerHTML=tabHtml;
+
+  // Calcular resultado final
+  const infoFinal=reducir(totalGlobal);
+
+  // Pasos
+  let pasosHtml='';
+  if(palabras.length>1){
+    pasosHtml=pasosParts.join(' &nbsp;+&nbsp; ');
+    pasosHtml+=` &nbsp;=&nbsp; <span>${totalGlobal}</span>`;
+    if(infoFinal.comp!==infoFinal.red) pasosHtml+=` → <span>${infoFinal.comp}/${infoFinal.red}</span>`;
+  }
+  document.getElementById('pasos-out').innerHTML=pasosHtml;
+
+  // Resultado
+  let numDisplay=infoFinal.comp!==infoFinal.red?`${infoFinal.comp}/${infoFinal.red}`:String(infoFinal.red);
+  let sig=getSig(infoFinal);
+  let sigRed=infoFinal.tipo==='karma'||infoFinal.tipo==='dharma'?getSigRed(infoFinal):'';
+  let tipoTag=getTipo(infoFinal);
+
+  let rHtml=`<div class="resultado-num">${numDisplay}</div>`;
+  rHtml+=`<div class="resultado-label">${entrada.toUpperCase()}</div>`;
+  if(tipoTag) rHtml+=`<div style="margin-top:8px">${tipoTag}</div>`;
+  if(sig) rHtml+=`<div class="resultado-sig">${sig}</div>`;
+  if(sigRed) rHtml+=`<div class="resultado-desc">${sigRed}</div>`;
+  document.getElementById('resultado-box').innerHTML=rHtml;
+
+  // Agregar al historial
+  historial.unshift({palabra:entrada,num:numDisplay,sig:sig||sigRed});
+  renderHistorial();
+
+  // Ausentes: números del 1 al 9 que no aparecen en la frase completa
+  const AUSENTES_INTERP={
+    1:'Hay que desarrollar el sentido de la cooperatividad, fuerza de voluntad, creatividad, dotes de liderazgo y autoestima.',
+    2:'Necesita aprender ser más diplomático y conciliador, cultivar el arte de ceder y tener consideración hacia los demás.',
+    3:'Precisa cultivar su habilidad para expresar sentimientos y evitar tendencia a la superficialidad.',
+    4:'Disciplina, método, concentración, sentido práctico de la vida y organización.',
+    5:'Superar el temor, la indecisión y la inclinación al aislamiento; hacerse más flexible y abrirse a los cambios.',
+    6:'Conseguir expresar más amor por los semejantes y controlar el egocentrismo.',
+    7:'Abrir la mente a las cuestiones filosóficas o espirituales; aprender a expresar emociones.',
+    8:'Aprender a emplear las energías de modo práctico; desarrollar olfato para los negocios.',
+    9:'La solidaridad y la preocupación por el bienestar ajeno debe convertirse en bandera.'
+  };
+
+  const todasLetras=palabras.join('');
+  const numerosPresentes=new Set(limpiar_str(todasLetras).split('').map(l=>LETRAS[l]||0));
+  const ausentes=[];
+  for(let i=1;i<=9;i++) if(!numerosPresentes.has(i)) ausentes.push(i);
+  const sumaAus=ausentes.length>0?ausentes.reduce((a,b)=>a+b,0):0;
+  const infoAus=ausentes.length>0?reducir(sumaAus):null;
+
+  let ausHtml='';
+  if(ausentes.length===0){
+    ausHtml='<div class="resultado-box" style="background:#f5f5f5;border-color:#ddd"><div class="resultado-num" style="font-size:32px;color:#aaa">—</div><div class="resultado-label">Sin ausentes · todos los números presentes</div></div>';
+  } else {
+    // Número(s) ausente(s) destacado como resultado
+    let ausNumDisplay=infoAus?(infoAus.comp!==infoAus.red?`${infoAus.comp}/${infoAus.red}`:String(infoAus.red)):'—';
+    let ausSig=infoAus?getSig(infoAus):'';
+    let ausSigRed=infoAus&&(infoAus.tipo==='karma'||infoAus.tipo==='dharma')?getSigRed(infoAus):'';
+    let ausTipoTag=infoAus?getTipo(infoAus):'';
+    // badges individuales
+    let badges=ausentes.map(a=>`<span class="ausente-badge">${a}</span>`).join('');
+    ausHtml+=`<div class="resultado-box" style="background:#f0e8ff;border-color:#c8a8e8">`;
+    ausHtml+=`<div style="display:flex;justify-content:center;gap:8px;margin-bottom:10px">${badges}</div>`;
+    ausHtml+=`<div class="resultado-label">Suma de ausentes</div>`;
+    ausHtml+=`<div class="resultado-num">${ausNumDisplay}</div>`;
+    if(ausTipoTag) ausHtml+=`<div style="margin-top:6px">${ausTipoTag}</div>`;
+    if(ausSig) ausHtml+=`<div class="resultado-sig">${ausSig}</div>`;
+    if(ausSigRed) ausHtml+=`<div class="resultado-desc">${ausSigRed}</div>`;
+    ausHtml+=`</div>`;
+    // Interpretación de cada ausente
+    ausentes.forEach(a=>{
+      ausHtml+=`<div class="ausente-item">
+        <div class="an">Ausente ${a} · ${SIGNIF[a]?.split('.')[0]||''}</div>
+        <div class="ad">${AUSENTES_INTERP[a]||''}</div>
+      </div>`;
+    });
+  }
+  document.getElementById('ausentes-out').innerHTML=ausHtml;
+
+  // Resolución: resultado final + suma de ausentes
+  let resHtml='';
+  if(ausentes.length===0){
+    resHtml=`<div class="resultado-num">—</div><div class="resultado-label">Sin ausentes, no aplica</div>`;
+  } else {
+    const sumaResolucion=infoFinal.red+infoAus.red;
+    const infoRes=reducir(sumaResolucion);
+    let resNumDisplay=infoRes.comp!==infoRes.red?`${infoRes.comp}/${infoRes.red}`:String(infoRes.red);
+    let resSig=getSig(infoRes);
+    let resSigRed=infoRes.tipo==='karma'||infoRes.tipo==='dharma'?getSigRed(infoRes):'';
+    let resTipoTag=getTipo(infoRes);
+    resHtml=`<div class="resultado-num">${resNumDisplay}</div>`;
+    resHtml+=`<div class="resultado-label">Resultado (${infoFinal.red}) + Ausentes (${infoAus.red})</div>`;
+    if(resTipoTag) resHtml+=`<div style="margin-top:8px">${resTipoTag}</div>`;
+    if(resSig) resHtml+=`<div class="resultado-sig">${resSig}</div>`;
+    if(resSigRed) resHtml+=`<div class="resultado-desc">${resSigRed}</div>`;
+    document.getElementById('resolucion-box').innerHTML=resHtml;
+  }
+  document.getElementById('resolucion-box').innerHTML=resHtml;
+
+  document.getElementById('results').style.display='block';
+  document.getElementById('btn-limpiar').style.display='block';
+  document.getElementById('results').scrollIntoView({behavior:'smooth'});
+}
+
+function renderHistorial(){
+  if(historial.length<2) return;
+  document.getElementById('historial-card').style.display='block';
+  let html=historial.map(h=>`
+    <div class="historial-item">
+      <span class="hist-palabra">${h.palabra}</span>
+      <span class="hist-num"> → ${h.num}</span>
+      ${h.sig?`<div class="hist-sig">${h.sig}</div>`:''}
+    </div>`).join('');
+  document.getElementById('historial-list').innerHTML=html;
+}
+
+function limpiar(){
+  document.getElementById('entrada').value='';
+  document.getElementById('results').style.display='none';
+  document.getElementById('btn-limpiar').style.display='none';
+  document.getElementById('entrada').focus();
+}
+
+// Enter para calcular
+document.getElementById('entrada').addEventListener('keydown',function(e){
+  if(e.key==='Enter') calcular();
+});
+</script>
+</body>
+</html>
