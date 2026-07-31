@@ -55,6 +55,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
 
     <script src="https://www.paypal.com/sdk/js?client-id=BAAp4hlu_hzyRbvjuW4JpJKSBe608ajPimQOA-UdBRagZk436FHe1Wn6ARg2hsTP8OXiRJgWCAxVJAiYH8&components=hosted-buttons&disable-funding=venmo&currency=MXN"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAp4hlu_hzyRbvjuW4JpJKSBe608ajPimQOA-UdBRagZk436FHe1Wn6ARg2hsTP8OXiRJgWCAxVJAiYH8&components=hosted-buttons&disable-funding=venmo&currency=USD" data-namespace="paypalUSD"></script>
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBD63KT8eFB1Gc-JKsWiwVuWltNb-9N7xc&libraries=places&loading=async"></script>
 
     <style>
@@ -1848,8 +1849,14 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             <div class="payment-step" id="payment-step">
                 <p class="section-label" data-i18n="pay-label">Paso 1 de 2 · Pago seguro</p>
                 <h2 class="section-title" data-i18n="pay-title">Obtén Tu Mapa Ahora</h2>
-                <div class="cta-price">$415 MXN</div>
-                <p class="cta-price-note" data-i18n="pay-desc">Ficha completa · Paga con tarjeta o cuenta PayPal</p>
+
+                <div class="lang-selector currency-toggle" id="currencyToggle">
+                    <button type="button" class="lang-btn active" id="curr-mxn" onclick="setCurrency('mxn')">🇲🇽 MXN</button>
+                    <button type="button" class="lang-btn" id="curr-usd" onclick="setCurrency('usd')">🇺🇸 USD</button>
+                </div>
+
+                <div class="cta-price" id="cta-price">$415 MXN</div>
+                <p class="cta-price-note" id="cta-price-note" data-i18n="pay-desc">Ficha completa · Paga con tarjeta o cuenta PayPal</p>
 
                 <div class="cta-features">
                     <span class="cta-badge" data-i18n="cta-badge-1">✦ 7 Códigos Simbólicos</span>
@@ -1867,6 +1874,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                 </div>
 
                 <div id="paypal-container-KCU4KJ4U3TFEE"></div>
+                <div id="paypal-container-USD" style="display:none;"></div>
 
                 <div class="paypal-legend">
                     <div><span class="dot dot-yellow"></span><span data-i18n="paypal-amarillo">Botón amarillo · paga con tu cuenta de PayPal</span></div>
@@ -2236,7 +2244,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'footer-copy': '© 2026 Centro Ser Integral · Todos los derechos reservados',
             'pay-label': 'Paso 1 de 2 · Pago seguro',
             'pay-title': 'Obtén Tu Mapa Ahora',
-            'pay-desc': 'Ficha completa · <span class="price-highlight">$415 MXN</span><br>Paga con tarjeta o cuenta PayPal. Después del pago completarás tus datos de nacimiento para generar tu mapa.',
+            'pay-desc': 'Ficha completa · <span class="price-highlight">{PRECIO}</span><br>Paga con tarjeta o cuenta PayPal. Después del pago completarás tus datos de nacimiento para generar tu mapa.',
             'pay-aviso': '<strong>Antes de pagar, ten a la mano:</strong><br>Nombre completo, fecha de nacimiento, hora de nacimiento lo más exacta posible, ciudad/país de nacimiento y correo electrónico.<br><br><strong>¿Por qué pedimos la hora?</strong><br>La usamos para calcular elementos como el ascendente y el animal de la hora. Si no la sabes, escríbenos antes de pagar para orientarte.',
             'paypal-amarillo': 'Botón amarillo · paga con tu cuenta de PayPal',
             'paypal-azul': 'Botón azul · paga con tarjeta, sin cuenta de PayPal',
@@ -2394,7 +2402,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'footer-copy': '© 2026 Centro Ser Integral · All rights reserved',
             'pay-label': 'Step 1 of 2 · Secure payment',
             'pay-title': 'Get Your Map Now',
-            'pay-desc': 'Full profile · <span class="price-highlight">$415 MXN</span><br>Pay by card or PayPal. After payment, you’ll complete your birth details to generate your map.',
+            'pay-desc': 'Full profile · <span class="price-highlight">{PRECIO}</span><br>Pay by card or PayPal. After payment, you’ll complete your birth details to generate your map.',
             'pay-aviso': '<strong>Before paying, have ready:</strong><br>Full name, date of birth, birth time as exact as possible, city/country of birth and email.<br><br><strong>Why do we ask for the time?</strong><br>We use it to calculate elements like the rising sign and the hour animal. If you don’t know it, write to us before paying and we’ll help.',
             'paypal-amarillo': 'Yellow button · pay with your PayPal account',
             'paypal-azul': 'Blue button · pay by card, no PayPal account needed',
@@ -2470,10 +2478,43 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
 
         const btnLang = document.getElementById('btnLangToggle');
         if (btnLang) btnLang.innerHTML = lang === 'en' ? '🇺🇸 EN · 🇲🇽 es' : '🇲🇽 ES · 🇺🇸 en';
+
+        actualizarPrecio();
     }
 
     function toggleLangGlobal() {
         setLang(idiomaSeleccionado === 'es' ? 'en' : 'es');
+    }
+
+    let monedaSeleccionada = 'mxn';
+    const PRECIOS = {
+        mxn: { texto: '$415 MXN', spanHtml: '<span class="price-highlight">$415 MXN</span>' },
+        usd: { texto: '$28 USD',  spanHtml: '<span class="price-highlight">$28 USD</span>' }
+    };
+
+    function actualizarPrecio() {
+        const precio = PRECIOS[monedaSeleccionada];
+
+        const precioEl = document.getElementById('cta-price');
+        if (precioEl) precioEl.textContent = precio.texto;
+
+        const notaEl = document.getElementById('cta-price-note');
+        const t = i18n[idiomaSeleccionado];
+        if (notaEl && t['pay-desc']) {
+            notaEl.innerHTML = t['pay-desc'].replace('{PRECIO}', precio.spanHtml);
+        }
+
+        const contMXN = document.getElementById('paypal-container-KCU4KJ4U3TFEE');
+        const contUSD = document.getElementById('paypal-container-USD');
+        if (contMXN) contMXN.style.display = monedaSeleccionada === 'mxn' ? 'block' : 'none';
+        if (contUSD) contUSD.style.display = monedaSeleccionada === 'usd' ? 'block' : 'none';
+    }
+
+    function setCurrency(moneda) {
+        monedaSeleccionada = moneda;
+        document.getElementById('curr-mxn').classList.toggle('active', moneda === 'mxn');
+        document.getElementById('curr-usd').classList.toggle('active', moneda === 'usd');
+        actualizarPrecio();
     }
 
     let audioActivo = false;
@@ -2695,6 +2736,26 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         const container = document.getElementById('paypal-container-KCU4KJ4U3TFEE');
         if (container) {
             container.innerHTML = '<button onclick="mostrarFormulario()" style="margin-top:16px;padding:14px 28px;background:linear-gradient(135deg,var(--gold),var(--copper));border:none;color:var(--dark-bg);border-radius:50px;font-family:Cinzel,serif;font-size:15px;cursor:pointer;width:100%">✦ Modo prueba · Ir al formulario</button>';
+        }
+    }
+
+    try {
+        paypalUSD.HostedButtons({
+            hostedButtonId: "2YB5PU2WDW5GY",
+            onApprove: function(data) {
+                try {
+                    mostrarFormulario();
+                } catch(err) {
+                    console.error('Error al mostrar formulario tras pago:', err);
+                    window.location.href = window.location.pathname + '?pagado=si';
+                }
+            }
+        }).render("#paypal-container-USD");
+    } catch(e) {
+        console.warn('PayPal USD no disponible:', e);
+        const containerUSD = document.getElementById('paypal-container-USD');
+        if (containerUSD) {
+            containerUSD.innerHTML = '<button onclick="mostrarFormulario()" style="margin-top:16px;padding:14px 28px;background:linear-gradient(135deg,var(--gold),var(--copper));border:none;color:var(--dark-bg);border-radius:50px;font-family:Cinzel,serif;font-size:15px;cursor:pointer;width:100%">✦ Modo prueba · Ir al formulario</button>';
         }
     }
 
