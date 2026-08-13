@@ -219,7 +219,7 @@ const SIGNIF={
   33:'Maestro Crístico y Compasión. La frecuencia más elevada. Misión: unir a la humanidad para elevar la conciencia universal.'
 };
 
-function limpiar_str(s){return s.toUpperCase().replace(/[^A-ZÑ]/g,'');}
+function limpiar_str(s){return s.toUpperCase().replace(/[ÁÀÄÂ]/g,'A').replace(/[ÉÈËÊ]/g,'E').replace(/[ÍÌÏÎ]/g,'I').replace(/[ÓÒÖÔ]/g,'O').replace(/[ÚÙÜÛ]/g,'U').replace(/[^A-ZÑ]/g,'');}
 function sumaDigitos(n){let s=0;String(n).split('').forEach(d=>s+=+d);return s;}
 function reducirSimple(n){while(n>9&&!MAESTROS.has(n)){let s=0;String(n).split('').forEach(d=>s+=+d);n=s;}return n;}
 function reducir(n){
