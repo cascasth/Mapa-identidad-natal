@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numerología del Nombre</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia',serif;background:#f5f0eb;color:#2d2d2d;min-height:100vh;padding:20px}
+.app{max-width:960px;margin:0 auto}
+h1{text-align:center;font-size:26px;font-weight:600;color:#5a3e6b;margin-bottom:4px;letter-spacing:1px}
+.sub{text-align:center;font-size:13px;color:#8a7a9a;margin-bottom:24px;font-family:sans-serif}
+.card{background:#fff;border-radius:12px;border:1px solid #e0d5f0;padding:20px;margin-bottom:16px}
+.card h2{font-size:15px;font-weight:600;color:#5a3e6b;margin-bottom:14px;font-family:sans-serif;letter-spacing:.5px;text-transform:uppercase}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.field{flex:1;min-width:140px}
+label{display:block;font-size:10px;color:#8a7a9a;margin-bottom:4px;font-family:sans-serif;text-transform:uppercase;letter-spacing:.5px}
+input,select{width:100%;padding:8px 10px;border:1px solid #d8cce8;border-radius:8px;font-size:14px;font-family:sans-serif;background:#faf8ff;color:#2d2d2d;outline:none}
+input:focus,select:focus{border-color:#9b7bb8}
+.btn{display:block;width:100%;padding:13px;background:#5a3e6b;color:#fff;border:none;border-radius:10px;font-size:15px;font-family:sans-serif;cursor:pointer;letter-spacing:.5px;margin-top:12px}
+.btn:hover{background:#7a5a8f}
+.btn-secondary{background:#fff;color:#5a3e6b;border:1px solid #c0a0e0;margin-top:8px}
+.btn-secondary:hover{background:#f5f0fb}
+.results{display:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.grid2{grid-template-columns:1fr 1fr}}
+.item{background:#faf8ff;border:1px solid #e0d5f0;border-radius:8px;padding:10px 14px}
+.item .lbl{font-size:10px;color:#9b7bb8;font-family:sans-serif;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.item .val{font-size:20px;font-weight:700;color:#5a3e6b;line-height:1.2}
+.item .desc{font-size:11px;color:#8a7a9a;font-family:sans-serif;margin-top:3px}
+.tabla-wrap{overflow-x:auto;margin-bottom:10px}
+.tabla-nombre{border-collapse:collapse;font-size:12px;font-family:monospace;margin-bottom:10px;white-space:nowrap}
+.tabla-nombre td{padding:5px 8px;border:1px solid #e0d5f0;text-align:center}
+.letra{background:#f0e8ff;font-weight:700;color:#5a3e6b}
+.nnum{background:#faf8ff;color:#5a3e6b}
+.subtot{background:#e8dff5;font-weight:700;color:#3d2c52;text-align:left!important;padding-left:10px}
+.ausentes-list{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.ausente-badge{background:#ede4f7;color:#5a3e6b;border-radius:20px;padding:3px 12px;font-size:14px;font-weight:700;font-family:sans-serif}
+.persona-header{text-align:center;font-size:20px;color:#5a3e6b;font-weight:700;margin-bottom:4px}
+.persona-sub{text-align:center;font-size:13px;color:#8a7a9a;font-family:sans-serif;margin-bottom:16px}
+hr{border:none;border-top:1px solid #e0d5f0;margin:12px 0}
+@media print{
+  .no-print{display:none!important}
+  .card{break-inside:avoid;border:1px solid #ccc}
+  body{background:#fff}
+  .app{max-width:100%}
+}
+</style>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xjfjiflf3z");
+</script>
+
+</head>
+<body>
+<div class="app">
+  <h1>✦ Numerología del Nombre ✦</h1>
+  <p class="sub">Solo el nombre · resultados sin interpretación</p>
+
+  <div class="card no-print">
+    <h2>Datos de la persona</h2>
+    <div class="row">
+      <div class="field"><label>Nombre(s)</label><input id="nombres" placeholder="ej. Ana Sofía"/></div>
+      <div class="field"><label>Apellido paterno</label><input id="ap1" placeholder="ej. Ramírez"/></div>
+      <div class="field"><label>Apellido materno</label><input id="ap2" placeholder="ej. López"/></div>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <div class="field"><label>Sexo</label>
+        <select id="sexo"><option value="F">Femenino</option><option value="M">Masculino</option></select>
+      </div>
+    </div>
+    <button class="btn" onclick="calcular()">Calcular numerología del nombre</button>
+    <button class="btn btn-secondary no-print" id="btn-imprimir" style="display:none" onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
+    <button class="btn btn-secondary no-print" id="btn-nuevo" style="display:none" onclick="limpiar()">↺ Calcular otra persona</button>
+  </div>
+
+  <div class="results" id="results">
+
+    <div class="card">
+      <div class="persona-header" id="persona-nombre-header"></div>
+      <div class="persona-sub" id="persona-sexo-header"></div>
+      <hr>
+
+      <h2>Tabla del nombre</h2>
+      <div id="tabla-out"></div>
+
+      <h2 style="margin-top:16px">Cálculos del nombre</h2>
+      <div class="grid2" id="grid-nombre" style="margin-top:8px"></div>
+
+      <div style="margin-top:12px">
+        <div class="lbl" style="font-size:10px;color:#9b7bb8;font-family:sans-serif;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Ausentes</div>
+        <div class="ausentes-list" id="ausentes-out"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const LETRAS={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8,'Ñ':5};
+const VOCALES=new Set(['A','E','I','O','U']);
+const MAESTROS=new Set([10,11,22,33]);
+const KARMAS={
+  12:1,13:1,14:1,15:1,16:1,17:1,18:1,19:1,20:1,21:1,22:1,23:1,24:1,25:1,26:1,27:1,28:1,29:1,30:1,31:1
+};
+
+function limpiar_str(s){return s.toUpperCase().replace(/[ÁÀÄÂ]/g,'A').replace(/[ÉÈËÊ]/g,'E').replace(/[ÍÌÏÎ]/g,'I').replace(/[ÓÒÖÔ]/g,'O').replace(/[ÚÙÜÛ]/g,'U').replace(/[^A-ZÑ]/g,'');}
+function reducirSimple(n){while(n>9&&!MAESTROS.has(n)){let s=0;String(n).split('').forEach(d=>s+=+d);n=s;}return n;}
+function reducir(n){
+  while(n>30&&!MAESTROS.has(n)){
+    let s=0;
+    String(n).split('').forEach(d=>s+=+d);
+    n=s;
+  }
+  if(MAESTROS.has(n))return{comp:n,red:n,tipo:'maestro'};
+  const KS=new Set([12,13,14,15,16,19,20]);
+  const DS=new Set([17,18,26,27]);
+  if(n>=12&&n<=30&&KARMAS[n])return{comp:n,red:reducirSimple(n),tipo:KS.has(n)?'karma':DS.has(n)?'dharma':'compuesto'};
+  if(n<=9)return{comp:n,red:n,tipo:'simple'};
+  return{comp:n,red:reducirSimple(n),tipo:'compuesto'};
+}
+function display(info){
+  if(!info)return'—';
+  if(info.tipo==='maestro')return String(info.comp);
+  if(info.tipo==='karma')return info.comp+'/'+info.red+' (K)';
+  if(info.tipo==='dharma')return info.comp+'/'+info.red+' (D)';
+  if(info.comp!==info.red)return info.comp+'/'+info.red;
+  return String(info.red);
+}
+function valorPalabra(word){
+  let letras=limpiar_str(word).split('');
+  let arr=letras.map(l=>({l,v:LETRAS[l]||0}));
+  let suma=arr.reduce((a,x)=>a+x.v,0);
+  return{letras:arr,suma,info:reducir(suma)};
+}
+function itm(lbl,v,d){
+  let isKarma=v&&v.includes('(K)');
+  let isDharma=v&&v.includes('(D)');
+  let style=isKarma?'background:#fff8ee;border-color:#e8c97a;':isDharma?'background:#eefaf6;border-color:#7acbb0;':'';
+  let valHtml=isKarma
+    ?v.replace(' (K)','')+'<span style="font-size:12px;font-weight:600;color:#b8860b;font-family:sans-serif;margin-left:4px">(K)</span>'
+    :isDharma
+    ?v.replace(' (D)','')+'<span style="font-size:12px;font-weight:600;color:#2a9d7c;font-family:sans-serif;margin-left:4px">(D)</span>'
+    :v;
+  return`<div class="item" style="${style}"><div class="lbl">${lbl}</div><div class="val">${valHtml}</div><div class="desc">${d}</div></div>`;
+}
+
+function calcular(){
+  let nombres=document.getElementById('nombres').value.trim();
+  let ap1=document.getElementById('ap1').value.trim();
+  let ap2=document.getElementById('ap2').value.trim();
+  let sexo=document.getElementById('sexo').value;
+
+  let palabras=[...nombres.split(/\s+/).filter(x=>x)];
+  if(ap1)palabras.push(ap1);
+  if(ap2)palabras.push(ap2);
+  let valPal=palabras.map(p=>valorPalabra(p));
+
+  // Misión
+  let sumaMision=valPal.reduce((a,v)=>a+v.info.red,0);
+  let mision=reducir(sumaMision);
+
+  // Mente
+  let nombresPila=nombres.split(/\s+/).filter(x=>x);
+  let sumaMente=nombresPila.map(p=>valorPalabra(p)).reduce((a,v)=>a+v.info.red,0);
+  let mente=reducir(sumaMente);
+
+  // Linaje
+  let linajePal=sexo==='F'?ap2:ap1;
+  let linaje=linajePal?valorPalabra(linajePal):null;
+
+  // Corazón y Expresión
+  let todasLetras=palabras.join('');
+  let todas=limpiar_str(todasLetras).split('');
+  let sumaCorazon=todas.filter(l=>VOCALES.has(l)).reduce((a,l)=>a+(LETRAS[l]||0),0);
+  let corazon=reducir(sumaCorazon);
+  let sumaExpr=todas.filter(l=>!VOCALES.has(l)).reduce((a,l)=>a+(LETRAS[l]||0),0);
+  let expresion=reducir(sumaExpr);
+
+  // Ausentes
+  let presentes=new Set(todas.map(l=>LETRAS[l]||0));
+  let ausentes=[];
+  for(let i=1;i<=9;i++)if(!presentes.has(i))ausentes.push(i);
+
+  // Header
+  document.getElementById('persona-nombre-header').textContent=palabras.join(' ');
+  document.getElementById('persona-sexo-header').textContent=sexo==='F'?'Femenino':'Masculino';
+
+  // Tabla nombre (solo desglose numérico, sin significados)
+  let tabHtml='<div class="tabla-wrap">';
+  valPal.forEach((vp,i)=>{
+    let info=vp.info;
+    tabHtml+=`<table class="tabla-nombre" style="margin-bottom:6px"><tr>`;
+    vp.letras.forEach(({l})=>tabHtml+=`<td class="letra">${l}</td>`);
+    tabHtml+=`</tr><tr>`;
+    vp.letras.forEach(({v})=>tabHtml+=`<td class="nnum">${v}</td>`);
+    tabHtml+=`</tr><tr><td colspan="${vp.letras.length}" class="subtot">${palabras[i]}: ${display(info)}</td></tr></table>`;
+  });
+  tabHtml+='</div>';
+  tabHtml+=`<div style="font-family:sans-serif;font-size:13px;color:#5a3e6b;margin-top:4px"><strong>Misión de Vida:</strong> ${valPal.map(v=>display(v.info)).join(' + ')} = <strong>${display(mision)}</strong></div>`;
+  document.getElementById('tabla-out').innerHTML=tabHtml;
+
+  // Grid nombre
+  let gn='';
+  gn+=itm('Misión de Vida',display(mision),`Suma de todo el nombre: ${sumaMision}`);
+  gn+=itm('Mente',display(mente),'Suma de nombre(s) de pila');
+  if(linaje)gn+=itm('Linaje ('+(sexo==='F'?'ap. materno':'ap. paterno')+')',display(linaje.info),linajePal);
+  gn+=itm('Corazón (vocales)',display(corazon),todas.filter(l=>VOCALES.has(l)).join(' ')||'—');
+  gn+=itm('Expresión (consonantes)',display(expresion),'Suma de consonantes');
+  document.getElementById('grid-nombre').innerHTML=gn;
+
+  // Ausentes (solo badges, sin interpretación)
+  if(ausentes.length>0){
+    document.getElementById('ausentes-out').innerHTML=ausentes.map(a=>`<span class="ausente-badge">${a}</span>`).join('');
+  } else {
+    document.getElementById('ausentes-out').innerHTML='<span style="font-size:13px;color:#8a7a9a;font-family:sans-serif;font-style:italic">Ninguno</span>';
+  }
+
+  document.getElementById('results').style.display='block';
+  document.getElementById('btn-imprimir').style.display='block';
+  document.getElementById('btn-nuevo').style.display='block';
+  document.getElementById('results').scrollIntoView({behavior:'smooth'});
+}
+
+function limpiar(){
+  ['nombres','ap1','ap2'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('results').style.display='none';
+  document.getElementById('btn-imprimir').style.display='none';
+  document.getElementById('btn-nuevo').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
