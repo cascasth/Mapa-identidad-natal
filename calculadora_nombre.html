@@ -59,7 +59,7 @@ hr{border:none;border-top:1px solid #e0d5f0;margin:12px 0}
 <body>
 <div class="app">
   <h1>✦ Numerología del Nombre ✦</h1>
-  <p class="sub">Solo el nombre · resultados sin interpretación</p>
+  <p class="sub">Solo el desglose de cada nombre y apellido</p>
 
   <div class="card no-print">
     <h2>Datos de la persona</h2>
@@ -67,11 +67,6 @@ hr{border:none;border-top:1px solid #e0d5f0;margin:12px 0}
       <div class="field"><label>Nombre(s)</label><input id="nombres" placeholder="ej. Ana Sofía"/></div>
       <div class="field"><label>Apellido paterno</label><input id="ap1" placeholder="ej. Ramírez"/></div>
       <div class="field"><label>Apellido materno</label><input id="ap2" placeholder="ej. López"/></div>
-    </div>
-    <div class="row" style="margin-top:10px">
-      <div class="field"><label>Sexo</label>
-        <select id="sexo"><option value="F">Femenino</option><option value="M">Masculino</option></select>
-      </div>
     </div>
     <button class="btn" onclick="calcular()">Calcular numerología del nombre</button>
     <button class="btn btn-secondary no-print" id="btn-imprimir" style="display:none" onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
@@ -82,19 +77,10 @@ hr{border:none;border-top:1px solid #e0d5f0;margin:12px 0}
 
     <div class="card">
       <div class="persona-header" id="persona-nombre-header"></div>
-      <div class="persona-sub" id="persona-sexo-header"></div>
       <hr>
 
       <h2>Tabla del nombre</h2>
       <div id="tabla-out"></div>
-
-      <h2 style="margin-top:16px">Cálculos del nombre</h2>
-      <div class="grid2" id="grid-nombre" style="margin-top:8px"></div>
-
-      <div style="margin-top:12px">
-        <div class="lbl" style="font-size:10px;color:#9b7bb8;font-family:sans-serif;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Ausentes</div>
-        <div class="ausentes-list" id="ausentes-out"></div>
-      </div>
     </div>
 
   </div>
@@ -102,7 +88,6 @@ hr{border:none;border-top:1px solid #e0d5f0;margin:12px 0}
 
 <script>
 const LETRAS={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8,'Ñ':5};
-const VOCALES=new Set(['A','E','I','O','U']);
 const MAESTROS=new Set([10,11,22,33]);
 const KARMAS={
   12:1,13:1,14:1,15:1,16:1,17:1,18:1,19:1,20:1,21:1,22:1,23:1,24:1,25:1,26:1,27:1,28:1,29:1,30:1,31:1
@@ -137,60 +122,20 @@ function valorPalabra(word){
   let suma=arr.reduce((a,x)=>a+x.v,0);
   return{letras:arr,suma,info:reducir(suma)};
 }
-function itm(lbl,v,d){
-  let isKarma=v&&v.includes('(K)');
-  let isDharma=v&&v.includes('(D)');
-  let style=isKarma?'background:#fff8ee;border-color:#e8c97a;':isDharma?'background:#eefaf6;border-color:#7acbb0;':'';
-  let valHtml=isKarma
-    ?v.replace(' (K)','')+'<span style="font-size:12px;font-weight:600;color:#b8860b;font-family:sans-serif;margin-left:4px">(K)</span>'
-    :isDharma
-    ?v.replace(' (D)','')+'<span style="font-size:12px;font-weight:600;color:#2a9d7c;font-family:sans-serif;margin-left:4px">(D)</span>'
-    :v;
-  return`<div class="item" style="${style}"><div class="lbl">${lbl}</div><div class="val">${valHtml}</div><div class="desc">${d}</div></div>`;
-}
-
 function calcular(){
   let nombres=document.getElementById('nombres').value.trim();
   let ap1=document.getElementById('ap1').value.trim();
   let ap2=document.getElementById('ap2').value.trim();
-  let sexo=document.getElementById('sexo').value;
 
   let palabras=[...nombres.split(/\s+/).filter(x=>x)];
   if(ap1)palabras.push(ap1);
   if(ap2)palabras.push(ap2);
   let valPal=palabras.map(p=>valorPalabra(p));
 
-  // Misión
-  let sumaMision=valPal.reduce((a,v)=>a+v.info.red,0);
-  let mision=reducir(sumaMision);
-
-  // Mente
-  let nombresPila=nombres.split(/\s+/).filter(x=>x);
-  let sumaMente=nombresPila.map(p=>valorPalabra(p)).reduce((a,v)=>a+v.info.red,0);
-  let mente=reducir(sumaMente);
-
-  // Linaje
-  let linajePal=sexo==='F'?ap2:ap1;
-  let linaje=linajePal?valorPalabra(linajePal):null;
-
-  // Corazón y Expresión
-  let todasLetras=palabras.join('');
-  let todas=limpiar_str(todasLetras).split('');
-  let sumaCorazon=todas.filter(l=>VOCALES.has(l)).reduce((a,l)=>a+(LETRAS[l]||0),0);
-  let corazon=reducir(sumaCorazon);
-  let sumaExpr=todas.filter(l=>!VOCALES.has(l)).reduce((a,l)=>a+(LETRAS[l]||0),0);
-  let expresion=reducir(sumaExpr);
-
-  // Ausentes
-  let presentes=new Set(todas.map(l=>LETRAS[l]||0));
-  let ausentes=[];
-  for(let i=1;i<=9;i++)if(!presentes.has(i))ausentes.push(i);
-
   // Header
   document.getElementById('persona-nombre-header').textContent=palabras.join(' ');
-  document.getElementById('persona-sexo-header').textContent=sexo==='F'?'Femenino':'Masculino';
 
-  // Tabla nombre (solo desglose numérico, sin significados)
+  // Tabla nombre (solo desglose numérico por nombre/apellido, sin significados ni sumas globales)
   let tabHtml='<div class="tabla-wrap">';
   valPal.forEach((vp,i)=>{
     let info=vp.info;
@@ -201,24 +146,7 @@ function calcular(){
     tabHtml+=`</tr><tr><td colspan="${vp.letras.length}" class="subtot">${palabras[i]}: ${display(info)}</td></tr></table>`;
   });
   tabHtml+='</div>';
-  tabHtml+=`<div style="font-family:sans-serif;font-size:13px;color:#5a3e6b;margin-top:4px"><strong>Misión de Vida:</strong> ${valPal.map(v=>display(v.info)).join(' + ')} = <strong>${display(mision)}</strong></div>`;
   document.getElementById('tabla-out').innerHTML=tabHtml;
-
-  // Grid nombre
-  let gn='';
-  gn+=itm('Misión de Vida',display(mision),`Suma de todo el nombre: ${sumaMision}`);
-  gn+=itm('Mente',display(mente),'Suma de nombre(s) de pila');
-  if(linaje)gn+=itm('Linaje ('+(sexo==='F'?'ap. materno':'ap. paterno')+')',display(linaje.info),linajePal);
-  gn+=itm('Corazón (vocales)',display(corazon),todas.filter(l=>VOCALES.has(l)).join(' ')||'—');
-  gn+=itm('Expresión (consonantes)',display(expresion),'Suma de consonantes');
-  document.getElementById('grid-nombre').innerHTML=gn;
-
-  // Ausentes (solo badges, sin interpretación)
-  if(ausentes.length>0){
-    document.getElementById('ausentes-out').innerHTML=ausentes.map(a=>`<span class="ausente-badge">${a}</span>`).join('');
-  } else {
-    document.getElementById('ausentes-out').innerHTML='<span style="font-size:13px;color:#8a7a9a;font-family:sans-serif;font-style:italic">Ninguno</span>';
-  }
 
   document.getElementById('results').style.display='block';
   document.getElementById('btn-imprimir').style.display='block';
