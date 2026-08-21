@@ -234,6 +234,11 @@ function reducirSimple(n){
 }
 
 function reducir(n){
+  while(n>30&&!MAESTROS.has(n)){
+    let s=0;
+    String(n).split('').forEach(d=>s+=+d);
+    n=s;
+  }
   if(MAESTROS.has(n)) return{comp:n,red:n,tipo:'maestro'};
   if(n>=12&&n<=30&&KARMAS[n]) return{comp:n,red:reducirSimple(n),tipo:KS.has(n)?'karma':DS.has(n)?'dharma':'compuesto'};
   if(n<=9) return{comp:n,red:n,tipo:'simple'};
@@ -267,6 +272,7 @@ function calcular(){
   let tabHtml='';
   let pasosParts=[];
   let totalGlobal=0;
+  let infos=[];
 
   palabras.forEach(palabra=>{
     const letras=limpiar_str(palabra).split('');
@@ -276,6 +282,7 @@ function calcular(){
     const suma=valores.reduce((a,x)=>a+x.v,0);
     const info=reducir(suma);
     totalGlobal+=info.red;
+    infos.push(info);
 
     // Tabla de esta palabra
     tabHtml+=`<div style="margin-bottom:12px">`;
@@ -298,8 +305,9 @@ function calcular(){
 
   document.getElementById('tabla-out').innerHTML=tabHtml;
 
-  // Calcular resultado final
-  const infoFinal=reducir(totalGlobal);
+  // Calcular resultado final: una sola palabra conserva su propio karma/dharma;
+  // varias palabras se combinan sumando sus dígitos reducidos y reduciendo de nuevo.
+  const infoFinal=infos.length===1?infos[0]:reducir(totalGlobal);
 
   // Pasos
   let pasosHtml='';
