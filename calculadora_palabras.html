@@ -234,7 +234,7 @@ function reducirSimple(n){
 }
 
 function reducir(n){
-  while(n>30&&!MAESTROS.has(n)){
+  while(n>31&&!MAESTROS.has(n)){
     let s=0;
     String(n).split('').forEach(d=>s+=+d);
     n=s;

@@ -516,7 +516,7 @@ function limpiar_str(s){return s.toUpperCase().replace(/[ÁÀÄÂ]/g,'A').replac
 function sumaDigitos(n){let s=0;String(n).split('').forEach(d=>s+=+d);return s;}
 function reducirSimple(n){while(n>9&&!MAESTROS.has(n)){let s=0;String(n).split('').forEach(d=>s+=+d);n=s;}return n;}
 function reducir(n){
-  while(n>30&&!MAESTROS.has(n)){
+  while(n>31&&!MAESTROS.has(n)){
     let s=0;
     String(n).split('').forEach(d=>s+=+d);
     n=s;
