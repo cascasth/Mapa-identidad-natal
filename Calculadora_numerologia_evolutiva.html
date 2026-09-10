@@ -362,7 +362,7 @@ function calcular(){
   let programa=reducir(reducirSimple(dia)+reducirSimple(mes));
   let arbol=reducir(sumaDigitos(anio));
   let pasado=reducir(sumaDigitos(anio%100));
-  let base=reducir(programa.red+arbol.red);
+  let base=reducir(reducirSimple(dia)+reducirSimple(mes)+arbol.red);
   let sombra=reducir(base.red+pasado.red);
   let camino=reducir(mision.red+base.red);
   let equilibrio=ausentes.length>0?reducir(sumaAus+camino.red):null;
