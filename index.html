@@ -1906,6 +1906,16 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                     <input type="email" id="email" placeholder="correo@ejemplo.com" required>
                 </div>
 
+                <div class="field">
+                    <label data-i18n="lbl-genero">Género con el que quieres que se redacte tu Mapa *</label>
+                    <select id="genero" required>
+                        <option value="neutro" data-i18n="opt-genero-neutro">Neutro (mejor esfuerzo, no garantizado)</option>
+                        <option value="femenino" data-i18n="opt-genero-femenino">Femenino</option>
+                        <option value="masculino" data-i18n="opt-genero-masculino">Masculino</option>
+                    </select>
+                    <div class="hint" data-i18n="hint-genero">El lenguaje neutro depende de que la IA lo sostenga en un texto largo; si prefieres gramática siempre consistente, elige Femenino o Masculino.</div>
+                </div>
+
                 <div class="section-label" data-i18n="form-fecha">Fecha y hora de nacimiento</div>
 
                 <div class="row3">
@@ -1968,6 +1978,10 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                     <div class="confirm-row">
                         <span class="confirm-label" data-i18n="conf-lbl-email">Correo</span>
                         <span class="confirm-value" id="conf-email"></span>
+                    </div>
+                    <div class="confirm-row">
+                        <span class="confirm-label" data-i18n="conf-lbl-genero">Género</span>
+                        <span class="confirm-value" id="conf-genero"></span>
                     </div>
                     <div class="confirm-row">
                         <span class="confirm-label" data-i18n="conf-lbl-fecha">Fecha</span>
@@ -2255,6 +2269,11 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'form-lugar': 'Lugar de nacimiento',
             'lbl-nombre': 'Nombre completo *',
             'lbl-email': 'Correo electrónico *',
+            'lbl-genero': 'Género con el que quieres que se redacte tu Mapa *',
+            'opt-genero-neutro': 'Neutro (mejor esfuerzo, no garantizado)',
+            'opt-genero-femenino': 'Femenino',
+            'opt-genero-masculino': 'Masculino',
+            'hint-genero': 'El lenguaje neutro depende de que la IA lo sostenga en un texto largo; si prefieres gramática siempre consistente, elige Femenino o Masculino.',
             'lbl-dia': 'Día *',
             'lbl-mes': 'Mes *',
             'lbl-anio': 'Año *',
@@ -2270,6 +2289,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'conf-heading': '¿Todo está correcto?',
             'conf-lbl-nombre': 'Nombre',
             'conf-lbl-email': 'Correo',
+            'conf-lbl-genero': 'Género',
             'conf-lbl-fecha': 'Fecha',
             'conf-lbl-hora': 'Hora',
             'conf-lbl-ciudad': 'Ciudad',
@@ -2413,6 +2433,11 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'form-lugar': 'Place of birth',
             'lbl-nombre': 'Full name *',
             'lbl-email': 'Email *',
+            'lbl-genero': 'Grammatical gender for your Map *',
+            'opt-genero-neutro': 'Neutral (best effort, not guaranteed)',
+            'opt-genero-femenino': 'Feminine',
+            'opt-genero-masculino': 'Masculine',
+            'hint-genero': 'Neutral wording depends on the AI sustaining it across a long text; if you prefer consistent grammar, choose Feminine or Masculine.',
             'lbl-dia': 'Day *',
             'lbl-mes': 'Month *',
             'lbl-anio': 'Year *',
@@ -2428,6 +2453,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'conf-heading': 'Is everything correct?',
             'conf-lbl-nombre': 'Name',
             'conf-lbl-email': 'Email',
+            'conf-lbl-genero': 'Gender',
             'conf-lbl-fecha': 'Date',
             'conf-lbl-hora': 'Time',
             'conf-lbl-ciudad': 'City',
@@ -2577,6 +2603,8 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
 
         const nombre   = document.getElementById('nombre').value.trim();
         const email    = document.getElementById('email').value.trim();
+        const generoEl = document.getElementById('genero');
+        const genero   = generoEl.value;
         const dia      = parseInt(document.getElementById('dia').value);
         const mes      = parseInt(document.getElementById('mes').value);
         const anio     = parseInt(document.getElementById('anio').value);
@@ -2584,7 +2612,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         const minutos  = parseInt(document.getElementById('minutos').value) || 0;
         const ciudad   = document.getElementById('ciudad').value.trim();
 
-        if (!nombre || !email || !dia || !mes || !anio || isNaN(hora) || !ciudad) {
+        if (!nombre || !email || !genero || !dia || !mes || !anio || isNaN(hora) || !ciudad) {
             errBanner.textContent = i18n[idiomaSeleccionado]['err-required'];
             errBanner.classList.add('visible');
             return;
@@ -2628,6 +2656,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
 
         document.getElementById('conf-nombre').textContent = nombre;
         document.getElementById('conf-email').textContent  = email;
+        document.getElementById('conf-genero').textContent = generoEl.options[generoEl.selectedIndex].textContent;
         document.getElementById('conf-fecha').textContent  = fechaFmt;
         document.getElementById('conf-hora').textContent   = horaFmt + ' h';
         document.getElementById('conf-ciudad').textContent = ciudad;
@@ -2656,6 +2685,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
 
         const nombre     = document.getElementById('nombre').value.trim();
         const email      = document.getElementById('email').value.trim();
+        const genero     = document.getElementById('genero').value;
         const dia        = parseInt(document.getElementById('dia').value);
         const mes        = parseInt(document.getElementById('mes').value);
         const anio       = parseInt(document.getElementById('anio').value);
@@ -2682,7 +2712,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         document.querySelector('.confirm-btn-text').textContent = i18n[idiomaSeleccionado]['loading-send'];
 
         const payload = {
-            nombre, email, dia, mes, anio,
+            nombre, email, genero, dia, mes, anio,
             hora, minutos, ciudad,
             lat: ciudadLat,
             lng: ciudadLng,
