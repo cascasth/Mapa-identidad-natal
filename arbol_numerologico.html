@@ -116,6 +116,34 @@
     min-height: 40px;
   }
 
+  .tree > div > h3 {
+    text-align: center;
+  }
+
+  .lados {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .lado {
+    flex: 1 1 280px;
+    border: 1px dashed #d9c6f5;
+    border-radius: 14px;
+    padding: 10px;
+  }
+
+  .lado-titulo {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #8064a8;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 8px;
+  }
+
   .person-card {
     width: 260px;
     background: #faf7ff;
@@ -326,14 +354,7 @@
     </div>
     <div>
       <label>Relación</label>
-      <select id="relacion">
-        <option value="Padre">Padre</option>
-        <option value="Madre">Madre</option>
-        <option value="Persona Central">Persona Central</option>
-        <option value="Pareja">Pareja</option>
-        <option value="Hijo">Hijo</option>
-        <option value="Hija">Hija</option>
-      </select>
+      <select id="relacion"></select>
     </div>
     <div>
       <label>Sexo</label>
@@ -362,9 +383,25 @@
 
 <section class="tree-section">
   <h2>Árbol familiar</h2>
-  <p class="hint">Captura padre, madre, persona central, pareja e hijos. Las tarjetas se acomodan automáticamente por relación.</p>
+  <p class="hint">Captura desde los bisabuelos hasta los hijos. Las tarjetas se acomodan automáticamente por relación: el lado de papá a la izquierda y el lado de mamá a la derecha.</p>
 
   <div class="tree">
+    <div>
+      <h3>Bisabuelos</h3>
+      <div class="lados">
+        <div class="lado"><div class="lado-titulo">Lado de papá</div><div id="GeneracionBisabuelosPaternos" class="generation"></div></div>
+        <div class="lado"><div class="lado-titulo">Lado de mamá</div><div id="GeneracionBisabuelosMaternos" class="generation"></div></div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Abuelos</h3>
+      <div class="lados">
+        <div class="lado"><div class="lado-titulo">Lado de papá</div><div id="GeneracionAbuelosPaternos" class="generation"></div></div>
+        <div class="lado"><div class="lado-titulo">Lado de mamá</div><div id="GeneracionAbuelosMaternos" class="generation"></div></div>
+      </div>
+    </div>
+
     <div>
       <h3>Padres de la persona central</h3>
       <div id="GeneracionPadres" class="generation"></div>
@@ -787,22 +824,69 @@ function toggleDetalle(id){
   if(el)el.classList.toggle('visible');
 }
 
+/* Lista de relaciones: el orden de esta lista es el orden en el árbol y en la tabla.
+   El texto es lo que se guarda y se muestra en la tarjeta. */
+const RELACIONES=[
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'M',rel:'Bisabuelo paterno (papá del papá de mi papá)'},
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'F',rel:'Bisabuela paterna (mamá del papá de mi papá)'},
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'M',rel:'Bisabuelo paterno (papá de la mamá de mi papá)'},
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'F',rel:'Bisabuela paterna (mamá de la mamá de mi papá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'M',rel:'Bisabuelo materno (papá del papá de mi mamá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'F',rel:'Bisabuela materna (mamá del papá de mi mamá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'M',rel:'Bisabuelo materno (papá de la mamá de mi mamá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'F',rel:'Bisabuela materna (mamá de la mamá de mi mamá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosPaternos',sexo:'M',rel:'Abuelo paterno (papá de mi papá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosPaternos',sexo:'F',rel:'Abuela paterna (mamá de mi papá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosMaternos',sexo:'M',rel:'Abuelo materno (papá de mi mamá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosMaternos',sexo:'F',rel:'Abuela materna (mamá de mi mamá)'},
+  {grupo:'Padres',contenedor:'GeneracionPadres',sexo:'M',rel:'Padre'},
+  {grupo:'Padres',contenedor:'GeneracionPadres',sexo:'F',rel:'Madre'},
+  {grupo:'Persona central y pareja',contenedor:'GeneracionCentral',sexo:'',rel:'Persona Central'},
+  {grupo:'Persona central y pareja',contenedor:'GeneracionCentral',sexo:'',rel:'Pareja'},
+  {grupo:'Hijos',contenedor:'GeneracionHijos',sexo:'M',rel:'Hijo'},
+  {grupo:'Hijos',contenedor:'GeneracionHijos',sexo:'F',rel:'Hija'}
+];
+
+function buscarRelacion(relacion){
+  return RELACIONES.find(r=>r.rel===relacion);
+}
+
+function llenarSelectRelacion(){
+  const select=document.getElementById('relacion');
+  let html='',grupoActual='';
+  RELACIONES.forEach(r=>{
+    if(r.grupo!==grupoActual){
+      if(grupoActual)html+='</optgroup>';
+      html+=`<optgroup label="${r.grupo}">`;
+      grupoActual=r.grupo;
+    }
+    html+=`<option value="${r.rel}">${r.rel}</option>`;
+  });
+  html+='</optgroup>';
+  select.innerHTML=html;
+  select.value='Persona Central';
+  // Al elegir la relación, el sexo se pone solo (se puede cambiar a mano)
+  select.addEventListener('change',()=>{
+    const r=buscarRelacion(select.value);
+    if(r&&r.sexo)document.getElementById('sexo').value=r.sexo;
+  });
+}
+
 function obtenerContenedorPorRelacion(relacion){
-  if(relacion==='Padre'||relacion==='Madre')return'GeneracionPadres';
-  if(relacion==='Persona Central'||relacion==='Pareja')return'GeneracionCentral';
-  if(relacion==='Hijo'||relacion==='Hija')return'GeneracionHijos';
-  return'';
+  const r=buscarRelacion(relacion);
+  return r?r.contenedor:'';
 }
 
 function ordenRelaciones(a,b){
-  const orden={'Padre':1,'Madre':2,'Persona Central':3,'Pareja':4,'Hijo':5,'Hija':6};
-  return(orden[a.relacion]||99)-(orden[b.relacion]||99);
+  const ia=RELACIONES.findIndex(r=>r.rel===a.relacion);
+  const ib=RELACIONES.findIndex(r=>r.rel===b.relacion);
+  return(ia<0?99:ia)-(ib<0?99:ib);
 }
 
 function renderizar(){
-  document.getElementById('GeneracionPadres').innerHTML='';
-  document.getElementById('GeneracionCentral').innerHTML='';
-  document.getElementById('GeneracionHijos').innerHTML='';
+  [...new Set(RELACIONES.map(r=>r.contenedor))].forEach(id=>{
+    document.getElementById(id).innerHTML='';
+  });
   document.getElementById('tabla').innerHTML='';
 
   const personasOrdenadas=[...personas].sort(ordenRelaciones);
@@ -930,6 +1014,7 @@ function generarResumen(){
 }
 
 /* ════════ INICIO ════════ */
+llenarSelectRelacion();
 cargarLocal();
 renderizar();
 </script>
