@@ -95,7 +95,7 @@ export default function CierreArchivoPage() {
   const handleCta = () => {
     if (slide.isFinal) {
       trackEvent("InitiateCheckout");
-      window.location.href = "https://centroserintegral.org/#payment-step";
+      window.location.href = "https://centroserintegral.org/mapa-natal.html#payment-step";
     } else {
       setIdx(i => i + 1);
     }

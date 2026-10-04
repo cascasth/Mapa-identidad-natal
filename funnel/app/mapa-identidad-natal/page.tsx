@@ -116,7 +116,7 @@ export default function MapaIdentidadNatalPage() {
           <p className="text-slate-400 text-sm leading-relaxed">
             Una lectura digital que integra astrología, numerología, calendarios simbólicos, tarot, arquetipos, mantra personal y sello visual para ayudarte a observar tu identidad con más claridad.
           </p>
-          <a href="https://centroserintegral.org/#payment-step" target="_blank" rel="noopener noreferrer" style={ctaStyle} className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all text-center block">
+          <a href="https://centroserintegral.org/mapa-natal.html#payment-step" target="_blank" rel="noopener noreferrer" style={ctaStyle} className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all text-center block">
             Quiero recibir mi mapa
           </a>
           <p className="text-slate-500 text-xs">Entrega digital en minutos. Disponible en español o inglés.</p>
@@ -166,7 +166,7 @@ export default function MapaIdentidadNatalPage() {
               </div>
             ))}
           </div>
-          <a href="https://centroserintegral.org/#payment-step" target="_blank" rel="noopener noreferrer" style={ctaStyle} className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all mt-5 text-center block">
+          <a href="https://centroserintegral.org/mapa-natal.html#payment-step" target="_blank" rel="noopener noreferrer" style={ctaStyle} className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all mt-5 text-center block">
             Solicitar mi mapa personalizado
           </a>
         </Section>
@@ -244,7 +244,7 @@ export default function MapaIdentidadNatalPage() {
           <p className="text-slate-500 text-sm leading-relaxed">
             Recibe una lectura personalizada de tus 7 códigos simbólicos y úsala como herramienta de reflexión, journaling, meditación o regalo personal.
           </p>
-          <a href="https://centroserintegral.org/#payment-step" target="_blank" rel="noopener noreferrer" style={ctaStyle} className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all text-center block">
+          <a href="https://centroserintegral.org/mapa-natal.html#payment-step" target="_blank" rel="noopener noreferrer" style={ctaStyle} className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all text-center block">
             Recibir mi Mapa de Identidad Natal
           </a>
           <p className="text-slate-500 text-xs">Entrega digital automática. Incluye mapa completo + sello visual personalizado.</p>
@@ -256,7 +256,7 @@ export default function MapaIdentidadNatalPage() {
         <div className="fixed bottom-0 left-0 right-0 p-4 z-50 animate-fade-in"
           style={{ background: "linear-gradient(0deg, #0d0f1a 60%, transparent)" }}>
           <div className="max-w-sm mx-auto">
-            <a href="https://centroserintegral.org/#payment-step" target="_blank" rel="noopener noreferrer" style={ctaStyle} className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all shadow-2xl text-center block">
+            <a href="https://centroserintegral.org/mapa-natal.html#payment-step" target="_blank" rel="noopener noreferrer" style={ctaStyle} className="w-full py-4 rounded-2xl text-sm tracking-wide active:scale-95 transition-all shadow-2xl text-center block">
               Recibir mi Mapa de Identidad Natal
             </a>
           </div>
