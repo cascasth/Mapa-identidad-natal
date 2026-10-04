@@ -363,6 +363,8 @@
             white-space: nowrap;
             overflow: hidden;
             max-height: 70%;
+            line-height: 1.25;
+            text-align: center;
         }
 
         a.book { cursor: pointer; }
@@ -687,6 +689,9 @@
             a.book:hover, a.book:focus-visible { transform: translateY(-8px); }
             .ornament { margin: 0 10px; }
             .shelf-plaque span { font-size: 0.64rem; letter-spacing: 2px; padding: 0.38rem 1.7rem; }
+            /* libros pequeños: un poco más de lugar para el título entre las bandas */
+            .book:not(.tomo) .spine { padding: 13% 0; gap: 5px; }
+            .book:not(.tomo) .spine .title { letter-spacing: 1px; }
             .hint-desktop { display: none; }
             .hint-mobile { display: inline; }
         }
@@ -912,8 +917,8 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                             <span class="note"><strong>Ascendente</strong>Descubre tu signo ascendente con tu fecha, hora y lugar de nacimiento.<em>Abrir gratis →</em></span>
                         </a>
 
-                        <a class="book" href="chino.html" style="--c:#6e1c1c; --h:150px; --w:36px">
-                            <span class="spine"><span class="glyph">龍</span><span class="title">Horóscopo Chino</span></span>
+                        <a class="book" href="chino.html" style="--c:#6e1c1c; --h:150px; --w:50px">
+                            <span class="spine"><span class="glyph">龍</span><span class="title">Horóscopo<br>Chino</span></span>
                             <span class="note"><strong>Horóscopo Chino</strong>Calcula tu animal del año, del mes y de la hora.<em>Abrir gratis →</em></span>
                         </a>
 
@@ -939,13 +944,13 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                             <span class="note"><strong>Calculadora Numerológica</strong>Palabras, nombres de empresa, conceptos: descubre su número.<em>Abrir gratis →</em></span>
                         </a>
 
-                        <a class="book" href="Calculadora_numerologia_evolutiva.html" style="--c:#6b4a1a; --h:168px; --w:42px">
-                            <span class="spine"><span class="glyph">⟁</span><span class="title">Num. Evolutiva</span></span>
+                        <a class="book" href="Calculadora_numerologia_evolutiva.html" style="--c:#6b4a1a; --h:168px; --w:54px">
+                            <span class="spine"><span class="glyph">⟁</span><span class="title">Numerología<br>Evolutiva</span></span>
                             <span class="note"><strong>Numerología Evolutiva</strong>Tu plantilla de mapa personal paso a paso.<em>Abrir gratis →</em></span>
                         </a>
 
-                        <a class="book" href="arbol_numerologico.html" style="--c:#2c3a1a; --h:162px; --w:40px">
-                            <span class="spine"><span class="glyph">♣</span><span class="title">Árbol Familiar</span></span>
+                        <a class="book" href="arbol_numerologico.html" style="--c:#2c3a1a; --h:162px; --w:52px">
+                            <span class="spine"><span class="glyph">♣</span><span class="title">Árbol<br>Familiar</span></span>
                             <span class="note"><strong>Árbol Genealógico Numerológico</strong>Los números que se repiten en tu linaje.<em>Abrir gratis →</em></span>
                         </a>
 
