@@ -116,6 +116,34 @@
     min-height: 40px;
   }
 
+  .tree > div > h3 {
+    text-align: center;
+  }
+
+  .lados {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .lado {
+    flex: 1 1 280px;
+    border: 1px dashed #d9c6f5;
+    border-radius: 14px;
+    padding: 10px;
+  }
+
+  .lado-titulo {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #8064a8;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 8px;
+  }
+
   .person-card {
     width: 260px;
     background: #faf7ff;
@@ -285,7 +313,26 @@
   .csi-footer{position:fixed;bottom:0;left:0;right:0;max-width:none;margin:0;padding:6px 0;background:#fff;font-size:10px;color:#5a3e6b}
   body{padding-bottom:40px}
 }
-@media print{.no-print{display:none!important}}
+@media print{
+  @page { size: landscape; margin: 10mm; }
+  .no-print, .form-section, .toggle-detalle { display:none!important; }
+  body { background:#fff; }
+  header { -webkit-print-color-adjust:exact; print-color-adjust:exact; padding:12px; }
+  main { max-width:none; padding:0; }
+  .summary-section, .tree-section, .compare-section, .guide-section { box-shadow:none; border:1px solid #ddd; }
+  /* Árbol más compacto en papel; las fases y periodos van en la tabla comparativa */
+  .tree { gap:14px; zoom:.62; }
+  .tree > div > h3 { break-after:avoid; margin:0 0 6px; }
+  .lados { flex-wrap:nowrap; }
+  .lado { break-inside:avoid; }
+  .person-card { break-inside:avoid; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .chip, .number-badge, .tag { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .tabla-wrap { overflow:visible; }
+  table { font-size:9px; }
+  th, td { padding:3px 4px; }
+  tr { break-inside:avoid; }
+  .compare-section, .guide-section { break-before:page; }
+}
 </style>
 </head>
 
@@ -301,9 +348,10 @@
 <section class="storage-section no-print">
   <div class="storage-status" id="storage-status">Los datos se guardan automáticamente en este navegador.</div>
   <div class="storage-actions">
-    <button class="secondary" onclick="exportarDatos()">⬇️ Descargar copia (.json)</button>
-    <button class="secondary" onclick="document.getElementById('input-importar').click()">⬆️ Cargar copia (.json)</button>
-    <input type="file" id="input-importar" accept="application/json" style="display:none" onchange="importarDatos(event)">
+    <button class="secondary" onclick="exportarDatos()">⬇️ Descargar copia (Excel / CSV)</button>
+    <button class="secondary" onclick="document.getElementById('input-importar').click()">⬆️ Cargar copia (Excel / CSV)</button>
+    <button onclick="imprimirArbol()">🖨️ Imprimir / Guardar como PDF</button>
+    <input type="file" id="input-importar" accept=".csv,text/csv,.json,application/json" style="display:none" onchange="importarDatos(event)">
   </div>
 </section>
 
@@ -326,14 +374,7 @@
     </div>
     <div>
       <label>Relación</label>
-      <select id="relacion">
-        <option value="Padre">Padre</option>
-        <option value="Madre">Madre</option>
-        <option value="Persona Central">Persona Central</option>
-        <option value="Pareja">Pareja</option>
-        <option value="Hijo">Hijo</option>
-        <option value="Hija">Hija</option>
-      </select>
+      <select id="relacion"></select>
     </div>
     <div>
       <label>Sexo</label>
@@ -362,9 +403,25 @@
 
 <section class="tree-section">
   <h2>Árbol familiar</h2>
-  <p class="hint">Captura padre, madre, persona central, pareja e hijos. Las tarjetas se acomodan automáticamente por relación.</p>
+  <p class="hint">Captura desde los bisabuelos hasta los hijos. Las tarjetas se acomodan automáticamente por relación: el lado de papá a la izquierda y el lado de mamá a la derecha.</p>
 
   <div class="tree">
+    <div>
+      <h3>Bisabuelos</h3>
+      <div class="lados">
+        <div class="lado"><div class="lado-titulo">Lado de papá</div><div id="GeneracionBisabuelosPaternos" class="generation"></div></div>
+        <div class="lado"><div class="lado-titulo">Lado de mamá</div><div id="GeneracionBisabuelosMaternos" class="generation"></div></div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Abuelos</h3>
+      <div class="lados">
+        <div class="lado"><div class="lado-titulo">Lado de papá</div><div id="GeneracionAbuelosPaternos" class="generation"></div></div>
+        <div class="lado"><div class="lado-titulo">Lado de mamá</div><div id="GeneracionAbuelosMaternos" class="generation"></div></div>
+      </div>
+    </div>
+
     <div>
       <h3>Padres de la persona central</h3>
       <div id="GeneracionPadres" class="generation"></div>
@@ -414,7 +471,7 @@
           <th>Periodo 1</th>
           <th>Periodo 2</th>
           <th>Periodo 3</th>
-          <th>Acciones</th>
+          <th class="no-print">Acciones</th>
         </tr>
       </thead>
       <tbody id="tabla"></tbody>
@@ -661,17 +718,87 @@ function cargarLocal(){
   }
 }
 
+/* Columnas del archivo CSV (se abre directo en Excel o Google Sheets) */
+const COLUMNAS_CSV=[
+  ['nombre','Nombre(s)'],
+  ['ap1','Apellido paterno'],
+  ['ap2','Apellido materno'],
+  ['relacion','Relación'],
+  ['sexo','Sexo (F/M)'],
+  ['dia','Día'],
+  ['mes','Mes'],
+  ['anio','Año']
+];
+
+function celdaCSV(valor){
+  const t=String(valor==null?'':valor);
+  return /[",;\n\r]/.test(t)?'"'+t.replace(/"/g,'""')+'"':t;
+}
+
 function exportarDatos(){
-  const blob=new Blob([JSON.stringify(personas,null,2)],{type:'application/json'});
+  const filas=[COLUMNAS_CSV.map(c=>c[1])];
+  personas.forEach(p=>filas.push(COLUMNAS_CSV.map(c=>p[c[0]])));
+  const csv=filas.map(f=>f.map(celdaCSV).join(',')).join('\r\n');
+  // El "﻿" al inicio hace que Excel respete los acentos y la ñ
+  const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
   const fecha=new Date().toISOString().slice(0,10);
   a.href=url;
-  a.download=`arbol-numerologico-${fecha}.json`;
+  a.download=`arbol-numerologico-${fecha}.csv`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+}
+
+/* Lee un CSV separado por comas o por punto y coma (Excel a veces usa ;) */
+function leerCSV(texto){
+  texto=texto.replace(/^﻿/,'');
+  const primeraLinea=texto.split(/\r?\n/)[0];
+  const sep=(primeraLinea.split(';').length>primeraLinea.split(',').length)?';':',';
+  const filas=[];
+  let fila=[],celda='',enComillas=false;
+  for(let i=0;i<texto.length;i++){
+    const ch=texto[i];
+    if(enComillas){
+      if(ch==='"'){
+        if(texto[i+1]==='"'){celda+='"';i++;}
+        else enComillas=false;
+      }else celda+=ch;
+    }else if(ch==='"')enComillas=true;
+    else if(ch===sep){fila.push(celda);celda='';}
+    else if(ch==='\n'||ch==='\r'){
+      if(ch==='\r'&&texto[i+1]==='\n')i++;
+      fila.push(celda);filas.push(fila);fila=[];celda='';
+    }else celda+=ch;
+  }
+  if(celda!==''||fila.length){fila.push(celda);filas.push(fila);}
+  return filas.filter(f=>f.some(c=>c.trim()!==''));
+}
+
+function normalizar(t){
+  return String(t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
+}
+
+function csvAPersonas(texto){
+  const filas=leerCSV(texto);
+  if(filas.length<1)throw new Error('El archivo está vacío.');
+  const encabezados=filas[0].map(normalizar);
+  const indices=COLUMNAS_CSV.map(([,titulo])=>encabezados.indexOf(normalizar(titulo)));
+  if(indices[0]<0)throw new Error('No encontré la columna "Nombre(s)". Usa un archivo descargado desde esta página como plantilla.');
+  const desconocidas=[];
+  const lista=filas.slice(1).map(f=>{
+    const p={};
+    COLUMNAS_CSV.forEach(([clave],i)=>{p[clave]=indices[i]>=0?(f[indices[i]]||'').trim():'';});
+    // Acepta la relación aunque venga sin acentos o con otras mayúsculas
+    const r=RELACIONES.find(x=>normalizar(x.rel)===normalizar(p.relacion));
+    if(r)p.relacion=r.rel;
+    else if(p.relacion)desconocidas.push(p.relacion);
+    p.sexo=normalizar(p.sexo).startsWith('m')?'M':'F';
+    return p;
+  }).filter(p=>p.nombre);
+  return {lista,desconocidas};
 }
 
 function importarDatos(event){
@@ -680,8 +807,14 @@ function importarDatos(event){
   const reader=new FileReader();
   reader.onload=function(e){
     try{
-      const datos=JSON.parse(e.target.result);
-      if(!Array.isArray(datos))throw new Error('El archivo no contiene una lista válida.');
+      let datos,desconocidas=[];
+      if(/\.json$/i.test(file.name)){
+        // Copias antiguas en formato .json
+        datos=JSON.parse(e.target.result);
+        if(!Array.isArray(datos))throw new Error('El archivo no contiene una lista válida.');
+      }else{
+        ({lista:datos,desconocidas}=csvAPersonas(e.target.result));
+      }
       if(personas.length>0){
         const ok=confirm('Esto reemplazará los '+personas.length+' registro(s) actuales con los '+datos.length+' del archivo. ¿Continuar?');
         if(!ok)return;
@@ -689,13 +822,27 @@ function importarDatos(event){
       personas=datos;
       guardarLocal();
       renderizar();
-      alert('Se cargaron '+datos.length+' persona(s) correctamente.');
+      let msg='Se cargaron '+datos.length+' persona(s) correctamente.';
+      if(desconocidas.length){
+        msg+='\n\nOjo: estas relaciones no las reconocí, así que esas personas solo aparecen en la tabla (no en el árbol):\n· '+[...new Set(desconocidas)].join('\n· ');
+      }
+      alert(msg);
     }catch(err){
       alert('No se pudo leer el archivo: '+err.message);
+    }finally{
+      event.target.value='';
     }
-    event.target.value='';
   };
-  reader.readAsText(file);
+  reader.readAsText(file,'UTF-8');
+}
+
+/* ════════ IMPRIMIR / PDF ════════ */
+function imprimirArbol(){
+  if(personas.length===0){
+    alert('Primero agrega personas al árbol para poder imprimirlo.');
+    return;
+  }
+  window.print();
 }
 
 /* ════════ FORMULARIO ════════ */
@@ -787,22 +934,69 @@ function toggleDetalle(id){
   if(el)el.classList.toggle('visible');
 }
 
+/* Lista de relaciones: el orden de esta lista es el orden en el árbol y en la tabla.
+   El texto es lo que se guarda y se muestra en la tarjeta. */
+const RELACIONES=[
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'M',rel:'Bisabuelo paterno (papá del papá de mi papá)'},
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'F',rel:'Bisabuela paterna (mamá del papá de mi papá)'},
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'M',rel:'Bisabuelo paterno (papá de la mamá de mi papá)'},
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'F',rel:'Bisabuela paterna (mamá de la mamá de mi papá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'M',rel:'Bisabuelo materno (papá del papá de mi mamá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'F',rel:'Bisabuela materna (mamá del papá de mi mamá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'M',rel:'Bisabuelo materno (papá de la mamá de mi mamá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'F',rel:'Bisabuela materna (mamá de la mamá de mi mamá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosPaternos',sexo:'M',rel:'Abuelo paterno (papá de mi papá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosPaternos',sexo:'F',rel:'Abuela paterna (mamá de mi papá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosMaternos',sexo:'M',rel:'Abuelo materno (papá de mi mamá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosMaternos',sexo:'F',rel:'Abuela materna (mamá de mi mamá)'},
+  {grupo:'Padres',contenedor:'GeneracionPadres',sexo:'M',rel:'Padre'},
+  {grupo:'Padres',contenedor:'GeneracionPadres',sexo:'F',rel:'Madre'},
+  {grupo:'Persona central y pareja',contenedor:'GeneracionCentral',sexo:'',rel:'Persona Central'},
+  {grupo:'Persona central y pareja',contenedor:'GeneracionCentral',sexo:'',rel:'Pareja'},
+  {grupo:'Hijos',contenedor:'GeneracionHijos',sexo:'M',rel:'Hijo'},
+  {grupo:'Hijos',contenedor:'GeneracionHijos',sexo:'F',rel:'Hija'}
+];
+
+function buscarRelacion(relacion){
+  return RELACIONES.find(r=>r.rel===relacion);
+}
+
+function llenarSelectRelacion(){
+  const select=document.getElementById('relacion');
+  let html='',grupoActual='';
+  RELACIONES.forEach(r=>{
+    if(r.grupo!==grupoActual){
+      if(grupoActual)html+='</optgroup>';
+      html+=`<optgroup label="${r.grupo}">`;
+      grupoActual=r.grupo;
+    }
+    html+=`<option value="${r.rel}">${r.rel}</option>`;
+  });
+  html+='</optgroup>';
+  select.innerHTML=html;
+  select.value='Persona Central';
+  // Al elegir la relación, el sexo se pone solo (se puede cambiar a mano)
+  select.addEventListener('change',()=>{
+    const r=buscarRelacion(select.value);
+    if(r&&r.sexo)document.getElementById('sexo').value=r.sexo;
+  });
+}
+
 function obtenerContenedorPorRelacion(relacion){
-  if(relacion==='Padre'||relacion==='Madre')return'GeneracionPadres';
-  if(relacion==='Persona Central'||relacion==='Pareja')return'GeneracionCentral';
-  if(relacion==='Hijo'||relacion==='Hija')return'GeneracionHijos';
-  return'';
+  const r=buscarRelacion(relacion);
+  return r?r.contenedor:'';
 }
 
 function ordenRelaciones(a,b){
-  const orden={'Padre':1,'Madre':2,'Persona Central':3,'Pareja':4,'Hijo':5,'Hija':6};
-  return(orden[a.relacion]||99)-(orden[b.relacion]||99);
+  const ia=RELACIONES.findIndex(r=>r.rel===a.relacion);
+  const ib=RELACIONES.findIndex(r=>r.rel===b.relacion);
+  return(ia<0?99:ia)-(ib<0?99:ib);
 }
 
 function renderizar(){
-  document.getElementById('GeneracionPadres').innerHTML='';
-  document.getElementById('GeneracionCentral').innerHTML='';
-  document.getElementById('GeneracionHijos').innerHTML='';
+  [...new Set(RELACIONES.map(r=>r.contenedor))].forEach(id=>{
+    document.getElementById(id).innerHTML='';
+  });
   document.getElementById('tabla').innerHTML='';
 
   const personasOrdenadas=[...personas].sort(ordenRelaciones);
@@ -835,7 +1029,7 @@ function renderizar(){
       <td>${c.periodo1?display(c.periodo1):'—'}</td>
       <td>${c.periodo2?display(c.periodo2):'—'}</td>
       <td>${c.periodo3?display(c.periodo3):'—'}</td>
-      <td>
+      <td class="no-print">
         <button onclick="editarPersona(${indiceReal})">✏️</button>
         <button onclick="eliminarPersona(${indiceReal})">🗑️</button>
       </td>
@@ -930,6 +1124,7 @@ function generarResumen(){
 }
 
 /* ════════ INICIO ════════ */
+llenarSelectRelacion();
 cargarLocal();
 renderizar();
 </script>
