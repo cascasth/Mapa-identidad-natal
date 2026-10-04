@@ -1,0 +1,2818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <title>Mapa de Identidad Natal | Centro Ser Integral</title>
+    <meta name="description" content="Descubre tu Mapa de Identidad Natal: una lectura personalizada que integra Astrología Occidental, Horóscopo Chino, Numerología Evolutiva, Ángel Cabalístico, Tzolkin Dreamspell, Tonalpohualli y Arcano Mayor del Alma. Incluye tu Sello de Identidad personalizado.">
+    <meta name="author" content="Centro Ser Integral">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <link rel="canonical" href="https://centroserintegral.org/mapa-natal.html">
+
+    <meta property="og:title" content="Mapa de Identidad Natal | Centro Ser Integral">
+    <meta property="og:description" content="Integra astrología, numerología y sistemas simbólicos ancestrales en un solo perfil personalizado. Recíbelo en minutos por correo.">
+    <meta property="og:url" content="https://centroserintegral.org/mapa-natal.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_MX">
+    <meta property="og:site_name" content="Centro Ser Integral">
+    <meta property="og:image" content="https://centroserintegral.org/og_titulo4.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:alt" content="Mapa de Identidad Natal de Centro Ser Integral">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mapa de Identidad Natal | Centro Ser Integral">
+    <meta name="twitter:description" content="Tu perfil simbólico personalizado integrando astrología, numerología, Ángel Cabalístico y Tonalpohualli Azteca.">
+    <meta name="twitter:image" content="https://centroserintegral.org/og_titulo4.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Mapa de Identidad Natal",
+      "description": "Perfil simbólico personalizado que integra Astrología Occidental, Horóscopo Chino, Numerología Evolutiva, Ángel Cabalístico y Tonalpohualli Azteca. Se genera automáticamente a partir de tu fecha, hora y lugar de nacimiento.",
+      "url": "https://centroserintegral.org/mapa-natal.html",
+      "brand": { "@type": "Brand", "name": "Centro Ser Integral" },
+      "category": "Espiritualidad / Autoconocimiento",
+      "inLanguage": "es-MX",
+      "offers": {
+        "@type": "Offer",
+        "price": "36.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://centroserintegral.org/mapa-natal.html"
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAp4hlu_hzyRbvjuW4JpJKSBe608ajPimQOA-UdBRagZk436FHe1Wn6ARg2hsTP8OXiRJgWCAxVJAiYH8&components=hosted-buttons&disable-funding=venmo&currency=USD" data-namespace="paypalUSD"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBD63KT8eFB1Gc-JKsWiwVuWltNb-9N7xc&libraries=places&loading=async"></script>
+
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-bg:       #06060e;
+            --dark-mid:      #0d0d1f;
+            --dark-section:  #0a0a18;
+            --gold:          #c9a84c;
+            --gold-bright:   #e8c96a;
+            --gold-dim:      #8a6a20;
+            --copper:        #b07030;
+            --silver:        #a0a8b0;
+            --purple:        #2a1550;
+            --purple-light:  #3d2070;
+            --cream:         #f0ede4;
+            --text-light:    #ddd8cc;
+            --text-muted:    #8a8070;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ─── PARTÍCULAS DE FONDO ─────────────────────────────── */
+        #particles-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        /* ─── NAVEGACIÓN ─────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(6, 6, 14, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+            z-index: 1000;
+            padding: 0 2.5rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .nav-logo .star {
+            font-size: 1.4rem;
+            animation: spin-slow 20s linear infinite;
+        }
+
+        .nav-logo-img {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav-dropdown { position: relative; }
+
+        .nav-dropdown-btn {
+            background: transparent;
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            color: var(--silver);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .nav-dropdown-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .nav-dropdown.open .nav-dropdown-btn { border-color: var(--gold); color: var(--gold); }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            min-width: 230px;
+            background: rgba(6, 6, 14, 0.97);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 10px;
+            padding: 0.4rem;
+            display: none;
+            flex-direction: column;
+            gap: 2px;
+            z-index: 1001;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-dropdown.open .nav-dropdown-menu { display: flex; }
+
+        .nav-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.65rem 0.8rem;
+            border-radius: 6px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            color: var(--silver);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-dropdown-menu a:hover { background: rgba(201, 168, 76, 0.08); color: var(--gold); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.2rem;
+        }
+
+        .nav-links a {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--silver);
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .btn-lang {
+            background: transparent;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: var(--gold-dim);
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-lang:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-nav-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--dark-bg);
+            border: none;
+            padding: 0.5rem 1.4rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.25);
+        }
+
+        .btn-nav-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(201, 168, 76, 0.45);
+        }
+
+        /* ─── HERO ───────────────────────────────────────────── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 64px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('hero_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.45) saturate(0.9);
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 60%, rgba(42, 21, 80, 0.35) 0%, rgba(6, 6, 14, 0.7) 70%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+            animation: heroReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-eyebrow {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            opacity: 0.85;
+        }
+
+        .sound-toggle {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: var(--gold-dim);
+            padding: 0.5rem 1.3rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            margin-bottom: 1.8rem;
+        }
+
+        .sound-toggle:hover, .sound-toggle.activo {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201, 168, 76, 0.08);
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 300;
+            line-height: 1.15;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 em {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold-bright);
+        }
+
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--silver);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: rgba(221, 216, 204, 0.75);
+            max-width: 680px;
+            margin: 0 auto 2.8rem;
+            line-height: 1.9;
+        }
+
+        .hero-facts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.6rem 2.2rem;
+            margin: 0 auto 2.2rem;
+            max-width: 820px;
+            background: rgba(201, 168, 76, 0.05);
+            border: 1px solid rgba(201, 168, 76, 0.18);
+            border-radius: 16px;
+            padding: 1.3rem 1.6rem;
+            backdrop-filter: blur(6px);
+        }
+
+        .fact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            min-width: 100px;
+        }
+
+        .fact-icon { font-size: 1.25rem; }
+
+        .fact-label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.85;
+        }
+
+        .fact-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--cream);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            color: var(--dark-bg);
+            border: none;
+            padding: 1rem 2.8rem;
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 28px rgba(201, 168, 76, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(201, 168, 76, 0.55);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 1.5px solid var(--gold);
+            padding: 0.95rem 2.6rem;
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--gold-dim);
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: bounce 2.5s ease-in-out infinite;
+            transition: opacity 0.5s;
+        }
+
+        .hero-scroll .arrow {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, var(--gold));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50%       { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ─── DIVISOR ORNAMENTAL ─────────────────────────────── */
+        .ornament-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 2rem;
+            opacity: 0.55;
+        }
+
+        .ornament-divider img {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            filter: sepia(1) saturate(2) hue-rotate(-10deg) brightness(1.2);
+        }
+
+        /* ─── SECCIONES GENERALES ────────────────────────────── */
+        section {
+            position: relative;
+            z-index: 5;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 300;
+            color: var(--cream);
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-top: 0.8rem;
+        }
+
+        /* ─── CÓDIGOS SIMBÓLICOS ─────────────────────────────── */
+        .codes-section {
+            background: var(--dark-section);
+            border-top: 1px solid rgba(201, 168, 76, 0.12);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+        }
+
+        .codes-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .codes-mandala {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 1.5rem;
+        }
+
+        .codes-mandala img {
+            width: 100%;
+            max-width: 320px;
+            max-height: 60vh;
+            height: auto;
+            animation: spin-slow 60s linear infinite;
+            filter: sepia(0.3) saturate(1.5) brightness(0.85);
+            opacity: 0.85;
+        }
+
+        .codes-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .code-item {
+            background: rgba(201, 168, 76, 0.04);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            padding: 1.2rem 1.4rem;
+            border-radius: 6px;
+            transition: all 0.35s;
+            cursor: default;
+        }
+
+        .code-item:hover {
+            background: rgba(201, 168, 76, 0.09);
+            border-color: var(--gold);
+            transform: translateX(4px);
+        }
+
+        .code-icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .code-name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        .code-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ─── PARA QUÉ SIRVE ─────────────────────────────────── */
+        .purpose-section {
+            background-image: url('section_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .purpose-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 6, 14, 0.82);
+        }
+
+        .purpose-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .purpose-card {
+            background: rgba(201, 168, 76, 0.04);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            padding: 2rem;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+            opacity: 0;
+            transform: translateY(25px);
+        }
+
+        .purpose-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .purpose-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.07), transparent);
+            transition: left 0.6s;
+        }
+
+        .purpose-card:hover::before { left: 100%; }
+        .purpose-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .purpose-number {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: rgba(201, 168, 76, 0.2);
+            position: absolute;
+            top: 1rem; right: 1.2rem;
+            line-height: 1;
+        }
+
+        .purpose-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .purpose-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.7rem;
+        }
+
+        .purpose-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ─── VIDEO EXPLICATIVO ──────────────────────────────── */
+        .video-section {
+            background: var(--dark-section);
+            border-top: 1px solid rgba(201, 168, 76, 0.12);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+        }
+
+        .video-frame {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(201, 168, 76, 0.02);
+        }
+
+        .video-frame iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ─── EJEMPLO DE MAPA ────────────────────────────────── */
+        .example-section {
+            background: var(--dark-mid);
+            border-top: 1px solid rgba(201, 168, 76, 0.12);
+        }
+
+        .example-frame {
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(201, 168, 76, 0.02);
+        }
+
+        .example-header {
+            background: linear-gradient(135deg, rgba(42, 21, 80, 0.6) 0%, rgba(201, 168, 76, 0.08) 100%);
+            padding: 2.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+        }
+
+        .example-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--gold-bright);
+            margin-bottom: 0.4rem;
+            letter-spacing: 2px;
+        }
+
+        .example-birth {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .example-codes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0;
+        }
+
+        .ex-code {
+            padding: 1.5rem;
+            border-right: 1px solid rgba(201, 168, 76, 0.1);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .ex-code:hover {
+            background: rgba(201, 168, 76, 0.06);
+        }
+
+        .ex-code-label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .ex-code-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--cream);
+        }
+
+        .example-body {
+            padding: 2.5rem;
+        }
+
+        .example-archetype {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .example-text {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.9;
+            font-style: italic;
+        }
+
+        .example-mantra {
+            margin-top: 2rem;
+            padding: 1.5rem 2rem;
+            border-left: 3px solid var(--gold);
+            background: rgba(201, 168, 76, 0.04);
+            border-radius: 0 6px 6px 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--gold-bright);
+            line-height: 1.8;
+        }
+
+        .example-cta {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(201, 168, 76, 0.15);
+        }
+
+        .example-note {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* ─── TESTIMONIOS ────────────────────────────────────── */
+        .testimonials-section {
+            background: var(--dark-section);
+            border-top: 1px solid rgba(201, 168, 76, 0.12);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: rgba(201, 168, 76, 0.03);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.4s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 8px 25px rgba(201, 168, 76, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .testimonial-quote {
+            font-size: 2.5rem;
+            color: var(--gold);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+
+        .testimonial-author {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* ─── LO QUE RECIBIRÁS ───────────────────────────────── */
+        .delivery-section {
+            background: linear-gradient(180deg, var(--dark-mid) 0%, var(--purple) 100%);
+            border-top: 1px solid rgba(201, 168, 76, 0.15);
+        }
+
+        .delivery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .delivery-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(201, 168, 76, 0.04);
+            border: 1px solid rgba(201, 168, 76, 0.12);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .delivery-item:hover {
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, 0.07);
+        }
+
+        .delivery-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .delivery-text strong {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .delivery-text span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ─── CTA FINAL / PAGO ───────────────────────────────── */
+        .cta-section {
+            background-image: url('section_bg.jpg');
+            background-size: cover;
+            background-position: center top;
+            text-align: center;
+            border-top: 1px solid rgba(201, 168, 76, 0.2);
+        }
+
+        .cta-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 6, 14, 0.88);
+        }
+
+        .cta-inner {
+            position: relative;
+            z-index: 5;
+            padding: 6rem 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-price {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--gold-bright);
+            margin: 1.5rem 0 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .cta-price-note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .cta-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-badge {
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            color: var(--gold);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+        }
+
+        .cta-disclaimer {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* ─── PAGO Y FORMULARIO (AUTOMATIZACIÓN) ─────────────── */
+        .payment-step {
+            background: rgba(10,10,24,.55);
+            border: 1px solid rgba(201,168,76,.3);
+            border-radius: 16px;
+            padding: 2.4rem 1.6rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .price-highlight { color: var(--gold-bright); font-weight: 600; }
+
+        .pay-aviso {
+            margin: 1.4rem 0;
+            padding: 1rem 1.2rem;
+            border: 1px solid rgba(201,168,76,.25);
+            border-radius: 12px;
+            background: rgba(201,168,76,.06);
+            font-size: 0.82rem;
+            color: rgba(240,234,248,.8);
+            line-height: 1.65;
+            text-align: left;
+        }
+        .pay-aviso strong { color: var(--gold-bright); }
+
+        #paypal-container-USD { margin: 1.5rem auto 0; max-width: 320px; }
+
+        .paypal-legend {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            font-size: 0.72rem;
+            color: rgba(199,189,223,.55);
+        }
+        .paypal-legend > div { display: flex; align-items: center; gap: 8px; justify-content: center; }
+        .paypal-legend .dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+        .paypal-legend .dot-yellow { background: #f5a623; }
+        .paypal-legend .dot-blue { background: #003087; }
+
+        .step-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 2.4rem 0 0.6rem;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            font-family: 'Raleway', sans-serif;
+            letter-spacing: 1px;
+        }
+        .step-divider::before, .step-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201,168,76,.3), transparent);
+        }
+
+        .form { display: flex; flex-direction: column; gap: 0; text-align: left; margin-top: 1rem; }
+        .form .section-label { margin-top: 1.8rem; margin-bottom: 0.9rem; text-align: left; opacity: .85; }
+        .form .section-label:first-child { margin-top: 0; }
+
+        .field { margin-bottom: 14px; }
+        .field label {
+            display: block;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+        .field input, .field select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(6,6,14,.85);
+            border: 1px solid rgba(201,168,76,.28);
+            border-radius: 8px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.95rem;
+            color: var(--cream);
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .field input:focus, .field select:focus {
+            outline: none;
+            border-color: rgba(201,168,76,.55);
+            background: rgba(6,6,14,.95);
+            box-shadow: 0 0 0 3px rgba(201,168,76,.08);
+        }
+        .field input::placeholder { color: rgba(199,189,223,.3); }
+        .field .hint {
+            font-size: 0.72rem;
+            color: rgba(199,189,223,.5);
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+
+        .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+        .lang-selector { display: flex; gap: 8px; margin-bottom: 14px; }
+        .lang-btn {
+            flex: 1;
+            padding: 0.6rem;
+            border: 1px solid rgba(201,168,76,.2);
+            border-radius: 8px;
+            background: rgba(10,10,24,.6);
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all .2s;
+            text-align: center;
+        }
+        .lang-btn.active {
+            border-color: rgba(201,168,76,.5);
+            color: var(--gold-bright);
+            background: rgba(201,168,76,.08);
+        }
+
+        .ciudad-field { position: relative; }
+        .ciudad-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0; right: 0;
+            background: rgba(6,6,14,.98);
+            border: 1px solid rgba(201,168,76,.28);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            z-index: 200;
+            display: none;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+        .ciudad-option {
+            padding: 0.7rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 1px solid rgba(201,168,76,.07);
+            font-family: 'Raleway', sans-serif;
+        }
+        .ciudad-option:last-child { border-bottom: none; }
+        .ciudad-option:hover { background: rgba(201,168,76,.08); color: var(--cream); }
+
+        .submit-wrap { margin-top: 2rem; }
+        .btn-submit {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            border: none;
+            color: var(--dark-bg);
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: .08em;
+            cursor: pointer;
+            transition: all .25s;
+            box-shadow: 0 8px 28px rgba(201,168,76,.3);
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(201,168,76,.45); }
+        .btn-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+        .btn-inner { display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .spinner { width: 15px; height: 15px; border: 1.5px solid rgba(6,6,14,.3); border-top-color: var(--dark-bg); border-radius: 50%; animation: spin .7s linear infinite; display: none; }
+        .btn-submit.loading .spinner { display: block; }
+        .btn-submit.loading .btn-text { opacity: .7; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .error-banner {
+            display: none;
+            background: rgba(196,90,90,.1);
+            border: 1px solid rgba(196,90,90,.3);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            font-size: 0.82rem;
+            color: #e8a0a0;
+            margin-top: 10px;
+            line-height: 1.6;
+            text-align: left;
+        }
+        .error-banner.visible { display: block; }
+
+        /* ── PANEL DE CONFIRMACIÓN ── */
+        .confirm-panel {
+            display: none;
+            background: rgba(10,10,24,.7);
+            border: 1px solid rgba(201,168,76,.3);
+            border-radius: 14px;
+            padding: 1.8rem 1.5rem 1.5rem;
+            margin-top: 1rem;
+            backdrop-filter: blur(10px);
+            text-align: left;
+        }
+        .confirm-panel.visible { display: block; }
+
+        .confirm-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .confirm-rows { display: flex; flex-direction: column; gap: 0; }
+        .confirm-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(201,168,76,.1);
+            font-size: 0.92rem;
+        }
+        .confirm-row:last-child { border-bottom: none; }
+        .confirm-label {
+            font-size: 0.68rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: .8;
+            min-width: 68px;
+            flex-shrink: 0;
+            font-weight: 500;
+        }
+        .confirm-value { color: var(--cream); font-weight: 300; word-break: break-word; }
+
+        .confirm-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 1.4rem; }
+        .btn-confirmar {
+            width: 100%;
+            padding: 0.95rem 1.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%);
+            border: none;
+            color: var(--dark-bg);
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: .06em;
+            cursor: pointer;
+            transition: all .25s;
+            box-shadow: 0 8px 28px rgba(201,168,76,.3);
+        }
+        .btn-confirmar:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(201,168,76,.45); }
+        .btn-confirmar:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+        .btn-editar {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid rgba(199,189,223,.25);
+            color: var(--text-muted);
+            border-radius: 50px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .btn-editar:hover { border-color: rgba(201,168,76,.4); color: var(--gold-bright); }
+
+        .confirm-spinner {
+            width: 15px; height: 15px;
+            border: 1.5px solid rgba(6,6,14,.3);
+            border-top-color: var(--dark-bg);
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            display: none;
+        }
+        .btn-confirmar.loading .confirm-spinner { display: inline-block; }
+        .btn-confirmar.loading .confirm-btn-text { opacity: .7; }
+
+        /* ── SUCCESS ── */
+        .success-state { display: none; text-align: center; padding: 1rem 0; animation: fadeIn .6s ease; }
+        .success-state.visible { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(16px);} to { opacity: 1; transform: translateY(0);} }
+        .success-icon { font-size: 2.6rem; margin-bottom: 1rem; filter: drop-shadow(0 0 16px rgba(201,168,76,.4)); }
+        .success-title { font-family: 'Cinzel', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 300; color: var(--cream); margin-bottom: 0.9rem; line-height: 1.3; }
+        .success-msg { font-size: 0.95rem; color: var(--text-light); line-height: 1.8; max-width: 380px; margin: 0 auto 1.8rem; }
+        .success-name { color: var(--gold-bright); font-weight: 500; }
+        .btn-otro {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            background: transparent;
+            border: 1px solid rgba(201,168,76,.3);
+            border-radius: 50px;
+            color: var(--text-light);
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .btn-otro:hover { border-color: var(--gold); color: var(--gold-bright); }
+
+        /* ─── FOOTER ─────────────────────────────────────────── */
+        footer {
+            background: rgba(4, 4, 10, 0.98);
+            border-top: 1px solid rgba(201, 168, 76, 0.12);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            color: rgba(138, 128, 112, 0.5);
+            letter-spacing: 1px;
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .codes-layout {
+                grid-template-columns: 1fr;
+            }
+            .codes-mandala {
+                order: -1;
+            }
+            .codes-mandala img {
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                padding: 0 1rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .nav-logo {
+                font-size: 0;
+            }
+            .nav-logo .star {
+                font-size: 1.4rem;
+            }
+            .nav-dropdown-btn span {
+                display: none;
+            }
+            .nav-dropdown-btn {
+                padding: 0.4rem 0.6rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .codes-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .row2, .row3 { grid-template-columns: 1fr; }
+        }
+
+        /* ─── SCROLL REVEAL ──────────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── CURSOR GLOW ────────────────────────────────────── */
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: opacity 0.3s;
+        }
+    </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1389833309683131');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xjfjiflf3z");
+</script>
+
+<meta name="facebook-domain-verification" content="y0ek53xcd3hsp8r0iurr5in0w81dg9" />
+    
+</head>
+<body>
+
+    <!-- Cursor glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Canvas de partículas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <audio id="bg-audio" loop preload="auto">
+        <source src="ambiente-ceremonial.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ─── NAVEGACIÓN ─── -->
+    <nav>
+        <div class="nav-left">
+            <a href="index.html" class="nav-logo">
+                <img src="logo-centro-ser.png" class="nav-logo-img" alt="Centro Ser Integral">
+                Centro Ser Integral
+            </a>
+            <div class="nav-dropdown" id="navDropdown">
+                <button class="nav-dropdown-btn" onclick="toggleNavDropdown(event)">☰ <span data-i18n="nav-gratis">Gratis</span> ▾</button>
+                <div class="nav-dropdown-menu">
+                    <a href="tzolkin.html">🌙 <span data-i18n="nav-tzolkin">Kin del día · Tzolkin</span></a>
+                    <a href="numerologia.html">🔢 <span data-i18n="nav-numerologia">Numerología gratis</span></a>
+                    <a href="chino.html">🐉 <span data-i18n="nav-chino">Animal chino</span></a>
+                    <a href="ascendente.html">🌅 <span data-i18n="nav-ascendente">Ascendente</span></a>
+                    <a href="https://identidad.centroserintegral.org/" target="_blank" rel="noopener">📜 <span data-i18n="nav-archivo">Archivo de Identidad</span></a>
+                </div>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#codigos" data-i18n="nav-codigos">Códigos</a></li>
+            <li><a href="#para-que" data-i18n="nav-proposito">Propósito</a></li>
+            <li><a href="#ejemplo" data-i18n="nav-ejemplo">Ejemplo</a></li>
+            <li><a href="#testimonios" data-i18n="nav-testimonios">Testimonios</a></li>
+        </ul>
+        <div class="nav-cta">
+            <button class="btn-lang" id="btnLangToggle" onclick="toggleLangGlobal()">🇲🇽 ES · 🇺🇸 EN</button>
+            <button class="btn-nav-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})" data-i18n="nav-solicitar">Solicitar Mapa</button>
+        </div>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero" id="inicio">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow" data-i18n="hero-eyebrow">Centro Ser Integral · Siete códigos simbólicos</p>
+            <button class="sound-toggle" id="soundToggle" onclick="toggleAudio()">
+                <span id="soundToggleText" data-i18n="sound-activar">🜂 Activar experiencia sonora</span>
+            </button>
+            <h1 data-i18n="hero-title">Descubre tu<br><em>Mapa de Identidad Natal</em></h1>
+            <p class="hero-tagline" data-i18n="hero-tagline">El antiguo conocimiento de las estrellas, revelado para ti</p>
+            <p class="hero-desc" data-i18n="hero-desc">
+                Astrología occidental, horóscopo chino, numerología, tradiciones mayas, el calendario sagrado del Anáhuac y el Tarot convergen en un solo mapa para revelar tu arquetipo central, tu misión de vida y un símbolo visual único creado exclusivamente para ti.
+            </p>
+            <div class="hero-facts">
+                <div class="fact-item">
+                    <span class="fact-icon">🔮</span>
+                    <span class="fact-label" data-i18n="fact-1-label">Qué es</span>
+                    <span class="fact-value" data-i18n="fact-1-value">Perfil simbólico personalizado</span>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-icon">✨</span>
+                    <span class="fact-label" data-i18n="fact-2-label">Incluye</span>
+                    <span class="fact-value" data-i18n="fact-2-value">7 sistemas + sello + mantra</span>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-icon">💳</span>
+                    <span class="fact-label" data-i18n="fact-3-label">Precio</span>
+                    <span class="fact-value">$36 USD</span>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-icon">⚡</span>
+                    <span class="fact-label" data-i18n="fact-4-label">Entrega</span>
+                    <span class="fact-value" data-i18n="fact-4-value">En minutos</span>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-icon">📧</span>
+                    <span class="fact-label" data-i18n="fact-5-label">Cómo</span>
+                    <span class="fact-value" data-i18n="fact-5-value">Por correo · ES o EN</span>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="document.getElementById('para-que').scrollIntoView({behavior:'smooth'})" data-i18n="hero-btn-purpose">🔮 ¿Para qué sirve?</button>
+                <button class="btn-outline" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})" data-i18n="hero-btn-solicitar">✦ Solicitar mi mapa</button>
+            </div>
+        </div>
+        <div class="hero-scroll" id="heroScroll">
+            <span data-i18n="hero-scroll">Descubrir</span>
+            <div class="arrow"></div>
+        </div>
+    </section>
+
+    <!-- Divisor ornamental -->
+    <div class="ornament-divider">
+        <img src="divider_ornament.png" alt="">
+    </div>
+
+    <!-- ─── CÓDIGOS SIMBÓLICOS ─── -->
+    <section class="codes-section" id="codigos">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <p class="section-label" data-i18n="codes-label">Lo que contiene tu mapa</p>
+                <h2 class="section-title" data-i18n="codes-title">Los Siete Códigos Simbólicos</h2>
+                <p class="section-subtitle" data-i18n="codes-subtitle">Cada sistema revela una capa distinta de tu identidad</p>
+            </div>
+            <div class="codes-layout">
+                <div class="codes-mandala">
+                    <img src="sacred_geometry.png" alt="Geometría sagrada — rueda de los siete sistemas">
+                </div>
+                <div class="codes-list">
+                    <div class="code-item reveal">
+                        <div class="code-icon">♌</div>
+                        <div class="code-name" data-i18n="code-1-name">Zodiaco Occidental</div>
+                        <div class="code-desc" data-i18n="code-1-desc">Signo solar y ascendente para una lectura profunda de tu naturaleza.</div>
+                    </div>
+                    <div class="code-item reveal">
+                        <div class="code-icon">🐉</div>
+                        <div class="code-name" data-i18n="code-2-name">Horóscopo Chino</div>
+                        <div class="code-desc" data-i18n="code-2-desc">Año, mes y hora de nacimiento — precisión máxima.</div>
+                    </div>
+                    <div class="code-item reveal">
+                        <div class="code-icon">🌌</div>
+                        <div class="code-name" data-i18n="code-3-name">Tzolkin Dreamspell</div>
+                        <div class="code-desc" data-i18n="code-3-desc">Correlación Dreamspell del calendario sagrado maya: tu sello galáctico (kin).</div>
+                    </div>
+                    <div class="code-item reveal">
+                        <div class="code-icon">☀️</div>
+                        <div class="code-name" data-i18n="code-4-name">Tonalpohualli Azteca</div>
+                        <div class="code-desc" data-i18n="code-4-desc">Correlación GMT del calendario sagrado del Anáhuac.</div>
+                    </div>
+                    <div class="code-item reveal">
+                        <div class="code-icon">🔢</div>
+                        <div class="code-name" data-i18n="code-5-name">Numerología Evolutiva</div>
+                        <div class="code-desc" data-i18n="code-5-desc">Números clave que revelan tu esencia y tu camino de vida.</div>
+                    </div>
+                    <div class="code-item reveal">
+                        <div class="code-icon">🃏</div>
+                        <div class="code-name" data-i18n="code-6-name">Arcano Mayor del Tarot</div>
+                        <div class="code-desc" data-i18n="code-6-desc">Tu carta del alma que guía tu camino espiritual.</div>
+                    </div>
+                    <div class="code-item reveal">
+                        <div class="code-icon">👼</div>
+                        <div class="code-name" data-i18n="code-7-name">Ángel Cabalístico</div>
+                        <div class="code-desc" data-i18n="code-7-desc">Tu ángel según la tradición angelológica del Shem HaMephorash.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divisor ornamental -->
+    <div class="ornament-divider">
+        <img src="divider_ornament.png" alt="">
+    </div>
+
+    <!-- ─── VIDEO EXPLICATIVO ─── -->
+    <section class="video-section" id="video">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <p class="section-label" data-i18n="video-label">Míralo en acción</p>
+                <h2 class="section-title" data-i18n="video-title">Cómo Funciona el Mapa de Identidad Natal</h2>
+                <p class="section-subtitle" data-i18n="video-subtitle">Una breve explicación de qué es y cómo se genera tu mapa</p>
+            </div>
+            <div class="video-frame reveal">
+                <iframe src="https://www.youtube.com/embed/3ZSL7DalGXY" title="Cómo funciona el Mapa de Identidad Natal" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divisor ornamental -->
+    <div class="ornament-divider">
+        <img src="divider_ornament.png" alt="">
+    </div>
+
+    <!-- ─── PARA QUÉ SIRVE ─── -->
+    <section class="purpose-section" id="para-que">
+        <div class="purpose-overlay"></div>
+        <div class="section-inner" style="position:relative;z-index:5;">
+            <div class="section-header reveal">
+                <p class="section-label" data-i18n="purpose-label">Tu camino de autoconocimiento</p>
+                <h2 class="section-title" data-i18n="purpose-title">¿Para Qué Te Sirve?</h2>
+                <p class="section-subtitle" data-i18n="purpose-subtitle">Este mapa no pretende decirte quién "debes" ser. Te ofrece una lectura simbólica para mirarte desde distintos lenguajes.</p>
+            </div>
+            <div class="purpose-grid">
+                <div class="purpose-card">
+                    <div class="purpose-number">01</div>
+                    <div class="purpose-icon">🔍</div>
+                    <h3 data-i18n="purpose-1-title">Reconocer</h3>
+                    <p data-i18n="purpose-1-desc">Que tus rasgos no son fallas: son información sobre tu forma de actuar y relacionarte.</p>
+                </div>
+                <div class="purpose-card">
+                    <div class="purpose-number">02</div>
+                    <div class="purpose-icon">🔄</div>
+                    <h3 data-i18n="purpose-2-title">Reflexionar</h3>
+                    <p data-i18n="purpose-2-desc">Sobre los ciclos que se repiten en tu vida, con una mirada simbólica y compasiva — no como algo que sale mal, sino como algo que se está pidiendo entender.</p>
+                </div>
+                <div class="purpose-card">
+                    <div class="purpose-number">03</div>
+                    <div class="purpose-icon">🧭</div>
+                    <h3 data-i18n="purpose-3-title">Conectar</h3>
+                    <p data-i18n="purpose-3-desc">Con una intención clara cuando todo se siente disperso, para orientar tu etapa actual desde tu esencia.</p>
+                </div>
+                <div class="purpose-card">
+                    <div class="purpose-number">04</div>
+                    <div class="purpose-icon">📖</div>
+                    <h3 data-i18n="purpose-4-title">Explorar</h3>
+                    <p data-i18n="purpose-4-desc">Usarlo como punto de partida para journaling, meditación o tu proceso de autoconocimiento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divisor ornamental -->
+    <div class="ornament-divider">
+        <img src="divider_ornament.png" alt="">
+    </div>
+
+    <!-- ─── EJEMPLO DE MAPA ─── -->
+    <section class="example-section" id="ejemplo">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <p class="section-label" data-i18n="example-label">Fragmento ilustrativo</p>
+                <h2 class="section-title" data-i18n="example-title">Ejemplo de Mapa</h2>
+                <p class="section-subtitle" data-i18n="example-subtitle">Así luce una lectura real — cada mapa es único e irrepetible</p>
+            </div>
+            <div class="example-frame reveal">
+                <div class="example-header">
+                    <div class="example-name">Rosario María</div>
+                    <div class="example-birth" data-i18n="example-birth">6 · agosto · 2008 · 05:56 · Tlaxco, Tlaxcala, México</div>
+                </div>
+                <div class="example-codes-grid">
+                    <div class="ex-code">
+                        <div class="ex-code-label" data-i18n="ex-label-1">Zodiaco</div>
+                        <div class="ex-code-value">♌ Leo · Asc. ♋ Cáncer</div>
+                    </div>
+                    <div class="ex-code">
+                        <div class="ex-code-label" data-i18n="ex-label-2">Horóscopo Chino</div>
+                        <div class="ex-code-value" data-i18n="ex-value-2">🐀 Rata de Tierra Yang</div>
+                    </div>
+                    <div class="ex-code">
+                        <div class="ex-code-label" data-i18n="ex-label-3">Tzolkin Dreamspell</div>
+                        <div class="ex-code-value" data-i18n="ex-value-3">Perro Blanco Magnético</div>
+                    </div>
+                    <div class="ex-code">
+                        <div class="ex-code-label" data-i18n="ex-label-4">Tonalpohualli</div>
+                        <div class="ex-code-value">9 Atl</div>
+                    </div>
+                    <div class="ex-code">
+                        <div class="ex-code-label" data-i18n="ex-label-5">Numerología</div>
+                        <div class="ex-code-value" data-i18n="ex-value-5">Misión 11 · Base 24/6 · Camino 17/8</div>
+                    </div>
+                    <div class="ex-code">
+                        <div class="ex-code-label" data-i18n="ex-label-6">Arcano del Tarot</div>
+                        <div class="ex-code-value" data-i18n="ex-value-6">VI · Los Amantes</div>
+                    </div>
+                    <div class="ex-code" style="grid-column: span 2; border-right: none;">
+                        <div class="ex-code-label" data-i18n="ex-label-7">Ángel Cabalístico</div>
+                        <div class="ex-code-value">Yerathel · Leo 10°-15°</div>
+                    </div>
+                </div>
+                <div class="example-body">
+                    <div class="example-archetype" data-i18n="example-archetype">✦ Arquetipo Central: La Sanadora Leal que Elige</div>
+                    <p class="example-text" data-i18n="example-text">
+                        Rosario integra un Leo solar con ascendente Cáncer: fuego que protege, luz que acoge. Su Rata de Tierra Yang aporta astucia constructiva y movimiento inteligente. Su numerología evolutiva muestra una Misión 11 de intuición amplificada, una Base 24/6 de responsabilidad del corazón y un Camino 17/8 de poder personal templado por la experiencia. Su Ángel Cabalístico, Yerathel, le trae la energía de la liberación; Perro Blanco Magnético, lealtad que atrae; 9 Atl, profundidad emocional; y Los Amantes, la elección consciente como camino del alma.
+                    </p>
+                    <div class="example-mantra" data-i18n="example-mantra">
+                        <strong>Mantra Ceremonial:</strong><br>
+                        Yo soy fuego que acoge, luz que no quema. Vengo de aguas profundas, de visiones nocturnas donde vi lo que otros temerían ver. <em>Yo soy lealtad sin sumisión. Yo soy poder sin arrogancia. Yo soy amor sin pérdida de mí.</em>
+                    </div>
+                </div>
+                <div class="example-cta">
+                    <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})" data-i18n="example-cta-btn">✦ Quiero el mío</button>
+                    <p class="example-note" data-i18n="example-note">Nombre ficticio · Contenido generado con IA como ilustración</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divisor ornamental -->
+    <div class="ornament-divider">
+        <img src="divider_ornament.png" alt="">
+    </div>
+
+    <!-- ─── TESTIMONIOS ─── -->
+    <section class="testimonials-section" id="testimonios">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <p class="section-label" data-i18n="testimonials-label">Voces de quienes ya lo recibieron</p>
+                <h2 class="section-title" data-i18n="testimonials-title">Lo Que Dicen</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text" data-i18n="test-1">Ya me llegó mi carta!!! Me fascinó!!!! Está padrísimo. Entre otras cosas que dice, soy Águila — siempre que me preguntan qué animal me gustaría ser, siempre he dicho Águila. 🦅</p>
+                    <div class="testimonial-author">— A.H.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text" data-i18n="test-2">Ya leí el mapa de identidad de mi hijo. Está súper bien, sí lo describe. Me sorprendió la precisión con la que captura su personalidad.</p>
+                    <div class="testimonial-author" data-i18n="test-2-autor">— A.H. · sobre el mapa de su hijo</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text" data-i18n="test-3">Está muy completo. 😱 Lo imprimiremos y lo pondremos en un lugar especial. Es una herramienta de autoconocimiento realmente poderosa.</p>
+                    <div class="testimonial-author">— M.T.G.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text" data-i18n="test-4">Me encantó. 💕 Cada sección resonó profundamente conmigo. Es como si alguien finalmente hubiera puesto en palabras lo que siempre sentí.</p>
+                    <div class="testimonial-author">— M.F.O.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divisor ornamental -->
+    <div class="ornament-divider">
+        <img src="divider_ornament.png" alt="">
+    </div>
+
+    <!-- ─── LO QUE RECIBIRÁS ─── -->
+    <section class="delivery-section">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <p class="section-label" data-i18n="delivery-label">Tu entrega</p>
+                <h2 class="section-title" data-i18n="delivery-title">Lo Que Recibirás</h2>
+            </div>
+            <div class="delivery-grid">
+                <div class="delivery-item reveal">
+                    <div class="delivery-icon">📧</div>
+                    <div class="delivery-text">
+                        <strong data-i18n="delivery-1-strong">Un Correo, Todo Incluido</strong>
+                        <span data-i18n="delivery-1-span">Tu lectura completa: fichas personalizadas, guía de integración y lectura profunda de tus 7 códigos simbólicos con arquetipo central y misión de vida.</span>
+                    </div>
+                </div>
+                <div class="delivery-item reveal">
+                    <div class="delivery-icon">📄</div>
+                    <div class="delivery-text">
+                        <strong data-i18n="delivery-5-strong">Mapa y Libro en PDF</strong>
+                        <span data-i18n="delivery-5-span">Tu Mapa de Identidad Natal y tu Libro de Lectura Natal completo, adjuntos en PDF y listos para leer, imprimir o guardar.</span>
+                    </div>
+                </div>
+                <div class="delivery-item reveal">
+                    <div class="delivery-icon">🔮</div>
+                    <div class="delivery-text">
+                        <strong data-i18n="delivery-2-strong">Sello de Identidad</strong>
+                        <span data-i18n="delivery-2-span">Imagen geométrica sagrada generada exclusivamente para ti, que integra tus siete símbolos en un amuleto digital único.</span>
+                    </div>
+                </div>
+                <div class="delivery-item reveal">
+                    <div class="delivery-icon">🌎</div>
+                    <div class="delivery-text">
+                        <strong data-i18n="delivery-3-strong">Español o Inglés</strong>
+                        <span data-i18n="delivery-3-span">Elige el idioma en que deseas recibir tu mapa para una experiencia completamente personalizada.</span>
+                    </div>
+                </div>
+                <div class="delivery-item reveal">
+                    <div class="delivery-icon">⚡</div>
+                    <div class="delivery-text">
+                        <strong data-i18n="delivery-4-strong">Entrega Automática</strong>
+                        <span data-i18n="delivery-4-span">Recibes tu mapa en minutos directamente en tu correo electrónico, sin esperas innecesarias.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CTA FINAL / PAGO ─── -->
+    <section class="cta-section" id="cta">
+        <div class="cta-overlay"></div>
+        <div class="cta-inner">
+
+            <!-- PASO 1: Pago -->
+            <div class="payment-step" id="payment-step">
+                <p class="section-label" data-i18n="pay-label">Paso 1 de 2 · Pago seguro</p>
+                <h2 class="section-title" data-i18n="pay-title">Obtén Tu Mapa Ahora</h2>
+
+                <div class="cta-price" id="cta-price">$36 USD</div>
+                <p class="cta-price-note" id="cta-price-note" data-i18n="pay-desc">Ficha completa · Paga con tarjeta o cuenta PayPal</p>
+
+                <div class="cta-features">
+                    <span class="cta-badge" data-i18n="cta-badge-1">✦ 7 Códigos Simbólicos</span>
+                    <span class="cta-badge" data-i18n="cta-badge-2">✦ Sello de Identidad</span>
+                    <span class="cta-badge" data-i18n="cta-badge-3">✦ Mantra Ceremonial</span>
+                    <span class="cta-badge" data-i18n="cta-badge-4">✦ Entrega en minutos</span>
+                    <span class="cta-badge">✦ ES · EN</span>
+                </div>
+
+                <div class="pay-aviso" data-i18n="pay-aviso">
+                    <strong>Antes de pagar, ten a la mano:</strong><br>
+                    Nombre completo, fecha de nacimiento, hora de nacimiento lo más exacta posible, ciudad/país de nacimiento y correo electrónico.<br><br>
+                    <strong>¿Por qué pedimos la hora?</strong><br>
+                    La usamos para calcular elementos como el ascendente y el animal de la hora. Si no la sabes, escríbenos antes de pagar para orientarte.
+                </div>
+
+                <div id="paypal-container-USD"></div>
+
+                <div class="paypal-legend">
+                    <div><span class="dot dot-yellow"></span><span data-i18n="paypal-amarillo">Botón amarillo · paga con tu cuenta de PayPal</span></div>
+                    <div><span class="dot dot-blue"></span><span data-i18n="paypal-azul">Botón azul · paga con tarjeta, sin cuenta de PayPal</span></div>
+                </div>
+            </div>
+
+            <!-- PASO 2: Formulario (oculto hasta pago) -->
+            <div class="step-divider" id="step-divider" style="display:none;"><span data-i18n="step-divider">Paso 2 · Ingresa tus datos de nacimiento</span></div>
+
+            <form class="form" id="form" onsubmit="event.preventDefault();" style="display:none;">
+
+                <div class="section-label" data-i18n="form-lang">Idioma</div>
+                <div class="lang-selector">
+                    <button type="button" class="lang-btn active lang-btn-es" id="lang-es" onclick="setLang('es')">🇲🇽 Español</button>
+                    <button type="button" class="lang-btn lang-btn-en" id="lang-en" onclick="setLang('en')">🇺🇸 English</button>
+                </div>
+
+                <div class="section-label" data-i18n="form-datos">Tus datos</div>
+
+                <div class="field">
+                    <label data-i18n="lbl-nombre">Nombre completo *</label>
+                    <input type="text" id="nombre" placeholder="Como aparece en tu acta de nacimiento" data-i18n-ph="ph-nombre" required>
+                    <div class="hint" data-i18n="hint-nombre">Se usa para calcular tu numerología con precisión.</div>
+                </div>
+
+                <div class="field">
+                    <label data-i18n="lbl-email">Correo electrónico *</label>
+                    <input type="email" id="email" placeholder="correo@ejemplo.com" required>
+                </div>
+
+                <div class="field">
+                    <label data-i18n="lbl-genero">Género con el que quieres que se redacte tu Mapa *</label>
+                    <select id="genero" required>
+                        <option value="neutro" data-i18n="opt-genero-neutro">Neutro (mejor esfuerzo, no garantizado)</option>
+                        <option value="femenino" data-i18n="opt-genero-femenino">Femenino</option>
+                        <option value="masculino" data-i18n="opt-genero-masculino">Masculino</option>
+                    </select>
+                    <div class="hint" data-i18n="hint-genero">El lenguaje neutro depende de que la IA lo sostenga en un texto largo; si prefieres gramática siempre consistente, elige Femenino o Masculino.</div>
+                </div>
+
+                <div class="section-label" data-i18n="form-fecha">Fecha y hora de nacimiento</div>
+
+                <div class="row3">
+                    <div class="field">
+                        <label data-i18n="lbl-dia">Día *</label>
+                        <input type="number" id="dia" min="1" max="31" placeholder="15" required>
+                    </div>
+                    <div class="field">
+                        <label data-i18n="lbl-mes">Mes *</label>
+                        <input type="number" id="mes" min="1" max="12" placeholder="6" required>
+                    </div>
+                    <div class="field">
+                        <label data-i18n="lbl-anio">Año *</label>
+                        <input type="number" id="anio" min="1900" max="2050" placeholder="1990" required>
+                    </div>
+                </div>
+
+                <div class="row2">
+                    <div class="field">
+                        <label data-i18n="lbl-hora">Hora *</label>
+                        <input type="number" id="hora" min="0" max="23" placeholder="14" required>
+                        <div class="hint" data-i18n="hint-hora">Formato 24h · 1 = 1am · 14 = 2pm</div>
+                    </div>
+                    <div class="field">
+                        <label data-i18n="lbl-minutos">Minutos</label>
+                        <input type="number" id="minutos" min="0" max="59" placeholder="00">
+                    </div>
+                </div>
+
+                <div class="section-label" data-i18n="form-lugar">Lugar de nacimiento</div>
+
+                <div class="field ciudad-field">
+                    <label data-i18n="lbl-ciudad">Ciudad de nacimiento *</label>
+                    <input type="text" id="ciudad" placeholder="Escribe tu ciudad de nacimiento…" data-i18n-ph="ph-ciudad" required autocomplete="off">
+                    <div class="ciudad-dropdown" id="ciudad-dropdown"></div>
+                    <div class="hint" data-i18n="hint-ciudad">📍 Escribe las primeras letras y selecciona tu ciudad de la lista. Funciona en cualquier idioma.</div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn-submit" id="btn-revisar" onclick="mostrarConfirmacion()">
+                        <div class="btn-inner">
+                            <span class="spinner"></span>
+                            <span class="btn-text" data-i18n="btn-revisar">✦ Revisar mis datos</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="error-banner" id="error-banner"></div>
+
+            </form>
+
+            <!-- PANEL DE CONFIRMACIÓN -->
+            <div class="confirm-panel" id="confirm-panel">
+                <div class="confirm-heading" data-i18n="conf-heading">¿Todo está correcto?</div>
+                <div class="confirm-rows">
+                    <div class="confirm-row">
+                        <span class="confirm-label" data-i18n="conf-lbl-nombre">Nombre</span>
+                        <span class="confirm-value" id="conf-nombre"></span>
+                    </div>
+                    <div class="confirm-row">
+                        <span class="confirm-label" data-i18n="conf-lbl-email">Correo</span>
+                        <span class="confirm-value" id="conf-email"></span>
+                    </div>
+                    <div class="confirm-row">
+                        <span class="confirm-label" data-i18n="conf-lbl-genero">Género</span>
+                        <span class="confirm-value" id="conf-genero"></span>
+                    </div>
+                    <div class="confirm-row">
+                        <span class="confirm-label" data-i18n="conf-lbl-fecha">Fecha</span>
+                        <span class="confirm-value" id="conf-fecha"></span>
+                    </div>
+                    <div class="confirm-row">
+                        <span class="confirm-label" data-i18n="conf-lbl-hora">Hora</span>
+                        <span class="confirm-value" id="conf-hora"></span>
+                    </div>
+                    <div class="confirm-row">
+                        <span class="confirm-label" data-i18n="conf-lbl-ciudad">Ciudad</span>
+                        <span class="confirm-value" id="conf-ciudad"></span>
+                    </div>
+                </div>
+                <div class="confirm-actions">
+                    <button class="btn-confirmar" id="btn-confirmar" onclick="enviarConfirmado()">
+                        <div class="btn-inner" style="justify-content:center;gap:10px;">
+                            <div class="confirm-spinner" id="confirm-spinner"></div>
+                            <span class="confirm-btn-text" data-i18n="btn-confirmar">✦ Confirmar y enviar</span>
+                        </div>
+                    </button>
+                    <button class="btn-editar" data-i18n="btn-editar" onclick="ocultarConfirmacion()">← Editar mis datos</button>
+                </div>
+                <div class="error-banner" id="error-banner-confirm" style="margin-top:12px;"></div>
+            </div>
+
+            <!-- Success -->
+            <div class="success-state" id="success-state">
+                <div class="success-icon">✦</div>
+                <h2 class="success-title" data-i18n="success-title">Tu mapa está<br><em style="color:var(--gold-bright)">en camino</em></h2>
+                <p class="success-msg">
+                    <span id="success-gracias">Gracias</span>, <span class="success-name" id="success-name"></span>.<br><br>
+                    <span id="success-msg-template">Estamos tejiendo tu perfil a través de siete sistemas simbólicos. En menos de 5 minutos recibirás tu Mapa de Identidad en <span class="success-name" id="success-email"></span>.</span>
+                </p>
+                <button class="btn-otro" data-i18n="btn-otro" onclick="reiniciar()">Solicitar otra ficha →</button>
+            </div>
+
+            <p class="cta-disclaimer" data-i18n="cta-disclaimer">
+                Antes de pagar, ten a la mano: nombre completo, fecha de nacimiento, hora de nacimiento (lo más exacta posible), ciudad/país de nacimiento y correo electrónico.<br>
+                <em>Si no conoces tu hora de nacimiento, escríbenos antes de pagar para orientarte.</em>
+            </p>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+        <div class="footer-logo">✦ Centro Ser Integral ✦</div>
+        <div class="footer-links">
+            <a href="mailto:centro.ser.integral@gmail.com">centro.ser.integral@gmail.com</a>
+            <a href="privacidad.html" data-i18n="footer-privacidad">Política de Privacidad</a>
+            <a href="tzolkin.html" data-i18n="footer-tzolkin">Tzolkin Gratis</a>
+            <a href="numerologia.html" data-i18n="footer-numerologia">Numerología Gratis</a>
+            <a href="chino.html" data-i18n="footer-chino">Animal Chino</a>
+            <a href="ascendente.html" data-i18n="footer-ascendente">Ascendente Gratis</a>
+        </div>
+        <p class="footer-copy" data-i18n="footer-copy">© 2026 Centro Ser Integral · Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+    // ─── PARTÍCULAS ───────────────────────────────────────────────
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+        constructor() { this.reset(); }
+        reset() {
+            this.x     = Math.random() * canvas.width;
+            this.y     = Math.random() * canvas.height;
+            this.size  = Math.random() * 1.5 + 0.3;
+            this.speedX = (Math.random() - 0.5) * 0.2;
+            this.speedY = (Math.random() - 0.5) * 0.2;
+            this.opacity = Math.random() * 0.5 + 0.1;
+            this.pulse   = Math.random() * Math.PI * 2;
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.pulse += 0.02;
+            if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+        }
+        draw() {
+            const alpha = this.opacity * (0.7 + 0.3 * Math.sin(this.pulse));
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(201,168,76,${alpha})`;
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < 120; i++) particles.push(new Particle());
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // ─── CURSOR GLOW ──────────────────────────────────────────────
+    const glow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', e => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top  = e.clientY + 'px';
+    });
+
+    // ─── SCROLL REVEAL ────────────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal, .purpose-card, .testimonial-card').forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // ─── HERO SCROLL INDICATOR ────────────────────────────────────
+    window.addEventListener('scroll', () => {
+        const s = document.getElementById('heroScroll');
+        if (s) s.style.opacity = window.scrollY > 80 ? '0' : '1';
+    });
+
+    // ─── SMOOTH SCROLL ────────────────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // ─── NAV ACTIVE STATE ─────────────────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(s => {
+            if (window.scrollY >= s.offsetTop - 100) current = s.id;
+        });
+        navLinks.forEach(a => {
+            a.style.color = a.getAttribute('href') === '#' + current
+                ? 'var(--gold)' : '';
+        });
+    });
+    </script>
+
+    <!-- ─── AUTOMATIZACIÓN: PAGO (PayPal) + FORMULARIO + WEBHOOK (Make) ─── -->
+    <script>
+    const WEBHOOK_URL = 'https://hook.us2.make.com/axcvc040dyyaiaxn2f73swq9x430sqbu';
+    let idiomaSeleccionado = 'es';
+
+    const i18n = {
+        es: {
+            'sound-activar': '🜂 Activar experiencia sonora',
+            'sound-silenciar': '🜂 Silenciar ambiente sonoro',
+            'nav-gratis': 'Gratis',
+            'nav-tzolkin': 'Kin del día · Tzolkin',
+            'nav-numerologia': 'Numerología gratis',
+            'nav-chino': 'Animal chino',
+            'nav-ascendente': 'Ascendente',
+            'nav-archivo': 'Archivo de Identidad',
+            'nav-codigos': 'Códigos',
+            'nav-proposito': 'Propósito',
+            'nav-ejemplo': 'Ejemplo',
+            'nav-testimonios': 'Testimonios',
+            'nav-solicitar': 'Solicitar Mapa',
+            'hero-eyebrow': 'Centro Ser Integral · Siete códigos simbólicos',
+            'hero-title': 'Descubre tu<br><em>Mapa de Identidad Natal</em>',
+            'hero-tagline': 'El antiguo conocimiento de las estrellas, revelado para ti',
+            'hero-desc': 'Astrología occidental, horóscopo chino, numerología, tradiciones mayas, el calendario sagrado del Anáhuac y el Tarot convergen en un solo mapa para revelar tu arquetipo central, tu misión de vida y un símbolo visual único creado exclusivamente para ti.',
+            'fact-1-label': 'Qué es',
+            'fact-1-value': 'Perfil simbólico personalizado',
+            'fact-2-label': 'Incluye',
+            'fact-2-value': '7 sistemas + sello + mantra',
+            'fact-3-label': 'Precio',
+            'fact-4-label': 'Entrega',
+            'fact-4-value': 'En minutos',
+            'fact-5-label': 'Cómo',
+            'fact-5-value': 'Por correo · ES o EN',
+            'hero-btn-purpose': '🔮 ¿Para qué sirve?',
+            'hero-btn-solicitar': '✦ Solicitar mi mapa',
+            'hero-scroll': 'Descubrir',
+            'codes-label': 'Lo que contiene tu mapa',
+            'codes-title': 'Los Siete Códigos Simbólicos',
+            'codes-subtitle': 'Cada sistema revela una capa distinta de tu identidad',
+            'code-1-name': 'Zodiaco Occidental',
+            'code-1-desc': 'Signo solar y ascendente para una lectura profunda de tu naturaleza.',
+            'code-2-name': 'Horóscopo Chino',
+            'code-2-desc': 'Año, mes y hora de nacimiento — precisión máxima.',
+            'code-3-name': 'Tzolkin Dreamspell',
+            'code-3-desc': 'Correlación Dreamspell del calendario sagrado maya: tu sello galáctico (kin).',
+            'code-4-name': 'Tonalpohualli Azteca',
+            'code-4-desc': 'Correlación GMT del calendario sagrado del Anáhuac.',
+            'code-5-name': 'Numerología Evolutiva',
+            'code-5-desc': 'Números clave que revelan tu esencia y tu camino de vida.',
+            'code-6-name': 'Arcano Mayor del Tarot',
+            'code-6-desc': 'Tu carta del alma que guía tu camino espiritual.',
+            'code-7-name': 'Ángel Cabalístico',
+            'code-7-desc': 'Tu ángel según la tradición angelológica del Shem HaMephorash.',
+            'video-label': 'Míralo en acción',
+            'video-title': 'Cómo Funciona el Mapa de Identidad Natal',
+            'video-subtitle': 'Una breve explicación de qué es y cómo se genera tu mapa',
+            'purpose-label': 'Tu camino de autoconocimiento',
+            'purpose-title': '¿Para Qué Te Sirve?',
+            'purpose-subtitle': 'Este mapa no pretende decirte quién "debes" ser. Te ofrece una lectura simbólica para mirarte desde distintos lenguajes.',
+            'purpose-1-title': 'Reconocer',
+            'purpose-1-desc': 'Que tus rasgos no son fallas: son información sobre tu forma de actuar y relacionarte.',
+            'purpose-2-title': 'Reflexionar',
+            'purpose-2-desc': 'Sobre los ciclos que se repiten en tu vida, con una mirada simbólica y compasiva — no como algo que sale mal, sino como algo que se está pidiendo entender.',
+            'purpose-3-title': 'Conectar',
+            'purpose-3-desc': 'Con una intención clara cuando todo se siente disperso, para orientar tu etapa actual desde tu esencia.',
+            'purpose-4-title': 'Explorar',
+            'purpose-4-desc': 'Usarlo como punto de partida para journaling, meditación o tu proceso de autoconocimiento.',
+            'example-label': 'Fragmento ilustrativo',
+            'example-title': 'Ejemplo de Mapa',
+            'example-subtitle': 'Así luce una lectura real — cada mapa es único e irrepetible',
+            'example-birth': '6 · agosto · 2008 · 05:56 · Tlaxco, Tlaxcala, México',
+            'ex-label-1': 'Zodiaco',
+            'ex-label-2': 'Horóscopo Chino',
+            'ex-value-2': '🐀 Rata de Tierra Yang',
+            'ex-label-3': 'Tzolkin Dreamspell',
+            'ex-value-3': 'Perro Blanco Magnético',
+            'ex-label-4': 'Tonalpohualli',
+            'ex-label-5': 'Numerología',
+            'ex-value-5': 'Misión 11 · Base 24/6 · Camino 17/8',
+            'ex-label-6': 'Arcano del Tarot',
+            'ex-value-6': 'VI · Los Amantes',
+            'ex-label-7': 'Ángel Cabalístico',
+            'example-archetype': '✦ Arquetipo Central: La Sanadora Leal que Elige',
+            'example-text': 'Rosario integra un Leo solar con ascendente Cáncer: fuego que protege, luz que acoge. Su Rata de Tierra Yang aporta astucia constructiva y movimiento inteligente. Su numerología evolutiva muestra una Misión 11 de intuición amplificada, una Base 24/6 de responsabilidad del corazón y un Camino 17/8 de poder personal templado por la experiencia. Su Ángel Cabalístico, Yerathel, le trae la energía de la liberación; Perro Blanco Magnético, lealtad que atrae; 9 Atl, profundidad emocional; y Los Amantes, la elección consciente como camino del alma.',
+            'example-mantra': '<strong>Mantra Ceremonial:</strong><br>Yo soy fuego que acoge, luz que no quema. Vengo de aguas profundas, de visiones nocturnas donde vi lo que otros temerían ver. <em>Yo soy lealtad sin sumisión. Yo soy poder sin arrogancia. Yo soy amor sin pérdida de mí.</em>',
+            'example-cta-btn': '✦ Quiero el mío',
+            'example-note': 'Nombre ficticio · Contenido generado con IA como ilustración',
+            'testimonials-label': 'Voces de quienes ya lo recibieron',
+            'testimonials-title': 'Lo Que Dicen',
+            'test-1': 'Ya me llegó mi carta!!! Me fascinó!!!! Está padrísimo. Entre otras cosas que dice, soy Águila — siempre que me preguntan qué animal me gustaría ser, siempre he dicho Águila. 🦅',
+            'test-2': 'Ya leí el mapa de identidad de mi hijo. Está súper bien, sí lo describe. Me sorprendió la precisión con la que captura su personalidad.',
+            'test-2-autor': '— A.H. · sobre el mapa de su hijo',
+            'test-3': 'Está muy completo. 😱 Lo imprimiremos y lo pondremos en un lugar especial. Es una herramienta de autoconocimiento realmente poderosa.',
+            'test-4': 'Me encantó. 💕 Cada sección resonó profundamente conmigo. Es como si alguien finalmente hubiera puesto en palabras lo que siempre sentí.',
+            'delivery-label': 'Tu entrega',
+            'delivery-title': 'Lo Que Recibirás',
+            'delivery-1-strong': 'Un Correo, Todo Incluido',
+            'delivery-1-span': 'Tu lectura completa: fichas personalizadas, guía de integración y lectura profunda de tus 7 códigos simbólicos con arquetipo central y misión de vida.',
+            'delivery-5-strong': 'Mapa y Libro en PDF',
+            'delivery-5-span': 'Tu Mapa de Identidad Natal y tu Libro de Lectura Natal completo, adjuntos en PDF y listos para leer, imprimir o guardar.',
+            'delivery-2-strong': 'Sello de Identidad',
+            'delivery-2-span': 'Imagen geométrica sagrada generada exclusivamente para ti, que integra tus siete símbolos en un amuleto digital único.',
+            'delivery-3-strong': 'Español o Inglés',
+            'delivery-3-span': 'Elige el idioma en que deseas recibir tu mapa para una experiencia completamente personalizada.',
+            'delivery-4-strong': 'Entrega Automática',
+            'delivery-4-span': 'Recibes tu mapa en minutos directamente en tu correo electrónico, sin esperas innecesarias.',
+            'cta-badge-1': '✦ 7 Códigos Simbólicos',
+            'cta-badge-2': '✦ Sello de Identidad',
+            'cta-badge-3': '✦ Mantra Ceremonial',
+            'cta-badge-4': '✦ Entrega en minutos',
+            'cta-disclaimer': 'Antes de pagar, ten a la mano: nombre completo, fecha de nacimiento, hora de nacimiento (lo más exacta posible), ciudad/país de nacimiento y correo electrónico.<br><em>Si no conoces tu hora de nacimiento, escríbenos antes de pagar para orientarte.</em>',
+            'footer-privacidad': 'Política de Privacidad',
+            'footer-tzolkin': 'Tzolkin Gratis',
+            'footer-numerologia': 'Numerología Gratis',
+            'footer-chino': 'Animal Chino',
+            'footer-ascendente': 'Ascendente Gratis',
+            'footer-copy': '© 2026 Centro Ser Integral · Todos los derechos reservados',
+            'pay-label': 'Paso 1 de 2 · Pago seguro',
+            'pay-title': 'Obtén Tu Mapa Ahora',
+            'pay-desc': 'Ficha completa · <span class="price-highlight">{PRECIO}</span><br>Paga con tarjeta o cuenta PayPal. Después del pago completarás tus datos de nacimiento para generar tu mapa.',
+            'pay-aviso': '<strong>Antes de pagar, ten a la mano:</strong><br>Nombre completo, fecha de nacimiento, hora de nacimiento lo más exacta posible, ciudad/país de nacimiento y correo electrónico.<br><br><strong>¿Por qué pedimos la hora?</strong><br>La usamos para calcular elementos como el ascendente y el animal de la hora. Si no la sabes, escríbenos antes de pagar para orientarte.',
+            'paypal-amarillo': 'Botón amarillo · paga con tu cuenta de PayPal',
+            'paypal-azul': 'Botón azul · paga con tarjeta, sin cuenta de PayPal',
+            'step-divider': 'Paso 2 · Ingresa tus datos de nacimiento',
+            'form-lang': 'Idioma',
+            'form-datos': 'Tus datos',
+            'form-fecha': 'Fecha y hora de nacimiento',
+            'form-lugar': 'Lugar de nacimiento',
+            'lbl-nombre': 'Nombre completo *',
+            'lbl-email': 'Correo electrónico *',
+            'lbl-genero': 'Género con el que quieres que se redacte tu Mapa *',
+            'opt-genero-neutro': 'Neutro (mejor esfuerzo, no garantizado)',
+            'opt-genero-femenino': 'Femenino',
+            'opt-genero-masculino': 'Masculino',
+            'hint-genero': 'El lenguaje neutro depende de que la IA lo sostenga en un texto largo; si prefieres gramática siempre consistente, elige Femenino o Masculino.',
+            'lbl-dia': 'Día *',
+            'lbl-mes': 'Mes *',
+            'lbl-anio': 'Año *',
+            'lbl-hora': 'Hora *',
+            'lbl-minutos': 'Minutos',
+            'lbl-ciudad': 'Ciudad de nacimiento *',
+            'hint-nombre': 'Se usa para calcular tu numerología con precisión.',
+            'hint-hora': 'Formato 24h · 1 = 1am · 14 = 2pm',
+            'hint-ciudad': '📍 Escribe las primeras letras y selecciona tu ciudad de la lista. Funciona en cualquier idioma.',
+            'ph-nombre': 'Como aparece en tu acta de nacimiento',
+            'ph-ciudad': 'Escribe tu ciudad de nacimiento…',
+            'btn-revisar': '✦ Revisar mis datos',
+            'conf-heading': '¿Todo está correcto?',
+            'conf-lbl-nombre': 'Nombre',
+            'conf-lbl-email': 'Correo',
+            'conf-lbl-genero': 'Género',
+            'conf-lbl-fecha': 'Fecha',
+            'conf-lbl-hora': 'Hora',
+            'conf-lbl-ciudad': 'Ciudad',
+            'btn-confirmar': '✦ Confirmar y enviar',
+            'btn-editar': '← Editar mis datos',
+            'success-title': 'Tu mapa está<br><em style="color:var(--gold-bright)">en camino</em>',
+            'btn-otro': 'Solicitar otra ficha →',
+            months: ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],
+            'err-required': 'Por favor llena todos los campos obligatorios.',
+            'err-hora': 'La hora debe ser entre 0 y 23.',
+            'err-minutos': 'Los minutos deben ser entre 00 y 59.',
+            'err-dia': 'El día debe ser entre 1 y 31.',
+            'err-mes': 'El mes debe ser entre 1 y 12.',
+            'err-anio': 'El año debe ser entre 1900 y 2050.',
+            'err-ciudad': 'Por favor selecciona tu ciudad de la lista de sugerencias que aparece al escribir.',
+            'err-tz': 'Hubo un problema al detectar la zona horaria. Intenta de nuevo.',
+            'loading-tz': '🕐 Calculando zona horaria...',
+            'loading-send': '✦ Enviando tu solicitud...'
+        },
+        en: {
+            'sound-activar': '🜂 Activate sonic experience',
+            'sound-silenciar': '🜂 Mute ambient sound',
+            'nav-gratis': 'Free',
+            'nav-tzolkin': "Day's Kin · Tzolkin",
+            'nav-numerologia': 'Free numerology',
+            'nav-chino': 'Chinese animal',
+            'nav-ascendente': 'Rising sign',
+            'nav-archivo': 'Identity Archive',
+            'nav-codigos': 'Codes',
+            'nav-proposito': 'Purpose',
+            'nav-ejemplo': 'Example',
+            'nav-testimonios': 'Testimonials',
+            'nav-solicitar': 'Get My Map',
+            'hero-eyebrow': 'Centro Ser Integral · Seven symbolic codes',
+            'hero-title': 'Discover Your<br><em>Birth Identity Map</em>',
+            'hero-tagline': 'The ancient knowledge of the stars, revealed for you',
+            'hero-desc': 'Western astrology, Chinese horoscope, numerology, Mayan traditions, the sacred calendar of Anáhuac and Tarot converge into a single map to reveal your core archetype, your life mission and a unique visual symbol created exclusively for you.',
+            'fact-1-label': 'What it is',
+            'fact-1-value': 'Personalized symbolic profile',
+            'fact-2-label': 'Includes',
+            'fact-2-value': '7 systems + seal + mantra',
+            'fact-3-label': 'Price',
+            'fact-4-label': 'Delivery',
+            'fact-4-value': 'In minutes',
+            'fact-5-label': 'How',
+            'fact-5-value': 'By email · ES or EN',
+            'hero-btn-purpose': '🔮 What is it for?',
+            'hero-btn-solicitar': '✦ Get my map',
+            'hero-scroll': 'Discover',
+            'codes-label': 'What your map contains',
+            'codes-title': 'The Seven Symbolic Codes',
+            'codes-subtitle': 'Each system reveals a distinct layer of your identity',
+            'code-1-name': 'Western Zodiac',
+            'code-1-desc': 'Sun sign and rising sign for a deep reading of your nature.',
+            'code-2-name': 'Chinese Horoscope',
+            'code-2-desc': 'Year, month and hour of birth — maximum precision.',
+            'code-3-name': 'Tzolkin Dreamspell',
+            'code-3-desc': 'Dreamspell correlation of the sacred Mayan calendar: your galactic seal (kin).',
+            'code-4-name': 'Aztec Tonalpohualli',
+            'code-4-desc': 'GMT correlation of the sacred Anáhuac calendar.',
+            'code-5-name': 'Evolutionary Numerology',
+            'code-5-desc': 'Key numbers that reveal your essence and your life path.',
+            'code-6-name': 'Tarot Major Arcana',
+            'code-6-desc': 'Your soul card, guiding your spiritual path.',
+            'code-7-name': 'Kabbalistic Angel',
+            'code-7-desc': 'Your angel according to the Shem HaMephorash angelological tradition.',
+            'video-label': 'See it in action',
+            'video-title': 'How the Birth Identity Map Works',
+            'video-subtitle': 'A short explanation of what it is and how your map is created',
+            'purpose-label': 'Your path of self-knowledge',
+            'purpose-title': 'What Is It For?',
+            'purpose-subtitle': 'This map does not claim to tell you who you "should" be. It offers a symbolic reading to see yourself through different languages.',
+            'purpose-1-title': 'Recognize',
+            'purpose-1-desc': 'That your traits aren\'t flaws: they\'re information about how you act and relate to others.',
+            'purpose-2-title': 'Reflect',
+            'purpose-2-desc': 'On the cycles that repeat in your life, with a symbolic and compassionate view — not as something going wrong, but as something asking to be understood.',
+            'purpose-3-title': 'Connect',
+            'purpose-3-desc': 'With a clear intention when everything feels scattered, to guide your current stage from your essence.',
+            'purpose-4-title': 'Explore',
+            'purpose-4-desc': 'Use it as a starting point for journaling, meditation or your self-knowledge process.',
+            'example-label': 'Illustrative fragment',
+            'example-title': 'Map Example',
+            'example-subtitle': 'This is what a real reading looks like — every map is unique and unrepeatable',
+            'example-birth': 'August 6, 2008 · 05:56 · Tlaxco, Tlaxcala, Mexico',
+            'ex-label-1': 'Zodiac',
+            'ex-label-2': 'Chinese Horoscope',
+            'ex-value-2': '🐀 Earth Yang Rat',
+            'ex-label-3': 'Tzolkin Dreamspell',
+            'ex-value-3': 'White Magnetic Dog',
+            'ex-label-4': 'Tonalpohualli',
+            'ex-label-5': 'Numerology',
+            'ex-value-5': 'Mission 11 · Base 24/6 · Path 17/8',
+            'ex-label-6': 'Tarot Arcana',
+            'ex-value-6': 'VI · The Lovers',
+            'ex-label-7': 'Kabbalistic Angel',
+            'example-archetype': '✦ Core Archetype: The Loyal Healer Who Chooses',
+            'example-text': 'Rosario blends a solar Leo with Cancer rising: fire that protects, light that welcomes. Her Earth Rat Yang brings constructive cunning and intelligent movement. Her evolutionary numerology shows a Mission 11 of amplified intuition, a Base 24/6 of heart responsibility and a Path 17/8 of personal power tempered by experience. Her Kabbalistic Angel, Yerathel, brings her the energy of liberation; White Magnetic Dog, loyalty that attracts; 9 Atl, emotional depth; and The Lovers, conscious choice as the soul\'s path.',
+            'example-mantra': '<strong>Ceremonial Mantra:</strong><br>I am fire that welcomes, light that does not burn. I come from deep waters, from night visions where I saw what others would fear to see. <em>I am loyalty without submission. I am power without arrogance. I am love without losing myself.</em>',
+            'example-cta-btn': '✦ I want mine',
+            'example-note': 'Fictional name · AI-generated content as illustration',
+            'testimonials-label': 'Voices of those who already received it',
+            'testimonials-title': 'What They Say',
+            'test-1': 'My profile arrived!!! I loved it!!!! It\'s amazing. Among other things it says I am Eagle — whenever people ask what animal I\'d like to be, I\'ve always said Eagle. 🦅',
+            'test-2': 'I read my son\'s identity map. It\'s spot on, it really describes him. I was surprised by how precisely it captured his personality.',
+            'test-2-autor': '— A.H. · about her son\'s map',
+            'test-3': 'It\'s very complete. 😱 We\'ll print it and put it somewhere special. It\'s a truly powerful self-knowledge tool.',
+            'test-4': 'I loved it. 💕 Every section resonated deeply with me. It\'s as if someone finally put into words what I always felt.',
+            'delivery-label': 'Your delivery',
+            'delivery-title': 'What You Will Receive',
+            'delivery-1-strong': 'One Email, Everything Included',
+            'delivery-1-span': 'Your full reading: personalized profiles, integration guide and deep reading of your 7 symbolic codes with core archetype and life mission.',
+            'delivery-5-strong': 'Map & Book in PDF',
+            'delivery-5-span': 'Your Natal Identity Map and your full Natal Reading Book, attached in PDF and ready to read, print or save.',
+            'delivery-2-strong': 'Identity Seal',
+            'delivery-2-span': 'Sacred geometric image generated exclusively for you, integrating your seven symbols into a unique digital amulet.',
+            'delivery-3-strong': 'Spanish or English',
+            'delivery-3-span': 'Choose the language in which you want to receive your map for a fully personalized experience.',
+            'delivery-4-strong': 'Automatic Delivery',
+            'delivery-4-span': 'You receive your map in minutes directly in your email, with no unnecessary waiting.',
+            'cta-badge-1': '✦ 7 Symbolic Codes',
+            'cta-badge-2': '✦ Identity Seal',
+            'cta-badge-3': '✦ Ceremonial Mantra',
+            'cta-badge-4': '✦ Delivery in minutes',
+            'cta-disclaimer': 'Before paying, have ready: full name, date of birth, birth time (as exact as possible), city/country of birth and email.<br><em>If you don\'t know your birth time, write to us before paying and we\'ll help.</em>',
+            'footer-privacidad': 'Privacy Policy',
+            'footer-tzolkin': 'Free Tzolkin',
+            'footer-numerologia': 'Free Numerology',
+            'footer-chino': 'Chinese Animal',
+            'footer-ascendente': 'Free Rising Sign',
+            'footer-copy': '© 2026 Centro Ser Integral · All rights reserved',
+            'pay-label': 'Step 1 of 2 · Secure payment',
+            'pay-title': 'Get Your Map Now',
+            'pay-desc': 'Full profile · <span class="price-highlight">{PRECIO}</span><br>Pay by card or PayPal. After payment, you’ll complete your birth details to generate your map.',
+            'pay-aviso': '<strong>Before paying, have ready:</strong><br>Full name, date of birth, birth time as exact as possible, city/country of birth and email.<br><br><strong>Why do we ask for the time?</strong><br>We use it to calculate elements like the rising sign and the hour animal. If you don’t know it, write to us before paying and we’ll help.',
+            'paypal-amarillo': 'Yellow button · pay with your PayPal account',
+            'paypal-azul': 'Blue button · pay by card, no PayPal account needed',
+            'step-divider': 'Step 2 · Enter your birth details',
+            'form-lang': 'Language',
+            'form-datos': 'Your details',
+            'form-fecha': 'Date and time of birth',
+            'form-lugar': 'Place of birth',
+            'lbl-nombre': 'Full name *',
+            'lbl-email': 'Email *',
+            'lbl-genero': 'Grammatical gender for your Map *',
+            'opt-genero-neutro': 'Neutral (best effort, not guaranteed)',
+            'opt-genero-femenino': 'Feminine',
+            'opt-genero-masculino': 'Masculine',
+            'hint-genero': 'Neutral wording depends on the AI sustaining it across a long text; if you prefer consistent grammar, choose Feminine or Masculine.',
+            'lbl-dia': 'Day *',
+            'lbl-mes': 'Month *',
+            'lbl-anio': 'Year *',
+            'lbl-hora': 'Hour *',
+            'lbl-minutos': 'Minutes',
+            'lbl-ciudad': 'City of birth *',
+            'hint-nombre': 'Used to calculate your numerology precisely.',
+            'hint-hora': '24h format · 1 = 1am · 14 = 2pm',
+            'hint-ciudad': '📍 Type the first letters and pick your city from the list. Works in any language.',
+            'ph-nombre': 'As it appears on your birth certificate',
+            'ph-ciudad': 'Type your city of birth…',
+            'btn-revisar': '✦ Review my details',
+            'conf-heading': 'Is everything correct?',
+            'conf-lbl-nombre': 'Name',
+            'conf-lbl-email': 'Email',
+            'conf-lbl-genero': 'Gender',
+            'conf-lbl-fecha': 'Date',
+            'conf-lbl-hora': 'Time',
+            'conf-lbl-ciudad': 'City',
+            'btn-confirmar': '✦ Confirm and send',
+            'btn-editar': '← Edit my details',
+            'success-title': 'Your map is<br><em style="color:var(--gold-bright)">on its way</em>',
+            'btn-otro': 'Request another profile →',
+            months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+            'err-required': 'Please fill in all required fields.',
+            'err-hora': 'The hour must be between 0 and 23.',
+            'err-minutos': 'Minutes must be between 00 and 59.',
+            'err-dia': 'The day must be between 1 and 31.',
+            'err-mes': 'The month must be between 1 and 12.',
+            'err-anio': 'The year must be between 1900 and 2050.',
+            'err-ciudad': 'Please select your city from the suggestion list that appears as you type.',
+            'err-tz': 'There was a problem detecting the timezone. Please try again.',
+            'loading-tz': '🕐 Calculating timezone...',
+            'loading-send': '✦ Sending your request...'
+        }
+    };
+
+    function setLang(lang) {
+        idiomaSeleccionado = lang;
+        const t = i18n[lang];
+
+        document.querySelectorAll('.lang-btn-es').forEach(b => b.classList.toggle('active', lang === 'es'));
+        document.querySelectorAll('.lang-btn-en').forEach(b => b.classList.toggle('active', lang === 'en'));
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+
+        document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+            const key = el.getAttribute('data-i18n-ph');
+            if (t[key] !== undefined) el.placeholder = t[key];
+        });
+
+        const gracias = document.getElementById('success-gracias');
+        if (gracias) gracias.textContent = lang === 'en' ? 'Thank you' : 'Gracias';
+
+        const successMsg = document.getElementById('success-msg-template');
+        if (successMsg) {
+            successMsg.innerHTML = lang === 'en'
+                ? 'We are weaving your profile through seven symbolic systems. You will receive your Identity Map in less than 5 minutes at <span class="success-name" id="success-email"></span>.'
+                : 'Estamos tejiendo tu perfil a través de siete sistemas simbólicos. En menos de 5 minutos recibirás tu Mapa de Identidad en <span class="success-name" id="success-email"></span>.';
+        }
+
+        const btnLang = document.getElementById('btnLangToggle');
+        if (btnLang) btnLang.innerHTML = lang === 'en' ? '🇺🇸 EN · 🇲🇽 es' : '🇲🇽 ES · 🇺🇸 en';
+
+        actualizarPrecio();
+    }
+
+    function toggleLangGlobal() {
+        setLang(idiomaSeleccionado === 'es' ? 'en' : 'es');
+    }
+
+    const PRECIO = { texto: '$36 USD', spanHtml: '<span class="price-highlight">$36 USD</span>' };
+
+    function actualizarPrecio() {
+        const notaEl = document.getElementById('cta-price-note');
+        const t = i18n[idiomaSeleccionado];
+        if (notaEl && t['pay-desc']) {
+            notaEl.innerHTML = t['pay-desc'].replace('{PRECIO}', PRECIO.spanHtml);
+        }
+    }
+
+    let audioActivo = false;
+    function toggleAudio() {
+        const audio = document.getElementById('bg-audio');
+        const btn = document.getElementById('soundToggle');
+        const span = document.getElementById('soundToggleText');
+        if (!audio || !btn) return;
+        const t = i18n[idiomaSeleccionado];
+        if (!audioActivo) {
+            audio.volume = 0.28;
+            audio.play().catch(() => {});
+            audioActivo = true;
+            btn.classList.add('activo');
+            span.setAttribute('data-i18n', 'sound-silenciar');
+            span.textContent = t['sound-silenciar'];
+        } else {
+            audio.pause();
+            audioActivo = false;
+            btn.classList.remove('activo');
+            span.setAttribute('data-i18n', 'sound-activar');
+            span.textContent = t['sound-activar'];
+        }
+    }
+
+    function toggleNavDropdown(e) {
+        e.stopPropagation();
+        document.getElementById('navDropdown').classList.toggle('open');
+    }
+
+    document.addEventListener('click', () => {
+        const dd = document.getElementById('navDropdown');
+        if (dd) dd.classList.remove('open');
+    });
+
+    function mostrarFormulario() {
+        document.getElementById('payment-step').style.display = 'none';
+        document.getElementById('step-divider').style.display = 'flex';
+        document.getElementById('form').style.display = 'flex';
+        setTimeout(() => {
+            document.getElementById('form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 400);
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    function reiniciar() {
+        document.getElementById('success-state').classList.remove('visible');
+        document.getElementById('form').style.display = 'none';
+        document.getElementById('step-divider').style.display = 'none';
+        document.getElementById('payment-step').style.display = 'block';
+        document.getElementById('confirm-panel').classList.remove('visible');
+        document.getElementById('form').reset();
+        setLang('es');
+        document.getElementById('cta').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function mostrarConfirmacion() {
+        const errBanner = document.getElementById('error-banner');
+        errBanner.classList.remove('visible');
+
+        const nombre   = document.getElementById('nombre').value.trim();
+        const email    = document.getElementById('email').value.trim();
+        const generoEl = document.getElementById('genero');
+        const genero   = generoEl.value;
+        const dia      = parseInt(document.getElementById('dia').value);
+        const mes      = parseInt(document.getElementById('mes').value);
+        const anio     = parseInt(document.getElementById('anio').value);
+        const hora     = parseInt(document.getElementById('hora').value);
+        const minutos  = parseInt(document.getElementById('minutos').value) || 0;
+        const ciudad   = document.getElementById('ciudad').value.trim();
+
+        if (!nombre || !email || !genero || !dia || !mes || !anio || isNaN(hora) || !ciudad) {
+            errBanner.textContent = i18n[idiomaSeleccionado]['err-required'];
+            errBanner.classList.add('visible');
+            return;
+        }
+        if (hora < 0 || hora > 23) {
+            errBanner.textContent = i18n[idiomaSeleccionado]['err-hora'];
+            errBanner.classList.add('visible');
+            return;
+        }
+        if (minutos < 0 || minutos > 59) {
+            errBanner.textContent = i18n[idiomaSeleccionado]['err-minutos'];
+            errBanner.classList.add('visible');
+            return;
+        }
+        if (dia < 1 || dia > 31) {
+            errBanner.textContent = i18n[idiomaSeleccionado]['err-dia'];
+            errBanner.classList.add('visible');
+            return;
+        }
+        if (mes < 1 || mes > 12) {
+            errBanner.textContent = i18n[idiomaSeleccionado]['err-mes'];
+            errBanner.classList.add('visible');
+            return;
+        }
+        if (anio < 1900 || anio > 2050) {
+            errBanner.textContent = i18n[idiomaSeleccionado]['err-anio'];
+            errBanner.classList.add('visible');
+            return;
+        }
+        if (!ciudadLat || !ciudadLng) {
+            errBanner.textContent = i18n[idiomaSeleccionado]['err-ciudad'];
+            errBanner.classList.add('visible');
+            return;
+        }
+
+        const nombreMes = i18n[idiomaSeleccionado].months[(mes - 1)] || mes;
+        const horaFmt   = String(hora).padStart(2,'0') + ':' + String(minutos).padStart(2,'0');
+        const fechaFmt  = idiomaSeleccionado === 'en'
+            ? `${nombreMes} ${dia}, ${anio}`
+            : `${dia} de ${nombreMes} de ${anio}`;
+
+        document.getElementById('conf-nombre').textContent = nombre;
+        document.getElementById('conf-email').textContent  = email;
+        document.getElementById('conf-genero').textContent = generoEl.options[generoEl.selectedIndex].textContent;
+        document.getElementById('conf-fecha').textContent  = fechaFmt;
+        document.getElementById('conf-hora').textContent   = horaFmt + ' h';
+        document.getElementById('conf-ciudad').textContent = ciudad;
+
+        document.getElementById('form').style.display = 'none';
+        document.getElementById('step-divider').style.display = 'none';
+        const panel = document.getElementById('confirm-panel');
+        panel.classList.add('visible');
+        setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
+
+    function ocultarConfirmacion() {
+        document.getElementById('confirm-panel').classList.remove('visible');
+        document.getElementById('error-banner-confirm').classList.remove('visible');
+        document.getElementById('step-divider').style.display = 'flex';
+        document.getElementById('form').style.display = 'flex';
+        setTimeout(() => {
+            document.getElementById('form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
+
+    async function enviarConfirmado() {
+        const btn = document.getElementById('btn-confirmar');
+        const errBanner = document.getElementById('error-banner-confirm');
+        errBanner.classList.remove('visible');
+
+        const nombre     = document.getElementById('nombre').value.trim();
+        const email      = document.getElementById('email').value.trim();
+        const genero     = document.getElementById('genero').value;
+        const dia        = parseInt(document.getElementById('dia').value);
+        const mes        = parseInt(document.getElementById('mes').value);
+        const anio       = parseInt(document.getElementById('anio').value);
+        const hora       = parseInt(document.getElementById('hora').value);
+        const minutos    = parseInt(document.getElementById('minutos').value) || 0;
+        const ciudad     = document.getElementById('ciudad').value.trim();
+
+        btn.disabled = true;
+        btn.classList.add('loading');
+        document.querySelector('.confirm-btn-text').textContent = i18n[idiomaSeleccionado]['loading-tz'];
+
+        let timezone;
+        try {
+            timezone = await obtenerTimezone(ciudadLat, ciudadLng, dia, mes, anio, hora, minutos);
+        } catch (tzErr) {
+            btn.disabled = false;
+            btn.classList.remove('loading');
+            document.querySelector('.confirm-btn-text').textContent = i18n[idiomaSeleccionado]['btn-confirmar'];
+            errBanner.textContent = i18n[idiomaSeleccionado]['err-tz'];
+            errBanner.classList.add('visible');
+            return;
+        }
+
+        document.querySelector('.confirm-btn-text').textContent = i18n[idiomaSeleccionado]['loading-send'];
+
+        const payload = {
+            nombre, email, genero, dia, mes, anio,
+            hora, minutos, ciudad,
+            lat: ciudadLat,
+            lng: ciudadLng,
+            timezone: timezone,
+            idioma: idiomaSeleccionado,
+            timestamp: new Date().toISOString()
+        };
+
+        try {
+            const res = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (res.ok || res.status === 200) {
+                document.getElementById('confirm-panel').classList.remove('visible');
+                document.getElementById('step-divider').style.display = 'none';
+                document.getElementById('success-name').textContent = nombre.split(' ')[0];
+                document.getElementById('success-email').textContent = email;
+                document.getElementById('success-state').classList.add('visible');
+                setTimeout(() => {
+                    document.getElementById('success-state').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 400);
+            } else {
+                throw new Error(`Error ${res.status}`);
+            }
+        } catch(err) {
+            btn.disabled = false;
+            btn.classList.remove('loading');
+            document.querySelector('.confirm-btn-text').textContent = '✦ Confirmar y enviar';
+            errBanner.innerHTML = `Hubo un problema al enviar tu solicitud. Por favor intenta de nuevo.<br><small style="opacity:.6">${err.message}</small>`;
+            errBanner.classList.add('visible');
+        }
+    }
+
+    try {
+        paypalUSD.HostedButtons({
+            hostedButtonId: "2YB5PU2WDW5GY",
+            onApprove: function(data) {
+                try {
+                    mostrarFormulario();
+                } catch(err) {
+                    console.error('Error al mostrar formulario tras pago:', err);
+                    window.location.href = window.location.pathname + '?pagado=si';
+                }
+            }
+        }).render("#paypal-container-USD");
+    } catch(e) {
+        console.warn('PayPal USD no disponible:', e);
+        const containerUSD = document.getElementById('paypal-container-USD');
+        if (containerUSD) {
+            containerUSD.innerHTML = '<button onclick="mostrarFormulario()" style="margin-top:16px;padding:14px 28px;background:linear-gradient(135deg,var(--gold),var(--copper));border:none;color:var(--dark-bg);border-radius:50px;font-family:Cinzel,serif;font-size:15px;cursor:pointer;width:100%">✦ Modo prueba · Ir al formulario</button>';
+        }
+    }
+
+    if (new URLSearchParams(window.location.search).get('pagado') === 'si') {
+        mostrarFormulario();
+    }
+
+    // --- Google Places (New API): autocompletado programático ---
+    let ciudadLat = null;
+    let ciudadLng = null;
+    let autocompleteTimeout = null;
+    let sessionToken = null;
+
+    async function initAutocomplete() {
+        try {
+            const { AutocompleteSuggestion, AutocompleteSessionToken } = await google.maps.importLibrary("places");
+            const input = document.getElementById('ciudad');
+            const dropdown = document.getElementById('ciudad-dropdown');
+            sessionToken = new AutocompleteSessionToken();
+
+            input.addEventListener('input', () => {
+                ciudadLat = null;
+                ciudadLng = null;
+                clearTimeout(autocompleteTimeout);
+                const query = input.value.trim();
+                if (query.length < 2) { dropdown.innerHTML = ''; dropdown.style.display = 'none'; return; }
+
+                autocompleteTimeout = setTimeout(async () => {
+                    try {
+                        const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
+                            input: query,
+                            includedPrimaryTypes: ['locality', 'administrative_area_level_3', 'administrative_area_level_2'],
+                            sessionToken
+                        });
+                        dropdown.innerHTML = '';
+                        if (!suggestions || suggestions.length === 0) { dropdown.style.display = 'none'; return; }
+                        suggestions.slice(0, 6).forEach(s => {
+                            const item = document.createElement('div');
+                            item.className = 'ciudad-option';
+                            item.textContent = s.placePrediction.text.toString();
+                            item.addEventListener('mousedown', async (e) => {
+                                e.preventDefault();
+                                input.value = s.placePrediction.text.toString();
+                                dropdown.style.display = 'none';
+                                try {
+                                    const place = s.placePrediction.toPlace();
+                                    await place.fetchFields({ fields: ['location', 'formattedAddress'] });
+                                    ciudadLat = place.location.lat();
+                                    ciudadLng = place.location.lng();
+                                    sessionToken = new AutocompleteSessionToken();
+                                } catch(e) { console.warn('Error obteniendo lugar:', e); }
+                            });
+                            dropdown.appendChild(item);
+                        });
+                        dropdown.style.display = 'block';
+                    } catch(e) { console.warn('Error en sugerencias:', e); }
+                }, 300);
+            });
+
+            input.addEventListener('blur', () => { setTimeout(() => { dropdown.style.display = 'none'; }, 150); });
+        } catch(e) { console.warn('Google Places no disponible:', e); }
+    }
+
+    window.addEventListener('load', initAutocomplete);
+
+    // --- TimeZoneDB: timezone histórico exacto para la fecha de nacimiento ---
+    async function obtenerTimezone(lat, lng, dia, mes, anio, hora, minutos) {
+        const fechaNac = new Date(Date.UTC(anio, mes - 1, dia, hora, minutos, 0));
+        const unixTimestamp = Math.floor(fechaNac.getTime() / 1000);
+        const tzRes = await fetch(`https://api.timezonedb.com/v2.1/get-time-zone?key=0VFM6NACW7MC&format=json&by=position&lat=${lat}&lng=${lng}&time=${unixTimestamp}`);
+        const tzData = await tzRes.json();
+        return tzData.gmtOffset / 3600;
+    }
+    </script>
+</body>
+</html>
