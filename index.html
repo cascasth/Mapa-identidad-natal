@@ -176,7 +176,7 @@
         /* Corona tallada con arco y medallón */
         .crown {
             position: relative;
-            height: 150px;
+            height: 115px;
             background:
                 repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0 2px, transparent 2px 7px),
                 linear-gradient(var(--wood-light), var(--wood) 40%, var(--wood-dark));
@@ -207,19 +207,6 @@
         }
         .medallion svg { width: 100%; height: 100%; animation: spin 90s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .plaque-main {
-            position: relative;
-            font-family: 'Cinzel', serif;
-            font-size: clamp(0.7rem, 1.6vw, 0.95rem);
-            letter-spacing: 5px;
-            color: #2a1a08;
-            background: linear-gradient(180deg, #f0d585, #c9a84c 45%, #8a6a20);
-            padding: 0.35rem 1.6rem;
-            border-radius: 3px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.5);
-            text-shadow: 0 1px 0 rgba(255,240,200,0.5);
-            white-space: nowrap;
-        }
 
         /* Cuerpo: columnas laterales + repisas */
         .case-body {
@@ -253,17 +240,47 @@
             display: flex; justify-content: center;
             padding-top: 18px;
         }
+        /* Letreros: placas de latón antiguo, atornilladas, con texto grabado */
         .shelf-plaque span {
+            position: relative;
             font-family: 'Cinzel', serif;
-            font-size: 0.7rem;
+            font-weight: 600;
+            font-size: 0.74rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: #2a1a08;
-            background: linear-gradient(180deg, #e3c675, #a8842e);
-            padding: 0.2rem 1rem;
-            border-radius: 2px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.45);
+            color: #3a2608;
+            text-shadow: 0 1px 0 rgba(255, 235, 180, 0.55), 0 -1px 0 rgba(0, 0, 0, 0.35);
+            padding: 0.4rem 2.2rem;
+            white-space: nowrap;
+            border-radius: 4px;
+            background:
+                radial-gradient(ellipse at 18% 30%, rgba(70, 100, 70, 0.28), transparent 38%),
+                radial-gradient(ellipse at 88% 75%, rgba(40, 22, 6, 0.40), transparent 45%),
+                radial-gradient(ellipse at 60% 10%, rgba(255, 240, 200, 0.25), transparent 50%),
+                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px),
+                linear-gradient(180deg, #d9b766 0%, #b48a3a 35%, #8c6524 70%, #a57b33 100%);
+            box-shadow:
+                inset 0 0 0 1px rgba(60, 35, 8, 0.85),
+                inset 0 0 0 3px rgba(240, 210, 140, 0.35),
+                inset 0 0 0 4px rgba(60, 35, 8, 0.6),
+                inset 0 2px 3px rgba(255, 240, 200, 0.4),
+                inset 0 -3px 5px rgba(40, 20, 0, 0.5),
+                0 2px 5px rgba(0, 0, 0, 0.85);
         }
+        .shelf-plaque span::before, .shelf-plaque span::after {   /* tornillos */
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 8px; height: 8px;
+            margin-top: -4px;
+            border-radius: 50%;
+            background:
+                linear-gradient(45deg, transparent 42%, rgba(40, 20, 0, 0.9) 42% 58%, transparent 58%),
+                radial-gradient(circle at 35% 35%, #f3dca0, #9a7228 55%, #3a2508);
+            box-shadow: 0 0 0 1px rgba(40, 20, 0, 0.6), 0 1px 1px rgba(255, 230, 170, 0.3);
+        }
+        .shelf-plaque span::before { left: 10px; }
+        .shelf-plaque span::after  { right: 10px; transform: rotate(70deg); }
         .row {
             position: relative;
             display: flex;
@@ -356,7 +373,7 @@
         }
         a.book:focus-visible .spine { outline: 2px solid var(--gold-bright); outline-offset: 2px; }
 
-        /* Tomos mayores (Mapa Natal, Archivo, etc.) */
+        /* Obras magnas (Mapa Natal, Archivo, etc.) */
         .book.tomo .spine {
             border-radius: 5px 5px 2px 2px;
             padding: 18% 0;
@@ -645,10 +662,9 @@
             :root { --scale: 0.82; }
             .case-body { grid-template-columns: 18px 1fr 18px; }
             .pillar::before, .pillar::after { height: 14px; }
-            .crown { height: 120px; border-radius: 50% 50% 0 0 / 50px 50px 0 0; }
+            .crown { height: 95px; border-radius: 50% 50% 0 0 / 50px 50px 0 0; }
             .crown::before { border-radius: 50% 50% 0 0 / 42px 42px 0 0; }
             .medallion { width: 86px; height: 86px; top: -34px; }
-            .plaque-main { letter-spacing: 3px; padding: 0.3rem 1rem; }
             .bookcase { padding: 0 8px; }
             .intro { padding-top: 2.5rem; }
 
@@ -667,6 +683,7 @@
             .note { display: none; }
             a.book:hover, a.book:focus-visible { transform: translateY(-8px); }
             .ornament { margin: 0 10px; }
+            .shelf-plaque span { font-size: 0.64rem; letter-spacing: 2px; padding: 0.38rem 1.7rem; }
             .hint-desktop { display: none; }
             .hint-mobile { display: inline; }
         }
@@ -766,7 +783,6 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                     <circle cx="50" cy="50" r="4" fill="#e8c96a"/>
                 </svg>
             </div>
-            <div class="plaque-main">✦ Bibliotheca Arcana ✦</div>
         </div>
 
         <div class="case-body">
@@ -774,9 +790,9 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
 
             <div class="shelves">
 
-                <!-- ─── REPISA 1: TOMOS MAYORES ─── -->
-                <section class="shelf" aria-label="Tomos mayores">
-                    <div class="shelf-plaque"><span>Tomos Mayores</span></div>
+                <!-- ─── REPISA 1: OBRAS MAGNAS ─── -->
+                <section class="shelf" aria-label="Obras magnas">
+                    <div class="shelf-plaque"><span>Obras Magnas</span></div>
                     <div class="row" style="--row-h: 270px">
 
                         <span class="ornament candle" aria-hidden="true"><span class="flame"></span></span>
@@ -937,7 +953,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         <h2>✦ Catálogo ✦</h2>
         <div class="catalog-cols">
             <div class="catalog-col">
-                <h3>Tomos mayores</h3>
+                <h3>Obras magnas</h3>
                 <ul>
                     <li><a href="mapa-natal.html">Mapa de Identidad Natal <small>tu perfil completo</small></a></li>
                     <li><a href="https://identidad.centroserintegral.org/" target="_blank" rel="noopener">Archivo de Identidad <small>registros</small></a></li>
