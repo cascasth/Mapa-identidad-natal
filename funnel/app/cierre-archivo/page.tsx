@@ -45,7 +45,7 @@ const SLIDES: Slide[] = [
       "Horóscopo Chino: año, mes y hora",
       "Numerología Pitagórica: 4 números",
       "Tzolkin Maya: GMT tradicional + Dreamspell",
-      "Tonalpohualli Azteca: correlación GMT",
+      "Tonalpohualli Azteca: correlación JD 584237",
       "Arcano Mayor del Tarot: carta del alma",
       "Arquetipo de Jung",
       "La Integración: el hilo que une todo",
