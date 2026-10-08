@@ -151,6 +151,35 @@
             color: var(--text-light);
             opacity: 0.85;
         }
+        .intro p.hook {
+            margin-top: 1.4rem;
+            font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+            color: var(--gold-bright);
+            opacity: 1;
+        }
+        /* mismo estilo que el botón principal de mapa-natal.html */
+        .btn-mapa {
+            display: inline-block;
+            margin-top: 1.6rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #b07030 100%);
+            color: var(--dark-bg);
+            padding: 1rem 2.8rem;
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 8px 28px rgba(201, 168, 76, 0.35);
+        }
+        .btn-mapa:hover, .btn-mapa:focus-visible {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(201, 168, 76, 0.55);
+        }
+        @media (max-width: 480px) {
+            .btn-mapa { padding: 0.9rem 1.6rem; font-size: 0.75rem; letter-spacing: 1.5px; }
+        }
         .divider {
             display: flex; align-items: center; justify-content: center; gap: 1rem;
             margin: 1.6rem auto 0;
@@ -791,6 +820,8 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         <div class="eyebrow">✦ Centro Ser Integral ✦</div>
         <h1>La Biblioteca del Ser</h1>
         <p>Cada libro es una puerta. Recorre los estantes y abre el que te llame.</p>
+        <p class="hook">¿Y si tu forma de ser no fuera un error, sino un mapa?</p>
+        <a class="btn-mapa" href="mapa-natal.html">✦ Descubrir mi Mapa de Identidad</a>
         <div class="divider">✦</div>
     </section>
 

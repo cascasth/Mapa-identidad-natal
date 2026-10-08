@@ -1,6 +1,6 @@
 # Mapa de Identidad Natal
 
-> Sitio web de Centro del Ser (México) que genera perfiles simbólicos personalizados
+> Sitio web de Centro Ser Integral (México) que genera perfiles simbólicos personalizados
 > combinando cinco sistemas de conocimiento ancestral.
 
 ## ¿Qué es?
@@ -29,8 +29,8 @@ astrología y sistemas de conocimiento ancestral mesoamericano.
 
 ## URL principal
 
-https://cascasth.github.io/Mapa-identidad-natal/
+https://centroserintegral.org/mapa-natal.html
 
 ## Contacto
 
-Centro del Ser
+Centro Ser Integral
