@@ -173,6 +173,19 @@
             transition: all 0.3s;
             box-shadow: 0 8px 28px rgba(201, 168, 76, 0.35);
         }
+        .link-archivo {
+            display: block;
+            width: fit-content;
+            margin: 1.1rem auto 0;
+            font-style: italic;
+            font-size: clamp(1.02rem, 2.3vw, 1.15rem);
+            color: var(--gold);
+            text-decoration: underline;
+            text-decoration-color: rgba(201, 168, 76, 0.45);
+            text-underline-offset: 4px;
+            transition: color 0.2s, text-decoration-color 0.2s;
+        }
+        .link-archivo:hover, .link-archivo:focus-visible { color: var(--gold-bright); text-decoration-color: var(--gold-bright); }
         .btn-mapa:hover, .btn-mapa:focus-visible {
             transform: translateY(-3px);
             box-shadow: 0 14px 40px rgba(201, 168, 76, 0.55);
@@ -444,6 +457,32 @@
             z-index: -1;
         }
         @keyframes aura { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+        /* Archivo de Identidad: aura turquesa y cinta "GRATIS" */
+        .book.tomo.brilla.turquesa::before {
+            background: radial-gradient(ellipse at center, rgba(90, 210, 200, 0.38), rgba(40, 130, 150, 0.2) 50%, transparent 72%);
+        }
+        .book.con-gratis .spine { padding-top: 14%; padding-bottom: 21%; gap: 8px; }
+        .book.con-gratis .glyph { width: calc(32px * var(--scale)); height: calc(32px * var(--scale)); font-size: calc(16px * var(--scale)); }
+        .book.con-gratis .title { font-size: calc(12px * var(--scale)); letter-spacing: 1.5px; }
+        .cinta-gratis {
+            position: absolute;
+            left: -4px; right: -4px;
+            bottom: 7%;
+            padding: calc(3px * var(--scale)) 0;
+            background: linear-gradient(180deg, #f6ead0, #e0cc9c);
+            border-top: 1px solid #a8842e;
+            border-bottom: 1px solid #a8842e;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.55);
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: calc(11px * var(--scale));
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            color: #7a1418;
+            z-index: 2;
+            pointer-events: none;
+        }
 
         /* Libros sellados (próximamente) */
         .book.sellado { cursor: default; }
@@ -667,15 +706,17 @@
         .catalog-col ul { list-style: none; }
         .catalog-col li + li { border-top: 1px dashed rgba(201, 168, 76, 0.15); }
         .catalog-col a {
-            display: flex; justify-content: space-between; gap: 1rem;
-            padding: 0.55rem 0;
+            display: block;
+            padding: 0.6rem 0;
             text-decoration: none;
             font-size: 1.12rem;
+            line-height: 1.35;
             color: var(--text-light);
             transition: color 0.2s;
         }
         .catalog-col a:hover { color: var(--gold-bright); }
-        .catalog-col a small { color: var(--text-muted); font-style: italic; font-size: 0.95rem; text-align: right; }
+        .catalog-col .cat-nombre { display: block; }
+        .catalog-col .cat-desc { display: block; margin-top: 0.15rem; color: var(--text-muted); font-style: italic; font-size: 0.95rem; }
 
         /* ─── PIE DE PÁGINA ─────────────────────────────────── */
         footer {
@@ -822,6 +863,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         <p>Cada libro es una puerta. Recorre los estantes y abre el que te llame.</p>
         <p class="hook">¿Y si tu forma de ser no fuera un error, sino un mapa?</p>
         <a class="btn-mapa" href="mapa-natal.html">✦ Descubrir mi Mapa de Identidad</a>
+        <a class="link-archivo" href="https://identidad.centroserintegral.org/" target="_blank" rel="noopener">o vive gratis el recorrido del Archivo de Identidad →</a>
         <div class="divider">✦</div>
     </section>
 
@@ -879,21 +921,22 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                             </span>
                             <span class="note">
                                 <strong>Mapa de Identidad Natal</strong>
-                                Tu perfil simbólico completo: astrología, numerología, Tzolkin, Tonalpohualli y más, en un solo documento.
+                                Tu perfil simbólico completo: 7 sistemas, arquetipo central, misión de vida y sello. $36 USD.
                                 <em>Abrir el tomo →</em>
                             </span>
                         </a>
 
-                        <!-- Archivo de Identidad -->
-                        <a class="book tomo" href="https://identidad.centroserintegral.org/" target="_blank" rel="noopener" style="--c:#5a1a22; --h:230px; --w:70px">
+                        <!-- Archivo de Identidad (gratis): mismo tamaño que el Mapa, aura turquesa y cinta GRATIS -->
+                        <a class="book tomo brilla turquesa con-gratis" href="https://identidad.centroserintegral.org/" target="_blank" rel="noopener" style="--c:#5a1a22; --h:245px; --w:84px">
                             <span class="spine">
                                 <span class="glyph">❦</span>
-                                <span class="title">Archivo</span>
+                                <span class="title">Archivo de<br>Identidad</span>
                             </span>
+                            <span class="cinta-gratis">Gratis</span>
                             <span class="note">
                                 <strong>Archivo de Identidad</strong>
-                                Consulta el archivo donde se guardan los registros de identidad.
-                                <em>Abrir el archivo →</em>
+                                Gratis. Un recorrido simbólico interactivo: descubre tu tríada, tu código activo y el espejo que hoy te habla.
+                                <em>Comenzar gratis →</em>
                             </span>
                         </a>
 
@@ -932,9 +975,9 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                     <div class="board"></div>
                 </section>
 
-                <!-- ─── REPISA 2: CALCULADORAS GRATUITAS ─── -->
-                <section class="shelf" aria-label="Calculadoras gratuitas">
-                    <div class="shelf-plaque"><span>Calculadoras · Libre acceso</span></div>
+                <!-- ─── REPISA 2: ESTANTE ABIERTO · LIBRE ACCESO ─── -->
+                <section class="shelf" aria-label="Estante abierto · Libre acceso">
+                    <div class="shelf-plaque"><span>Estante abierto · Libre acceso</span></div>
                     <div class="row" style="--row-h: 200px">
 
                         <span class="ornament stack" aria-hidden="true">
@@ -943,9 +986,14 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                             <i style="width:58px; --c:#2a1d52"></i>
                         </span>
 
+                        <a class="book" href="tzolkin.html" style="--c:#1d3b40; --h:155px; --w:38px">
+                            <span class="spine"><span class="glyph">◈</span><span class="title">Tzolkin</span></span>
+                            <span class="note"><strong>Tzolkin Dreamspell</strong>Descubre tu Kin maya y el Kin del día.<em>Abrir gratis →</em></span>
+                        </a>
+
                         <a class="book" href="ascendente.html" style="--c:#2a1d52; --h:160px; --w:38px">
                             <span class="spine"><span class="glyph">☉</span><span class="title">Ascendente</span></span>
-                            <span class="note"><strong>Ascendente</strong>Descubre tu signo ascendente con tu fecha, hora y lugar de nacimiento.<em>Abrir gratis →</em></span>
+                            <span class="note"><strong>Ascendente · Zodiaco occidental</strong>Descubre tu signo ascendente con tu fecha, hora y lugar de nacimiento.<em>Abrir gratis →</em></span>
                         </a>
 
                         <a class="book" href="chino.html" style="--c:#6e1c1c; --h:150px; --w:50px">
@@ -953,36 +1001,21 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                             <span class="note"><strong>Horóscopo Chino</strong>Calcula tu animal del año, del mes y de la hora.<em>Abrir gratis →</em></span>
                         </a>
 
-                        <a class="book" href="numerologia.html" style="--c:#1f3a2c; --h:165px; --w:40px">
-                            <span class="spine"><span class="glyph">∞</span><span class="title">Numerología</span></span>
-                            <span class="note"><strong>Numerología Pitagórica</strong>Calcula tu Camino de Vida y los números de tu nacimiento.<em>Abrir gratis →</em></span>
-                        </a>
-
-                        <a class="book" href="tzolkin.html" style="--c:#1d3b40; --h:155px; --w:38px">
-                            <span class="spine"><span class="glyph">◈</span><span class="title">Tzolkin</span></span>
-                            <span class="note"><strong>Tzolkin Dreamspell</strong>Descubre tu Kin maya y el Kin del día.<em>Abrir gratis →</em></span>
-                        </a>
-
                         <span class="fill" data-n="1" data-min="120" data-max="150"></span>
-
-                        <a class="book" href="calculadora_nombre.html" style="--c:#4a2e1a; --h:145px; --w:34px">
-                            <span class="spine"><span class="glyph">✎</span><span class="title">Tu Nombre</span></span>
-                            <span class="note"><strong>Numerología del Nombre</strong>El desglose numerológico de cada nombre y apellido.<em>Abrir gratis →</em></span>
-                        </a>
 
                         <a class="book" href="calculadora_palabras.html" style="--c:#3a1f5c; --h:158px; --w:36px">
                             <span class="spine"><span class="glyph">✧</span><span class="title">Palabras</span></span>
-                            <span class="note"><strong>Calculadora Numerológica</strong>Palabras, nombres de empresa, conceptos: descubre su número.<em>Abrir gratis →</em></span>
+                            <span class="note"><strong>Calculadora Numerológica de Palabras</strong>El número de palabras, conceptos y nombres de empresa.<em>Abrir gratis →</em></span>
                         </a>
 
-                        <a class="book" href="Calculadora_numerologia_evolutiva.html" style="--c:#6b4a1a; --h:168px; --w:54px">
-                            <span class="spine"><span class="glyph">⟁</span><span class="title">Numerología<br>Evolutiva</span></span>
-                            <span class="note"><strong>Numerología Evolutiva</strong>Tu plantilla de mapa personal paso a paso.<em>Abrir gratis →</em></span>
+                        <a class="book" href="numerologia.html" style="--c:#1f3a2c; --h:165px; --w:40px">
+                            <span class="spine"><span class="glyph">∞</span><span class="title">Pitagórica</span></span>
+                            <span class="note"><strong>Numerología Pitagórica · Camino de Vida</strong>Calcula tu número de Camino de Vida.<em>Abrir gratis →</em></span>
                         </a>
 
-                        <a class="book" href="arbol_numerologico.html" style="--c:#2c3a1a; --h:162px; --w:52px">
-                            <span class="spine"><span class="glyph">♣</span><span class="title">Árbol<br>Familiar</span></span>
-                            <span class="note"><strong>Árbol Genealógico Numerológico</strong>Los números que se repiten en tu linaje.<em>Abrir gratis →</em></span>
+                        <a class="book" href="calculadora_nombre.html" style="--c:#4a2e1a; --h:152px; --w:48px">
+                            <span class="spine"><span class="glyph">✎</span><span class="title">Ev. del<br>Nombre</span></span>
+                            <span class="note"><strong>Numerología Evolutiva del Nombre</strong>El número de cada letra de tu nombre.<em>Abrir gratis →</em></span>
                         </a>
 
                         <span class="fill" data-n="2" data-min="120" data-max="160" data-lean="1"></span>
@@ -991,7 +1024,31 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                     <div class="board"></div>
                 </section>
 
-                <!-- ─── REPISA 3: ARCHIVO ANTIGUO (decorativa, aquí irán nuevos accesos) ─── -->
+                <!-- ─── REPISA 3: SALA DE LECTURA ─── -->
+                <section class="shelf" aria-label="Sala de lectura">
+                    <div class="shelf-plaque"><span>Sala de lectura</span></div>
+                    <div class="row" style="--row-h: 205px">
+                        <span class="ornament candle" aria-hidden="true"><span class="flame"></span></span>
+                        <span class="fill" data-n="4" data-min="135" data-max="185"></span>
+
+                        <a class="book" href="Calculadora_numerologia_evolutiva.html" style="--c:#6b4a1a; --h:172px; --w:54px">
+                            <span class="spine"><span class="glyph">⟁</span><span class="title">Evolutiva<br>Personal</span></span>
+                            <span class="note"><strong>Numerología Evolutiva Personal</strong>Tu mapa numérico completo con nombre y fecha: misión, base, sombra, camino, fases y periodos.<em>Abrir gratis →</em></span>
+                        </a>
+
+                        <span class="fill" data-n="5" data-min="130" data-max="190" data-lean="1"></span>
+                        <span class="ornament stack" aria-hidden="true">
+                            <i style="width:74px; --c:#1d3b40"></i>
+                            <i style="width:66px; --c:#6b4a1a"></i>
+                            <i style="width:80px; --c:#3b1d66"></i>
+                        </span>
+                        <span class="fill" data-n="3" data-min="140" data-max="190"></span>
+                    </div>
+                    <div class="board"></div>
+                </section>
+
+                <!-- ─── REPISA 4: ARCHIVO ANTIGUO (decorativa) ─── -->
+                <!-- Espacio reservado para futuro "Archivo reservado" (sala de miembros) -->
                 <section class="shelf" aria-label="Archivo antiguo">
                     <div class="shelf-plaque"><span>Archivo Antiguo</span></div>
                     <div class="row" style="--row-h: 210px">
@@ -1028,21 +1085,25 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             <div class="catalog-col">
                 <h3>Obras magnas</h3>
                 <ul>
-                    <li><a href="mapa-natal.html">Mapa de Identidad Natal <small>tu perfil completo</small></a></li>
-                    <li><a href="https://identidad.centroserintegral.org/" target="_blank" rel="noopener">Archivo de Identidad <small>registros</small></a></li>
+                    <li><a href="mapa-natal.html"><span class="cat-nombre">Mapa de Identidad Natal</span> <span class="cat-desc">— tu perfil simbólico completo · $36 USD</span></a></li>
+                    <li><a href="https://identidad.centroserintegral.org/" target="_blank" rel="noopener"><span class="cat-nombre">Archivo de Identidad</span> <span class="cat-desc">— recorrido simbólico interactivo · Gratis</span></a></li>
                 </ul>
             </div>
             <div class="catalog-col">
-                <h3>Calculadoras gratuitas</h3>
+                <h3>Estante abierto · Libre acceso</h3>
                 <ul>
-                    <li><a href="ascendente.html">Ascendente <small>astrología</small></a></li>
-                    <li><a href="chino.html">Horóscopo Chino <small>tu animal</small></a></li>
-                    <li><a href="numerologia.html">Numerología Pitagórica <small>camino de vida</small></a></li>
-                    <li><a href="tzolkin.html">Tzolkin Dreamspell <small>tu Kin maya</small></a></li>
-                    <li><a href="calculadora_nombre.html">Numerología del Nombre <small>nombre y apellidos</small></a></li>
-                    <li><a href="calculadora_palabras.html">Calculadora Numerológica <small>palabras y conceptos</small></a></li>
-                    <li><a href="Calculadora_numerologia_evolutiva.html">Numerología Evolutiva <small>mapa personal</small></a></li>
-                    <li><a href="arbol_numerologico.html">Árbol Genealógico Numerológico <small>tu linaje</small></a></li>
+                    <li><a href="tzolkin.html"><span class="cat-nombre">Tzolkin Dreamspell</span> <span class="cat-desc">— tu Kin maya y el Kin del día</span></a></li>
+                    <li><a href="ascendente.html"><span class="cat-nombre">Ascendente · Zodiaco occidental</span> <span class="cat-desc">— tu signo ascendente</span></a></li>
+                    <li><a href="chino.html"><span class="cat-nombre">Horóscopo Chino</span> <span class="cat-desc">— tu animal del año, mes y hora</span></a></li>
+                    <li><a href="calculadora_palabras.html"><span class="cat-nombre">Calculadora Numerológica de Palabras</span> <span class="cat-desc">— el número de palabras, conceptos y nombres de empresa</span></a></li>
+                    <li><a href="numerologia.html"><span class="cat-nombre">Numerología Pitagórica · Camino de Vida</span> <span class="cat-desc">— tu número de Camino de Vida</span></a></li>
+                    <li><a href="calculadora_nombre.html"><span class="cat-nombre">Numerología Evolutiva del Nombre</span> <span class="cat-desc">— el número de cada letra de tu nombre</span></a></li>
+                </ul>
+            </div>
+            <div class="catalog-col">
+                <h3>Sala de lectura</h3>
+                <ul>
+                    <li><a href="Calculadora_numerologia_evolutiva.html"><span class="cat-nombre">Numerología Evolutiva Personal</span> <span class="cat-desc">— tu mapa numérico completo con nombre y fecha</span></a></li>
                 </ul>
             </div>
         </div>
