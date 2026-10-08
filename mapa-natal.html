@@ -1062,6 +1062,9 @@
         .pay-aviso strong { color: var(--gold-bright); }
 
         #paypal-container-USD { margin: 1.5rem auto 0; max-width: 320px; }
+        #payment-step { scroll-margin-top: 80px; }
+        .pago-error { margin-top: 16px; padding: 14px 18px; border: 1px solid rgba(201,168,76,.35); border-radius: 12px; background: rgba(0,0,0,.25); color: var(--text-light); font-size: 1rem; line-height: 1.6; text-align: center; }
+        .pago-error a { color: var(--gold-bright); }
 
         .paypal-legend {
             margin-top: 1rem;
@@ -1495,15 +1498,14 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                 <button class="nav-dropdown-btn" onclick="toggleNavDropdown(event)">☰ <span data-i18n="nav-gratis">Gratis</span> ▾</button>
                 <div class="nav-dropdown-menu">
                     <a href="index.html">📚 <span data-i18n="nav-biblioteca">Biblioteca</span></a>
-                    <a href="tzolkin.html">🌙 <span data-i18n="nav-tzolkin">Kin del día · Tzolkin</span></a>
-                    <a href="numerologia.html">🔢 <span data-i18n="nav-numerologia">Numerología gratis</span></a>
-                    <a href="chino.html">🐉 <span data-i18n="nav-chino">Animal chino</span></a>
-                    <a href="ascendente.html">🌅 <span data-i18n="nav-ascendente">Ascendente</span></a>
-                    <a href="calculadora_nombre.html">✎ <span data-i18n="nav-nombre">Numerología del nombre</span></a>
-                    <a href="calculadora_palabras.html">✧ <span data-i18n="nav-palabras">Calculadora de palabras</span></a>
-                    <a href="Calculadora_numerologia_evolutiva.html">⟁ <span data-i18n="nav-evolutiva">Numerología evolutiva</span></a>
-                    <a href="arbol_numerologico.html">♣ <span data-i18n="nav-arbol">Árbol numerológico</span></a>
-                    <a href="https://identidad.centroserintegral.org/" target="_blank" rel="noopener">📜 <span data-i18n="nav-archivo">Archivo de Identidad</span></a>
+                    <a href="tzolkin.html">🌙 <span data-i18n="nav-tzolkin">Tzolkin Dreamspell · Kin del día</span></a>
+                    <a href="ascendente.html">🌅 <span data-i18n="nav-ascendente">Ascendente · Zodiaco occidental</span></a>
+                    <a href="chino.html">🐉 <span data-i18n="nav-chino">Horóscopo Chino</span></a>
+                    <a href="calculadora_palabras.html">✧ <span data-i18n="nav-palabras">Numerología de Palabras</span></a>
+                    <a href="numerologia.html">🔢 <span data-i18n="nav-numerologia">Numerología Pitagórica</span></a>
+                    <a href="calculadora_nombre.html">✎ <span data-i18n="nav-nombre">Numerología Evolutiva del Nombre</span></a>
+                    <a href="Calculadora_numerologia_evolutiva.html">⟁ <span data-i18n="nav-evolutiva">Numerología Evolutiva Personal</span></a>
+                    <a href="https://identidad.centroserintegral.org/" target="_blank" rel="noopener">📜 <span data-i18n="nav-archivo">Archivo de Identidad (gratis)</span></a>
                 </div>
             </div>
         </div>
@@ -1515,7 +1517,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         </ul>
         <div class="nav-cta">
             <button class="btn-lang" id="btnLangToggle" onclick="toggleLangGlobal()">🇲🇽 ES · 🇺🇸 EN</button>
-            <button class="btn-nav-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})" data-i18n="nav-solicitar">Solicitar Mapa</button>
+            <button class="btn-nav-primary" onclick="irAlPago()" data-i18n="nav-solicitar">Solicitar Mapa</button>
         </div>
     </nav>
 
@@ -1562,7 +1564,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             </div>
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="document.getElementById('para-que').scrollIntoView({behavior:'smooth'})" data-i18n="hero-btn-purpose">🔮 ¿Para qué sirve?</button>
-                <button class="btn-outline" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})" data-i18n="hero-btn-solicitar">✦ Solicitar mi mapa</button>
+                <button class="btn-outline" onclick="irAlPago()" data-i18n="hero-btn-solicitar">✦ Solicitar mi mapa</button>
             </div>
         </div>
         <div class="hero-scroll" id="heroScroll">
@@ -1750,7 +1752,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                     </div>
                 </div>
                 <div class="example-cta">
-                    <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})" data-i18n="example-cta-btn">✦ Quiero el mío</button>
+                    <button class="btn-primary" onclick="irAlPago()" data-i18n="example-cta-btn">✦ Quiero el mío</button>
                     <p class="example-note" data-i18n="example-note">Nombre ficticio · Contenido generado con IA como ilustración</p>
                 </div>
             </div>
@@ -2150,15 +2152,14 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'sound-silenciar': '🜂 Silenciar ambiente sonoro',
             'nav-gratis': 'Gratis',
             'nav-biblioteca': 'Biblioteca',
-            'nav-tzolkin': 'Kin del día · Tzolkin',
-            'nav-numerologia': 'Numerología gratis',
-            'nav-chino': 'Animal chino',
-            'nav-ascendente': 'Ascendente',
-            'nav-nombre': 'Numerología del nombre',
-            'nav-palabras': 'Calculadora de palabras',
-            'nav-evolutiva': 'Numerología evolutiva',
-            'nav-arbol': 'Árbol numerológico',
-            'nav-archivo': 'Archivo de Identidad',
+            'nav-tzolkin': 'Tzolkin Dreamspell · Kin del día',
+            'nav-numerologia': 'Numerología Pitagórica',
+            'nav-chino': 'Horóscopo Chino',
+            'nav-ascendente': 'Ascendente · Zodiaco occidental',
+            'nav-nombre': 'Numerología Evolutiva del Nombre',
+            'nav-palabras': 'Numerología de Palabras',
+            'nav-evolutiva': 'Numerología Evolutiva Personal',
+            'nav-archivo': 'Archivo de Identidad (gratis)',
             'nav-codigos': 'Códigos',
             'nav-proposito': 'Propósito',
             'nav-ejemplo': 'Ejemplo',
@@ -2319,15 +2320,14 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'sound-silenciar': '🜂 Mute ambient sound',
             'nav-gratis': 'Free',
             'nav-biblioteca': 'Library',
-            'nav-tzolkin': "Day's Kin · Tzolkin",
-            'nav-numerologia': 'Free numerology',
-            'nav-chino': 'Chinese animal',
-            'nav-ascendente': 'Rising sign',
-            'nav-nombre': 'Name numerology',
-            'nav-palabras': 'Word calculator',
-            'nav-evolutiva': 'Evolutionary numerology',
-            'nav-arbol': 'Numerology tree',
-            'nav-archivo': 'Identity Archive',
+            'nav-tzolkin': "Tzolkin Dreamspell · Day's Kin",
+            'nav-numerologia': 'Pythagorean Numerology',
+            'nav-chino': 'Chinese Horoscope',
+            'nav-ascendente': 'Rising Sign · Western Zodiac',
+            'nav-nombre': 'Evolutionary Name Numerology',
+            'nav-palabras': 'Word Numerology',
+            'nav-evolutiva': 'Personal Evolutionary Numerology',
+            'nav-archivo': 'Identity Archive (free)',
             'nav-codigos': 'Codes',
             'nav-proposito': 'Purpose',
             'nav-ejemplo': 'Example',
@@ -2555,6 +2555,12 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         }
     }
 
+    // Botones "Solicitar": bajan al paso de pago (o a la sección final si ya se pagó)
+    function irAlPago() {
+        const pago = document.getElementById('payment-step');
+        (pago && pago.offsetParent ? pago : document.getElementById('cta')).scrollIntoView({ behavior: 'smooth' });
+    }
+
     function toggleNavDropdown(e) {
         e.stopPropagation();
         document.getElementById('navDropdown').classList.toggle('open');
@@ -2754,7 +2760,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         console.warn('PayPal USD no disponible:', e);
         const containerUSD = document.getElementById('paypal-container-USD');
         if (containerUSD) {
-            containerUSD.innerHTML = '<button onclick="mostrarFormulario()" style="margin-top:16px;padding:14px 28px;background:linear-gradient(135deg,var(--gold),var(--copper));border:none;color:var(--dark-bg);border-radius:50px;font-family:Cinzel,serif;font-size:15px;cursor:pointer;width:100%">✦ Modo prueba · Ir al formulario</button>';
+            containerUSD.innerHTML = '<p class="pago-error" role="alert">No pudimos cargar el pago. Recarga la página o desactiva tu bloqueador de anuncios. Si el problema sigue, escríbenos a <a href="mailto:centro.ser.integral@gmail.com">centro.ser.integral@gmail.com</a> y te ayudamos.</p>';
         }
     }
 
