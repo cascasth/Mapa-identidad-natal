@@ -54,7 +54,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <script src="https://www.paypal.com/sdk/js?client-id=BAAp4hlu_hzyRbvjuW4JpJKSBe608ajPimQOA-UdBRagZk436FHe1Wn6ARg2hsTP8OXiRJgWCAxVJAiYH8&components=hosted-buttons&disable-funding=venmo&currency=USD" data-namespace="paypalUSD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAPfwGc_cJM74NGV9DiaOVsTMVN8Ymzv87o-0JT8SUdZIIHmQ6RsTufVm-HXgkVo-BDJ3sMLqAxmR6OyI&components=buttons&disable-funding=venmo,paylater&currency=USD&intent=capture" data-namespace="paypalUSD"></script>
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBD63KT8eFB1Gc-JKsWiwVuWltNb-9N7xc&libraries=places&loading=async"></script>
 
     <style>
@@ -1077,7 +1077,7 @@
         .paypal-legend > div { display: flex; align-items: center; gap: 8px; justify-content: center; }
         .paypal-legend .dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
         .paypal-legend .dot-yellow { background: #f5a623; }
-        .paypal-legend .dot-blue { background: #003087; }
+        .paypal-legend .dot-blue { background: #2c2e2f; }
 
         .step-divider {
             display: flex;
@@ -1881,7 +1881,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
 
                 <div class="paypal-legend">
                     <div><span class="dot dot-yellow"></span><span data-i18n="paypal-amarillo">Botón amarillo · paga con tu cuenta de PayPal</span></div>
-                    <div><span class="dot dot-blue"></span><span data-i18n="paypal-azul">Botón azul · paga con tarjeta, sin cuenta de PayPal</span></div>
+                    <div><span class="dot dot-blue"></span><span data-i18n="paypal-azul">Botón negro · paga con tarjeta, sin cuenta de PayPal</span></div>
                 </div>
             </div>
 
@@ -2269,7 +2269,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'pay-desc': 'Ficha completa · <span class="price-highlight">{PRECIO}</span><br>Paga con tarjeta o cuenta PayPal. Después del pago completarás tus datos de nacimiento para generar tu mapa.',
             'pay-aviso': '<strong>Antes de pagar, ten a la mano:</strong><br>Nombre completo, fecha de nacimiento, hora de nacimiento lo más exacta posible, ciudad/país de nacimiento y correo electrónico.<br><br><strong>¿Por qué pedimos la hora?</strong><br>La usamos para calcular elementos como el ascendente y el animal de la hora. Si no la sabes, escríbenos antes de pagar para orientarte.',
             'paypal-amarillo': 'Botón amarillo · paga con tu cuenta de PayPal',
-            'paypal-azul': 'Botón azul · paga con tarjeta, sin cuenta de PayPal',
+            'paypal-azul': 'Botón negro · paga con tarjeta, sin cuenta de PayPal',
             'step-divider': 'Paso 2 · Ingresa tus datos de nacimiento',
             'form-lang': 'Idioma',
             'form-datos': 'Tus datos',
@@ -2438,7 +2438,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             'pay-desc': 'Full profile · <span class="price-highlight">{PRECIO}</span><br>Pay by card or PayPal. After payment, you’ll complete your birth details to generate your map.',
             'pay-aviso': '<strong>Before paying, have ready:</strong><br>Full name, date of birth, birth time as exact as possible, city/country of birth and email.<br><br><strong>Why do we ask for the time?</strong><br>We use it to calculate elements like the rising sign and the hour animal. If you don’t know it, write to us before paying and we’ll help.',
             'paypal-amarillo': 'Yellow button · pay with your PayPal account',
-            'paypal-azul': 'Blue button · pay by card, no PayPal account needed',
+            'paypal-azul': 'Black button · pay by card, no PayPal account needed',
             'step-divider': 'Step 2 · Enter your birth details',
             'form-lang': 'Language',
             'form-datos': 'Your details',
@@ -2585,6 +2585,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
     }
 
     function reiniciar() {
+        borrarOrdenPagada();
         document.getElementById('success-state').classList.remove('visible');
         document.getElementById('form').style.display = 'none';
         document.getElementById('step-divider').style.display = 'none';
@@ -2716,7 +2717,8 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             lng: ciudadLng,
             timezone: timezone,
             idioma: idiomaSeleccionado,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            orderID: leerOrdenPagada()
         };
 
         try {
@@ -2727,6 +2729,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             });
 
             if (res.ok || res.status === 200) {
+                borrarOrdenPagada();
                 document.getElementById('confirm-panel').classList.remove('visible');
                 document.getElementById('step-divider').style.display = 'none';
                 document.getElementById('success-name').textContent = nombre.split(' ')[0];
@@ -2769,16 +2772,64 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         }
     }
 
+    /* Número de orden de PayPal: se guarda en esta pestaña para que, si la página
+       se recarga después de pagar, el formulario vuelva a aparecer. Make verifica
+       con PayPal que la orden sea real, esté pagada y no se haya usado antes. */
+    const CLAVE_ORDEN = 'csi_orden_mapa';
+    function leerOrdenPagada() { try { return sessionStorage.getItem(CLAVE_ORDEN) || ''; } catch (e) { return window._ordenPagada || ''; } }
+    function guardarOrdenPagada(id) { window._ordenPagada = id; try { sessionStorage.setItem(CLAVE_ORDEN, id); } catch (e) {} }
+    function borrarOrdenPagada() { window._ordenPagada = ''; try { sessionStorage.removeItem(CLAVE_ORDEN); } catch (e) {} }
+
+    const MSG_PAGO_FALLIDO = 'No pudimos completar tu pago. No se hizo ningún cargo. Intenta de nuevo o escríbenos a <a href="mailto:centro.ser.integral@gmail.com">centro.ser.integral@gmail.com</a>.';
+    function avisarPagoFallido() {
+        const cont = document.getElementById('paypal-container-USD');
+        if (!cont) return;
+        let caja = document.getElementById('aviso-pago-fallido');
+        if (!caja) {
+            caja = document.createElement('p');
+            caja.id = 'aviso-pago-fallido';
+            caja.className = 'pago-error';
+            caja.setAttribute('role', 'alert');
+            cont.parentNode.insertBefore(caja, cont);
+        }
+        caja.innerHTML = MSG_PAGO_FALLIDO;
+    }
+
     try {
-        paypalUSD.HostedButtons({
-            hostedButtonId: "2YB5PU2WDW5GY",
-            onApprove: function(data) {
-                try {
-                    mostrarFormulario();
-                } catch(err) {
-                    console.error('Error al mostrar formulario tras pago:', err);
-                    avisarPagoRecibido();
-                }
+        paypalUSD.Buttons({
+            style: { layout: 'vertical', shape: 'pill', label: 'pay' },
+            createOrder: function(data, actions) {
+                const previo = document.getElementById('aviso-pago-fallido');
+                if (previo) previo.remove();
+                return actions.order.create({
+                    intent: 'CAPTURE',
+                    purchase_units: [{
+                        description: 'Mapa de Identidad Natal',
+                        custom_id: 'mapa',
+                        amount: { currency_code: 'USD', value: '36.00' }
+                    }],
+                    application_context: { shipping_preference: 'NO_SHIPPING', brand_name: 'Centro Ser Integral' }
+                });
+            },
+            onApprove: function(data, actions) {
+                // Primero se cobra; solo si el cobro se completó se abre el formulario
+                return actions.order.capture().then(function(detalle) {
+                    if (!detalle || detalle.status !== 'COMPLETED') throw new Error('Pago no completado');
+                    guardarOrdenPagada(data.orderID);
+                    try {
+                        mostrarFormulario();
+                    } catch(err) {
+                        console.error('Error al mostrar formulario tras pago:', err);
+                        avisarPagoRecibido();
+                    }
+                }).catch(function(err) {
+                    console.error('No se pudo capturar el pago:', err);
+                    if (leerOrdenPagada()) avisarPagoRecibido(); else avisarPagoFallido();
+                });
+            },
+            onError: function(err) {
+                console.error('Error de PayPal:', err);
+                if (!leerOrdenPagada()) avisarPagoFallido();
             }
         }).render("#paypal-container-USD");
     } catch(e) {
@@ -2788,6 +2839,9 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             containerUSD.innerHTML = '<p class="pago-error" role="alert">No pudimos cargar el pago. Recarga la página o desactiva tu bloqueador de anuncios. Si el problema sigue, escríbenos a <a href="mailto:centro.ser.integral@gmail.com">centro.ser.integral@gmail.com</a> y te ayudamos.</p>';
         }
     }
+    // Si la página se recargó después de pagar, el formulario vuelve a aparecer
+    if (leerOrdenPagada()) mostrarFormulario();
+
 
 
     // --- Google Places (New API): autocompletado programático ---
