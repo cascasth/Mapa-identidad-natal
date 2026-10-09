@@ -2739,8 +2739,30 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             btn.disabled = false;
             btn.classList.remove('loading');
             document.querySelector('.confirm-btn-text').textContent = '✦ Confirmar y enviar';
-            errBanner.innerHTML = `Hubo un problema al enviar tu solicitud. Por favor intenta de nuevo.<br><small style="opacity:.6">${err.message}</small>`;
+            errBanner.innerHTML = MSG_PAGO_RECIBIDO + `<br><small style="opacity:.6">${err.message}</small>`;
             errBanner.classList.add('visible');
+        }
+    }
+
+    // Plan B: el pago ya se confirmó pero el formulario no abrió o no se pudo enviar
+    const MSG_PAGO_RECIBIDO = 'Tu pago se recibió correctamente. Hubo un problema al abrir el formulario: escríbenos a <a href="mailto:centro.ser.integral@gmail.com">centro.ser.integral@gmail.com</a> con tu comprobante de PayPal y te enviamos tu Mapa personalmente.';
+    function avisarPagoRecibido() {
+        try {
+            const pago = document.getElementById('payment-step');
+            if (pago) pago.style.display = 'none';
+            let caja = document.getElementById('aviso-pago-recibido');
+            if (!caja) {
+                caja = document.createElement('p');
+                caja.id = 'aviso-pago-recibido';
+                caja.className = 'pago-error';
+                caja.setAttribute('role', 'alert');
+                caja.innerHTML = MSG_PAGO_RECIBIDO;
+                const cont = document.querySelector('#cta .cta-inner') || document.body;
+                cont.insertBefore(caja, cont.firstChild);
+            }
+            caja.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (e) {
+            alert('Tu pago se recibió correctamente. Hubo un problema al abrir el formulario: escríbenos a centro.ser.integral@gmail.com con tu comprobante de PayPal y te enviamos tu Mapa personalmente.');
         }
     }
 
@@ -2752,7 +2774,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                     mostrarFormulario();
                 } catch(err) {
                     console.error('Error al mostrar formulario tras pago:', err);
-                    window.location.href = window.location.pathname + '?pagado=si';
+                    avisarPagoRecibido();
                 }
             }
         }).render("#paypal-container-USD");
@@ -2764,9 +2786,6 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         }
     }
 
-    if (new URLSearchParams(window.location.search).get('pagado') === 'si') {
-        mostrarFormulario();
-    }
 
     // --- Google Places (New API): autocompletado programático ---
     let ciudadLat = null;
