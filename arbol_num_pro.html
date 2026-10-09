@@ -1015,7 +1015,11 @@ function imprimirArbol(){
     alert('Primero agrega personas al árbol para poder imprimirlo.');
     return;
   }
+  const central=personas.find(p=>p.relacion==='Persona Central');
+  const tituloOriginal=document.title;
+  document.title=central?'Árbol numerológico · '+central.nombre+' '+(central.ap1||''):tituloOriginal;
   window.print();
+  document.title=tituloOriginal;
 }
 
 /* ════════ FORMULARIO ════════ */
