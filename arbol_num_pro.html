@@ -287,6 +287,8 @@
   }
   /* Solo la tabla comparativa es ancha (se desliza de lado en celular) */
   .tabla-wrap table { min-width: 1100px; }
+  /* En celular, las tablas de la guía que no caben se deslizan de lado */
+  @media (max-width: 600px) { .ref-table { display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; } }
 
   th, td {
     border: 1px solid #d7c8f5;
