@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow">
-<title>Árbol Genealógico Numerológico | Centro Ser Integral</title>
-<meta name="description" content="Calcula  la numerología de tu familia: misión, base y camino de padres, abuelos y bisabuelos, y descubre los patrones que se repiten en tu linaje.">
-<meta property="og:title" content="Árbol Genealógico Numerológico  | Centro Ser Integral">
+<title>Árbol Numerológico Familiar · Pro | Centro Ser Integral</title>
+<meta name="description" content="Calcula la numerología de tu familia: misión, base y camino de padres, abuelos y bisabuelos, y descubre los patrones que se repiten en tu linaje.">
+<meta property="og:title" content="Árbol Numerológico Familiar · Pro | Centro Ser Integral">
 <meta property="og:description" content="Calcula la numerología de tu familia: misión, base y camino de padres, abuelos y bisabuelos, y descubre los patrones que se repiten en tu linaje.">
 <meta property="og:image" content="https://centroserintegral.org/og_titulo4.png">
 
@@ -284,8 +284,11 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 12px;
-    min-width: 1100px;
   }
+  /* Solo la tabla comparativa es ancha (se desliza de lado en celular) */
+  .tabla-wrap table { min-width: 1100px; }
+  /* En celular, las tablas de la guía que no caben se deslizan de lado */
+  @media (max-width: 600px) { .ref-table { display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; } }
 
   th, td {
     border: 1px solid #d7c8f5;
@@ -435,6 +438,7 @@ nav.csi-nav{--gold:#c9a84c;--gold-pale:#e8d5a0;--ink:#0d0b14;position:fixed;top:
         <a href="calculadora_palabras.html">✧ Numerología de Palabras</a>
         <a href="numerologia.html">🔢 Numerología Pitagórica</a>
         <a href="calculadora_nombre.html">✎ Numerología Evolutiva del Nombre</a>
+        <a href="arbol_num_basico.html">♣ Árbol Familiar · Básico</a>
         <a href="Calculadora_numerologia_evolutiva.html">⟁ Numerología Evolutiva Personal</a>
         <a href="https://identidad.centroserintegral.org/" target="_blank" rel="noopener">📜 Archivo de Identidad (gratis)</a>
       </div>
@@ -454,7 +458,7 @@ nav.csi-nav{--gold:#c9a84c;--gold-pale:#e8d5a0;--ink:#0d0b14;position:fixed;top:
 
 
 <header>
-  <h1>Árbol Genealógico Numerológico</h1>
+  <h1>Árbol Numerológico Familiar · Pro</h1>
   <p>Mapa familiar de misión, mente, corazón, expresión, base, sombra, camino, ausentes, fases y periodos</p>
 </header>
 
