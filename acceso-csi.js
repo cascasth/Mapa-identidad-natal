@@ -1,9 +1,9 @@
 /* ════════════════════════════════════════════════════════════════
    Acceso por correo · Calculadoras de Centro Ser Integral
    ────────────────────────────────────────────────────────────────
-   Se carga en el <head> de cada calculadora:
+   Se carga en el <head> de la calculadora protegida:
      <script src="acceso-csi.js" data-calculadora="evolutiva"></script>
-   (clave: "evolutiva" o "nombre"). Un solo acceso abre las dos.
+   (hoy solo la Numerología Evolutiva Personal lleva llave).
 
    Flujo:
    1. Si la dirección trae ?acceso=TOKEN, se valida con Make y, si es
@@ -79,7 +79,7 @@
     caja.innerHTML =
       '<h2>Tu calculadora gratuita te espera</h2>' +
       (avisoInvalido ? '<p class="csi-aviso" role="alert">Este enlace ya no funciona o está incompleto. Escribe tu correo y te enviamos uno nuevo.</p>' : '') +
-      '<p>Escribe tu correo y te enviamos tu llave de acceso. Es gratis y es tuya para siempre: con ella abres también la Calculadora del Nombre.</p>' +
+      '<p>Escribe tu correo y te enviamos tu llave de acceso. Es gratis y es tuya para siempre.</p>' +
       '<form novalidate>' +
         '<input type="email" name="email" autocomplete="email" inputmode="email" placeholder="tucorreo@ejemplo.com" required value="' + esc(correoPrevio || '') + '">' +
         '<div class="csi-error" data-error="email" hidden></div>' +
