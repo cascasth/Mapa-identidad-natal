@@ -10,7 +10,7 @@
     (function () {
         var h = location.hash.slice(1);
         var viejos = ['payment-step', 'cta', 'codigos', 'para-que', 'ejemplo', 'testimonios', 'form', 'video', 'inicio'];
-        if (viejos.indexOf(h) > -1 || /[?&]pagado=/.test(location.search)) {
+        if (viejos.indexOf(h) > -1) {
             location.replace('mapa-natal.html' + location.search + location.hash);
         }
     })();
