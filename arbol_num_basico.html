@@ -270,6 +270,8 @@
   }
   /* Solo la tabla comparativa es ancha (se desliza de lado en celular) */
   .tabla-wrap table { min-width: 860px; }
+  /* En celular, las tablas de la guía que no caben se deslizan de lado */
+  @media (max-width: 600px) { .ref-table { display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; } }
 
   th, td {
     border: 1px solid #d7c8f5;
@@ -545,7 +547,8 @@ nav.csi-nav{--gold:#c9a84c;--gold-pale:#e8d5a0;--ink:#0d0b14;position:fixed;top:
     <tr><td><strong>Mente</strong><br><span style="font-size:11px;color:#8064a8">Suma de tu(s) nombre(s) propio(s)</span></td><td>Representa al Maestro 1 (el consciente). Es tu estructura mental lógica, la forma en que piensas, procesas la información y manejas el día a día.</td></tr>
     <tr><td><strong>Número del Corazón</strong><br><span style="font-size:11px;color:#8064a8">Suma de todas las vocales</span></td><td>Representa al Maestro 2 (la emoción). Nos revela lo que sientes en tu cuerpo ("cápsula"), tus deseos más íntimos, anhelos del alma y lo que verdaderamente te nutre en el amor.</td></tr>
     <tr><td><strong>Número de Expresión</strong><br><span style="font-size:11px;color:#8064a8">Suma de todas las consonantes</span></td><td>Representa al Maestro 3 (el inconsciente y la palabra). Es tu canal de comunicación y cómo te proyectas afuera. En esta escuela, la palabra es la herramienta más poderosa porque es la que crea tu realidad.</td></tr>
-    <tr><td><strong>Números Ausentes</strong><br><span style="font-size:11px;color:#8064a8">o "Enfermos"</span></td><td>Los números presentes son tus recursos naturales. Los ausentes (los que no aparecen en tu nombre) son frecuencias que no puedes generar de forma natural y vienes a aprender o "pedir prestadas" a través de tus relaciones. Los números enfermos son dones que tienes pero que usas de manera inarmónica.</td></tr>
+    <tr><td><strong>Linaje</strong><br><span style="font-size:11px;color:#8064a8">Suma del apellido materno (mujeres) o paterno (hombres)</span></td><td>Es el apellido que te conecta con tu árbol de trabajo: la mujer trabaja principalmente el árbol de su mamá y el hombre el de su papá.</td></tr>
+    <tr><td><strong>Números Ausentes</strong><br><span style="font-size:11px;color:#8064a8">o "Enfermos"</span></td><td>Los números del 1 al 9 que no aparecen en las letras de tu nombre. Se les llama enfermos porque no los traes como herramienta: son frecuencias que no generas de forma natural y que vienes a aprender a construir. Tu sistema atrae a personas que sí los tienen (compañeros de camino) para que te los "presten" mientras los integras.</td></tr>
   </table>
 
   <div class="section-title">Parte 2 · La Fecha de Nacimiento (tu programa de vida)</div>
@@ -553,14 +556,40 @@ nav.csi-nav{--gold:#c9a84c;--gold-pale:#e8d5a0;--ink:#0d0b14;position:fixed;top:
   <table class="ref-table">
     <tr><th>Cálculo</th><th>Significado</th></tr>
     <tr><td><strong>Lo que vine a aprender / hacer</strong><br><span style="font-size:11px;color:#8064a8">Día de nacimiento</span></td><td>Es tu energía de acción primaria y el aprendizaje central que elegiste integrar de manera práctica en la materia.</td></tr>
-    <tr><td><strong>Dones / Herramientas</strong><br><span style="font-size:11px;color:#8064a8">Mes de nacimiento</span></td><td>Son las potencialidades y dones espirituales (tenemos al menos seis) que elegiste para que te sostengan y faciliten tu camino hacia la misión de vida.</td></tr>
-    <tr><td><strong>A trabajar para mi árbol / Linaje</strong><br><span style="font-size:11px;color:#8064a8">Año de nacimiento</span></td><td>Es el año sumado y reducido. Representa el compromiso de tu alma para ordenar, liberar y sanar los miedos o bloqueos heredados de tu árbol familiar.</td></tr>
-    <tr><td><strong>Vidas Pasadas / Pasado</strong><br><span style="font-size:11px;color:#8064a8">Últimos dos dígitos del año</span></td><td>Nos muestra el conflicto o la "tecla rota" que quedó pendiente de resolver en encarnaciones pasadas y que hoy vuelve a aparecer en tu pantalla de aprendizaje.</td></tr>
-    <tr><td><strong>Camino de Vida / Programa</strong><br><span style="font-size:11px;color:#8064a8">Suma total de la fecha</span></td><td>Es la melodía de tu vida, la brújula que te muestra el ritmo y la danza que tu alma vino a bailar en la Tierra.</td></tr>
-    <tr><td><strong>Base</strong><br><span style="font-size:11px;color:#8064a8">Día + Mes + Año + Pasado (reducido)</span></td><td>Representa las habilidades estructurales y de soporte innatas con las que cuentas al nacer.</td></tr>
+    <tr><td><strong>Dones / Herramientas</strong><br><span style="font-size:11px;color:#8064a8">Mes de nacimiento</span></td><td>Son las potencialidades y dones espirituales que elegiste para que te sostengan y faciliten tu camino hacia la misión de vida.</td></tr>
+    <tr><td><strong>A trabajar para mi árbol / Linaje</strong><br><span style="font-size:11px;color:#8064a8">Año de nacimiento sumado</span></td><td>Representa el compromiso de tu alma para ordenar, liberar y sanar los miedos o bloqueos heredados de tu árbol familiar. La mujer lo trabaja principalmente en el árbol de su mamá y el hombre en el de su papá.</td></tr>
+    <tr><td><strong>Programa</strong><br><span style="font-size:11px;color:#8064a8">Día + Mes / Año</span></td><td>Pone frente a frente lo tuyo (día + mes: lo que vienes a aprender y tus dones) y lo que traes de tu árbol (el año). Se escribe separado por una diagonal, por ejemplo 6 / 25/7. Donde ambas fuerzas se juntan se forma tu Base: el punto exacto donde tu alma se engancha con la historia de tu familia.</td></tr>
+    <tr><td><strong>Base</strong><br><span style="font-size:11px;color:#8064a8">Día + Mes + Año</span></td><td>Representa tus cimientos: las habilidades estructurales y de soporte innatas con las que cuentas al nacer.</td></tr>
+    <tr><td><strong>Pasado</strong><br><span style="font-size:11px;color:#8064a8">Suma de los dos últimos dígitos del año</span></td><td>Representa lo no resuelto o no logrado en vidas pasadas: el conflicto emocional o aprendizaje no concluido que tu alma trae para sanarlo en el presente. Te ayuda a entender la raíz inconsciente de por qué repites ciertos temores o patrones. Si naciste en un año terminado en 00, no tienes pasado pendiente.</td></tr>
     <tr><td><strong>Sombra</strong><br><span style="font-size:11px;color:#8064a8">Base + Pasado</span></td><td>Representa tu "personaje oculto", esos miedos o partes de ti que no quieres aceptar y que prefieres ver reflejados o proyectados en tus parejas y relaciones (tus espejos).</td></tr>
+    <tr><td><strong>Camino de Vida</strong><br><span style="font-size:11px;color:#8064a8">Misión + Base</span></td><td>Es la melodía de tu vida, la brújula que te muestra el ritmo y la danza que tu alma vino a bailar en la Tierra. Nace de integrar la energía de tu nombre (Misión) con la de tu fecha (Base).</td></tr>
   </table>
 
+  <div class="section-title">Parte 3 · Qué significa cada número</div>
+  <p class="hint">El significado de cada número, y cómo se lee cuando aparece como verbo, medio o motivo en una tríada.</p>
+  <table class="ref-table">
+    <tr><th>Número</th><th>Significado</th><th>Verbo</th><th>Medio</th><th>Motivo</th></tr>
+    <tr><td><strong>1</strong></td><td>Inicio y Liderazgo</td><td>Iniciar / Empoderarse / Liderar</td><td>Desde la fuerza interior, la independencia y la autonomía personal</td><td>Para abrir nuevos caminos y tomar el mando de la propia vida</td></tr>
+    <tr><td><strong>2</strong></td><td>Emociones y Diplomacia</td><td>Unir / Acompañar / Sentir</td><td>A través de la diplomacia, la empatía y la escucha intuitiva</td><td>Para generar paz, armonía y construir relaciones equilibradas</td></tr>
+    <tr><td><strong>3</strong></td><td>Creación y Optimismo</td><td>Crear / Expresar / Disfrutar</td><td>Mediante la palabra consciente, el optimismo y la magia del niño interior</td><td>Para compartir alegría, comunicar la verdad del alma y fluir con la vida</td></tr>
+    <tr><td><strong>4</strong></td><td>Estructura y Tierra</td><td>Estructurar / Ordenar / Construir</td><td>A través de la disciplina, la paciencia y el trabajo pragmático</td><td>Para establecer bases sólidas y dar estabilidad al plano físico</td></tr>
+    <tr><td><strong>5</strong></td><td>Libertad y Transformación</td><td>Transformar / Cambiar / Liberar</td><td>Mediante el movimiento, la flexibilidad y la libertad sin apegos</td><td>Para romper patrones antiguos y experimentar la adaptabilidad consciente</td></tr>
+    <tr><td><strong>6</strong></td><td>Amor Propio y Armonía</td><td>Amarse / Armonizar / Cuidar</td><td>Desde la aceptación incondicional, la nutrición y el amor propio</td><td>Para establecer límites sanos, dar paz al hogar y asumir la responsabilidad afectiva</td></tr>
+    <tr><td><strong>7</strong></td><td>Consciencia y Sabiduría</td><td>Comprender / Analizar / Tomar conciencia</td><td>A través del estudio, la introspección y la sabiduría interior</td><td>Para desapegarse de la ilusión, buscar la verdad y elevar la conciencia</td></tr>
+    <tr><td><strong>8</strong></td><td>Poder y Autenticidad</td><td>Gobernar / Manifestar / Asumir el poder</td><td>Actuando como "general" de la propia vida con determinación y autoridad</td><td>Para generar prosperidad, equilibrio y construir un legado duradero</td></tr>
+    <tr><td><strong>9</strong></td><td>Entrega y Cierre</td><td>Entregar / Trascender / Cerrar</td><td>Mediante la compasión universal, el perdón y el servicio desinteresado</td><td>Para soltar el pasado, sanar el ego y elevar el bienestar colectivo</td></tr>
+    <tr><td><strong>10</strong></td><td>Maestro de las Herramientas</td><td>Integrar / Transmitir</td><td>Mediante el set completo de recursos heredados de ambos linajes</td><td>Para ponerse al servicio del crecimiento colectivo y ofrecer soluciones</td></tr>
+    <tr><td><strong>11</strong></td><td>Maestro del Autoconocimiento</td><td>Despertar / Canalizar / Inspirar</td><td>A través de la sensibilidad psíquica, la intuición y la fe en uno mismo</td><td>Para conectar lo divino con lo terrenal e iluminar el camino de los demás</td></tr>
+    <tr><td><strong>22</strong></td><td>Maestro de las Emociones y Constructor</td><td>Materializar / Ejecutar / Construir</td><td>Uniendo la visión espiritual elevada con la responsabilidad y la estrategia práctica</td><td>Para dar forma concreta a grandes proyectos que transformen la realidad</td></tr>
+    <tr><td><strong>33</strong></td><td>Maestro Crístico y Compasión</td><td>Unificar / Elevar / Incondicionalizar</td><td>Mediante la maestría del amor desinteresado, la devoción y la empatía</td><td>Para sanar a la comunidad y elevar la conciencia espiritual de la humanidad</td></tr>
+  </table>
+
+  <div class="section-title" style="margin-top:14px">Números compuestos (del 12 al 31)</div>
+  <p class="hint">Cuando una suma da entre 12 y 31 (excepto los maestros), se toman en cuenta las dos cifras: el número compuesto señala el tema y el número reducido, la frecuencia sobre la que se trabaja. Por ejemplo, 16/7.</p>
+  <p class="hint"><span style="background:#fff2d9;color:#8a6100;border-radius:6px;padding:2px 6px;font-weight:bold">(K)</span> <strong>Punto clave a trabajar:</strong> patrones heredados del linaje que se activan en automático. No son un castigo: son lo que viniste a transformar. &nbsp; <span style="background:#dcf5ec;color:#16694f;border-radius:6px;padding:2px 6px;font-weight:bold">(D)</span> <strong>Don:</strong> fuerzas que traes como regalo.</p>
+  <table class="ref-table" id="tabla-compuestos">
+    <tr><th>Número</th><th>Tipo</th><th>Significado</th></tr>
+  </table>
 </section>
 
 </main>
@@ -700,9 +729,10 @@ function calcularPersona(datos){
 
   let programa=reducir(reducirSimple(dia)+reducirSimple(mes));
   let arbol=reducir(sumaDigitos(anio));
-  let pasado=reducir(sumaDigitos(anio%100));
+  // Año terminado en 00 (por ejemplo 2000): no tiene pasado pendiente
+  let pasado=(anio%100===0)?null:reducir(sumaDigitos(anio%100));
   let base=reducir(reducirSimple(dia)+reducirSimple(mes)+arbol.red);
-  let sombra=reducir(base.red+pasado.red);
+  let sombra=reducir(base.red+(pasado?pasado.red:0));
   let camino=reducir(mision.red+base.red);
   let equilibrio=ausentes.length>0?reducir(sumaAus+camino.red):null;
 
@@ -712,9 +742,11 @@ function calcularPersona(datos){
   let f3=ausentes.length>0?reducir(base.red+sumaAus):null;
   let f4=ausentes.length>0?reducir(sumaAus+mision.red):null;
 
-  let periodo1=restaAbsoluta(f3,base,f1);
-  let periodo2=ausenteInfo?restaAbsoluta(ausenteInfo,equilibrio,camino):null;
-  let periodo3=restaAbsoluta(f4,mision,f2);
+  // Los Periodos se leen como TRÍADA (verbo · medio · motivo), nunca como resta
+  let ausenteTri=ausentes.length>0?reducir(sumaAus):null;
+  let periodo1=(f3&&base&&f1)?[f3,base,f1]:null;
+  let periodo2=(ausenteTri&&equilibrio&&camino)?[ausenteTri,equilibrio,camino]:null;
+  let periodo3=(f4&&mision&&f2)?[f4,mision,f2]:null;
 
   return{
     nombre,ap1,ap2,relacion:datos.relacion||'',sexo,dia,mes,anio,
