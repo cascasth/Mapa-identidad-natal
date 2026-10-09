@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow">
+<title>Árbol Genealógico Numerológico gratis | Centro Ser Integral</title>
+<meta name="description" content="Calcula gratis la numerología de tu familia: misión, base y camino de padres, abuelos y bisabuelos, y descubre los patrones que se repiten en tu linaje.">
+<meta property="og:title" content="Árbol Genealógico Numerológico gratis | Centro Ser Integral">
+<meta property="og:description" content="Calcula gratis la numerología de tu familia: misión, base y camino de padres, abuelos y bisabuelos, y descubre los patrones que se repiten en tu linaje.">
+<meta property="og:image" content="https://centroserintegral.org/og_titulo4.png">
+
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f6f0ff;
+    color: #2d183f;
+  }
+
+  header {
+    background: linear-gradient(135deg, #6d3fd3, #b51b72);
+    color: white;
+    padding: 24px;
+    text-align: center;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 24px;
+  }
+
+  h2 {
+    color: #6d3fd3;
+  }
+
+  .form-section, .summary-section, .tree-section, .compare-section, .guide-section, .storage-section {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #c9b8ee;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  button {
+    background: #b51b72;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 16px;
+    margin-right: 8px;
+    font-weight: bold;
+    font-size: 13px;
+  }
+
+  button:hover {
+    background: #8f155a;
+  }
+
+  button.secondary {
+    background: white;
+    color: #6d3fd3;
+    border: 2px solid #c9b8ee;
+  }
+
+  button.secondary:hover {
+    background: #f3ecff;
+  }
+
+  .storage-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .storage-status {
+    font-size: 13px;
+    color: #6d5a78;
+  }
+
+  .storage-actions button { margin-top: 0; }
+
+  .tree {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .generation {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 40px;
+  }
+
+  .tree > div > h3 {
+    text-align: center;
+  }
+
+  .lados {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .lado {
+    flex: 1 1 280px;
+    border: 1px dashed #d9c6f5;
+    border-radius: 14px;
+    padding: 10px;
+  }
+
+  .lado-titulo {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #8064a8;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 8px;
+  }
+
+  .person-card {
+    width: 260px;
+    background: #faf7ff;
+    border: 2px solid #c7a5ff;
+    border-radius: 18px;
+    padding: 14px;
+    text-align: center;
+    position: relative;
+  }
+
+  .person-card h3 {
+    margin: 0 0 2px;
+    color: #b51b72;
+  }
+
+  .person-fecha {
+    font-size: 11px;
+    color: #6d5a78;
+    margin-bottom: 4px;
+  }
+
+  .number-badge {
+    display: inline-flex;
+    min-width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #b51b72;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin: 6px;
+    padding: 0 4px;
+  }
+
+  .chips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    text-align: left;
+    margin-top: 8px;
+  }
+
+  .chip {
+    background: #efe4ff;
+    border-radius: 10px;
+    padding: 5px 8px;
+  }
+
+  .chip .chip-lbl {
+    display: block;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: #8064a8;
+    font-weight: 700;
+  }
+
+  .chip .chip-val {
+    font-size: 14px;
+    font-weight: 700;
+    color: #4a2a6a;
+  }
+
+  .chip.karma { background: #fff2d9; }
+  .chip.karma .chip-val { color: #8a6100; }
+  .chip.dharma { background: #dcf5ec; }
+  .chip.dharma .chip-val { color: #16694f; }
+
+.tag-num { display:inline-flex; flex-direction:column; align-items:flex-start; background:#efe4ff; border-radius:12px; padding:6px 12px; margin:3px; font-size:12px; line-height:1.35; vertical-align:top; }
+  .tag-num small { color:#8064a8; font-size:11px; }
+  .resumen-exp { color:#6d5a78; font-size:13px; margin:2px 0 6px; }
+  .lect-sig { display:block; color:#8064a8; font-size:12.5px; margin-top:3px; padding-left:24px; }
+
+  .ausentes-row {
+    margin-top: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #efe4ff;
+    padding: 6px 10px;
+    border-radius: 999px;
+    margin: 3px;
+    font-size: 12px;
+  }
+
+  .toggle-detalle {
+    background: none;
+    border: none;
+    color: #6d3fd3;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 0;
+    text-decoration: underline;
+  }
+
+  .detalle-extra {
+    display: none;
+    margin-top: 10px;
+    text-align: left;
+    border-top: 1px dashed #d7c8f5;
+    padding-top: 8px;
+  }
+
+  .detalle-extra.visible { display: block; }
+
+  .card-acciones { display:flex; justify-content:center; gap:6px; margin-top:10px; }
+  .card-acciones button { margin:0; padding:6px 12px; font-size:12px; border-radius:10px; }
+  .card-acciones button.secondary { padding:5px 11px; }
+  .instrucciones { background:#faf7ff; border:1px solid #e3d4fb; border-radius:14px; padding:4px 16px; margin-bottom:16px; }
+  .instrucciones summary { cursor:pointer; font-weight:bold; color:#6d3fd3; padding:10px 0; font-size:14px; }
+  .instrucciones ol { margin:0 0 12px; padding-left:20px; font-size:14px; line-height:1.7; color:#4a2a6a; }
+  .duplicados-aviso { display:none; background:#ffe8ee; color:#8f155a; border-radius:10px; padding:10px 14px; font-size:13px; margin-bottom:12px; }
+  .duplicados-aviso.visible { display:block; }
+  .editando-aviso { display:none; background:#fff2d9; color:#8a6100; border-radius:10px; padding:10px 14px; font-size:13px; margin-bottom:12px; }
+  .editando-aviso.visible { display:block; }
+
+  .detalle-extra .chips-grid { grid-template-columns: 1fr 1fr; }
+
+  .small-data {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .tabla-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    min-width: 1100px;
+  }
+
+  th, td {
+    border: 1px solid #d7c8f5;
+    padding: 8px;
+    text-align: center;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  th {
+    background: #6d3fd3;
+    color: white;
+    position: sticky;
+    top: 0;
+  }
+
+  .hint {
+    color: #6d5a78;
+    font-size: 14px;
+  }
+
+  .ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    font-family: sans-serif;
+    margin-top: 8px;
+  }
+  .ref-table th { background: #efe4ff; color: #4a2a6a; padding: 6px 10px; text-align: left; font-weight: 600; position: static; }
+  .ref-table td { padding: 6px 10px; border-bottom: 1px solid #f0e8ff; color: #444; vertical-align: top; text-align: left; white-space: normal; font-size: 12px; }
+  .section-title {
+    font-size: 12px;
+    color: #6d3fd3;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 8px;
+    margin-top: 16px;
+    font-weight: 700;
+  }
+
+
+  /* ══ Lectura del linaje ══ */
+  .linaje-section{background:white;border-radius:18px;padding:20px;margin-bottom:24px;box-shadow:0 6px 18px rgba(0,0,0,0.08);border-top:4px solid #c9a84c}
+  .linaje-section h2{font-family:'Cinzel',serif;color:#3d2060;letter-spacing:.04em}
+  .lect-intro{color:#6d5a78;font-size:14px;line-height:1.6;margin-top:-4px}
+  .lect-bloque{border-left:4px solid #c9a84c;background:#fdfaf3;border-radius:0 14px 14px 0;padding:14px 18px;margin:16px 0}
+  .lect-bloque h3{margin:0 0 8px;color:#b51b72;font-size:17px}
+  .lect-bloque p{margin:6px 0;line-height:1.6;font-size:14px}
+  .lect-bloque em{color:#6d5a78}
+  .lect-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .lect-col{background:#fff;border:1px solid #eadcf9;border-radius:12px;padding:12px}
+  .lect-col h4{margin:0 0 6px;color:#6d3fd3;font-size:14px}
+  .lect-badge{display:inline-block;background:#c9a84c;color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-radius:999px;padding:3px 8px;margin-left:6px;vertical-align:middle}
+  .lect-item{padding:8px 0;border-bottom:1px dashed #eadcf9;font-size:14px;line-height:1.55}
+  .lect-item:last-child{border-bottom:none}
+  .lect-vacio{color:#8a7a9a;font-style:italic;font-size:13px}
+  .lect-comp{margin-top:6px;padding:6px 10px;border-radius:8px;font-size:13.5px;line-height:1.5}
+  .lect-comp.k{background:#fff7e6}
+  .lect-comp.d{background:#e9f8f1}
+  .lect-bloque.don{border-left-color:#2e9b74;background:#f3fbf7}
+  .lect-bloque.don h3{color:#16694f}
+  .lect-frase{margin-top:6px;padding:8px 12px;background:#fff;border:1px solid #eadcf9;border-radius:10px;font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.5;color:#3d2060}
+  .lect-carta{background:#fff;border:1px solid #eadcf9;border-radius:14px;padding:14px 20px;margin-top:12px;font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.55;color:#3d2060}
+  .lect-carta p{font-size:18px;margin:6px 0}
+  .lect-carta-tit{font-family:'Cinzel',serif;font-size:14px;letter-spacing:.06em;color:#a8842e;margin-bottom:6px}
+  .lect-carta-final{text-align:center;background:#fdfaf3}
+  .lect-gracias{font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.6;color:#3d2060;text-align:center;padding:6px 10px}
+
+/* ══ Pie de página Centro Ser Integral ══ */
+.csi-footer{max-width:960px;margin:24px auto 8px;padding:14px 10px 4px;border-top:1px solid #e0d5f0;text-align:center;font-family:sans-serif;font-size:12px;color:#8a7a9a;line-height:1.6}
+.csi-footer strong{color:#5a3e6b}
+.csi-footer a{color:#8a7a9a;text-decoration:none}
+@media print{
+  .csi-footer{position:fixed;bottom:0;left:0;right:0;max-width:none;margin:0;padding:6px 0;background:#fff;font-size:10px;color:#5a3e6b}
+  body{padding-bottom:40px}
+}
+@media print{
+  @page { size: landscape; margin: 10mm; }
+  .no-print, .form-section, .toggle-detalle, .card-acciones { display:none!important; }
+  body { background:#fff; }
+  header { -webkit-print-color-adjust:exact; print-color-adjust:exact; padding:12px; }
+  main { max-width:none; padding:0; }
+  .summary-section, .tree-section, .compare-section, .guide-section { box-shadow:none; border:1px solid #ddd; }
+  /* Árbol más compacto en papel; las fases y periodos van en la tabla comparativa */
+  .tree { gap:14px; zoom:.62; }
+  .tree > div > h3 { break-after:avoid; margin:0 0 6px; }
+  .lados { flex-wrap:nowrap; }
+  .lado { break-inside:avoid; }
+  .person-card { break-inside:avoid; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .chip, .number-badge, .tag { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .tabla-wrap { overflow:visible; }
+  table { font-size:9px; }
+  th, td { padding:3px 4px; }
+  tr { break-inside:avoid; }
+  .compare-section, .guide-section { break-before:page; }
+  .linaje-section { break-before:page; box-shadow:none; border:1px solid #ddd; }
+  .lect-bloque, .lect-carta { break-inside:avoid; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+
+/* ══ Encabezado del sitio (igual que en las demás calculadoras) ══ */
+nav.csi-nav{--gold:#c9a84c;--gold-pale:#e8d5a0;--ink:#0d0b14;position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;background:rgba(6,6,14,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.18);box-sizing:border-box;line-height:1.4}
+.csi-nav-espacio{height:64px}
+.csi-nav .nav-left{display:flex;align-items:center;gap:1rem}
+.csi-nav .nav-logo{font-family:'Cinzel',serif;font-size:.95rem;color:var(--gold);text-decoration:none;letter-spacing:2px;display:flex;align-items:center;gap:.5rem;white-space:nowrap}
+.csi-nav .nav-logo .star{font-size:1.2rem;animation:navSpin 20s linear infinite}
+@keyframes navSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.csi-nav .nav-dropdown{position:relative}
+.csi-nav .nav-dropdown-btn{background:transparent;border:1px solid rgba(201,168,76,.25);color:rgba(199,189,223,.7);padding:.35rem .8rem;border-radius:20px;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:.75rem;letter-spacing:1px;font-weight:400;transition:all .3s}
+.csi-nav .nav-dropdown-btn:hover,.csi-nav .nav-dropdown.open .nav-dropdown-btn{border-color:var(--gold);color:var(--gold-pale)}
+.csi-nav .nav-dropdown-menu{position:absolute;top:calc(100% + 10px);left:0;min-width:210px;background:rgba(6,4,15,.97);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:.4rem;display:none;flex-direction:column;gap:2px;z-index:1001;box-shadow:0 14px 34px rgba(0,0,0,.5)}
+.csi-nav .nav-dropdown.open .nav-dropdown-menu{display:flex}
+.csi-nav .nav-dropdown-menu a{display:flex;align-items:center;gap:8px;padding:.6rem .75rem;border-radius:6px;font-family:'Cormorant Garamond',serif;font-size:.85rem;color:rgba(199,189,223,.7);text-decoration:none;transition:all .2s}
+.csi-nav .nav-dropdown-menu a:hover,.csi-nav .nav-dropdown-menu a.active{background:rgba(201,168,76,.08);color:var(--gold-pale)}
+.csi-nav .nav-links{display:flex;list-style:none;gap:1.6rem;margin:0;padding:0}
+.csi-nav .nav-links a{font-family:'Cormorant Garamond',serif;font-size:.82rem;color:rgba(199,189,223,.6);text-decoration:none;transition:color .3s}
+.csi-nav .nav-links a:hover{color:var(--gold-pale)}
+.csi-nav .nav-cta a.btn-nav-primary{background:linear-gradient(135deg,var(--gold) 0%,#b07030 100%);color:var(--ink);padding:.45rem 1.2rem;border-radius:25px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:1px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .3s;display:inline-block}
+.csi-nav .nav-cta a.btn-nav-primary:hover{transform:translateY(-2px)}
+@media (max-width:720px){.csi-nav .nav-links{display:none}nav.csi-nav{padding:0 1rem}.csi-nav .nav-logo{font-size:0}.csi-nav .nav-logo .star{font-size:1.2rem}}
+
+/* ══ Invitación al Mapa (mismo botón que las demás calculadoras) ══ */
+.csi-cta{max-width:640px;margin:28px auto 8px;padding:22px 20px;text-align:center;border:1px dashed rgba(201,168,76,.55);border-radius:14px;background:rgba(255,255,255,.55)}
+.csi-cta-titulo{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:#a8842e;margin-bottom:10px}
+.csi-cta p{font-size:15px;line-height:1.6;color:#4a3e5a;margin:0 0 16px}
+.csi-cta-btn{display:inline-block;padding:12px 30px;background:linear-gradient(135deg,#3d2060,#2a7f7f);border:1px solid rgba(201,168,76,.35);border-radius:26px;color:#f5f0e8;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.12em;text-decoration:none;transition:transform .15s,box-shadow .2s}
+.csi-cta-btn:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(61,32,96,.5)}
+
+@media print{nav.csi-nav,.csi-nav-espacio,.csi-cta{display:none!important}}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<nav class="csi-nav">
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">
+      <span class="star">✦</span>
+      Centro Ser Integral
+    </a>
+    <div class="nav-dropdown" id="navDropdown">
+      <button class="nav-dropdown-btn" onclick="toggleNavDropdown(event)">☰ Gratis ▾</button>
+      <div class="nav-dropdown-menu">
+        <a href="index.html">📚 Biblioteca</a>
+        <a href="tzolkin.html">🌙 Tzolkin Dreamspell · Kin del día</a>
+        <a href="ascendente.html">🌅 Ascendente · Zodiaco occidental</a>
+        <a href="chino.html">🐉 Horóscopo Chino</a>
+        <a href="calculadora_palabras.html">✧ Numerología de Palabras</a>
+        <a href="numerologia.html">🔢 Numerología Pitagórica</a>
+        <a href="calculadora_nombre.html">✎ Numerología Evolutiva del Nombre</a>
+        <a href="Calculadora_numerologia_evolutiva.html">⟁ Numerología Evolutiva Personal</a>
+        <a href="https://identidad.centroserintegral.org/" target="_blank" rel="noopener">📜 Archivo de Identidad (gratis)</a>
+      </div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="mapa-natal.html#codigos">Códigos</a></li>
+    <li><a href="mapa-natal.html#para-que">Propósito</a></li>
+    <li><a href="mapa-natal.html#ejemplo">Ejemplo</a></li>
+    <li><a href="mapa-natal.html#testimonios">Testimonios</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="mapa-natal.html#payment-step" class="btn-nav-primary">Solicitar Mapa</a>
+  </div>
+</nav>
+<div class="csi-nav-espacio"></div>
+
+
+<header>
+  <h1>Árbol Genealógico Numerológico</h1>
+  <p>Mapa familiar de misión, mente, corazón, expresión, base, sombra, camino, ausentes, fases y periodos</p>
+</header>
+
+<main>
+
+<section class="storage-section no-print">
+  <div class="storage-status" id="storage-status">Los datos se guardan automáticamente en este navegador.</div>
+  <div class="storage-actions">
+    <button class="secondary" onclick="exportarDatos()">⬇️ Descargar copia (Excel / CSV)</button>
+    <button class="secondary" onclick="document.getElementById('input-importar').click()">⬆️ Cargar copia (Excel / CSV)</button>
+    <button onclick="imprimirArbol()">🖨️ Imprimir / Guardar como PDF</button>
+    <input type="file" id="input-importar" accept=".csv,text/csv,.json,application/json" style="display:none" onchange="importarDatos(event)">
+  </div>
+</section>
+
+<section class="form-section">
+  <details class="instrucciones" id="instrucciones">
+    <summary>📖 ¿Cómo se usa? (da clic para ver los pasos)</summary>
+    <ol>
+      <li><strong>Empieza por ti:</strong> escribe tu nombre completo como aparece en tu acta de nacimiento, elige la relación <strong>Persona Central</strong> y tu fecha. Da clic en <strong>Agregar al árbol</strong> una sola vez.</li>
+      <li><strong>Sigue con tu familia:</strong> el campo "Relación" cambia solo a la siguiente persona que falta (mamá, papá, pareja, abuelos…). Revisa que sea la correcta antes de agregar.</li>
+      <li><strong>¿Te equivocaste?</strong> Cada tarjeta del árbol tiene los botones <strong>✏️ Editar</strong> y <strong>🗑️ Borrar</strong>. También están en la primera columna de la Tabla comparativa.</li>
+      <li><strong>Lee tu linaje:</strong> baja a la sección <strong>✦ Lectura de tu linaje</strong>. Se actualiza sola cada vez que agregas a alguien.</li>
+      <li><strong>Guarda tu árbol:</strong> los datos se quedan en este navegador. Si cambias de computadora o borras el historial se pierden, así que usa <strong>⬇️ Descargar copia</strong> de vez en cuando.</li>
+    </ol>
+  </details>
+  <div class="duplicados-aviso" id="duplicados-aviso"></div>
+  <h2 id="titulo-form">Agregar persona</h2>
+  <div class="editando-aviso" id="editando-aviso">✏️ Estás editando a una persona. Cambia lo que necesites y da clic en <strong>Guardar cambios</strong>.</div>
+  <p class="hint">Se calcula automáticamente con el mismo motor de la Calculadora de Numerología Evolutiva: solo captura el nombre completo y la fecha de nacimiento.</p>
+
+  <div class="grid">
+    <div>
+      <label>Nombre(s)</label>
+      <input id="nombre" placeholder="Ej. Ana Sofía" />
+    </div>
+    <div>
+      <label>Apellido paterno</label>
+      <input id="ap1" placeholder="Ej. Ramírez" />
+    </div>
+    <div>
+      <label>Apellido materno</label>
+      <input id="ap2" placeholder="Ej. López" />
+    </div>
+    <div>
+      <label>Relación</label>
+      <select id="relacion"></select>
+    </div>
+    <div>
+      <label>Sexo</label>
+      <select id="sexo">
+        <option value="F">Femenino</option>
+        <option value="M">Masculino</option>
+      </select>
+    </div>
+    <div>
+      <label>Día</label>
+      <input id="dia" type="number" min="1" max="31" placeholder="dd" />
+    </div>
+    <div>
+      <label>Mes</label>
+      <input id="mes" type="number" min="1" max="12" placeholder="mm" />
+    </div>
+    <div>
+      <label>Año</label>
+      <input id="anio" type="number" min="1900" max="2099" placeholder="aaaa" />
+    </div>
+  </div>
+
+  <button id="btn-agregar" onclick="agregarPersona()">Agregar al árbol</button>
+  <button class="secondary" id="btn-cancelar" onclick="cancelarEdicion()" style="display:none">Cancelar edición</button>
+  <button class="secondary" id="btn-reiniciar" onclick="reiniciarArbol()">Reiniciar árbol</button>
+</section>
+
+<section class="tree-section">
+  <h2>Árbol familiar</h2>
+  <p class="hint">Captura desde los bisabuelos hasta los hijos. Las tarjetas se acomodan automáticamente por relación: el lado de papá a la izquierda y el lado de mamá a la derecha.</p>
+
+  <div class="tree">
+    <div>
+      <h3>Bisabuelos</h3>
+      <div class="lados">
+        <div class="lado"><div class="lado-titulo">Lado de papá</div><div id="GeneracionBisabuelosPaternos" class="generation"></div></div>
+        <div class="lado"><div class="lado-titulo">Lado de mamá</div><div id="GeneracionBisabuelosMaternos" class="generation"></div></div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Abuelos</h3>
+      <div class="lados">
+        <div class="lado"><div class="lado-titulo">Lado de papá</div><div id="GeneracionAbuelosPaternos" class="generation"></div></div>
+        <div class="lado"><div class="lado-titulo">Lado de mamá</div><div id="GeneracionAbuelosMaternos" class="generation"></div></div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Padres de la persona central</h3>
+      <div id="GeneracionPadres" class="generation"></div>
+    </div>
+
+    <div>
+      <h3>Persona central y pareja</h3>
+      <div id="GeneracionCentral" class="generation"></div>
+    </div>
+
+    <div>
+      <h3>Hijos</h3>
+      <div id="GeneracionHijos" class="generation"></div>
+    </div>
+  </div>
+</section>
+
+<section class="summary-section">
+  <h2>Resumen del sistema familiar</h2>
+  <div id="resumen">
+    <p>Aún no hay datos. Agrega personas para ver el resumen.</p>
+  </div>
+</section>
+
+<section class="linaje-section">
+  <h2>✦ Lectura de tu linaje</h2>
+  <p class="lect-intro">Según la Numerología Evolutiva, nada en tu familia es casualidad: te rodeas de personas que emiten tu mismo código o su frecuencia complementaria. Aquí ves cómo se cruzan tus números con los de tu árbol.</p>
+  <div id="lectura-linaje"><p class="lect-vacio">Agrega a la Persona Central y a su familia para ver la lectura.</p></div>
+</section>
+
+<section class="compare-section">
+  <h2>Tabla comparativa</h2>
+  <p class="hint"><span style="background:#fff2d9;color:#8a6100;border-radius:6px;padding:2px 6px;font-weight:bold">(K)</span> Punto clave a trabajar &nbsp;·&nbsp; <span style="background:#dcf5ec;color:#16694f;border-radius:6px;padding:2px 6px;font-weight:bold">(D)</span> Don &nbsp;·&nbsp; Los Periodos se leen como tríada: verbo · medio · motivo.</p>
+  <div class="tabla-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="no-print">Acciones</th>
+          <th>Persona</th>
+          <th>Relación</th>
+          <th>Misión</th>
+          <th>Mente</th>
+          <th>Corazón</th>
+          <th>Expresión</th>
+          <th>Programa</th>
+          <th>Base</th>
+          <th>Pasado</th>
+          <th>Sombra</th>
+          <th>Camino</th>
+          <th>Equilibrio</th>
+          <th>Linaje</th>
+          <th>Ausentes</th>
+          <th>Fase 1</th>
+          <th>Fase 2</th>
+          <th>Fase 3</th>
+          <th>Fase 4</th>
+          <th>Periodo 1<br><span style="font-weight:normal;font-size:10px">0–35 años</span></th>
+          <th>Periodo 2<br><span style="font-weight:normal;font-size:10px">35–55 años</span></th>
+          <th>Periodo 3<br><span style="font-weight:normal;font-size:10px">55+ años</span></th>
+        </tr>
+      </thead>
+      <tbody id="tabla"></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="guide-section">
+  <h2>Guía de lectura · Qué significa cada número</h2>
+
+  <div class="section-title">Parte 1 · El Nombre (tu caja de herramientas del alma)</div>
+  <p class="hint">Tu nombre completo tal como aparece en tu acta de nacimiento es tu "caja de regalos". Al convertir sus letras en números usando la tabla de conversión, obtienes un inventario de frecuencias activas para operar en el plano material.</p>
+  <table class="ref-table">
+    <tr><th>Cálculo</th><th>Significado</th></tr>
+    <tr><td><strong>Misión de Vida</strong><br><span style="font-size:11px;color:#8064a8">Suma de todo el nombre completo</span></td><td>Es el acuerdo central que tu alma firmó antes de encarnar. Responde a la pregunta "¿Para qué estoy aquí?" y representa la frecuencia misional con la que impactas y sanas al mundo.</td></tr>
+    <tr><td><strong>Mente</strong><br><span style="font-size:11px;color:#8064a8">Suma de tu(s) nombre(s) propio(s)</span></td><td>Representa al Maestro 1 (el consciente). Es tu estructura mental lógica, la forma en que piensas, procesas la información y manejas el día a día.</td></tr>
+    <tr><td><strong>Número del Corazón</strong><br><span style="font-size:11px;color:#8064a8">Suma de todas las vocales</span></td><td>Representa al Maestro 2 (la emoción). Nos revela lo que sientes en tu cuerpo ("cápsula"), tus deseos más íntimos, anhelos del alma y lo que verdaderamente te nutre en el amor.</td></tr>
+    <tr><td><strong>Número de Expresión</strong><br><span style="font-size:11px;color:#8064a8">Suma de todas las consonantes</span></td><td>Representa al Maestro 3 (el inconsciente y la palabra). Es tu canal de comunicación y cómo te proyectas afuera. En esta escuela, la palabra es la herramienta más poderosa porque es la que crea tu realidad.</td></tr>
+    <tr><td><strong>Linaje</strong><br><span style="font-size:11px;color:#8064a8">Suma del apellido materno (mujeres) o paterno (hombres)</span></td><td>Es el apellido que te conecta con tu árbol de trabajo: la mujer trabaja principalmente el árbol de su mamá y el hombre el de su papá.</td></tr>
+    <tr><td><strong>Números Ausentes</strong><br><span style="font-size:11px;color:#8064a8">o "Enfermos"</span></td><td>Los números del 1 al 9 que no aparecen en las letras de tu nombre. Se les llama enfermos porque no los traes como herramienta: son frecuencias que no generas de forma natural y que vienes a aprender a construir. Tu sistema atrae a personas que sí los tienen (compañeros de camino) para que te los "presten" mientras los integras.</td></tr>
+  </table>
+
+  <div class="section-title">Parte 2 · La Fecha de Nacimiento (tu programa de vida)</div>
+  <p class="hint">Tu fecha de nacimiento no cambia; es un "plano fijo" o un archivo comprimido .ZIP interdimensional que contiene el diseño de tu estructura, tus retos y las memorias que vienes a desprogramar.</p>
+  <table class="ref-table">
+    <tr><th>Cálculo</th><th>Significado</th></tr>
+    <tr><td><strong>Lo que vine a aprender / hacer</strong><br><span style="font-size:11px;color:#8064a8">Día de nacimiento</span></td><td>Es tu energía de acción primaria y el aprendizaje central que elegiste integrar de manera práctica en la materia.</td></tr>
+    <tr><td><strong>Dones / Herramientas</strong><br><span style="font-size:11px;color:#8064a8">Mes de nacimiento</span></td><td>Son las potencialidades y dones espirituales que elegiste para que te sostengan y faciliten tu camino hacia la misión de vida.</td></tr>
+    <tr><td><strong>A trabajar para mi árbol / Linaje</strong><br><span style="font-size:11px;color:#8064a8">Año de nacimiento sumado</span></td><td>Representa el compromiso de tu alma para ordenar, liberar y sanar los miedos o bloqueos heredados de tu árbol familiar. La mujer lo trabaja principalmente en el árbol de su mamá y el hombre en el de su papá.</td></tr>
+    <tr><td><strong>Programa</strong><br><span style="font-size:11px;color:#8064a8">Día + Mes / Año</span></td><td>Pone frente a frente lo tuyo (día + mes: lo que vienes a aprender y tus dones) y lo que traes de tu árbol (el año). Se escribe separado por una diagonal, por ejemplo 6 / 25/7. Donde ambas fuerzas se juntan se forma tu Base: el punto exacto donde tu alma se engancha con la historia de tu familia.</td></tr>
+    <tr><td><strong>Base</strong><br><span style="font-size:11px;color:#8064a8">Día + Mes + Año</span></td><td>Representa tus cimientos: las habilidades estructurales y de soporte innatas con las que cuentas al nacer.</td></tr>
+    <tr><td><strong>Pasado</strong><br><span style="font-size:11px;color:#8064a8">Suma de los dos últimos dígitos del año</span></td><td>Representa lo no resuelto o no logrado en vidas pasadas: el conflicto emocional o aprendizaje no concluido que tu alma trae para sanarlo en el presente. Te ayuda a entender la raíz inconsciente de por qué repites ciertos temores o patrones. Si naciste en un año terminado en 00, no tienes pasado pendiente.</td></tr>
+    <tr><td><strong>Sombra</strong><br><span style="font-size:11px;color:#8064a8">Base + Pasado</span></td><td>Representa tu "personaje oculto", esos miedos o partes de ti que no quieres aceptar y que prefieres ver reflejados o proyectados en tus parejas y relaciones (tus espejos).</td></tr>
+    <tr><td><strong>Camino de Vida</strong><br><span style="font-size:11px;color:#8064a8">Misión + Base</span></td><td>Es la melodía de tu vida, la brújula que te muestra el ritmo y la danza que tu alma vino a bailar en la Tierra. Nace de integrar la energía de tu nombre (Misión) con la de tu fecha (Base).</td></tr>
+  </table>
+
+  <div class="section-title">Parte 3 · La Unión y Fases de la Vida (fórmula para madurar)</div>
+  <p class="hint">Al unir los códigos de tu nombre y tu fecha de nacimiento, el mapa se activa a través de la Fórmula para Madurar. Las Fases son los cuatro pilares de ese mapa y los Periodos son las etapas de tu vida.</p>
+  <table class="ref-table">
+    <tr><th>Cálculo</th><th>Significado</th></tr>
+    <tr><td><strong>Equilibrio</strong><br><span style="font-size:11px;color:#8064a8">Ausentes + Camino de Vida</span></td><td>Es el centro sagrado que te sostiene y te ayuda a volver al eje cuando sientes que pierdes el rumbo.</td></tr>
+    <tr><td><strong>Fase 1</strong><br><span style="font-size:11px;color:#8064a8">Base + Camino de Vida</span></td><td><strong>Motor de acción.</strong> Cómo usas tus herramientas naturales para avanzar y responder a los retos del mundo físico.</td></tr>
+    <tr><td><strong>Fase 2</strong><br><span style="font-size:11px;color:#8064a8">Camino de Vida + Misión</span></td><td><strong>Puente de realización.</strong> Donde tus aprendizajes cotidianos se alinean con tu propósito.</td></tr>
+    <tr><td><strong>Fase 3</strong><br><span style="font-size:11px;color:#8064a8">Base + Ausentes</span></td><td><strong>Trabajo interno.</strong> Usas la fuerza de tu Base para construir las herramientas que no se te dieron al nacer.</td></tr>
+    <tr><td><strong>Fase 4</strong><br><span style="font-size:11px;color:#8064a8">Ausentes + Misión</span></td><td><strong>Nutrición espiritual.</strong> Tus viejas carencias, ya transformadas, se vuelven el recurso que alimenta tu Misión.</td></tr>
+  </table>
+
+  <div class="section-title" style="margin-top:14px">Los Periodos se leen como tríada</div>
+  <p class="hint">Cada Periodo une tres números. No se suman ni se restan: se leen como una frase, donde el primero es el VERBO (la acción), el segundo el MEDIO (cómo) y el tercero el MOTIVO (para qué).</p>
+  <table class="ref-table">
+    <tr><th>Periodo</th><th>Tríada</th><th>Cómo se vive</th></tr>
+    <tr><td><strong>Periodo 1</strong><br><span style="font-size:11px;color:#8064a8">0 a 35 años</span></td><td>Fase 3 · Base · Fase 1</td><td>Resolver tus vacíos desde tus habilidades de soporte para proyectarte al mundo.</td></tr>
+    <tr><td><strong>Periodo 2</strong><br><span style="font-size:11px;color:#8064a8">35 a 55 años</span></td><td>Ausentes · Equilibrio · Camino de Vida</td><td>Integrar lo que te faltaba usando tu centro sagrado para transitar la melodía de tu alma.</td></tr>
+    <tr><td><strong>Periodo 3</strong><br><span style="font-size:11px;color:#8064a8">55 años en adelante</span></td><td>Fase 4 · Misión · Fase 2</td><td>Actuar desde la nutrición interior, al servicio de tu propósito, para alcanzar la realización plena.</td></tr>
+  </table>
+  <p style="font-family:sans-serif;font-size:13px;color:#4a2a6a;line-height:1.6;margin-top:10px;font-style:italic">Por ejemplo: la tríada 16 · 10 · 17 se lee "Validarme (16) con las herramientas de mi linaje (10) para mi camino espiritual (17)".</p>
+
+  <div class="section-title">Parte 4 · Qué significa cada número</div>
+  <p class="hint">El significado de cada número, y cómo se lee cuando aparece como verbo, medio o motivo en una tríada.</p>
+  <table class="ref-table">
+    <tr><th>Número</th><th>Significado</th><th>Verbo</th><th>Medio</th><th>Motivo</th></tr>
+    <tr><td><strong>1</strong></td><td>Inicio y Liderazgo</td><td>Iniciar / Empoderarse / Liderar</td><td>Desde la fuerza interior, la independencia y la autonomía personal</td><td>Para abrir nuevos caminos y tomar el mando de la propia vida</td></tr>
+    <tr><td><strong>2</strong></td><td>Emociones y Diplomacia</td><td>Unir / Acompañar / Sentir</td><td>A través de la diplomacia, la empatía y la escucha intuitiva</td><td>Para generar paz, armonía y construir relaciones equilibradas</td></tr>
+    <tr><td><strong>3</strong></td><td>Creación y Optimismo</td><td>Crear / Expresar / Disfrutar</td><td>Mediante la palabra consciente, el optimismo y la magia del niño interior</td><td>Para compartir alegría, comunicar la verdad del alma y fluir con la vida</td></tr>
+    <tr><td><strong>4</strong></td><td>Estructura y Tierra</td><td>Estructurar / Ordenar / Construir</td><td>A través de la disciplina, la paciencia y el trabajo pragmático</td><td>Para establecer bases sólidas y dar estabilidad al plano físico</td></tr>
+    <tr><td><strong>5</strong></td><td>Libertad y Transformación</td><td>Transformar / Cambiar / Liberar</td><td>Mediante el movimiento, la flexibilidad y la libertad sin apegos</td><td>Para romper patrones antiguos y experimentar la adaptabilidad consciente</td></tr>
+    <tr><td><strong>6</strong></td><td>Amor Propio y Armonía</td><td>Amarse / Armonizar / Cuidar</td><td>Desde la aceptación incondicional, la nutrición y el amor propio</td><td>Para establecer límites sanos, dar paz al hogar y asumir la responsabilidad afectiva</td></tr>
+    <tr><td><strong>7</strong></td><td>Consciencia y Sabiduría</td><td>Comprender / Analizar / Tomar conciencia</td><td>A través del estudio, la introspección y la sabiduría interior</td><td>Para desapegarse de la ilusión, buscar la verdad y elevar la conciencia</td></tr>
+    <tr><td><strong>8</strong></td><td>Poder y Autenticidad</td><td>Gobernar / Manifestar / Asumir el poder</td><td>Actuando como "general" de la propia vida con determinación y autoridad</td><td>Para generar prosperidad, equilibrio y construir un legado duradero</td></tr>
+    <tr><td><strong>9</strong></td><td>Entrega y Cierre</td><td>Entregar / Trascender / Cerrar</td><td>Mediante la compasión universal, el perdón y el servicio desinteresado</td><td>Para soltar el pasado, sanar el ego y elevar el bienestar colectivo</td></tr>
+    <tr><td><strong>10</strong></td><td>Maestro de las Herramientas</td><td>Integrar / Transmitir</td><td>Mediante el set completo de recursos heredados de ambos linajes</td><td>Para ponerse al servicio del crecimiento colectivo y ofrecer soluciones</td></tr>
+    <tr><td><strong>11</strong></td><td>Maestro del Autoconocimiento</td><td>Despertar / Canalizar / Inspirar</td><td>A través de la sensibilidad psíquica, la intuición y la fe en uno mismo</td><td>Para conectar lo divino con lo terrenal e iluminar el camino de los demás</td></tr>
+    <tr><td><strong>22</strong></td><td>Maestro de las Emociones y Constructor</td><td>Materializar / Ejecutar / Construir</td><td>Uniendo la visión espiritual elevada con la responsabilidad y la estrategia práctica</td><td>Para dar forma concreta a grandes proyectos que transformen la realidad</td></tr>
+    <tr><td><strong>33</strong></td><td>Maestro Crístico y Compasión</td><td>Unificar / Elevar / Incondicionalizar</td><td>Mediante la maestría del amor desinteresado, la devoción y la empatía</td><td>Para sanar a la comunidad y elevar la conciencia espiritual de la humanidad</td></tr>
+  </table>
+
+  <div class="section-title" style="margin-top:14px">Números compuestos (del 12 al 31)</div>
+  <p class="hint">Cuando una suma da entre 12 y 31 (excepto los maestros), se toman en cuenta las dos cifras: el número compuesto señala el tema y el número reducido, la frecuencia sobre la que se trabaja. Por ejemplo, 16/7.</p>
+  <p class="hint"><span style="background:#fff2d9;color:#8a6100;border-radius:6px;padding:2px 6px;font-weight:bold">(K)</span> <strong>Punto clave a trabajar:</strong> patrones heredados del linaje que se activan en automático. No son un castigo: son lo que viniste a transformar. &nbsp; <span style="background:#dcf5ec;color:#16694f;border-radius:6px;padding:2px 6px;font-weight:bold">(D)</span> <strong>Don:</strong> fuerzas que traes como regalo.</p>
+  <table class="ref-table" id="tabla-compuestos">
+    <tr><th>Número</th><th>Tipo</th><th>Significado</th></tr>
+  </table>
+</section>
+
+</main>
+
+<section class="csi-cta">
+  <div class="csi-cta-titulo">Tu retrato completo</div>
+  <p>La numerología es una de las siete voces de tu Mapa de Identidad Natal. Descubre cómo se teje con tu astrología, tu horóscopo chino y tus calendarios ancestrales.</p>
+  <a class="csi-cta-btn" href="https://centroserintegral.org/mapa-natal.html#payment-step">Solicitar mi Mapa ✦</a>
+</section>
+
+<footer class="csi-footer">
+  Elaborado por <strong>Centro Ser Integral</strong> · México · © 2026 Todos los derechos reservados<br>
+  <a href="https://centroserintegral.org">centroserintegral.org</a>
+</footer>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xjfjiflf3z");
+</script>
+
+<script>
+/* ════════ MOTOR DE CÁLCULO (mismo que Calculadora_numerologia_evolutiva.html) ════════ */
+const LETRAS={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8,'Ñ':5};
+const VOCALES=new Set(['A','E','I','O','U']);
+const MAESTROS=new Set([10,11,22,33]);
+const KARMAS={
+  12:'Madurar, camino nuevo. Salir de la inmadurez para crecer y reconectar con el Niño Interior mágico.',
+  13:'Reconocer la incoherencia entre lo que pienso, siento y digo para evitar la enfermedad física.',
+  14:'Falta de compromiso. El desafío es comprometerse con los cambios de maduración propios.',
+  15:'Soltar el control y las adicciones para lograr el reconocimiento interno.',
+  16:'Sanar la desvalorización y la dependencia de la validación externa. Autovaloración.',
+  17:'Camino espiritual y conexión divina. Energía de buscadores de la verdad.',
+  18:'Liderazgo con límites sanos. Poder equilibrado al servicio de una estrategia grande. Dejar de ser víctima.',
+  19:'Soltar la ira y la sensación de injusticia. Sanación del árbol familiar y caída de máscaras.',
+  20:'Gestión de emociones desbordadas. Aprender inteligencia emocional para no enfermar el cuerpo.',
+  21:'La magia. Descubrir lo oculto en el inconsciente para renacer al amor. Investigador.',
+  22:'Mejorar la comunicación.',
+  23:'El mapa. Saber hacia dónde ir mediante la compasión y la empatía. Un nuevo camino a seguir.',
+  24:'Equilibrar las emociones. Energía de investigación y maestría en soledad.',
+  25:'Liberarse del programa familiar para no apegarse a nada ni a nadie y ser libre.',
+  26:'Amor propio profundo y aceptación incondicional. Energía de resistencia y empoderamiento.',
+  27:'Maestría del sentir. Conciencia emocional que lleva a la liberación y el renacimiento.',
+  28:'Frustración y vacío. Catalizador necesario para salir de la vida antigua y buscar un propósito.',
+  29:'Maestro en lo oculto. Capacidad de transformar la vida de otros a través del maestro interno.',
+  30:'Fluir con el todo y tener la fuerza para volver a empezar desde una maestría universal.',
+  31:'El viajero del mundo. Rebeldes sin causa que buscan cambiar el mundo a través de la aventura espiritual.'
+};
+const SIGNIF={
+  1:'Inicio y Liderazgo.',2:'Emociones y Diplomacia.',3:'Creación y Optimismo.',4:'Estructura y Tierra.',
+  5:'Libertad y Transformación.',6:'Amor Propio y Armonía.',7:'Consciencia y Sabiduría.',8:'Poder y Autenticidad.',
+  9:'Entrega y Cierre.',10:'Maestro de las Herramientas.',11:'Maestro del Autoconocimiento.',
+  22:'Maestro de las Emociones y Constructor.',33:'Maestro Crístico y Compasión.'
+};
+
+function limpiar_str(s){return s.toUpperCase().replace(/[ÁÀÄÂ]/g,'A').replace(/[ÉÈËÊ]/g,'E').replace(/[ÍÌÏÎ]/g,'I').replace(/[ÓÒÖÔ]/g,'O').replace(/[ÚÙÜÛ]/g,'U').replace(/[^A-ZÑ]/g,'');}
+function sumaDigitos(n){let s=0;String(n).split('').forEach(d=>s+=+d);return s;}
+function reducirSimple(n){while(n>9&&!MAESTROS.has(n)){let s=0;String(n).split('').forEach(d=>s+=+d);n=s;}return n;}
+function reducir(n){
+  while(n>31&&!MAESTROS.has(n)){
+    let s=0;
+    String(n).split('').forEach(d=>s+=+d);
+    n=s;
+  }
+  if(MAESTROS.has(n))return{comp:n,red:n,tipo:'maestro'};
+  const KS=new Set([12,13,14,15,16,19,20]);
+  const DS=new Set([17,18,26,27]);
+  if(n>=12&&n<=30&&KARMAS[n])return{comp:n,red:reducirSimple(n),tipo:KS.has(n)?'karma':DS.has(n)?'dharma':'compuesto'};
+  if(n<=9)return{comp:n,red:n,tipo:'simple'};
+  return{comp:n,red:reducirSimple(n),tipo:'compuesto'};
+}
+function display(info){
+  if(!info)return'—';
+  if(info.tipo==='maestro')return String(info.comp);
+  if(info.tipo==='karma')return info.comp+'/'+info.red+' (K)';
+  if(info.tipo==='dharma')return info.comp+'/'+info.red+' (D)';
+  if(info.comp!==info.red)return info.comp+'/'+info.red;
+  return String(info.red);
+}
+function claseInfo(info){
+  if(!info)return'';
+  if(info.tipo==='karma')return'karma';
+  if(info.tipo==='dharma')return'dharma';
+  return'';
+}
+function valorPalabra(word){
+  let letras=limpiar_str(word).split('').filter(Boolean);
+  let arr=letras.map(l=>({l,v:LETRAS[l]||0}));
+  let suma=arr.reduce((a,x)=>a+x.v,0);
+  return{letras:arr,suma,info:reducir(suma)};
+}
+/* Muestra una tríada de Periodo: 11 · 13/4 · 13/4 */
+function displayTriada(t){
+  if(!t)return'—';
+  return t.map(i=>i.tipo==='maestro'||i.comp===i.red?String(i.red):i.comp+'/'+i.red).join(' · ');
+}
+/* Programa: lo personal (Día + Mes) / lo del árbol (Año) */
+function displayPrograma(c){
+  const izq=c.programa.comp!==c.programa.red&&c.programa.tipo!=='maestro'?c.programa.comp+'/'+c.programa.red:String(c.programa.red);
+  const der=c.arbol.comp!==c.arbol.red&&c.arbol.tipo!=='maestro'?c.arbol.comp+'/'+c.arbol.red:String(c.arbol.red);
+  return izq+' / '+der;
+}
+function displayPasado(c){return c.pasado?display(c.pasado):'Sin pasado pendiente';}
+
+/* ════════ CÁLCULO COMPLETO DE UNA PERSONA A PARTIR DE DATOS CRUDOS ════════ */
+function calcularPersona(datos){
+  const nombre=(datos.nombre||'').trim();
+  const ap1=(datos.ap1||'').trim();
+  const ap2=(datos.ap2||'').trim();
+  const sexo=datos.sexo||'F';
+  const dia=parseInt(datos.dia)||1;
+  const mes=parseInt(datos.mes)||1;
+  const anio=parseInt(datos.anio)||2000;
+
+  let palabras=[...nombre.split(/\s+/).filter(x=>x)];
+  if(ap1)palabras.push(ap1);
+  if(ap2)palabras.push(ap2);
+  let valPal=palabras.map(p=>valorPalabra(p));
+
+  let sumaMision=valPal.reduce((a,v)=>a+v.info.red,0);
+  let mision=reducir(sumaMision);
+
+  let nombresPila=nombre.split(/\s+/).filter(x=>x);
+  let sumaMente=nombresPila.map(p=>valorPalabra(p)).reduce((a,v)=>a+v.info.red,0);
+  let mente=reducir(sumaMente);
+
+  let linajePal=sexo==='F'?ap2:ap1;
+  let linaje=linajePal?valorPalabra(linajePal):null;
+
+  let todasLetras=palabras.join('');
+  let todas=limpiar_str(todasLetras).split('').filter(Boolean);
+  let sumaCorazon=todas.filter(l=>VOCALES.has(l)).reduce((a,l)=>a+(LETRAS[l]||0),0);
+  let corazon=reducir(sumaCorazon);
+  let sumaExpr=todas.filter(l=>!VOCALES.has(l)).reduce((a,l)=>a+(LETRAS[l]||0),0);
+  let expresion=reducir(sumaExpr);
+
+  let presentes=new Set(todas.map(l=>LETRAS[l]||0));
+  let ausentes=[];
+  for(let i=1;i<=9;i++)if(!presentes.has(i))ausentes.push(i);
+  let sumaAus=ausentes.length>0?ausentes.reduce((a,b)=>a+b,0):0;
+
+  let programa=reducir(reducirSimple(dia)+reducirSimple(mes));
+  let arbol=reducir(sumaDigitos(anio));
+  // Año terminado en 00 (por ejemplo 2000): no tiene pasado pendiente
+  let pasado=(anio%100===0)?null:reducir(sumaDigitos(anio%100));
+  let base=reducir(reducirSimple(dia)+reducirSimple(mes)+arbol.red);
+  let sombra=reducir(base.red+(pasado?pasado.red:0));
+  let camino=reducir(mision.red+base.red);
+  let equilibrio=ausentes.length>0?reducir(sumaAus+camino.red):null;
+
+  let ausenteInfo=ausentes.length>0?{comp:sumaAus,red:reducirSimple(sumaAus),tipo:'simple'}:null;
+  let f1=reducir(base.red+camino.red);
+  let f2=reducir(camino.red+mision.red);
+  let f3=ausentes.length>0?reducir(base.red+sumaAus):null;
+  let f4=ausentes.length>0?reducir(sumaAus+mision.red):null;
+
+  // Los Periodos se leen como TRÍADA (verbo · medio · motivo), nunca como resta
+  let ausenteTri=ausentes.length>0?reducir(sumaAus):null;
+  let periodo1=(f3&&base&&f1)?[f3,base,f1]:null;
+  let periodo2=(ausenteTri&&equilibrio&&camino)?[ausenteTri,equilibrio,camino]:null;
+  let periodo3=(f4&&mision&&f2)?[f4,mision,f2]:null;
+
+  return{
+    nombre,ap1,ap2,relacion:datos.relacion||'',sexo,dia,mes,anio,
+    palabras,valPal,mision,mente,linaje,linajePal,corazon,expresion,
+    ausentes,sumaAus,programa,arbol,pasado,base,sombra,camino,equilibrio,
+    f1,f2,f3,f4,periodo1,periodo2,periodo3
+  };
+}
+
+/* ════════ ESTADO + PERSISTENCIA ════════ */
+const STORAGE_KEY='centroSer_arbolNumerologico_v1';
+let personas=[]; // solo datos crudos: {nombre, ap1, ap2, relacion, sexo, dia, mes, anio}
+
+function guardarLocal(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(personas));
+    const el=document.getElementById('storage-status');
+    if(el){
+      el.textContent='Guardado automáticamente en este navegador · '+new Date().toLocaleTimeString('es-MX');
+    }
+  }catch(e){
+    console.warn('No se pudo guardar en localStorage:', e);
+  }
+}
+
+function cargarLocal(){
+  try{
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      const datos=JSON.parse(raw);
+      if(Array.isArray(datos))personas=datos;
+    }
+  }catch(e){
+    console.warn('No se pudo leer localStorage:', e);
+  }
+}
+
+/* Columnas del archivo CSV (se abre directo en Excel o Google Sheets) */
+const COLUMNAS_CSV=[
+  ['nombre','Nombre(s)'],
+  ['ap1','Apellido paterno'],
+  ['ap2','Apellido materno'],
+  ['relacion','Relación'],
+  ['sexo','Sexo (F/M)'],
+  ['dia','Día'],
+  ['mes','Mes'],
+  ['anio','Año']
+];
+
+function celdaCSV(valor){
+  const t=String(valor==null?'':valor);
+  return /[",;\n\r]/.test(t)?'"'+t.replace(/"/g,'""')+'"':t;
+}
+
+function exportarDatos(){
+  const filas=[COLUMNAS_CSV.map(c=>c[1])];
+  personas.forEach(p=>filas.push(COLUMNAS_CSV.map(c=>p[c[0]])));
+  const csv=filas.map(f=>f.map(celdaCSV).join(',')).join('\r\n');
+  // El "﻿" al inicio hace que Excel respete los acentos y la ñ
+  const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const fecha=new Date().toISOString().slice(0,10);
+  a.href=url;
+  a.download=`arbol-numerologico-${fecha}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/* Lee un CSV separado por comas o por punto y coma (Excel a veces usa ;) */
+function leerCSV(texto){
+  texto=texto.replace(/^﻿/,'');
+  const primeraLinea=texto.split(/\r?\n/)[0];
+  const sep=(primeraLinea.split(';').length>primeraLinea.split(',').length)?';':',';
+  const filas=[];
+  let fila=[],celda='',enComillas=false;
+  for(let i=0;i<texto.length;i++){
+    const ch=texto[i];
+    if(enComillas){
+      if(ch==='"'){
+        if(texto[i+1]==='"'){celda+='"';i++;}
+        else enComillas=false;
+      }else celda+=ch;
+    }else if(ch==='"')enComillas=true;
+    else if(ch===sep){fila.push(celda);celda='';}
+    else if(ch==='\n'||ch==='\r'){
+      if(ch==='\r'&&texto[i+1]==='\n')i++;
+      fila.push(celda);filas.push(fila);fila=[];celda='';
+    }else celda+=ch;
+  }
+  if(celda!==''||fila.length){fila.push(celda);filas.push(fila);}
+  return filas.filter(f=>f.some(c=>c.trim()!==''));
+}
+
+function normalizar(t){
+  return String(t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
+}
+
+function csvAPersonas(texto){
+  const filas=leerCSV(texto);
+  if(filas.length<1)throw new Error('El archivo está vacío.');
+  const encabezados=filas[0].map(normalizar);
+  const indices=COLUMNAS_CSV.map(([,titulo])=>encabezados.indexOf(normalizar(titulo)));
+  if(indices[0]<0)throw new Error('No encontré la columna "Nombre(s)". Usa un archivo descargado desde esta página como plantilla.');
+  const desconocidas=[];
+  const lista=filas.slice(1).map(f=>{
+    const p={};
+    COLUMNAS_CSV.forEach(([clave],i)=>{p[clave]=indices[i]>=0?(f[indices[i]]||'').trim():'';});
+    // Acepta la relación aunque venga sin acentos o con otras mayúsculas
+    const r=RELACIONES.find(x=>normalizar(x.rel)===normalizar(p.relacion));
+    if(r)p.relacion=r.rel;
+    else if(p.relacion)desconocidas.push(p.relacion);
+    p.sexo=normalizar(p.sexo).startsWith('m')?'M':'F';
+    return p;
+  }).filter(p=>p.nombre);
+  return {lista,desconocidas};
+}
+
+function importarDatos(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      let datos,desconocidas=[];
+      if(/\.json$/i.test(file.name)){
+        // Copias antiguas en formato .json
+        datos=JSON.parse(e.target.result);
+        if(!Array.isArray(datos))throw new Error('El archivo no contiene una lista válida.');
+      }else{
+        ({lista:datos,desconocidas}=csvAPersonas(e.target.result));
+      }
+      if(personas.length>0){
+        const ok=confirm('Esto reemplazará los '+personas.length+' registro(s) actuales con los '+datos.length+' del archivo. ¿Continuar?');
+        if(!ok)return;
+      }
+      personas=datos;
+      guardarLocal();
+      renderizar();
+      let msg='Se cargaron '+datos.length+' persona(s) correctamente.';
+      if(desconocidas.length){
+        msg+='\n\nOjo: estas relaciones no las reconocí, así que esas personas solo aparecen en la tabla (no en el árbol):\n· '+[...new Set(desconocidas)].join('\n· ');
+      }
+      alert(msg);
+    }catch(err){
+      alert('No se pudo leer el archivo: '+err.message);
+    }finally{
+      event.target.value='';
+    }
+  };
+  reader.readAsText(file,'UTF-8');
+}
+
+/* ════════ IMPRIMIR / PDF ════════ */
+function imprimirArbol(){
+  if(personas.length===0){
+    alert('Primero agrega personas al árbol para poder imprimirlo.');
+    return;
+  }
+  window.print();
+}
+
+/* ════════ FORMULARIO ════════ */
+function agregarPersona(){
+  const datos={
+    nombre:document.getElementById('nombre').value.trim(),
+    ap1:document.getElementById('ap1').value.trim(),
+    ap2:document.getElementById('ap2').value.trim(),
+    relacion:document.getElementById('relacion').value,
+    sexo:document.getElementById('sexo').value,
+    dia:document.getElementById('dia').value,
+    mes:document.getElementById('mes').value,
+    anio:document.getElementById('anio').value
+  };
+
+  if(!datos.nombre){
+    alert('Ponle nombre, que hasta los números necesitan acta de nacimiento.');
+    return;
+  }
+  if(!datos.dia||!datos.mes||!datos.anio){
+    alert('Falta la fecha de nacimiento completa (día, mes y año).');
+    return;
+  }
+
+  // Solo puede haber una persona por relación (excepto hijos)
+  const repetida=personas.findIndex((p,i)=>i!==indiceEditando&&p.relacion===datos.relacion&&!['Hijo','Hija'].includes(datos.relacion));
+  if(repetida>=0){
+    alert('Ya tienes a '+personas[repetida].nombre+' como "'+datos.relacion+'".\n\nElige otra relación, o edita/borra a esa persona primero.');
+    return;
+  }
+
+  if(indiceEditando>=0){
+    personas[indiceEditando]=datos;
+  }else{
+    personas.push(datos);
+  }
+  salirDeEdicion();
+  limpiarFormulario();
+  guardarLocal();
+  renderizar();
+  sugerirSiguienteRelacion();
+}
+
+/* Índice de la persona que se está editando (-1 = ninguna) */
+let indiceEditando=-1;
+
+function salirDeEdicion(){
+  indiceEditando=-1;
+  document.getElementById('titulo-form').textContent='Agregar persona';
+  document.getElementById('btn-agregar').textContent='Agregar al árbol';
+  document.getElementById('btn-cancelar').style.display='none';
+  document.getElementById('btn-reiniciar').style.display='';
+  document.getElementById('editando-aviso').classList.remove('visible');
+}
+
+function cancelarEdicion(){
+  salirDeEdicion();
+  limpiarFormulario();
+  sugerirSiguienteRelacion();
+}
+
+/* Después de agregar, el selector salta a la siguiente relación que falta */
+function sugerirSiguienteRelacion(){
+  const orden=['Persona Central','Madre','Padre','Pareja'];
+  const usadas=new Set(personas.map(p=>p.relacion));
+  const siguiente=orden.find(r=>!usadas.has(r))||RELACIONES.map(r=>r.rel).find(r=>!usadas.has(r))||'Hija';
+  const select=document.getElementById('relacion');
+  select.value=siguiente;
+  const r=buscarRelacion(siguiente);
+  if(r&&r.sexo)document.getElementById('sexo').value=r.sexo;
+}
+
+function limpiarFormulario(){
+  ['nombre','ap1','ap2','dia','mes','anio'].forEach(id=>document.getElementById(id).value='');
+}
+
+/* ════════ RENDER ════════ */
+function chip(lbl,info){
+  const cls=claseInfo(info);
+  return`<div class="chip ${cls}"><span class="chip-lbl">${lbl}</span><span class="chip-val">${display(info)}</span></div>`;
+}
+
+function chipTexto(lbl,txt){
+  return`<div class="chip"><span class="chip-lbl">${lbl}</span><span class="chip-val">${txt}</span></div>`;
+}
+
+function crearTarjeta(p,indice){
+  const c=calcularPersona(p);
+  const card=document.createElement('div');
+  card.className='person-card';
+
+  const ausentesHtml=c.ausentes.length>0
+    ?c.ausentes.map(a=>`<span class="tag">${a}</span>`).join('')
+    :`<span class="tag">Ninguno</span>`;
+
+  const detalleId='detalle-'+indice;
+
+  card.innerHTML=`
+    <h3>${c.nombre} ${c.ap1||''} ${c.ap2||''}</h3>
+    <div class="person-fecha">${c.dia}/${c.mes}/${c.anio} · ${c.relacion}</div>
+    <div class="number-badge" title="Camino de Vida">${display(c.camino)}</div>
+    <div class="chips-grid">
+      ${chip('Misión',c.mision)}
+      ${chip('Mente',c.mente)}
+      ${chip('Corazón',c.corazon)}
+      ${chip('Expresión',c.expresion)}
+      ${chip('Base',c.base)}
+      ${chip('Sombra',c.sombra)}
+      ${chip('Equilibrio',c.equilibrio)}
+      ${chip('Linaje',c.linaje?c.linaje.info:null)}
+    </div>
+    <div class="ausentes-row">
+      <span class="chip-lbl" style="color:#8064a8;font-size:9px;text-transform:uppercase;font-weight:700">Ausentes</span><br>
+      ${ausentesHtml}
+    </div>
+    <button class="toggle-detalle" onclick="toggleDetalle('${detalleId}')">Ver programa, fases y periodos ▾</button>
+    <div class="detalle-extra" id="${detalleId}">
+      <div class="chips-grid">
+        ${chipTexto('Programa',displayPrograma(c))}
+        ${c.pasado?chip('Pasado',c.pasado):chipTexto('Pasado','Sin pasado pendiente')}
+        ${chip('Fase 1',c.f1)}
+        ${chip('Fase 2',c.f2)}
+        ${chip('Fase 3',c.f3)}
+        ${chip('Fase 4',c.f4)}
+      </div>
+      <div class="chips-grid" style="grid-template-columns:1fr">
+        ${chipTexto('Periodo 1 · 0–35 años',displayTriada(c.periodo1))}
+        ${chipTexto('Periodo 2 · 35–55 años',displayTriada(c.periodo2))}
+        ${chipTexto('Periodo 3 · 55+ años',displayTriada(c.periodo3))}
+      </div>
+    </div>
+    <div class="card-acciones">
+      <button class="secondary" onclick="editarPersona(${indice})">✏️ Editar</button>
+      <button class="secondary" onclick="eliminarPersona(${indice})">🗑️ Borrar</button>
+    </div>
+  `;
+
+  return card;
+}
+
+function toggleDetalle(id){
+  const el=document.getElementById(id);
+  if(el)el.classList.toggle('visible');
+}
+
+/* Lista de relaciones: el orden de esta lista es el orden en el árbol y en la tabla.
+   El texto es lo que se guarda y se muestra en la tarjeta. */
+const RELACIONES=[
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'M',rel:'Bisabuelo paterno (papá del papá de mi papá)'},
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'F',rel:'Bisabuela paterna (mamá del papá de mi papá)'},
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'M',rel:'Bisabuelo paterno (papá de la mamá de mi papá)'},
+  {grupo:'Bisabuelos · lado de papá',contenedor:'GeneracionBisabuelosPaternos',sexo:'F',rel:'Bisabuela paterna (mamá de la mamá de mi papá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'M',rel:'Bisabuelo materno (papá del papá de mi mamá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'F',rel:'Bisabuela materna (mamá del papá de mi mamá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'M',rel:'Bisabuelo materno (papá de la mamá de mi mamá)'},
+  {grupo:'Bisabuelos · lado de mamá',contenedor:'GeneracionBisabuelosMaternos',sexo:'F',rel:'Bisabuela materna (mamá de la mamá de mi mamá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosPaternos',sexo:'M',rel:'Abuelo paterno (papá de mi papá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosPaternos',sexo:'F',rel:'Abuela paterna (mamá de mi papá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosMaternos',sexo:'M',rel:'Abuelo materno (papá de mi mamá)'},
+  {grupo:'Abuelos',contenedor:'GeneracionAbuelosMaternos',sexo:'F',rel:'Abuela materna (mamá de mi mamá)'},
+  {grupo:'Padres',contenedor:'GeneracionPadres',sexo:'M',rel:'Padre'},
+  {grupo:'Padres',contenedor:'GeneracionPadres',sexo:'F',rel:'Madre'},
+  {grupo:'Persona central y pareja',contenedor:'GeneracionCentral',sexo:'',rel:'Persona Central'},
+  {grupo:'Persona central y pareja',contenedor:'GeneracionCentral',sexo:'',rel:'Pareja'},
+  {grupo:'Hijos',contenedor:'GeneracionHijos',sexo:'M',rel:'Hijo'},
+  {grupo:'Hijos',contenedor:'GeneracionHijos',sexo:'F',rel:'Hija'}
+];
+
+function buscarRelacion(relacion){
+  return RELACIONES.find(r=>r.rel===relacion);
+}
+
+function llenarSelectRelacion(){
+  const select=document.getElementById('relacion');
+  let html='',grupoActual='';
+  RELACIONES.forEach(r=>{
+    if(r.grupo!==grupoActual){
+      if(grupoActual)html+='</optgroup>';
+      html+=`<optgroup label="${r.grupo}">`;
+      grupoActual=r.grupo;
+    }
+    html+=`<option value="${r.rel}">${r.rel}</option>`;
+  });
+  html+='</optgroup>';
+  select.innerHTML=html;
+  select.value='Persona Central';
+  // Al elegir la relación, el sexo se pone solo (se puede cambiar a mano)
+  select.addEventListener('change',()=>{
+    const r=buscarRelacion(select.value);
+    if(r&&r.sexo)document.getElementById('sexo').value=r.sexo;
+  });
+}
+
+function obtenerContenedorPorRelacion(relacion){
+  const r=buscarRelacion(relacion);
+  return r?r.contenedor:'';
+}
+
+function ordenRelaciones(a,b){
+  const ia=RELACIONES.findIndex(r=>r.rel===a.relacion);
+  const ib=RELACIONES.findIndex(r=>r.rel===b.relacion);
+  return(ia<0?99:ia)-(ib<0?99:ib);
+}
+
+function renderizar(){
+  [...new Set(RELACIONES.map(r=>r.contenedor))].forEach(id=>{
+    document.getElementById(id).innerHTML='';
+  });
+  document.getElementById('tabla').innerHTML='';
+
+  const personasOrdenadas=[...personas].sort(ordenRelaciones);
+
+  personasOrdenadas.forEach(p=>{
+    const indiceReal=personas.indexOf(p);
+    const c=calcularPersona(p);
+    const card=crearTarjeta(p,indiceReal);
+    const contenedorId=obtenerContenedorPorRelacion(p.relacion);
+    if(contenedorId)document.getElementById(contenedorId).appendChild(card);
+
+    const fila=document.createElement('tr');
+    fila.innerHTML=`
+      <td class="no-print">
+        <button onclick="editarPersona(${indiceReal})" title="Editar">✏️</button>
+        <button onclick="eliminarPersona(${indiceReal})" title="Borrar">🗑️</button>
+      </td>
+      <td>${c.nombre} ${c.ap1||''} ${c.ap2||''}</td>
+      <td>${c.relacion}</td>
+      <td>${display(c.mision)}</td>
+      <td>${display(c.mente)}</td>
+      <td>${display(c.corazon)}</td>
+      <td>${display(c.expresion)}</td>
+      <td>${displayPrograma(c)}</td>
+      <td>${display(c.base)}</td>
+      <td>${displayPasado(c)}</td>
+      <td>${display(c.sombra)}</td>
+      <td>${display(c.camino)}</td>
+      <td>${c.equilibrio?display(c.equilibrio):'—'}</td>
+      <td>${c.linaje?display(c.linaje.info):'—'}</td>
+      <td>${c.ausentes.join(', ')||'Ninguno'}</td>
+      <td>${display(c.f1)}</td>
+      <td>${display(c.f2)}</td>
+      <td>${c.f3?display(c.f3):'—'}</td>
+      <td>${c.f4?display(c.f4):'—'}</td>
+      <td>${displayTriada(c.periodo1)}</td>
+      <td>${displayTriada(c.periodo2)}</td>
+      <td>${displayTriada(c.periodo3)}</td>
+    `;
+    document.getElementById('tabla').appendChild(fila);
+  });
+
+  generarResumen();
+  generarLectura();
+  revisarDuplicados();
+}
+
+/* Avisa si hay dos personas con la misma relación (por ejemplo, dos "Madre") */
+function revisarDuplicados(){
+  const aviso=document.getElementById('duplicados-aviso');
+  if(!aviso)return;
+  const conteo={};
+  personas.forEach(p=>{if(!['Hijo','Hija'].includes(p.relacion))conteo[p.relacion]=(conteo[p.relacion]||[]).concat(p.nombre);});
+  const dobles=Object.entries(conteo).filter(([,arr])=>arr.length>1);
+  if(!dobles.length){aviso.classList.remove('visible');aviso.innerHTML='';return;}
+  aviso.innerHTML='⚠️ Tienes personas repetidas: '+dobles.map(([rel,arr])=>`<strong>${esc(arr.length)} como "${esc(etiquetaRel(rel))}"</strong> (${arr.map(esc).join(', ')})`).join('; ')+'. Borra la que sobra con el botón 🗑️ en su tarjeta.';
+  aviso.classList.add('visible');
+}
+
+function eliminarPersona(indice){
+  const confirmar=confirm('¿Seguro que quieres borrar a '+personas[indice].nombre+'?');
+  if(!confirmar)return;
+  if(indiceEditando===indice)salirDeEdicion();
+  personas.splice(indice,1);
+  guardarLocal();
+  renderizar();
+}
+
+function editarPersona(indice){
+  const p=personas[indice];
+  document.getElementById('nombre').value=p.nombre;
+  document.getElementById('ap1').value=p.ap1||'';
+  document.getElementById('ap2').value=p.ap2||'';
+  document.getElementById('relacion').value=p.relacion;
+  document.getElementById('sexo').value=p.sexo||'F';
+  document.getElementById('dia').value=p.dia;
+  document.getElementById('mes').value=p.mes;
+  document.getElementById('anio').value=p.anio;
+
+  // La persona NO se borra mientras se edita: se reemplaza al guardar
+  indiceEditando=indice;
+  document.getElementById('titulo-form').textContent='Editar a '+p.nombre;
+  document.getElementById('btn-agregar').textContent='Guardar cambios';
+  document.getElementById('btn-cancelar').style.display='';
+  document.getElementById('btn-reiniciar').style.display='none';
+  document.getElementById('editando-aviso').classList.add('visible');
+  document.querySelector('.form-section').scrollIntoView({behavior:'smooth'});
+}
+
+function reiniciarArbol(){
+  const confirmar=confirm('¿Seguro que quieres borrar todo el árbol? Se recomienda descargar una copia primero.');
+  if(!confirmar)return;
+  personas=[];
+  salirDeEdicion();
+  guardarLocal();
+  renderizar();
+  sugerirSiguienteRelacion();
+}
+
+/* Etiqueta de dos renglones: número arriba, significado abajo */
+function tagNum(texto,n){
+  const sigTxt=(SIGNIF[+n]||'').replace(/\.$/,'');
+  return `<span class="tag-num"><strong>${texto}</strong>${sigTxt?`<small>${sigTxt}</small>`:''}</span>`;
+}
+
+function generarResumen(){
+  const contenedor=document.getElementById('resumen');
+  let numeros=[];
+
+  personas.forEach(p=>{
+    const c=calcularPersona(p);
+    numeros.push(c.mision.red, c.mente.red, c.corazon.red, c.expresion.red, c.base.red, c.sombra.red, c.camino.red);
+    if(c.equilibrio)numeros.push(c.equilibrio.red);
+    if(c.linaje)numeros.push(c.linaje.info.red);
+    c.ausentes.forEach(a=>numeros.push('ausente-'+a));
+  });
+
+  const numerosBase=numeros.filter(n=>typeof n==='number');
+
+  if(numerosBase.length===0){
+    contenedor.innerHTML='<p>Aún no hay suficientes datos numéricos.</p>';
+    return;
+  }
+
+  const conteo={};
+  numerosBase.forEach(n=>{conteo[n]=(conteo[n]||0)+1;});
+  const ordenados=Object.entries(conteo).sort((a,b)=>b[1]-a[1]);
+  const dominantes=ordenados.slice(0,3)
+    .map(item=>tagNum(`Número ${item[0]} · aparece ${item[1]} veces`,item[0]))
+    .join('');
+
+  const todos=[1,2,3,4,5,6,7,8,9];
+  // Los maestros también cuentan para su número base: 10→1, 11→2, 22→4, 33→6
+  const digitosPresentes=new Set(numerosBase.map(n=>n<=9?n:sumaDigitos(n)));
+  const ausentesSistema=todos.filter(n=>!digitosPresentes.has(n));
+
+  const conteoAusentesFam={};
+  numeros.filter(n=>typeof n==='string'&&n.startsWith('ausente-')).forEach(n=>{
+    const num=n.replace('ausente-','');
+    conteoAusentesFam[num]=(conteoAusentesFam[num]||0)+1;
+  });
+  const ausentesRepetidos=Object.entries(conteoAusentesFam).filter(([,cnt])=>cnt>1);
+
+  contenedor.innerHTML=`
+    <p><strong>Números dominantes de tu familia</strong></p>
+    <p class="resumen-exp">Los que más se repiten en Misión, Mente, Corazón, Expresión, Base, Sombra, Camino, Equilibrio y Linaje de todas las personas. Es la energía que más se mueve en tu sistema familiar.</p>
+    ${dominantes}
+
+    <p style="margin-top:14px"><strong>Frecuencias que no aparecen en tu familia</strong></p>
+    <p class="resumen-exp">Números del 1 al 9 que no le salen a nadie en esos cálculos (los maestros cuentan para su número: 10→1, 11→2, 22→4, 33→6). Es una energía que tu familia, como sistema, no está generando. No es lo mismo que los números ausentes de cada nombre.</p>
+    ${ausentesSistema.map(n=>tagNum(`Número ${n}`,n)).join('')||"<span class='tag'>Todas aparecen</span>"}
+
+    ${ausentesRepetidos.length>0?`
+    <p style="margin-top:14px"><strong>Números ausentes (o enfermos) que se repiten</strong></p>
+    <p class="resumen-exp">Números que faltan en el nombre de varias personas. Es una herramienta que el linaje sigue aprendiendo a construir.</p>
+    ${ausentesRepetidos.map(([n,cnt])=>tagNum(`Número ${n} · ausente en ${cnt} personas`,n)).join('')}
+    `:''}
+  `;
+}
+
+/* ════════ LECTURA DEL LINAJE · Numerología Evolutiva ════════ */
+/* Puntos clave a trabajar (K) y dones (D). El 12/3 va aparte porque todas las personas lo tienen en algún punto. */
+const PUNTOS_CLAVE=new Set([13,14,15,16,19,20]);
+const DONES=new Set([17,18,26,27]);
+
+/* Verbo, medio y motivo de cada número, para leer las tríadas de los Periodos */
+const TRIADA={
+  1:{v:'Iniciar, empoderarse y liderar',m:'desde la fuerza interior, la independencia y la autonomía personal',p:'para abrir nuevos caminos y tomar el mando de la propia vida'},
+  2:{v:'Unir, acompañar y sentir',m:'a través de la diplomacia, la empatía y la escucha intuitiva',p:'para generar paz, armonía y construir relaciones equilibradas'},
+  3:{v:'Crear, expresar y disfrutar',m:'mediante la palabra consciente, el optimismo y la magia del niño interior',p:'para compartir alegría, comunicar la verdad del alma y fluir con la vida'},
+  4:{v:'Estructurar, ordenar y construir',m:'a través de la disciplina, la paciencia y el trabajo pragmático',p:'para establecer bases sólidas y dar estabilidad al plano físico'},
+  5:{v:'Transformar, cambiar y liberar',m:'mediante el movimiento, la flexibilidad y la libertad sin apegos',p:'para romper patrones antiguos y experimentar la adaptabilidad consciente'},
+  6:{v:'Amarse, armonizar y cuidar',m:'desde la aceptación incondicional, la nutrición y el amor propio',p:'para establecer límites sanos, dar paz al hogar y asumir la responsabilidad afectiva'},
+  7:{v:'Comprender, analizar y tomar conciencia',m:'a través del estudio, la introspección y la sabiduría interior',p:'para desapegarse de la ilusión, buscar la verdad y elevar la conciencia'},
+  8:{v:'Gobernar, manifestar y asumir el poder',m:'actuando como "general" de la propia vida con determinación y autoridad',p:'para generar prosperidad, equilibrio y construir un legado duradero'},
+  9:{v:'Entregar, trascender y cerrar',m:'mediante la compasión universal, el perdón y el servicio desinteresado',p:'para soltar el pasado, sanar el ego y elevar el bienestar colectivo'},
+  10:{v:'Integrar y transmitir',m:'mediante el set completo de recursos heredados de ambos linajes',p:'para ponerse al servicio del crecimiento colectivo y ofrecer soluciones'},
+  11:{v:'Despertar, canalizar e inspirar',m:'a través de la sensibilidad psíquica, la intuición y la fe en uno mismo',p:'para conectar lo divino con lo terrenal e iluminar el camino de los demás'},
+  22:{v:'Materializar, ejecutar y construir',m:'uniendo la visión espiritual elevada con la responsabilidad y la estrategia práctica',p:'para dar forma concreta a grandes proyectos que transformen la realidad'},
+  33:{v:'Unificar, elevar e incondicionalizar',m:'mediante la maestría del amor desinteresado, la devoción y la empatía',p:'para sanar a la comunidad y elevar la conciencia espiritual de la humanidad'}
+};
+
+/* Qué representa cada posición (explicación corta entre paréntesis) */
+const POS_DESC={
+  'Misión':'¿para qué estoy aquí?','Mente':'cómo pienso','Corazón':'lo que siento y deseo','Expresión':'cómo me comunico',
+  'Día de nacimiento':'lo que vine a aprender','Año (árbol)':'lo que trabajo para mi árbol','Pasado':'lo pendiente de otras vidas',
+  'Base':'mis cimientos','Sombra':'mi personaje oculto','Camino':'la melodía de mi vida','Equilibrio':'mi centro',
+  'Linaje':'el apellido que me conecta con mi árbol',
+  'Fase 1':'motor de acción','Fase 2':'puente de realización','Fase 3':'trabajo interno','Fase 4':'nutrición espiritual'
+};
+
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));}
+function nombreCorto(c){return esc((c.nombre+' '+(c.ap1||'')).trim());}
+function soloNombre(c){return esc(c.nombre.split(/\s+/)[0]);}
+function quienEs(c){return `<strong>${nombreCorto(c)}</strong> <span style="color:#8064a8;font-size:12px">(${esc(etiquetaRel(c.relacion))})</span>`;}
+function etiquetaRel(rel){return String(rel||'').replace(/\s*\(.*\)$/,'');}
+function numTxt(info){if(!info)return'—';return(info.tipo==='maestro'||info.comp===info.red)?String(info.red):info.comp+'/'+info.red;}
+function sig(n){return SIGNIF[n]||'';}
+function sigCorto(n){return sig(n).replace(/\.$/,'').toLowerCase();}
+/* Número + significado; si es compuesto (12 al 31) suma también el significado del compuesto */
+function lecturaNum(info){
+  if(!info)return'';
+  let t=`<strong>${numTxt(info)}</strong> · ${sig(info.red)}`;
+  if(info.comp!==info.red&&KARMAS[info.comp])t+=` <em>${KARMAS[info.comp]}</em>`;
+  return t;
+}
+
+/* Lado del árbol: paterno, materno o ninguno (persona central, pareja, hijos) */
+function ladoDe(relacion){
+  if(relacion==='Padre')return'paterno';
+  if(relacion==='Madre')return'materno';
+  const cont=obtenerContenedorPorRelacion(relacion);
+  if(cont.endsWith('Paternos'))return'paterno';
+  if(cont.endsWith('Maternos'))return'materno';
+  return'';
+}
+
+/* Posiciones donde se buscan los compuestos.
+   No se incluyen el Programa (su cifra compuesta es la Base) ni los Periodos (sus números ya son Fases, Base, etc.) */
+function posiciones(c){
+  return[
+    ['Misión',c.mision],['Mente',c.mente],['Corazón',c.corazon],['Expresión',c.expresion],
+    ['Día de nacimiento',reducir(c.dia)],['Año (árbol)',c.arbol],['Pasado',c.pasado],
+    ['Base',c.base],['Sombra',c.sombra],['Camino',c.camino],['Equilibrio',c.equilibrio],
+    ['Linaje',c.linaje?c.linaje.info:null],
+    ['Fase 1',c.f1],['Fase 2',c.f2],['Fase 3',c.f3],['Fase 4',c.f4]
+  ].filter(x=>x[1]);
+}
+
+/* Segundo renglón con el significado del número (y del compuesto, si lo hay) */
+function sigLinea(info){
+  if(!info)return'';
+  let t=`${numTxt(info)} · ${sig(info.red).replace(/\.$/,'')}`;
+  if(info.comp!==info.red&&KARMAS[info.comp])t+=`. ${KARMAS[info.comp]}`;
+  return`<span class="lect-sig">${t}</span>`;
+}
+function bloque(titulo,cuerpo,extraClase){return`<div class="lect-bloque ${extraClase||''}"><h3>${titulo}</h3>${cuerpo}</div>`;}
+function listaJunta(arr){if(arr.length<=1)return arr.join('');return arr.slice(0,-1).join(', ')+' y '+arr[arr.length-1];}
+function posConDesc(nombre){return`<strong>${nombre}</strong>${POS_DESC[nombre]?` <span style="color:#8064a8">(${POS_DESC[nombre]})</span>`:''}`;}
+
+/* Frase de una tríada: verbo del 1º número, medio del 2º y motivo del 3º */
+function fraseTriada(t){
+  if(!t)return'';
+  const [a,b,c]=t.map(i=>TRIADA[i.red]);
+  if(!a||!b||!c)return'';
+  return`${a.v}, ${b.m}, ${c.p}.`;
+}
+
+/* Lista de compuestos (puntos clave o dones) por persona, agrupada por linaje */
+function listaCompuestos(fam,conjunto,clase){
+  const porGrupo={materno:[],paterno:[],'':[]};
+  fam.forEach(c=>{
+    const mapa={};
+    posiciones(c).forEach(([nombre,info])=>{
+      if(conjunto.has(info.comp))(mapa[info.comp]=mapa[info.comp]||[]).push(nombre);
+    });
+    const entradas=Object.entries(mapa);
+    if(entradas.length){
+      porGrupo[c.lado].push(`<div class="lect-item">${quienEs(c)}<br>${entradas.map(([k,pos])=>
+        `<div class="lect-comp ${clase}"><strong>${k}/${reducirSimple(+k)}</strong> en ${listaJunta(pos.map(posConDesc))}:<br><em>${KARMAS[k]}</em></div>`).join('')}</div>`);
+    }
+  });
+  const titulos={materno:'Linaje femenino · lado de mamá',paterno:'Linaje masculino · lado de papá','':'Persona central, pareja e hijos'};
+  let html='',hay=false;
+  ['materno','paterno',''].forEach(g=>{
+    if(porGrupo[g].length){hay=true;html+=`<div class="lect-col" style="margin-top:10px"><h4>${titulos[g]}</h4>${porGrupo[g].join('')}</div>`;}
+  });
+  return{html,hay};
+}
+
+function generarLectura(){
+  const cont=document.getElementById('lectura-linaje');
+  if(!cont)return;
+  const fam=[...personas].sort(ordenRelaciones).map(p=>{const c=calcularPersona(p);c.lado=ladoDe(c.relacion);return c;});
+  if(fam.length===0){cont.innerHTML='<p class="lect-vacio">Agrega a la Persona Central y a su familia para ver la lectura.</p>';return;}
+
+  const central=fam.find(c=>c.relacion==='Persona Central');
+  const otros=fam.filter(c=>c!==central);
+  const madre=fam.find(c=>c.relacion==='Madre');
+  const padre=fam.find(c=>c.relacion==='Padre');
+  let html='';
+
+  if(!central){
+    html+=`<p class="lect-vacio">Para la lectura personal (árbol de trabajo, espejos, números ausentes y etapas de vida) agrega a alguien como <strong>Persona Central</strong>. Mientras tanto, aquí ves los patrones de la familia.</p>`;
+  }
+
+  /* ── 1. El árbol que vienes a trabajar ── */
+  if(central){
+    const mujer=central.sexo==='F';
+    const ladoTrabajo=mujer?'materno':'paterno';
+    const delMismoCodigo=fam.filter(c=>c!==central&&c.lado===ladoTrabajo&&c.arbol.red===central.arbol.red);
+    let cuerpo=`<p>Como ${mujer?'mujer':'hombre'}, trabajas principalmente el <strong>árbol de ${mujer?'tu mamá':'tu papá'}</strong> (linaje ${mujer?'femenino':'masculino'}).</p>
+      <p>Tu compromiso con ese árbol, el código del año en que naciste, es el ${lecturaNum(central.arbol)}</p>
+      <p><em>Es lo que tu alma aceptó ordenar, liberar y sanar de los miedos y bloqueos heredados.</em></p>
+      <p>Tu <strong>Programa</strong> es <strong>${displayPrograma(central)}</strong>: lo tuyo (día + mes) frente a lo que traes del árbol (año). Donde se juntan se forma tu <strong>Base ${numTxt(central.base)}</strong>, el punto exacto donde tu alma se engancha con la historia de tu familia.${sigLinea(central.base)}</p>`;
+    if(delMismoCodigo.length){
+      cuerpo+=`<p>En ese mismo linaje también vinieron con código ${numTxt(central.arbol)}: ${listaJunta(delMismoCodigo.map(quienEs))}. Es un tema que tu árbol lleva varias generaciones trabajando, y a ti te toca llevarlo a su versión evolutiva.</p>`;
+    }
+    html+=bloque('🌳 El árbol que vienes a trabajar',cuerpo);
+  }
+
+  /* ── 2. Tus dos linajes ── */
+  const lados=[
+    {id:'materno',titulo:'Linaje femenino · lado de mamá'},
+    {id:'paterno',titulo:'Linaje masculino · lado de papá'}
+  ];
+  const colsLinaje=lados.map(l=>{
+    const miembros=fam.filter(c=>c.lado===l.id);
+    const esTrabajo=central&&((central.sexo==='F'&&l.id==='materno')||(central.sexo!=='F'&&l.id==='paterno'));
+    let h=`<div class="lect-col"><h4>${l.titulo}${esTrabajo?'<span class="lect-badge">Tu árbol de trabajo</span>':''}</h4>`;
+    if(!miembros.length)return h+`<p class="lect-vacio">Aún no hay personas de este lado.</p></div>`;
+    const conteo={};
+    miembros.forEach(c=>[c.mision,c.camino,c.base,c.sombra,c.arbol].forEach(i=>{if(i)conteo[i.red]=(conteo[i.red]||0)+1;}));
+    const top=Object.entries(conteo).sort((a,b)=>b[1]-a[1]).filter(x=>x[1]>1).slice(0,3);
+    h+=`<p style="font-size:13px;margin:4px 0">${miembros.length} persona(s) capturada(s).</p>`;
+    if(top.length){
+      h+=`<p style="font-size:13px;margin:8px 0 4px"><strong>Números que dominan</strong> (Misión, Camino, Base, Sombra y Año):</p>`;
+      h+=top.map(([n,cnt])=>`<div class="lect-item"><strong>${n}</strong> aparece ${cnt} veces<span class="lect-sig" style="padding-left:0">${sig(+n).replace(/\.$/,'')}</span></div>`).join('');
+    }else{
+      h+=`<p class="lect-vacio">Todavía no se repite ningún número. Agrega más generaciones para ver el patrón.</p>`;
+    }
+    const codigos={};
+    miembros.forEach(c=>{codigos[c.arbol.red]=(codigos[c.arbol.red]||[]).concat(c);});
+    const repetidos=Object.entries(codigos).filter(([,arr])=>arr.length>1);
+    if(repetidos.length){
+      h+=`<p style="font-size:13px;margin:10px 0 4px"><strong>Compromiso con el árbol que se repite:</strong></p>`;
+      h+=repetidos.map(([n,arr])=>`<div class="lect-item">Código ${n} en ${listaJunta(arr.map(nombreCorto))}<span class="lect-sig" style="padding-left:0">${sig(+n).replace(/\.$/,'')}</span></div>`).join('');
+    }
+    return h+'</div>';
+  }).join('');
+  html+=bloque('⚖️ Tus dos linajes',`<div class="lect-grid">${colsLinaje}</div>`);
+
+  /* ── 3. Tus espejos ── */
+  if(central&&otros.length){
+    const items=[];
+    otros.forEach(o=>{
+      if(o.mision.red===central.mision.red){
+        items.push(`<div class="lect-item">🤝 Compartes <strong>Misión ${numTxt(central.mision)}</strong> con ${quienEs(o)}. Están sintonizados en el mismo propósito: es una alianza de creación conjunta para impactar al mundo con la misma vibración.${sigLinea(central.mision)}</div>`);
+      }
+      const enSombra=[];
+      if(o.sombra.red===central.sombra.red)enSombra.push('Sombra');
+      if(o.mision.red===central.sombra.red)enSombra.push('Misión');
+      if(o.camino.red===central.sombra.red)enSombra.push('Camino');
+      if(enSombra.length){
+        items.push(`<div class="lect-item">🪞 Tu <strong>Sombra ${numTxt(central.sombra)}</strong> coincide con la ${listaJunta(enSombra)} de ${quienEs(o)}. Es su punto de mayor fricción e inconsciencia: se detonan el "cuerpo del dolor" para que ambos se miren en el espejo y se quiten las máscaras.${sigLinea(central.sombra)}</div>`);
+      }
+      if(o.base.red===central.base.red){
+        items.push(`<div class="lect-item">🏛️ Compartes <strong>Base ${numTxt(central.base)}</strong> con ${quienEs(o)}. Tienen los mismos cimientos para la vida física y se sostienen mutuamente en la estabilidad terrenal.${sigLinea(central.base)}</div>`);
+      }
+    });
+    html+=bloque('🪞 Tus espejos',items.length?items.join(''):`<p class="lect-vacio">Con las personas capturadas no compartes Misión, Base ni Sombra. Agrega más familiares para ver tus espejos.</p>`);
+  }
+
+  /* ── 4. Tus números ausentes o enfermos ── */
+  if(central){
+    let cuerpo='';
+    if(!central.ausentes.length){
+      cuerpo=`<p>Tu nombre contiene todas las frecuencias del 1 al 9: no tienes números ausentes.</p>`;
+    }else{
+      cuerpo=`<p><em>Son frecuencias que no traes como herramienta en tu nombre. Tu sistema atrae a personas del clan que sí las tienen en su Mente o en su Corazón: son tus compañeros de camino y te las prestan para que aprendas a construirlas por ti.</em></p>`;
+      cuerpo+=central.ausentes.map(a=>{
+        const quienes=otros.map(o=>{
+          const donde=[];
+          if(o.mente.red===a)donde.push('Mente');
+          if(o.corazon.red===a)donde.push('Corazón');
+          return donde.length?`${quienEs(o)} en su ${listaJunta(donde)}`:null;
+        }).filter(Boolean);
+        return`<div class="lect-item"><strong>Ausente ${a}</strong> · ${sig(a)}<br>${quienes.length?'Te lo presta: '+listaJunta(quienes)+'.':'<span class="lect-vacio">Nadie del árbol capturado lo trae en Mente o Corazón; búscalo en tus otras relaciones o agrega más familiares.</span>'}</div>`;
+      }).join('');
+    }
+    html+=bloque('🧩 Tus números ausentes o enfermos',cuerpo);
+  }
+
+  /* ── 5. Tus etapas de vida (Periodos como tríada) ── */
+  if(central){
+    const etapas=[
+      ['Periodo 1','0 a 35 años','Fase 3 · Base · Fase 1',central.periodo1],
+      ['Periodo 2','35 a 55 años','Ausentes · Equilibrio · Camino',central.periodo2],
+      ['Periodo 3','55 años en adelante','Fase 4 · Misión · Fase 2',central.periodo3]
+    ];
+    let cuerpo=`<p><em>Cada etapa se lee como una frase: el primer número es el verbo (la acción), el segundo el medio (cómo) y el tercero el motivo (para qué).</em></p>`;
+    cuerpo+=etapas.map(([nom,edad,formula,t])=>{
+      if(!t)return`<div class="lect-item"><strong>${nom}</strong> · ${edad}<br><span class="lect-vacio">No aplica: tu nombre tiene todos los números del 1 al 9.</span></div>`;
+      return`<div class="lect-item"><strong>${nom}</strong> · ${edad} · <strong>${displayTriada(t)}</strong> <span style="color:#8064a8;font-size:12px">(${formula})</span><div class="lect-frase">${fraseTriada(t)}</div></div>`;
+    }).join('');
+    html+=bloque('🧭 Tus etapas de vida',cuerpo);
+  }
+
+  /* ── 6. Puntos clave a trabajar ── */
+  const pc=listaCompuestos(fam,PUNTOS_CLAVE,'k');
+  let puntos=`<p><em>Patrones heredados del linaje que se activan en automático. No son un castigo: son lo que viniste a transformar. Solo aparecen las posiciones donde salió uno.</em></p>`;
+  puntos+=pc.hay?pc.html:`<p class="lect-vacio">No aparecen 13/4, 14/5, 15/6, 16/7, 19/10 ni 20/2 en las personas capturadas.</p>`;
+  const con12=fam.filter(c=>posiciones(c).some(([,i])=>i.comp===12));
+  if(con12.length){
+    puntos+=`<p style="margin-top:12px">🧒 El <strong>12/3</strong> aparece en ${con12.length} persona(s) de tu árbol. Todos lo tenemos en algún punto: es el niño interior que pide madurar (Peter Pan o Wendy), dejar de esperar que alguien nos rescate y volvernos jefes de nuestra propia vida.</p>`;
+  }
+  html+=bloque('🔑 Puntos clave a trabajar',puntos);
+
+  /* ── 7. Dones del linaje ── */
+  const dn=listaCompuestos(fam,DONES,'d');
+  if(dn.hay){
+    html+=bloque('✨ Dones del linaje',`<p><em>Fuerzas que tu familia trae como regalo y que puedes usar a tu favor. Solo aparecen las posiciones donde salió uno.</em></p>${dn.html}`,'don');
+  }
+
+  /* ── 8. El Maestro 10 ── */
+  const con10=fam.map(c=>{
+    const pos=posiciones(c).filter(([n,i])=>i.red===10&&['Misión','Camino','Base','Año (árbol)'].includes(n)).map(([n,i])=>n+(i.comp===19?' (19/10)':''));
+    return pos.length?`<div class="lect-item">${quienEs(c)} en ${listaJunta(pos)}</div>`:null;
+  }).filter(Boolean);
+  if(con10.length){
+    html+=bloque('🔟 El Maestro 10 de tu clan',`<p><em>El 10 es el Maestro de las Herramientas: condensa la información limpia de ambos linajes y la transmite al clan como recurso de crecimiento.</em></p>${con10.join('')}`);
+  }
+
+  /* ── 9. Gratitud a tus raíces (Ho'oponopono) ── */
+  if(central&&(madre||padre)){
+    const carta=(p,titulo)=>`<div class="lect-carta">
+      <div class="lect-carta-tit">${titulo}, ${soloNombre(p)}:</div>
+      <p><strong>Gracias</strong> por darme la vida y por la frecuencia de tu Misión ${numTxt(p.mision)}: ${sigCorto(p.mision.red)}.</p>
+      <p><strong>Lo siento</strong> por las veces que te juzgué sin ver tu propia historia. Sé que tu Sombra ${numTxt(p.sombra)}, ${sigCorto(p.sombra.red)}, también fue tu batalla.</p>
+      <p><strong>Perdóname</strong>, y te libero de cargar con lo que no te correspondía.</p>
+      <p><strong>Te amo.</strong> Hiciste el papel perfecto para mi evolución. Tomo lo que me diste y lo llevo a mi mejor versión.</p>
+    </div>`;
+    let cartas='';
+    if(madre)cartas+=carta(madre,'Mamá');
+    if(padre)cartas+=carta(padre,'Papá');
+    cartas+=`<div class="lect-carta lect-carta-final">
+      <p>A mis abuelos y a todos los que vinieron antes: honro su camino.<br>Lo que no pudieron resolver, hoy lo transformo con amor.</p>
+      <p class="lect-carta-tit">Gracias, gracias, gracias.</p>
+    </div>`;
+    html+=bloque('🙏 Gratitud a tus raíces',`<p><em>Dejar de juzgar a nuestros padres y darles las gracias es lo que desactiva los programas heredados. Lee esto en voz alta, despacio, con la mano en el corazón. Usa las cuatro frases del Ho'oponopono: gracias, lo siento, perdóname, te amo.</em></p>${cartas}`);
+  }
+
+  cont.innerHTML=html;
+}
+
+/* Tabla de números compuestos de la Guía (usa los mismos textos que la Lectura) */
+function llenarTablaCompuestos(){
+  const t=document.getElementById('tabla-compuestos');
+  if(!t)return;
+  let filas='';
+  Object.keys(KARMAS).map(Number).filter(n=>!MAESTROS.has(n)).sort((a,b)=>a-b).forEach(n=>{
+    const tipo=(PUNTOS_CLAVE.has(n)||n===12)?'<span style="background:#fff2d9;color:#8a6100;border-radius:6px;padding:2px 6px;font-weight:bold">(K)</span>':DONES.has(n)?'<span style="background:#dcf5ec;color:#16694f;border-radius:6px;padding:2px 6px;font-weight:bold">(D)</span>':'';
+    filas+=`<tr><td><strong>${n}/${reducirSimple(n)}</strong></td><td>${tipo}</td><td>${KARMAS[n]}${n===12?' Todas las personas lo tienen en algún punto de su mapa.':''}</td></tr>`;
+  });
+  t.insertAdjacentHTML('beforeend',filas);
+}
+
+/* ════════ INICIO ════════ */
+llenarSelectRelacion();
+llenarTablaCompuestos();
+cargarLocal();
+renderizar();
+sugerirSiguienteRelacion();
+if(personas.length===0)document.getElementById('instrucciones').open=true;
+</script>
+
+<script>
+function toggleNavDropdown(e) {
+  e.stopPropagation();
+  document.getElementById('navDropdown').classList.toggle('open');
+}
+document.addEventListener('click', () => {
+  const dd = document.getElementById('navDropdown');
+  if (dd) dd.classList.remove('open');
+});
+</script>
+</body>
+</html>
