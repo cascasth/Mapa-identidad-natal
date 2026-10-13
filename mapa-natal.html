@@ -2146,6 +2146,8 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
     <script>
     const WEBHOOK_URL = 'https://hook.us2.make.com/axcvc040dyyaiaxn2f73swq9x430sqbu';
     let idiomaSeleccionado = 'es';
+    // Número de orden de PayPal: Make lo usa para comprobar que el pago es real
+    let ordenPaypal = '';
 
     const i18n = {
         es: {
@@ -2574,7 +2576,9 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         if (dd) dd.classList.remove('open');
     });
 
-    function mostrarFormulario() {
+    // ordenPrueba: solo para pruebas desde la consola, p. ej. mostrarFormulario('PRUEBA-clave')
+    function mostrarFormulario(ordenPrueba) {
+        if (typeof ordenPrueba === 'string' && ordenPrueba) ordenPaypal = ordenPrueba;
         document.getElementById('payment-step').style.display = 'none';
         document.getElementById('step-divider').style.display = 'flex';
         document.getElementById('form').style.display = 'flex';
@@ -2716,6 +2720,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             lng: ciudadLng,
             timezone: timezone,
             idioma: idiomaSeleccionado,
+            paypal_order_id: ordenPaypal,
             timestamp: new Date().toISOString()
         };
 
@@ -2773,6 +2778,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         paypalUSD.HostedButtons({
             hostedButtonId: "2YB5PU2WDW5GY",
             onApprove: function(data) {
+                ordenPaypal = (data && (data.orderID || data.orderId || data.id)) || '';
                 try {
                     mostrarFormulario();
                 } catch(err) {
