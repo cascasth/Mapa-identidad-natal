@@ -3,22 +3,38 @@
    ────────────────────────────────────────────────────────────────
    Se carga en el <head> de la calculadora protegida:
      <script src="acceso-csi.js" data-calculadora="evolutiva"></script>
-   (hoy solo la Numerología Evolutiva Personal lleva llave).
+   Gratis con correo: Numerología Evolutiva Personal.
+   De pago (PayPal):  Árbol Familiar Pro
+     <script src="acceso-csi.js" data-calculadora="arbol_pro"
+             data-contenedor="main" data-precio="23"></script>
 
    Flujo:
    1. Si la dirección trae ?acceso=TOKEN, se valida con Make y, si es
       válido, se guarda en este navegador y se desbloquea.
-   2. Si ya hay un acceso guardado, se desbloquea directo.
-   3. Si no, se muestra la tarjeta para pedir la llave por correo.
+   2. Si ya hay un acceso guardado, se desbloquea directo
+      (en las de pago se vuelve a validar con Make en cada visita).
+   3. Si no, se muestra la tarjeta para pedir la llave por correo
+      o, en las de pago, para comprar el acceso con PayPal.
    ════════════════════════════════════════════════════════════════ */
 (function () {
   var WEBHOOK_ENVIAR  = 'https://hook.us2.make.com/fkesf3o7d7hvx7hv1sk61evcefth522g';
   var WEBHOOK_VALIDAR = 'https://hook.us2.make.com/vz3wnjkypdqpqxk6x29ygssyoqmijora';
-  var CLAVE = 'csi_acceso';
+  /* Make "Árbol Pro · Portero": revisa el pago con PayPal y da el acceso */
+  var WEBHOOK_PAGO    = 'https://hook.us2.make.com/tau5ce36ko4ofyo6oyl91map4j3h0asy';
+  /* Client ID público de la app de PayPal (el Secret vive solo en Make) */
+  var PAYPAL_CLIENT_ID = 'BAAPfwGc_cJM74NGV9DiaOVsTMVN8Ymzv87o-0JT8SUdZIIHmQ6RsTufVm-HXgkVo-BDJ3sMLqAxmR6OyI';
   var CORREO_CONTACTO = 'centro.ser.integral@gmail.com';
 
   var script = document.currentScript;
-  var CALCULADORA = (script && script.getAttribute('data-calculadora')) || 'evolutiva';
+  function atributo(nombre, porDefecto) { return (script && script.getAttribute(nombre)) || porDefecto; }
+  var CALCULADORA = atributo('data-calculadora', 'evolutiva');
+  var CONTENEDOR  = atributo('data-contenedor', '.app');
+  var PRECIO      = atributo('data-precio', '');          // vacío = gratis con correo
+  var DE_PAGO     = !!PRECIO;
+  var NOMBRES = { evolutiva: 'Numerología Evolutiva Personal', arbol_pro: 'Árbol Numerológico Familiar · Pro' };
+  var NOMBRE  = NOMBRES[CALCULADORA] || 'calculadora';
+  /* Cada calculadora guarda su propio acceso (la Evolutiva conserva la clave original) */
+  var CLAVE = CALCULADORA === 'evolutiva' ? 'csi_acceso' : 'csi_acceso_' + CALCULADORA;
   var raiz = document.documentElement;
 
   /* ── memoria del navegador (puede fallar en modo privado) ── */
@@ -38,11 +54,11 @@
   var tokenUrl = (params.get('acceso') || '').trim();
 
   /* Bloquear desde el principio para que no se vea la calculadora un instante */
-  if (tokenUrl || !leerAcceso()) raiz.classList.add('csi-bloqueado');
+  if (tokenUrl || !leerAcceso() || DE_PAGO) raiz.classList.add('csi-bloqueado');
 
   /* ── estilos de la tarjeta ── */
   var css = [
-    'html.csi-bloqueado .app > :not(h1):not(.sub):not(#csi-acceso){display:none!important}',
+    'html.csi-bloqueado ' + CONTENEDOR + ' > :not(h1):not(.sub):not(#csi-acceso){display:none!important}',
     '#csi-acceso{display:none;max-width:520px;margin:6px auto 26px;padding:28px 26px 24px;background:#fffdf8;border:1px solid #e8dcc0;border-top:4px solid #c9a84c;border-radius:16px;box-shadow:0 8px 24px rgba(61,32,96,.10);text-align:center;color:#4a3e5a;font-family:Georgia,"Times New Roman",serif}',
     'html.csi-bloqueado #csi-acceso{display:block}',
     '#csi-acceso h2{font-family:"Cinzel",Georgia,serif;font-weight:500;font-size:20px;letter-spacing:.04em;color:#3d2060;margin:0 0 10px;text-transform:none}',
@@ -60,6 +76,10 @@
     '#csi-acceso .csi-nota{font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#8a7a9a;margin:14px 0 0}',
     '#csi-acceso .csi-ayuda{font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6d5a78;background:#f6f0ff;border-radius:10px;padding:10px 12px;margin:4px 0 16px}',
     '#csi-acceso .csi-link{background:none;border:none;padding:0;color:#a8842e;text-decoration:underline;font-family:Arial,Helvetica,sans-serif;font-size:13px;cursor:pointer}',
+    '#csi-acceso .csi-precio{font-family:"Cinzel",Georgia,serif;font-size:30px;color:#3d2060;margin:4px 0 2px}',
+    '#csi-acceso .csi-precio small{display:block;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#8a7a9a;letter-spacing:normal;margin-top:2px}',
+    '#csi-acceso ul.csi-incluye{text-align:left;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.7;color:#4a3e5a;margin:6px auto 18px;padding-left:20px;max-width:400px}',
+    '#csi-acceso .csi-paypal{margin:8px auto 4px;max-width:340px;min-height:50px}',
     '#csi-acceso .csi-cargando{font-family:"Cinzel",Georgia,serif;color:#3d2060;letter-spacing:.06em;margin:8px 0}',
     '.csi-otra-compu{text-align:center;margin:18px auto 0;font-family:Arial,Helvetica,sans-serif;font-size:12px}',
     '.csi-otra-compu button{background:none;border:none;padding:0;color:#8a7a9a;text-decoration:underline;cursor:pointer;font-size:12px}',
@@ -104,6 +124,131 @@
       if (!ok) return;
       enviarCorreo(email, form.querySelector('button'));
     });
+  }
+
+  /* ── Compra con PayPal (calculadoras de pago) ── */
+  function pantallaCompra(avisoInvalido) {
+    caja.innerHTML =
+      '<h2>' + esc(NOMBRE) + '</h2>' +
+      (avisoInvalido ? '<p class="csi-aviso" role="alert">Este enlace de acceso no es válido para esta calculadora. Si ya compraste, abre el enlace de tu correo de compra o escríbenos a ' + esc(CORREO_CONTACTO) + '.</p>' : '') +
+      '<div class="csi-precio">$' + esc(PRECIO) + ' USD<small>Pago único · acceso para siempre</small></div>' +
+      '<ul class="csi-incluye">' +
+        '<li>Tu árbol hasta bisabuelos, por el lado de papá y de mamá</li>' +
+        '<li>Misión, mente, corazón, base, sombra, camino, fases y periodos de cada persona</li>' +
+        '<li>Resumen de los números que se repiten en tu linaje</li>' +
+        '<li>Guarda tu árbol en Excel y descárgalo en PDF</li>' +
+      '</ul>' +
+      '<p>Escribe tu correo: ahí te llega tu enlace de acceso.</p>' +
+      '<form novalidate>' +
+        '<input type="email" name="email" autocomplete="email" inputmode="email" placeholder="tucorreo@ejemplo.com" required>' +
+        '<div class="csi-error" data-error="email" hidden></div>' +
+        '<label class="csi-check"><input type="checkbox" name="consentimiento" required>' +
+          '<span>Acepto recibir correos de Centro Ser Integral y he leído el <a href="privacidad.html" target="_blank" rel="noopener">aviso de privacidad</a>.</span></label>' +
+        '<div class="csi-error" data-error="check" hidden></div>' +
+      '</form>' +
+      '<div class="csi-paypal" id="csi-paypal"><p class="csi-cargando">Cargando PayPal…</p></div>' +
+      '<div class="csi-error" data-error="envio" hidden></div>' +
+      '<p class="csi-nota">Botón amarillo: paga con tu cuenta de PayPal · Botón negro: paga con tarjeta, sin cuenta.<br>' +
+      '¿Ya compraste? Abre el enlace de tu correo de compra o escríbenos a <a href="mailto:' + esc(CORREO_CONTACTO) + '">' + esc(CORREO_CONTACTO) + '</a>.</p>';
+    cargarPaypal(function (ok) {
+      var cont = caja.querySelector('#csi-paypal');
+      if (!cont) return;
+      if (!ok) {
+        cont.innerHTML = '<p class="csi-aviso" role="alert">No pudimos cargar PayPal. Recarga la página o desactiva tu bloqueador de anuncios. Si sigue, escríbenos a ' + esc(CORREO_CONTACTO) + '.</p>';
+        return;
+      }
+      cont.innerHTML = '';
+      window.paypal.Buttons({
+        style: { layout: 'vertical', shape: 'pill', label: 'pay' },
+        onClick: function (data, actions) {
+          return datosCompraValidos() ? actions.resolve() : actions.reject();
+        },
+        createOrder: function (data, actions) {
+          return actions.order.create({
+            purchase_units: [{ description: NOMBRE, amount: { currency_code: 'USD', value: Number(PRECIO).toFixed(2) } }],
+            application_context: { shipping_preference: 'NO_SHIPPING' }
+          });
+        },
+        onApprove: function (data, actions) {
+          caja.querySelector('#csi-paypal').innerHTML = '<p class="csi-cargando">Confirmando tu pago…</p>';
+          return actions.order.capture().then(function () {
+            activarCompra(data.orderID);
+          });
+        },
+        onError: function () {
+          mostrarError('envio', 'PayPal no pudo completar el pago. No se hizo ningún cargo. Intenta de nuevo o escríbenos a ' + CORREO_CONTACTO + '.');
+        }
+      }).render('#csi-paypal');
+    });
+  }
+
+  function correoCompra() {
+    var form = caja && caja.querySelector('form');
+    return form ? form.email.value.trim() : '';
+  }
+
+  function datosCompraValidos() {
+    var form = caja.querySelector('form');
+    var ok = true;
+    mostrarError('email', ''); mostrarError('check', ''); mostrarError('envio', '');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email.value.trim())) { mostrarError('email', 'Escribe tu correo para enviarte tu acceso.'); ok = false; }
+    if (!form.consentimiento.checked) { mostrarError('check', 'Para enviarte tu acceso necesitamos tu autorización.'); ok = false; }
+    if (!ok) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return ok;
+  }
+
+  var paypalCargando = null;
+  function cargarPaypal(listo) {
+    if (window.paypal && window.paypal.Buttons) { listo(true); return; }
+    if (!paypalCargando) {
+      paypalCargando = [];
+      var sdk = document.createElement('script');
+      sdk.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(PAYPAL_CLIENT_ID) +
+        '&currency=USD&intent=capture&components=buttons&disable-funding=venmo,paylater';
+      sdk.onload = function () { paypalCargando.forEach(function (f) { f(!!(window.paypal && window.paypal.Buttons)); }); };
+      sdk.onerror = function () { paypalCargando.forEach(function (f) { f(false); }); };
+      document.head.appendChild(sdk);
+    }
+    paypalCargando.push(listo);
+  }
+
+  /* Después del pago (o con una clave de prueba): Make revisa con PayPal y da el acceso */
+  function activarCompra(orden, correo) {
+    var email = correo || correoCompra();
+    fetch(WEBHOOK_PAGO, {
+      method: 'POST',
+      body: new URLSearchParams({ email: email, orden: orden || '', calculadora: CALCULADORA })
+    }).then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && (d.ok === true || d.ok === 'true') && d.token) {
+          guardarAcceso(String(d.token));
+          caja.innerHTML =
+            '<h2>¡Gracias! Tu acceso está listo ✦</h2>' +
+            '<p>También te enviamos tu enlace de acceso a <strong>' + esc(email) + '</strong>. Guarda ese correo: con él abres tu ' + esc(NOMBRE) + ' en cualquier computadora o celular.</p>' +
+            '<p><button type="button" class="csi-btn" data-abrir>Abrir mi árbol ✦</button></p>';
+          caja.querySelector('[data-abrir]').addEventListener('click', function () { desbloquear(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        } else {
+          pagoSinConfirmar(email);
+        }
+      })
+      .catch(function () { pagoSinConfirmar(email); });
+  }
+
+  function pagoSinConfirmar(email) {
+    caja.innerHTML =
+      '<h2>Recibimos tu pago</h2>' +
+      '<p class="csi-aviso" role="alert">No pudimos activar tu acceso automáticamente. No te preocupes: ya nos llegó el aviso y te enviaremos tu enlace a <strong>' + esc(email || 'tu correo') + '</strong> lo antes posible.</p>' +
+      '<p class="csi-nota">Si tienes dudas, escríbenos a <a href="mailto:' + esc(CORREO_CONTACTO) + '">' + esc(CORREO_CONTACTO) + '</a> con tu comprobante de PayPal.</p>';
+  }
+
+  /* Solo para pruebas desde la consola: csiPruebaAcceso('PRUEBA-tuclave', 'tucorreo@ejemplo.com') */
+  if (DE_PAGO) {
+    window.csiPruebaAcceso = function (clave, correo) {
+      if (!caja) return 'La página aún no termina de cargar.';
+      caja.innerHTML = '<p class="csi-cargando">Probando acceso…</p>';
+      activarCompra(clave, correo || CORREO_CONTACTO);
+      return 'Enviado. Revisa la tarjeta en la página.';
+    };
   }
 
   function mostrarError(cual, texto) {
@@ -160,23 +305,28 @@
 
   function validar(token) {
     caja.innerHTML = '<p class="csi-cargando">Abriendo tu calculadora…</p>';
-    fetch(WEBHOOK_VALIDAR, { method: 'POST', body: new URLSearchParams({ token: token }) })
+    fetch(WEBHOOK_VALIDAR, { method: 'POST', body: new URLSearchParams({ token: token, calculadora: CALCULADORA }) })
       .then(function (r) { return r.json(); })
       .then(function (d) {
         quitarTokenDeLaDireccion();
         if (d && (d.ok === true || d.ok === 'true')) { guardarAcceso(token); desbloquear(); }
-        else { borrarAcceso(); pantallaFormulario(true, ''); }
+        else { borrarAcceso(); pantallaInicial(true); }
       })
       .catch(function () {
         quitarTokenDeLaDireccion();
         /* Si ya había un acceso guardado, no se lo quitamos por una falla de red */
         if (leerAcceso()) { desbloquear(); return; }
-        pantallaFormulario(true, '');
+        pantallaInicial(true);
       });
   }
 
+  function pantallaInicial(avisoInvalido) {
+    if (DE_PAGO) pantallaCompra(avisoInvalido);
+    else pantallaFormulario(avisoInvalido, '');
+  }
+
   function iniciar() {
-    var app = document.querySelector('.app');
+    var app = document.querySelector(CONTENEDOR);
     if (!app) { desbloquear(); return; }
 
     caja = document.createElement('section');
@@ -188,18 +338,22 @@
     /* Link al pie: volver a pedir el acceso */
     var pie = document.createElement('p');
     pie.className = 'csi-otra-compu';
-    pie.innerHTML = '<button type="button">¿Usas otra computadora? Pide tu acceso de nuevo</button>';
+    pie.innerHTML = DE_PAGO
+      ? '<button type="button">Cerrar mi acceso en esta computadora</button>'
+      : '<button type="button">¿Usas otra computadora? Pide tu acceso de nuevo</button>';
     app.parentNode.insertBefore(pie, app.nextSibling);
     pie.querySelector('button').addEventListener('click', function () {
       borrarAcceso();
       raiz.classList.add('csi-bloqueado');
-      pantallaFormulario(false, '');
+      pantallaInicial(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    var guardado = leerAcceso();
     if (tokenUrl) validar(tokenUrl);
-    else if (leerAcceso()) desbloquear();
-    else pantallaFormulario(false, '');
+    else if (guardado && DE_PAGO) validar(guardado.token);   // de pago: se revisa en cada visita
+    else if (guardado) desbloquear();
+    else pantallaInicial(false);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);
