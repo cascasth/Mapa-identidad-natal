@@ -79,6 +79,18 @@
     '#csi-acceso .csi-precio{font-family:"Cinzel",Georgia,serif;font-size:30px;color:#3d2060;margin:4px 0 2px}',
     '#csi-acceso .csi-precio small{display:block;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#8a7a9a;letter-spacing:normal;margin-top:2px}',
     '#csi-acceso ul.csi-incluye{text-align:left;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.7;color:#4a3e5a;margin:6px auto 18px;padding-left:20px;max-width:400px}',
+    '#csi-acceso.csi-con-muestra{max-width:760px}',
+    '#csi-acceso .csi-muestra-titulo{font-family:"Cinzel",Georgia,serif;font-size:15px;color:#3d2060;letter-spacing:.04em;margin:4px 0 10px}',
+    '#csi-acceso .csi-galeria{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 6px}',
+    '#csi-acceso .csi-galeria figure{margin:0;cursor:zoom-in}',
+    '#csi-acceso .csi-galeria img{display:block;width:100%;height:120px;object-fit:cover;object-position:left top;border-radius:10px;border:1px solid #e0d2f5;box-shadow:0 3px 10px rgba(61,32,96,.10);background:#fff;transition:transform .15s}',
+    '#csi-acceso .csi-galeria figure:hover img{transform:translateY(-2px)}',
+    '#csi-acceso .csi-galeria figcaption{font-family:Arial,Helvetica,sans-serif;font-size:11.5px;line-height:1.35;color:#6d5a78;margin-top:6px}',
+    '#csi-acceso .csi-muestra-nota{font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#9a8aa8;margin:2px 0 20px}',
+    '@media (max-width:640px){#csi-acceso .csi-galeria{grid-template-columns:repeat(2,1fr)}#csi-acceso .csi-galeria img{height:110px}}',
+    '.csi-visor{position:fixed;inset:0;z-index:9999;background:rgba(13,11,20,.88);display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}',
+    '.csi-visor img{max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.5);background:#fff}',
+    '.csi-visor button{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:22px;cursor:pointer}',
     '#csi-acceso .csi-paypal{margin:8px auto 4px;max-width:340px;min-height:50px}',
     '#csi-acceso .csi-cargando{font-family:"Cinzel",Georgia,serif;color:#3d2060;letter-spacing:.06em;margin:8px 0}',
     '.csi-otra-compu{text-align:center;margin:18px auto 0;font-family:Arial,Helvetica,sans-serif;font-size:12px}',
@@ -138,6 +150,7 @@
         '<li>Resumen de los números que se repiten en tu linaje</li>' +
         '<li>Guarda tu árbol en Excel y descárgalo en PDF</li>' +
       '</ul>' +
+      '<div data-muestra></div>' +
       '<p>Escribe tu correo: ahí te llega tu enlace de acceso.</p>' +
       '<form novalidate>' +
         '<input type="email" name="email" autocomplete="email" inputmode="email" placeholder="tucorreo@ejemplo.com" required>' +
@@ -150,6 +163,7 @@
       '<div class="csi-error" data-error="envio" hidden></div>' +
       '<p class="csi-nota">Botón amarillo: paga con tu cuenta de PayPal · Botón negro: paga con tarjeta, sin cuenta.<br>' +
       '¿Ya compraste? Abre el enlace de tu correo de compra o escríbenos a <a href="mailto:' + esc(CORREO_CONTACTO) + '">' + esc(CORREO_CONTACTO) + '</a>.</p>';
+    ponerMuestra();
     cargarPaypal(function (ok) {
       var cont = caja.querySelector('#csi-paypal');
       if (!cont) return;
@@ -180,6 +194,32 @@
         }
       }).render('#csi-paypal');
     });
+  }
+
+  /* Ejemplos para que se antoje: vienen de <template id="csi-muestra"> en la página */
+  function ponerMuestra() {
+    var tpl = document.getElementById('csi-muestra');
+    var lugar = caja.querySelector('[data-muestra]');
+    if (!tpl || !lugar || !tpl.content) return;
+    lugar.appendChild(tpl.content.cloneNode(true));
+    caja.classList.add('csi-con-muestra');
+    Array.prototype.forEach.call(lugar.querySelectorAll('figure'), function (fig) {
+      fig.addEventListener('click', function () { abrirVisor(fig.querySelector('img')); });
+    });
+  }
+
+  function abrirVisor(img) {
+    if (!img) return;
+    var visor = document.createElement('div');
+    visor.className = 'csi-visor';
+    visor.setAttribute('role', 'dialog');
+    visor.setAttribute('aria-label', img.alt || 'Ejemplo');
+    visor.innerHTML = '<img src="' + esc(img.getAttribute('src')) + '" alt="' + esc(img.alt || '') + '"><button type="button" aria-label="Cerrar">×</button>';
+    function cerrar() { visor.remove(); document.removeEventListener('keydown', tecla); }
+    function tecla(e) { if (e.key === 'Escape') cerrar(); }
+    visor.addEventListener('click', cerrar);
+    document.addEventListener('keydown', tecla);
+    document.body.appendChild(visor);
   }
 
   function correoCompra() {
