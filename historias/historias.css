@@ -160,6 +160,16 @@ a { color: inherit; }
 }
 .historia .nota:nth-of-type(even) { transform: rotate(0.5deg); }
 .historia .nota p { margin: 0; }
+/* Tachaduras a pluma: una raya, o muchas encimadas ("tantas que casi no se distinguían") */
+.historia .tachado { text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--tinta); }
+.historia .tachado.muchas {
+    text-decoration: none;
+    background:
+        linear-gradient(176deg, transparent 38%, var(--tinta) 39% 44%, transparent 45%),
+        linear-gradient(183deg, transparent 50%, var(--tinta) 51% 56%, transparent 57%),
+        linear-gradient(179deg, transparent 60%, var(--tinta) 61% 66%, transparent 67%),
+        linear-gradient(185deg, transparent 30%, var(--tinta) 31% 35%, transparent 36%);
+}
 
 /* Mensajes de celular */
 .historia .msg {
