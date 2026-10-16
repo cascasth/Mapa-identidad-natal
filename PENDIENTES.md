@@ -25,7 +25,7 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       Carpeta `historias/las-paginas-que-faltaban/`: `index.html` (índice de la serie), `parte-1.html`,
       `parte-2.html`… Estilo común en `historias/historias.css`; medición de lectura en `historias/historias.js`
       (eventos lectura_25/50/75, lectura_fin y clic_mapa en Clarity y en el Pixel de Meta como "LecturaHistoria").
-      Imágenes en `img/`: `portada.jpg`, `parte-1-1.jpg` … `parte-1-7.jpg` (la 1 es la de redes / og:image).
+      Imágenes en `img/`: `portada.jpg`, `parte-1-1.jpg` … `parte-1-7.jpg` (la 6 es la de redes / og:image).
       - [x] Parte 1 "El cuaderno de Rosario": página armada con el texto (v7). **Faltan las 8 imágenes.**
             Publicar el **domingo 18-oct** junto con el libro de la Sala de lectura.
       - [ ] Parte 2 "El mapa invisible" (domingo 25-oct): CTA "¿Y tú? ¿Qué páginas de tu propia historia
