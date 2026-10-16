@@ -409,3 +409,64 @@ footer {
 .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; }
 .footer-links a:hover { color: var(--gold); }
 .footer-copy { font-size: 0.9rem; color: var(--text-muted); }
+
+/* ─── PÁGINA DE TEMA: LISTA DE ENTRADAS ──────────────── */
+.entradas { display: grid; gap: 1rem; margin: 1.5rem 0 2.5rem; }
+.entrada {
+    display: block;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.4rem 1.5rem 1.2rem;
+    text-decoration: none;
+    color: var(--text-light);
+    transition: border-color 0.25s, transform 0.25s;
+}
+a.entrada:hover { color: var(--text-light); border-color: var(--gold); transform: translateY(-2px); }
+.entrada .tag {
+    font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold-dim);
+}
+.entrada h3 {
+    font-family: 'Cinzel', serif; font-weight: 500;
+    color: var(--cream); font-size: 1.2rem; line-height: 1.35;
+    margin: 0.35rem 0 0.4rem;
+}
+.entrada p { margin: 0 0 0.6rem; color: var(--text-muted); }
+.entrada .leer {
+    font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 2px;
+    color: var(--gold);
+}
+.vacio {
+    text-align: center; font-style: italic; color: var(--text-muted);
+    border: 1px dashed var(--line); border-radius: 8px; padding: 1.6rem 1rem;
+}
+
+/* ─── ÍNDICE: LIBROS DE TEMAS ────────────────────────── */
+.temas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 0.9rem;
+    margin: 1.4rem 0 3rem;
+}
+.tema {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    min-height: 180px;
+    padding: 1.2rem 0.8rem;
+    border-radius: 4px 10px 10px 4px;
+    border: 1px solid rgba(201,168,76,0.4);
+    border-left: 6px solid rgba(0,0,0,0.35);
+    background:
+        linear-gradient(90deg, rgba(255,255,255,0.06), transparent 30%),
+        var(--c, var(--violet));
+    text-decoration: none;
+    color: var(--cream);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+a.tema:hover { color: var(--cream); transform: translateY(-4px); box-shadow: 0 10px 26px rgba(0,0,0,0.55), 0 0 18px rgba(201,168,76,0.2); }
+.tema .glyph { font-size: 2rem; color: var(--gold-bright); line-height: 1.1; }
+.tema .nombre { font-family: 'Cinzel', serif; letter-spacing: 2px; margin-top: 0.6rem; font-size: 0.95rem; }
+.tema .cuenta { font-style: italic; font-size: 1rem; color: var(--gold-bright); margin-top: 0.3rem; }
+.tema.pronto { filter: saturate(0.5); opacity: 0.75; }

@@ -18,9 +18,16 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       y pueda abrir `arbol_num_pro.html`.
 
 ### 📚 Página principal (index) — conversación "Página principal"
-- [ ] **Blog**: la repisa ya se llama "Blog" pero todavía es decorativa. Falta crear la página del blog
-      y los primeros artículos (signos y ascendentes, cada día del Tzolkin, artículos informativos).
-      Idea: cada post de redes lleva a su artículo con "lee más en el blog".
+- [ ] **Blog** (rama `claude/blog-piloto`, falta publicar con el "sí" de Teresa). Estructura aprobada:
+      cada libro de la repisa "Blog" es un **tema** que abre su lista de entradas (`blog/<tema>/`).
+      Hechos: índice `blog/`, temas Astrología (entrada: Aries + 12 ascendentes) y Tarot (entrada: El Loco).
+      Tzolkin, Numerología y Horóscopo Chino están como "Próximamente".
+      Lenguaje **neutro**. Tarot usa la tabla aprobada "Revela / La herida que insiste".
+      Signos: **una página por signo** con sus 12 ascendentes (no 144 páginas).
+      Tandas siguientes: arcanos I–VI → Tauro, Géminis, Cáncer → arcanos VII–XIII → Leo, Virgo, Libra
+      → arcanos XIV–XXI → Escorpio a Piscis. Al agregar una entrada: tarjeta en `blog/<tema>/index.html`,
+      en "Entradas recientes" de `blog/index.html`, en `sitemap.xml` y el enlace en los chips del signo/serie.
+      Idea: cada post de redes lleva a su entrada con "lee más en el blog".
 - [ ] Más adelante: archivos para miembros en la Sala de lectura.
 
 ### 🧹 Orden general

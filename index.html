@@ -1049,22 +1049,51 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                     <div class="board"></div>
                 </section>
 
-                <!-- ─── REPISA 4: BLOG (decorativa por ahora) ─── -->
-                <!-- Aquí irán los artículos: signos y ascendentes, cada día del Tzolkin, etc. -->
+                <!-- ─── REPISA 4: BLOG ───
+                     Cada libro es un tema del blog y abre su lista de entradas (blog/<tema>/).
+                     Cuando un tema tenga su primera entrada, cambia su <div class="book sellado"> por un <a class="book">. -->
                 <section class="shelf" aria-label="Blog">
                     <div class="shelf-plaque"><span>Blog</span></div>
                     <div class="row" style="--row-h: 210px">
                         <span class="ornament hourglass" aria-hidden="true"><span></span></span>
-                        <span class="fill" data-n="6" data-min="140" data-max="195"></span>
+                        <span class="fill" data-n="2" data-min="140" data-max="195"></span>
+
+                        <a class="book" href="blog/astrologia/" style="--c:#2a1d52; --h:175px; --w:46px">
+                            <span class="spine"><span class="glyph">♈&#xFE0E;</span><span class="title">Astrología</span></span>
+                            <span class="note"><strong>Astrología</strong>Tu signo, tu ascendente y cómo se mezclan.<em>Leer entradas →</em></span>
+                        </a>
+
+                        <a class="book" href="blog/tarot/" style="--c:#3b1d66; --h:182px; --w:46px">
+                            <span class="spine"><span class="glyph">✧</span><span class="title">Tarot</span></span>
+                            <span class="note"><strong>Tarot · El Camino del Loco</strong>Los 22 arcanos: lo que revela cada uno y la herida que insiste.<em>Leer entradas →</em></span>
+                        </a>
+
                         <span class="ornament scroll" aria-hidden="true"></span>
-                        <span class="fill" data-n="5" data-min="130" data-max="190" data-lean="1"></span>
+
+                        <div class="book sellado" tabindex="0" style="--c:#1d3b40; --h:165px; --w:42px">
+                            <span class="spine"><span class="glyph">◈</span><span class="title">Tzolkin</span></span>
+                            <span class="sello">✦</span>
+                            <span class="note"><strong>Tzolkin</strong>Próximamente</span>
+                        </div>
+
+                        <div class="book sellado" tabindex="0" style="--c:#4a2e1a; --h:170px; --w:46px">
+                            <span class="spine"><span class="glyph">∞</span><span class="title">Numerología</span></span>
+                            <span class="sello">✦</span>
+                            <span class="note"><strong>Numerología</strong>Próximamente</span>
+                        </div>
+
+                        <div class="book sellado" tabindex="0" style="--c:#6e1c1c; --h:160px; --w:50px">
+                            <span class="spine"><span class="glyph">龍</span><span class="title">Horóscopo<br>Chino</span></span>
+                            <span class="sello">✦</span>
+                            <span class="note"><strong>Horóscopo Chino</strong>Próximamente</span>
+                        </div>
+
+                        <span class="fill" data-n="3" data-min="130" data-max="190" data-lean="1"></span>
                         <span class="ornament stack" aria-hidden="true">
                             <i style="width:80px; --c:#3b1d66"></i>
                             <i style="width:72px; --c:#4a2e1a"></i>
                             <i style="width:86px; --c:#1d3b40"></i>
-                            <i style="width:76px; --c:#5a1a22"></i>
                         </span>
-                        <span class="fill" data-n="4" data-min="150" data-max="195"></span>
                     </div>
                     <div class="board"></div>
                 </section>
@@ -1108,6 +1137,11 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
                 <ul>
                     <li><a href="Calculadora_numerologia_evolutiva.html"><span class="cat-nombre">Numerología Evolutiva Personal</span> <span class="cat-desc">— tu mapa numérico completo con nombre y fecha · gratis con tu correo</span></a></li>
                 </ul>
+                <h3>Blog</h3>
+                <ul>
+                    <li><a href="blog/astrologia/"><span class="cat-nombre">Astrología</span> <span class="cat-desc">— tu signo con cada ascendente</span></a></li>
+                    <li><a href="blog/tarot/"><span class="cat-nombre">Tarot · El Camino del Loco</span> <span class="cat-desc">— los 22 arcanos, uno por uno</span></a></li>
+                </ul>
             </div>
         </div>
     </section>
@@ -1118,6 +1152,7 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
         <div class="footer-links">
             <a href="mailto:centro.ser.integral@gmail.com">centro.ser.integral@gmail.com</a>
             <a href="mapa-natal.html">Mapa de Identidad Natal</a>
+            <a href="blog/">Blog</a>
             <a href="privacidad.html">Política de Privacidad</a>
         </div>
         <p class="footer-copy">© 2026 Centro Ser Integral · Todos los derechos reservados</p>
