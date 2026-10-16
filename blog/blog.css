@@ -10,12 +10,12 @@
     --dark-bg:     #06060e;
     --gold:        #c9a84c;
     --gold-bright: #e8c96a;
-    --gold-dim:    #8a6a20;
+    --gold-dim:    #c29a45;
     --cream:       #f0ede4;
-    --text-light:  #ddd8cc;
-    --text-muted:  #9a8f7c;
-    --panel:       rgba(14, 11, 24, 0.78);
-    --line:        rgba(201, 168, 76, 0.22);
+    --text-light:  #ece7db;
+    --text-muted:  #c9bfa9;
+    --panel:       rgba(12, 10, 22, 0.94);
+    --line:        rgba(201, 168, 76, 0.35);
     --violet:      #3b1d66;
 }
 
@@ -23,11 +23,11 @@ html { scroll-behavior: smooth; }
 
 body {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.2rem;
+    font-size: 1.28rem;
     background-color: var(--dark-bg);
     background-image:
         radial-gradient(ellipse 70% 45% at 50% 0%, rgba(232, 180, 90, 0.14), transparent 70%),
-        linear-gradient(rgba(6, 6, 14, 0.7), rgba(6, 6, 14, 0.95)),
+        linear-gradient(rgba(6, 6, 14, 0.88), rgba(6, 6, 14, 0.97)),
         url('/section_bg.jpg');
     background-size: cover;
     background-position: center top;
@@ -205,7 +205,7 @@ a:hover { color: var(--cream); }
 }
 .dual-card.luz .label { color: var(--gold-bright); }
 .dual-card.sombra { border-color: rgba(150, 110, 200, 0.3); }
-.dual-card.sombra .label { color: #b9a0e0; }
+.dual-card.sombra .label { color: #d4c2f2; }
 .dual-card p { margin: 0; font-size: 1.2rem; color: var(--cream); }
 
 /* Preguntas para ti */
@@ -246,7 +246,7 @@ a:hover { color: var(--cream); }
 .combo .frase { font-style: italic; color: var(--cream); margin-bottom: 0.5rem; }
 .combo p { margin: 0 0 0.4rem; }
 .combo .reto { font-size: 1.08rem; color: var(--text-muted); }
-.combo .reto b { color: #b9a0e0; font-weight: 500; }
+.combo .reto b { color: #d4c2f2; font-weight: 500; }
 
 /* Nota aclaratoria */
 .nota {
@@ -308,7 +308,7 @@ a:hover { color: var(--cream); }
     text-decoration: none;
     color: var(--gold);
 }
-.serie-nav span { color: var(--text-muted); opacity: 0.6; }
+.serie-nav span { color: var(--text-muted); opacity: 0.85; }
 .serie-nav .next { text-align: right; }
 .serie-nav small {
     display: block;
@@ -330,7 +330,7 @@ a:hover { color: var(--cream); }
     text-decoration: none;
     color: var(--gold);
 }
-.chips span { color: var(--text-muted); opacity: 0.55; }
+.chips span { color: var(--text-muted); opacity: 0.85; }
 .chips a[aria-current] { background: rgba(201,168,76,0.15); border-color: var(--gold); }
 
 /* ─── ÍNDICE DEL BLOG ────────────────────────────────── */
@@ -375,7 +375,7 @@ a.ficha:hover {
 }
 .ficha .nombre { font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 1px; margin-top: 0.4rem; }
 .ficha .sub { font-size: 0.95rem; color: var(--text-muted); font-style: italic; margin-top: 0.2rem; }
-.ficha.pronto { opacity: 0.4; }
+.ficha.pronto { opacity: 0.7; }
 .ficha.pronto .sub::after { content: 'Próximamente'; }
 
 .destacado {
@@ -408,4 +408,4 @@ footer {
 .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem 1.6rem; margin-bottom: 1rem; }
 .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; }
 .footer-links a:hover { color: var(--gold); }
-.footer-copy { font-size: 0.9rem; color: var(--text-muted); opacity: 0.7; }
+.footer-copy { font-size: 0.9rem; color: var(--text-muted); }
