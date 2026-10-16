@@ -21,12 +21,18 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 - [ ] **Blog**: la repisa ya se llama "Blog" pero todavía es decorativa. Falta crear la página del blog
       y los primeros artículos (signos y ascendentes, cada día del Tzolkin, artículos informativos).
       Idea: cada post de redes lleva a su artículo con "lee más en el blog".
-- [ ] **Sala de lectura = historias cortas de ficción** (para atraer desde Facebook/Instagram e invitar al Mapa).
-      Primera serie: **"Las páginas que faltaban"**, 3 partes, **una por semana**.
-      Plan: un libro por serie en la repisa → página de la serie con portada (foto de libro, ya la tiene Teresa)
-      y sus partes; cada parte con su propia página (link directo para redes), imágenes de IA,
-      botón "Sigue leyendo" y al final invitación al Mapa (más fuerte en la Parte 3).
-      Las partes que no han salido dicen "Próximamente". Falta: texto, portada e imágenes de la Parte 1.
+- [ ] **Historias · "Las páginas que faltaban"** (3 partes, sale una cada **domingo en la tarde-noche**).
+      Carpeta `historias/las-paginas-que-faltaban/`: `index.html` (índice de la serie), `parte-1.html`,
+      `parte-2.html`… Estilo común en `historias/historias.css`; medición de lectura en `historias/historias.js`
+      (eventos lectura_25/50/75, lectura_fin y clic_mapa en Clarity y en el Pixel de Meta como "LecturaHistoria").
+      Imágenes en `img/`: `portada.jpg`, `parte-1-1.jpg` … `parte-1-7.jpg` (la 1 es la de redes / og:image).
+      - [x] Parte 1 "El cuaderno de Rosario": página armada con el texto (v7). **Faltan las 8 imágenes.**
+            Publicar el **domingo 18-oct** junto con el libro de la Sala de lectura.
+      - [ ] Parte 2 "El mapa invisible" (domingo 25-oct): CTA "¿Y tú? ¿Qué páginas de tu propia historia
+            te falta descubrir?"; al publicarla, cambiar en la Parte 1 el "Próximamente" por el enlace.
+      - [ ] Parte 3 (domingo 1-nov).
+      Cada parte: "Fin de la Parte X", recuadro CTA → /mapa-natal.html, enlace a la siguiente
+      o "Próximamente", enlace al índice, Open Graph completo, Clarity + Pixel, leyenda "solo en español".
 - [ ] Idea segunda etapa: "Avísame cuando salga la siguiente parte" (correo, con Make).
 - [ ] Más adelante: archivos para miembros.
 
