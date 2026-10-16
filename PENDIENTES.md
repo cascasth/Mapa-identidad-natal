@@ -17,8 +17,11 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 - [ ] **Confirmar la primera venta real** ($23 USD): que la persona reciba su acceso por correo
       y pueda abrir `arbol_num_pro.html`.
 
-### 📚 Biblioteca y calculadoras
-- (nada pendiente por ahora)
+### 📚 Página principal (index) — conversación "Página principal"
+- [ ] **Blog**: la repisa ya se llama "Blog" pero todavía es decorativa. Falta crear la página del blog
+      y los primeros artículos (signos y ascendentes, cada día del Tzolkin, artículos informativos).
+      Idea: cada post de redes lleva a su artículo con "lee más en el blog".
+- [ ] Más adelante: archivos para miembros en la Sala de lectura.
 
 ### 🧹 Orden general
 - [ ] **Teresa borra a mano** (Claude no tiene permiso) estas ramas viejas en GitHub → pestaña
@@ -37,6 +40,8 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 ## ✅ Hecho (lo más reciente arriba)
 
 **16-oct**
+- Página principal: repisa "Archivo Antiguo" → **Blog**; tomo sellado ahora dice solo **"Próximamente"**;
+  en la Sala de lectura la Numerología Evolutiva Personal dice **"Gratis con tu correo"**.
 - Mapa: testimonio nuevo de **Lucila O.** (tarjeta destacada) y nombres en todos los testimonios
   (Ángeles H., María G., María O., Lucila O.).
 - Porteros de Make: ya no mandan aviso por pedidos vacíos de robots; solo avisan si el pedido trae correo.
