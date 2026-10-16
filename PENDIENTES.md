@@ -21,7 +21,14 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 - [ ] **Blog**: la repisa ya se llama "Blog" pero todavía es decorativa. Falta crear la página del blog
       y los primeros artículos (signos y ascendentes, cada día del Tzolkin, artículos informativos).
       Idea: cada post de redes lleva a su artículo con "lee más en el blog".
-- [ ] Más adelante: archivos para miembros en la Sala de lectura.
+- [ ] **Sala de lectura = historias cortas de ficción** (para atraer desde Facebook/Instagram e invitar al Mapa).
+      Primera serie: **"Las páginas que faltaban"**, 3 partes, **una por semana**.
+      Plan: un libro por serie en la repisa → página de la serie con portada (foto de libro, ya la tiene Teresa)
+      y sus partes; cada parte con su propia página (link directo para redes), imágenes de IA,
+      botón "Sigue leyendo" y al final invitación al Mapa (más fuerte en la Parte 3).
+      Las partes que no han salido dicen "Próximamente". Falta: texto, portada e imágenes de la Parte 1.
+- [ ] Idea segunda etapa: "Avísame cuando salga la siguiente parte" (correo, con Make).
+- [ ] Más adelante: archivos para miembros.
 
 ### 🧹 Orden general
 - [ ] **Teresa borra a mano** (Claude no tiene permiso) estas ramas viejas en GitHub → pestaña
@@ -40,6 +47,8 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 ## ✅ Hecho (lo más reciente arriba)
 
 **16-oct**
+- Página principal: la Numerología Evolutiva Personal pasó al **Estante abierto** (la Sala de lectura queda
+  libre para las historias); el Árbol Pro se agregó al catálogo de texto.
 - Página principal: repisa "Archivo Antiguo" → **Blog**; tomo sellado ahora dice solo **"Próximamente"**;
   en la Sala de lectura la Numerología Evolutiva Personal dice **"Gratis con tu correo"**.
 - Mapa: testimonio nuevo de **Lucila O.** (tarjeta destacada) y nombres en todos los testimonios
