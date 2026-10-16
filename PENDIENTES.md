@@ -18,15 +18,15 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       y pueda abrir `arbol_num_pro.html`.
 
 ### 📚 Página principal (index) — conversación "Página principal"
-- [ ] **Blog** (rama `claude/blog-piloto`, falta publicar con el "sí" de Teresa). Estructura aprobada:
-      cada libro de la repisa "Blog" es un **tema** que abre su lista de entradas (`blog/<tema>/`).
-      Hechos: índice `blog/`, temas Astrología (entrada: Aries + 12 ascendentes) y Tarot (entrada: El Loco).
-      Tzolkin, Numerología y Horóscopo Chino están como "Próximamente".
-      Lenguaje **neutro**. Tarot usa la tabla aprobada "Revela / La herida que insiste".
+- [ ] **Blog** — publicado el 16-oct (`blog/`). Cada libro de la repisa "Blog" es un **tema** con su lista
+      de entradas (`blog/<tema>/`). Lenguaje **neutro**. Tarot usa la tabla aprobada "Revela / La herida que insiste".
       Signos: **una página por signo** con sus 12 ascendentes (no 144 páginas).
-      Tandas siguientes: arcanos I–VI → Tauro, Géminis, Cáncer → arcanos VII–XIII → Leo, Virgo, Libra
-      → arcanos XIV–XXI → Escorpio a Piscis. Al agregar una entrada: tarjeta en `blog/<tema>/index.html`,
-      en "Entradas recientes" de `blog/index.html`, en `sitemap.xml` y el enlace en los chips del signo/serie.
+      Publicado: Astrología (Aries) · Tarot (arcanos 0 a VI, tanda 1 publicada el 16-oct).
+      Siguientes tandas: Tauro, Géminis, Cáncer → arcanos VII–XIII → Leo, Virgo, Libra → arcanos XIV–XXI
+      → Escorpio a Piscis. Luego temas Tzolkin, Numerología y Horóscopo Chino (hoy "Próximamente").
+      Al agregar una entrada: tarjeta en `blog/<tema>/index.html` (tarot en orden 0, I, II…; los demás, lo más
+      nuevo arriba), las 4 más nuevas en "Entradas recientes" de `blog/index.html`, contador del tema,
+      `sitemap.xml`, y los enlaces Anterior/Siguiente o los chips de signos.
       Idea: cada post de redes lleva a su entrada con "lee más en el blog".
 - [ ] Más adelante: archivos para miembros en la Sala de lectura.
 
@@ -47,6 +47,7 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 ## ✅ Hecho (lo más reciente arriba)
 
 **16-oct**
+- **Blog** publicado: repisa "Blog" con un libro por tema; Astrología (Aries) y Tarot (El Loco a Los Enamorados).
 - Página principal: repisa "Archivo Antiguo" → **Blog**; tomo sellado ahora dice solo **"Próximamente"**;
   en la Sala de lectura la Numerología Evolutiva Personal dice **"Gratis con tu correo"**.
 - Mapa: testimonio nuevo de **Lucila O.** (tarjeta destacada) y nombres en todos los testimonios
