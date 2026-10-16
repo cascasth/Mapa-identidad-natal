@@ -18,15 +18,16 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       y pueda abrir `arbol_num_pro.html`.
 
 ### 📚 Página principal (index) — conversación "Página principal"
-- [ ] **Blog** (rama `claude/blog-piloto`, falta publicar con el "sí" de Teresa). Estructura aprobada:
-      cada libro de la repisa "Blog" es un **tema** que abre su lista de entradas (`blog/<tema>/`).
-      Hechos: índice `blog/`, temas Astrología (entrada: Aries + 12 ascendentes) y Tarot (entrada: El Loco).
-      Tzolkin, Numerología y Horóscopo Chino están como "Próximamente".
-      Lenguaje **neutro**. Tarot usa la tabla aprobada "Revela / La herida que insiste".
+- [ ] **Blog** — publicado el 16-oct (`blog/`). Cada libro de la repisa "Blog" es un **tema** con su lista
+      de entradas (`blog/<tema>/`). Lenguaje **neutro**. Tarot usa la tabla aprobada "Revela / La herida que insiste".
       Signos: **una página por signo** con sus 12 ascendentes (no 144 páginas).
-      Tandas siguientes: arcanos I–VI → Tauro, Géminis, Cáncer → arcanos VII–XIII → Leo, Virgo, Libra
-      → arcanos XIV–XXI → Escorpio a Piscis. Al agregar una entrada: tarjeta en `blog/<tema>/index.html`,
-      en "Entradas recientes" de `blog/index.html`, en `sitemap.xml` y el enlace en los chips del signo/serie.
+      Publicado: Astrología (Aries) · Tarot (0 El Loco).
+      **Tanda 1 (arcanos I–VI)** lista en la rama `claude/blog-tanda-1`, falta el "sí" de Teresa para publicar.
+      Siguientes tandas: Tauro, Géminis, Cáncer → arcanos VII–XIII → Leo, Virgo, Libra → arcanos XIV–XXI
+      → Escorpio a Piscis. Luego temas Tzolkin, Numerología y Horóscopo Chino (hoy "Próximamente").
+      Al agregar una entrada: tarjeta en `blog/<tema>/index.html` (tarot en orden 0, I, II…; los demás, lo más
+      nuevo arriba), las 4 más nuevas en "Entradas recientes" de `blog/index.html`, contador del tema,
+      `sitemap.xml`, y los enlaces Anterior/Siguiente o los chips de signos.
       Idea: cada post de redes lleva a su entrada con "lee más en el blog".
 - [ ] Más adelante: archivos para miembros en la Sala de lectura.
 
