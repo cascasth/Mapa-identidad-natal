@@ -123,6 +123,15 @@ a { color: inherit; }
     padding: 0.2rem 0.9rem;
 }
 
+.anterior {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1.05rem;
+    color: var(--gold);
+    text-decoration: none;
+}
+.anterior:hover { text-decoration: underline; }
+
 /* ─── TEXTO ─── */
 .historia {
     max-width: 680px;
@@ -170,6 +179,21 @@ a { color: inherit; }
         linear-gradient(179deg, transparent 60%, var(--tinta) 61% 66%, transparent 67%),
         linear-gradient(185deg, transparent 30%, var(--tinta) 31% 35%, transparent 36%);
 }
+
+/* Frases del Mapa de Identidad (texto impreso del PDF) */
+.historia .cita-mapa {
+    border: 1px solid rgba(201, 168, 76, 0.45);
+    border-left: 3px solid var(--gold);
+    background: linear-gradient(160deg, rgba(59, 29, 102, 0.28), rgba(6, 6, 14, 0.55));
+    border-radius: 4px;
+    padding: 1rem 1.4rem;
+    margin: 0.4rem 0 1.6rem;
+    font-style: italic;
+    font-size: 1.28rem;
+    color: var(--cream);
+}
+.historia .cita-mapa p { margin: 0; }
+.historia .cita-mapa p + p { margin-top: 0.5rem; }
 
 /* Mensajes de celular */
 .historia .msg {

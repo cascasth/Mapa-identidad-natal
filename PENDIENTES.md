@@ -28,8 +28,12 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       Imágenes en `img/`: `portada.jpg`, `parte-1-1.jpg` … `parte-1-7.jpg` (la 6 es la de redes: versión horizontal `parte-1-redes.jpg`; la serie usa `portada-redes.jpg`).
       - [x] Parte 1 "El cuaderno de Rosario": página armada con el texto (v7). Imágenes completas. **Lista para publicar.**
             Publicar el **domingo 18-oct** junto con el libro de la Sala de lectura.
-      - [ ] Parte 2 "El mapa invisible" (domingo 25-oct): CTA "¿Y tú? ¿Qué páginas de tu propia historia
-            te falta descubrir?"; al publicarla, cambiar en la Parte 1 el "Próximamente" por el enlace.
+      - [x] Parte 2 "El mapa invisible" armada (texto v4 + 4 imágenes) como **borrador oculto**
+            `_parte-2.html` (GitHub Pages no publica archivos que empiezan con "_").
+            **Para publicarla el domingo 25-oct:** renombrar a `parte-2.html`; en la Parte 1 cambiar el
+            "Próximamente — Parte 2…" por el enlace "Sigue con la Parte 2 →"; en el índice de la serie
+            volver la Parte 2 un enlace; agregarla a `sitemap.xml`.
+            Red social: `parte-2-redes.jpg` (sale de la imagen 1, el celular con el sello; Teresa puede pedir otra).
       - [ ] Parte 3 (domingo 1-nov).
       Cada parte: "Fin de la Parte X", recuadro CTA → /mapa-natal.html, enlace a la siguiente
       o "Próximamente", enlace al índice, Open Graph completo, Clarity + Pixel, leyenda "solo en español".
