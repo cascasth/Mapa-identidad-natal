@@ -22,10 +22,11 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       de entradas (`blog/<tema>/`). Lenguaje **neutro**. Tarot usa la tabla aprobada "Revela / La herida que insiste".
       Signos: **una página por signo** con sus 12 ascendentes (no 144 páginas).
       Publicado: Astrología (Aries) · Tarot (arcanos 0 a VI, tanda 1 publicada el 16-oct).
-      Siguientes tandas: Tauro, Géminis, Cáncer → arcanos VII–XIII → Leo, Virgo, Libra → arcanos XIV–XXI
+      **Tanda 2 (Tauro, Géminis, Cáncer)** lista en la rama `claude/blog-tanda-2`, falta el "sí" de Teresa.
+      Siguientes tandas: arcanos VII–XIII → Leo, Virgo, Libra → arcanos XIV–XXI
       → Escorpio a Piscis. Luego temas Tzolkin, Numerología y Horóscopo Chino (hoy "Próximamente").
-      Al agregar una entrada: tarjeta en `blog/<tema>/index.html` (tarot en orden 0, I, II…; los demás, lo más
-      nuevo arriba), las 4 más nuevas en "Entradas recientes" de `blog/index.html`, contador del tema,
+      Al agregar una entrada: tarjeta en `blog/<tema>/index.html` (tarot en orden 0, I, II…; signos en orden del zodiaco;
+      otros temas, lo más nuevo arriba), las 4 más nuevas en "Entradas recientes" de `blog/index.html`, contador del tema,
       `sitemap.xml`, y los enlaces Anterior/Siguiente o los chips de signos.
       Idea: cada post de redes lleva a su entrada con "lee más en el blog".
 - [ ] Más adelante: archivos para miembros en la Sala de lectura.
