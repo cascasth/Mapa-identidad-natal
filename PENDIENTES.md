@@ -12,8 +12,6 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 - [ ] **Confirmar la primera venta real** con el Portero nuevo: que llegue el mapa a la persona
       y que la orden quede anotada en Make (Data store "CSI · Pagos verificados").
       Cuando llegue, Teresa avisa y se revisa la ejecución en Make.
-- [ ] Decidir si se borra la rama `claude/paypal-mapa` (otra versión del botón de PayPal que
-      ya no se necesita, porque el Portero funciona con el botón de siempre).
 
 ### 🌳 Árbol Pro
 - [ ] **Confirmar la primera venta real** ($23 USD): que la persona reciba su acceso por correo
@@ -23,9 +21,10 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 - (nada pendiente por ahora)
 
 ### 🧹 Orden general
-- [ ] Ramas viejas en GitHub que no se usan: `backup-mayo26-v1`, `new-faeture`,
-      `claude/zealous-planck-rvb0r6`, `claude/funnel-copy-changes-sa71vm`. Decidir si se borran
-      (no afectan la página publicada).
+- [ ] **Teresa borra a mano** (Claude no tiene permiso) estas ramas viejas en GitHub → pestaña
+      *Branches* → ícono de basura: `backup-mayo26-v1`, `new-faeture`, `claude/zealous-planck-rvb0r6`,
+      `claude/funnel-copy-changes-sa71vm`, `claude/paypal-mapa` (botón de PayPal que ya no se usa).
+      Ya aprobó borrarlas el 16-oct. No afectan la página publicada.
 - [ ] Escenarios viejos apagados en Make (respaldos de mayo y septiembre, "sin img"). Decidir si se borran.
 
 ---
