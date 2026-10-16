@@ -26,7 +26,7 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       `parte-2.html`… Estilo común en `historias/historias.css`; medición de lectura en `historias/historias.js`
       (eventos lectura_25/50/75, lectura_fin y clic_mapa en Clarity y en el Pixel de Meta como "LecturaHistoria").
       Imágenes en `img/`: `portada.jpg`, `parte-1-1.jpg` … `parte-1-7.jpg` (la 6 es la de redes: versión horizontal `parte-1-redes.jpg`; la serie usa `portada-redes.jpg`).
-      - [x] Parte 1 "El cuaderno de Rosario": página armada con el texto (v7). **Falta la imagen 4** (las demás ya están).
+      - [x] Parte 1 "El cuaderno de Rosario": página armada con el texto (v7). Imágenes completas. **Lista para publicar.**
             Publicar el **domingo 18-oct** junto con el libro de la Sala de lectura.
       - [ ] Parte 2 "El mapa invisible" (domingo 25-oct): CTA "¿Y tú? ¿Qué páginas de tu propia historia
             te falta descubrir?"; al publicarla, cambiar en la Parte 1 el "Próximamente" por el enlace.
