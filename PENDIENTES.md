@@ -18,9 +18,16 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       y pueda abrir `arbol_num_pro.html`.
 
 ### 📚 Página principal (index) — conversación "Página principal"
-- [ ] **Blog**: la repisa ya se llama "Blog" pero todavía es decorativa. Falta crear la página del blog
-      y los primeros artículos (signos y ascendentes, cada día del Tzolkin, artículos informativos).
-      Idea: cada post de redes lleva a su artículo con "lee más en el blog".
+- [ ] **Blog** — publicado el 16-oct (`blog/`). Cada libro de la repisa "Blog" es un **tema** con su lista
+      de entradas (`blog/<tema>/`). Lenguaje **neutro**. Tarot usa la tabla aprobada "Revela / La herida que insiste".
+      Signos: **una página por signo** con sus 12 ascendentes (no 144 páginas).
+      Publicado: Astrología (Aries a Cáncer, tanda 2 el 16-oct) · Tarot (arcanos 0 a VI, tanda 1 el 16-oct).
+      Siguientes tandas: arcanos VII–XIII → Leo, Virgo, Libra → arcanos XIV–XXI
+      → Escorpio a Piscis. Luego temas Tzolkin, Numerología y Horóscopo Chino (hoy "Próximamente").
+      Al agregar una entrada: tarjeta en `blog/<tema>/index.html` (tarot en orden 0, I, II…; signos en orden del zodiaco;
+      otros temas, lo más nuevo arriba), las 4 más nuevas en "Entradas recientes" de `blog/index.html`, contador del tema,
+      `sitemap.xml`, y los enlaces Anterior/Siguiente o los chips de signos.
+      Idea: cada post de redes lleva a su entrada con "lee más en el blog".
 - [ ] **Historias · "Las páginas que faltaban"** (3 partes, sale una cada **domingo en la tarde-noche**).
       Carpeta `historias/las-paginas-que-faltaban/`: `index.html` (índice de la serie), `parte-1.html`,
       `parte-2.html`… Estilo común en `historias/historias.css`; medición de lectura en `historias/historias.js`
@@ -38,7 +45,7 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       Cada parte: "Fin de la Parte X", recuadro CTA → /mapa-natal.html, enlace a la siguiente
       o "Próximamente", enlace al índice, Open Graph completo, Clarity + Pixel, leyenda "solo en español".
 - [ ] Idea segunda etapa: "Avísame cuando salga la siguiente parte" (correo, con Make).
-- [ ] Más adelante: archivos para miembros.
+- [ ] Más adelante: archivos para miembros en la Sala de lectura.
 
 ### 🧹 Orden general
 - [ ] **Teresa borra a mano** (Claude no tiene permiso) estas ramas viejas en GitHub → pestaña
@@ -57,6 +64,7 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 ## ✅ Hecho (lo más reciente arriba)
 
 **16-oct**
+- **Blog** publicado: repisa "Blog" con un libro por tema; Astrología (Aries a Cáncer) y Tarot (El Loco a Los Enamorados).
 - Página principal: la Numerología Evolutiva Personal pasó al **Estante abierto** (la Sala de lectura queda
   libre para las historias); el Árbol Pro se agregó al catálogo de texto.
 - Página principal: repisa "Archivo Antiguo" → **Blog**; tomo sellado ahora dice solo **"Próximamente"**;
