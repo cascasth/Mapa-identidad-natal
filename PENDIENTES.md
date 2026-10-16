@@ -42,6 +42,9 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
             volver la Parte 2 un enlace; agregarla a `sitemap.xml`.
             Red social: `parte-2-redes.jpg` (sale de la imagen 1, el celular con el sello; Teresa puede pedir otra).
       - [ ] Parte 3 (domingo 1-nov).
+      Continuidad: la mesa es **redonda** (la lámpara va en la "orilla", nunca "esquina"). La hoja suelta de Rosario
+      dice "Mi número: 11" (sin "camino"). En la calculadora evolutiva Rosario da Camino 11, Mente 11 y Corazón 11;
+      Daniela: Misión 28/10, Base 18/9, Pasado 13/4, Camino 19/10.
       Cada parte: "Fin de la Parte X", recuadro CTA → /mapa-natal.html, enlace a la siguiente
       o "Próximamente", enlace al índice, Open Graph completo, Clarity + Pixel, leyenda "solo en español".
 - [ ] Idea segunda etapa: "Avísame cuando salga la siguiente parte" (correo, con Make).
