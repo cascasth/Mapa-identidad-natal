@@ -1,0 +1,391 @@
+/* ═══════════════════════════════════════════════════════════
+   Sala de lectura · estilo común de las historias
+   (lo usan todas las series y todas las partes)
+   ═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --dark-bg:     #06060e;
+    --gold:        #c9a84c;
+    --gold-bright: #e8c96a;
+    --gold-dim:    #8a6a20;
+    --cream:       #f0ede4;
+    --text-light:  #e2dccf;
+    --text-muted:  #9a8f7c;
+    --papel:       #efe6d0;
+    --tinta:       #1f3f8a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background-color: var(--dark-bg);
+    background-image:
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(232, 180, 90, 0.14), transparent 70%),
+        linear-gradient(rgba(6, 6, 14, 0.80), rgba(6, 6, 14, 0.96)),
+        url('../section_bg.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+a { color: inherit; }
+
+/* ─── BARRA SUPERIOR ─── */
+.topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    background: linear-gradient(rgba(6,6,14,0.9), rgba(6,6,14,0.5));
+}
+.brand {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-size: 1rem;
+}
+.brand img { width: 34px; height: 34px; object-fit: contain; }
+.topbar-link {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid rgba(201, 168, 76, 0.35);
+    border-radius: 30px;
+    padding: 0.45rem 1rem;
+    white-space: nowrap;
+}
+.topbar-link:hover { background: rgba(201, 168, 76, 0.1); }
+
+/* ─── BARRA DE PROGRESO DE LECTURA ─── */
+.progreso {
+    position: fixed; top: 0; left: 0;
+    height: 3px; width: 0;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold-bright));
+    z-index: 50;
+}
+
+/* ─── ENCABEZADO DE LA HISTORIA ─── */
+.cabecera {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 1rem;
+    text-align: center;
+}
+.serie {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+.cabecera h1 {
+    font-family: 'Cinzel Decorative', 'Cinzel', serif;
+    font-weight: 400;
+    font-size: clamp(2.1rem, 6vw, 3.4rem);
+    line-height: 1.15;
+    color: var(--cream);
+    margin: 0.8rem 0 1.2rem;
+}
+.entrada {
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+.entrada p + p { margin-top: 0.6rem; }
+.datos {
+    margin-top: 1.4rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+.idioma {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text-muted);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 20px;
+    padding: 0.2rem 0.9rem;
+}
+
+.anterior {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1.05rem;
+    color: var(--gold);
+    text-decoration: none;
+}
+.anterior:hover { text-decoration: underline; }
+
+/* ─── TEXTO ─── */
+.historia {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 2rem;
+    font-size: 1.32rem;
+    line-height: 1.75;
+}
+.historia p { margin: 0 0 1.1rem; }
+.historia h2.seccion {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-align: center;
+    margin: 3rem 0 1.6rem;
+}
+
+/* Páginas del cuaderno: letra a mano, tinta azul, papel */
+.historia .nota {
+    background:
+        repeating-linear-gradient(transparent 0 1.95rem, rgba(31, 63, 138, 0.13) 1.95rem 2rem),
+        var(--papel);
+    color: var(--tinta);
+    font-family: 'Caveat', 'Segoe Print', cursive;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    padding: 1rem 1.5rem 1rem 2.2rem;
+    margin: 0.4rem 0 1.6rem;
+    border-radius: 3px;
+    border-left: 3px solid rgba(160, 40, 40, 0.35);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    transform: rotate(-0.6deg);
+}
+.historia .nota:nth-of-type(even) { transform: rotate(0.5deg); }
+.historia .nota p { margin: 0; }
+/* Tachaduras a pluma: una raya, o muchas encimadas ("tantas que casi no se distinguían") */
+.historia .tachado { text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--tinta); }
+.historia .tachado.muchas {
+    text-decoration: none;
+    background:
+        linear-gradient(176deg, transparent 38%, var(--tinta) 39% 44%, transparent 45%),
+        linear-gradient(183deg, transparent 50%, var(--tinta) 51% 56%, transparent 57%),
+        linear-gradient(179deg, transparent 60%, var(--tinta) 61% 66%, transparent 67%),
+        linear-gradient(185deg, transparent 30%, var(--tinta) 31% 35%, transparent 36%);
+}
+
+/* Frases del Mapa de Identidad (texto impreso del PDF) */
+.historia .cita-mapa {
+    border: 1px solid rgba(201, 168, 76, 0.45);
+    border-left: 3px solid var(--gold);
+    background: linear-gradient(160deg, rgba(59, 29, 102, 0.28), rgba(6, 6, 14, 0.55));
+    border-radius: 4px;
+    padding: 1rem 1.4rem;
+    margin: 0.4rem 0 1.6rem;
+    font-style: italic;
+    font-size: 1.28rem;
+    color: var(--cream);
+}
+.historia .cita-mapa p { margin: 0; }
+.historia .cita-mapa p + p { margin-top: 0.5rem; }
+
+/* Mensajes de celular */
+.historia .msg {
+    font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.45;
+    max-width: 82%;
+    padding: 0.6rem 0.9rem;
+    border-radius: 14px;
+    margin-bottom: 0.9rem;
+    color: #f2f2f2;
+}
+.historia .msg.sale  { margin-left: auto; background: #1f5c4a; border-bottom-right-radius: 4px; }
+.historia .msg.entra { margin-right: auto; background: #2b2b33; border-bottom-left-radius: 4px; }
+
+/* Búsquedas en internet */
+.historia .busqueda {
+    font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    color: #e9e9e9;
+    background: #1d1d24;
+    border: 1px solid #3a3a46;
+    border-radius: 30px;
+    padding: 0.6rem 1.1rem 0.6rem 2.6rem;
+    position: relative;
+}
+.historia .busqueda::before {
+    content: '⌕';
+    position: absolute; left: 1rem; top: 50%;
+    transform: translateY(-55%);
+    font-size: 1.3rem;
+    color: #9aa0a6;
+}
+
+/* Ilustraciones */
+.historia .ilustracion { margin: 2.2rem 0; text-align: center; }
+.historia .ilustracion img {
+    max-width: 100%;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+.historia .ilustracion.falta { display: none; }
+
+/* ─── FINAL ─── */
+.final {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+    text-align: center;
+}
+.fin {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin: 1rem 0 2.5rem;
+}
+.fin::before, .fin::after { content: ' ✦ '; color: var(--gold-dim); }
+
+.cta {
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    border-radius: 10px;
+    background: linear-gradient(160deg, rgba(59, 29, 102, 0.35), rgba(6, 6, 14, 0.6));
+    box-shadow: 0 0 40px rgba(201, 168, 76, 0.08), inset 0 0 0 1px rgba(201, 168, 76, 0.08);
+    padding: 2.4rem 1.6rem;
+}
+.cta h3 {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: clamp(1.35rem, 4vw, 1.7rem);
+    line-height: 1.35;
+    color: var(--cream);
+    margin-bottom: 1.6rem;
+}
+.btn-mapa {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: #1a1206;
+    background: linear-gradient(135deg, var(--gold-bright), var(--gold) 55%, #a8842e);
+    border-radius: 40px;
+    padding: 0.95rem 1.8rem;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(201, 168, 76, 0.3);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+.btn-mapa:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201, 168, 76, 0.45); }
+
+.siguiente {
+    display: block;
+    margin-top: 2.2rem;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: var(--gold-bright);
+    text-decoration: none;
+}
+a.siguiente:hover { text-decoration: underline; }
+.siguiente.pronto { color: var(--text-muted); font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; }
+
+.volver {
+    display: inline-block;
+    margin-top: 1.6rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-decoration: none;
+}
+.volver:hover { color: var(--gold); }
+
+/* ─── ÍNDICE DE LA SERIE ─── */
+.portada {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 340px) 1fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+.portada img {
+    width: 100%; height: auto;
+    border-radius: 4px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+}
+.portada .falta { display: none; }
+.portada h1 {
+    font-family: 'Cinzel Decorative', 'Cinzel', serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    color: var(--cream);
+    margin: 0.6rem 0 1rem;
+}
+.portada .sinopsis { font-size: 1.25rem; line-height: 1.7; }
+.portada .sinopsis p + p { margin-top: 0.8rem; }
+
+.partes {
+    max-width: 760px;
+    margin: 2rem auto 0;
+    padding: 0 1.5rem 3rem;
+    list-style: none;
+}
+.partes li + li { margin-top: 1rem; }
+.parte {
+    display: flex; align-items: center; gap: 1.2rem;
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    border-radius: 8px;
+    padding: 1.1rem 1.4rem;
+    text-decoration: none;
+    background: rgba(201, 168, 76, 0.04);
+    transition: border-color 0.25s, background 0.25s;
+}
+a.parte:hover { border-color: var(--gold); background: rgba(201, 168, 76, 0.09); }
+.parte .num {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    min-width: 2rem;
+    text-align: center;
+}
+.parte .titulo { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--cream); }
+.parte .estado { display: block; font-style: italic; color: var(--text-muted); font-size: 1.05rem; }
+.parte.pronto { opacity: 0.6; }
+.parte .ir { margin-left: auto; color: var(--gold); font-size: 1.3rem; }
+
+footer {
+    text-align: center;
+    padding: 2rem 1rem 3rem;
+    border-top: 1px solid rgba(201, 168, 76, 0.12);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+footer a { color: var(--gold); text-decoration: none; }
+
+@media (max-width: 700px) {
+    .topbar { padding: 0.8rem 1rem; }
+    .brand { font-size: 0.8rem; letter-spacing: 2px; }
+    .brand img { width: 28px; height: 28px; }
+    .topbar-link { font-size: 0.62rem; padding: 0.4rem 0.7rem; letter-spacing: 1px; }
+    .cabecera { padding-top: 2.4rem; }
+    .historia { font-size: 1.22rem; }
+    .historia .nota { font-size: 1.45rem; padding-left: 1.6rem; }
+    .historia .msg { max-width: 90%; }
+    .portada { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; padding-top: 2rem; }
+    .portada img { max-width: 260px; margin: 0 auto; display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+}

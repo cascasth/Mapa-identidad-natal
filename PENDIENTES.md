@@ -28,6 +28,26 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       otros temas, lo más nuevo arriba), las 4 más nuevas en "Entradas recientes" de `blog/index.html`, contador del tema,
       `sitemap.xml`, y los enlaces Anterior/Siguiente o los chips de signos.
       Idea: cada post de redes lleva a su entrada con "lee más en el blog".
+- [ ] **Historias · "Las páginas que faltaban"** (3 partes, sale una cada **domingo en la tarde-noche**).
+      Carpeta `historias/las-paginas-que-faltaban/`: `index.html` (índice de la serie), `parte-1.html`,
+      `parte-2.html`… Estilo común en `historias/historias.css`; medición de lectura en `historias/historias.js`
+      (eventos lectura_25/50/75, lectura_fin y clic_mapa en Clarity y en el Pixel de Meta como "LecturaHistoria").
+      Imágenes en `img/`: `portada.jpg`, `parte-1-1.jpg` … `parte-1-7.jpg` (la 6 es la de redes: versión horizontal `parte-1-redes.jpg`; la serie usa `portada-redes.jpg`).
+      - [x] Parte 1 "El cuaderno de Rosario" **publicada el 17-oct** (Teresa la programó en Facebook para el domingo 18)
+            junto con el índice de la serie y el libro de la Sala de lectura.
+      - [x] Parte 2 "El mapa invisible" armada (texto v4 + 4 imágenes) como **borrador oculto**
+            `_parte-2.html` (GitHub Pages no publica archivos que empiezan con "_").
+            **Para publicarla el domingo 25-oct:** renombrar a `parte-2.html`; en la Parte 1 cambiar el
+            "Próximamente — Parte 2…" por el enlace "Sigue con la Parte 2 →"; en el índice de la serie
+            volver la Parte 2 un enlace; agregarla a `sitemap.xml`.
+            Red social: `parte-2-redes.jpg` (sale de la imagen 1, el celular con el sello; Teresa puede pedir otra).
+      - [ ] Parte 3 (domingo 1-nov).
+      Continuidad: la mesa es **redonda** (la lámpara va en la "orilla", nunca "esquina"). La hoja suelta de Rosario
+      dice "Mi número: 11" (sin "camino"). En la calculadora evolutiva Rosario da Camino 11, Mente 11 y Corazón 11;
+      Daniela: Misión 28/10, Base 18/9, Pasado 13/4, Camino 19/10.
+      Cada parte: "Fin de la Parte X", recuadro CTA → /mapa-natal.html, enlace a la siguiente
+      o "Próximamente", enlace al índice, Open Graph completo, Clarity + Pixel, leyenda "solo en español".
+- [ ] Idea segunda etapa: "Avísame cuando salga la siguiente parte" (correo, con Make).
 - [ ] Más adelante: archivos para miembros en la Sala de lectura.
 
 ### 🧹 Orden general
@@ -46,8 +66,13 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 
 ## ✅ Hecho (lo más reciente arriba)
 
+**17-oct**
+- **Historias** publicadas: libro "Las páginas que faltaban" en la Sala de lectura, índice de la serie y Parte 1.
+
 **16-oct**
 - **Blog** publicado: repisa "Blog" con un libro por tema; Astrología (Aries a Cáncer) y Tarot (El Loco a Los Enamorados).
+- Página principal: la Numerología Evolutiva Personal pasó al **Estante abierto** (la Sala de lectura queda
+  libre para las historias); el Árbol Pro se agregó al catálogo de texto.
 - Página principal: repisa "Archivo Antiguo" → **Blog**; tomo sellado ahora dice solo **"Próximamente"**;
   en la Sala de lectura la Numerología Evolutiva Personal dice **"Gratis con tu correo"**.
 - Mapa: testimonio nuevo de **Lucila O.** (tarjeta destacada) y nombres en todos los testimonios
