@@ -33,8 +33,8 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       `parte-2.html`… Estilo común en `historias/historias.css`; medición de lectura en `historias/historias.js`
       (eventos lectura_25/50/75, lectura_fin y clic_mapa en Clarity y en el Pixel de Meta como "LecturaHistoria").
       Imágenes en `img/`: `portada.jpg`, `parte-1-1.jpg` … `parte-1-7.jpg` (la 6 es la de redes: versión horizontal `parte-1-redes.jpg`; la serie usa `portada-redes.jpg`).
-      - [x] Parte 1 "El cuaderno de Rosario": página armada con el texto (v7). Imágenes completas. **Lista para publicar.**
-            Publicar el **domingo 18-oct** junto con el libro de la Sala de lectura.
+      - [x] Parte 1 "El cuaderno de Rosario" **publicada el 17-oct** (Teresa la programó en Facebook para el domingo 18)
+            junto con el índice de la serie y el libro de la Sala de lectura.
       - [x] Parte 2 "El mapa invisible" armada (texto v4 + 4 imágenes) como **borrador oculto**
             `_parte-2.html` (GitHub Pages no publica archivos que empiezan con "_").
             **Para publicarla el domingo 25-oct:** renombrar a `parte-2.html`; en la Parte 1 cambiar el
@@ -65,6 +65,9 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 ---
 
 ## ✅ Hecho (lo más reciente arriba)
+
+**17-oct**
+- **Historias** publicadas: libro "Las páginas que faltaban" en la Sala de lectura, índice de la serie y Parte 1.
 
 **16-oct**
 - **Blog** publicado: repisa "Blog" con un libro por tema; Astrología (Aries a Cáncer) y Tarot (El Loco a Los Enamorados).
