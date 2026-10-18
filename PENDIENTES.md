@@ -42,7 +42,7 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
             volver la Parte 2 un enlace; agregarla a `sitemap.xml`.
             Red social: `parte-2-redes.jpg` (sale de la imagen 1, el celular con el sello; Teresa puede pedir otra).
       - [x] Parte 3 "La tercera línea" (FINAL) armada con el texto v2 como **borrador oculto** `_parte-3.html`.
-            **Faltan sus 6 imágenes** (`img/parte-3-1.jpg` … `parte-3-6.jpg`) y elegir la de redes (`parte-3-redes.jpg`).
+            Imágenes 1–5 listas; **falta la imagen 6** (`img/parte-3-6.jpg`). Redes: `parte-3-redes.jpg` (sale de la imagen 5, el abrazo). La lámpara "movió dos veces".
             Correcciones de puntuación aplicadas ("¡Sí! ¡Ja, ja! —se rio Daniela—", "¿El sillón de Leti? Lo odiaba",
             "Sí, aún está"). CTA final: "¿Qué vas a hacer con tus páginas en blanco?" + invitación a regalar un mapa.
             **Para publicarla el domingo 1-nov:** renombrar a `parte-3.html`; en la Parte 2 cambiar el "Próximamente"
