@@ -41,7 +41,13 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
             "Próximamente — Parte 2…" por el enlace "Sigue con la Parte 2 →"; en el índice de la serie
             volver la Parte 2 un enlace; agregarla a `sitemap.xml`.
             Red social: `parte-2-redes.jpg` (sale de la imagen 1, el celular con el sello; Teresa puede pedir otra).
-      - [ ] Parte 3 (domingo 1-nov).
+      - [x] Parte 3 "La tercera línea" (FINAL) armada con el texto v2 como **borrador oculto** `_parte-3.html`.
+            **Faltan sus 6 imágenes** (`img/parte-3-1.jpg` … `parte-3-6.jpg`) y elegir la de redes (`parte-3-redes.jpg`).
+            Correcciones de puntuación aplicadas ("¡Sí! ¡Ja, ja! —se rio Daniela—", "¿El sillón de Leti? Lo odiaba",
+            "Sí, aún está"). CTA final: "¿Qué vas a hacer con tus páginas en blanco?" + invitación a regalar un mapa.
+            **Para publicarla el domingo 1-nov:** renombrar a `parte-3.html`; en la Parte 2 cambiar el "Próximamente"
+            por "Sigue con la Parte 3 →"; en el índice volver la Parte 3 un enlace; sitemap.
+            Verificado: Rosario Kin 9 Luna Roja Solar, Daniela Kin 229 Luna Roja Galáctica; ángel Nelchael (6 de julio).
       Continuidad: la mesa es **redonda** (la lámpara va en la "orilla", nunca "esquina"). La hoja suelta de Rosario
       dice "Mi número: 11" (sin "camino"). En la calculadora evolutiva Rosario da Camino 11, Mente 11 y Corazón 11;
       Daniela: Misión 28/10, Base 18/9, Pasado 13/4, Camino 19/10.
