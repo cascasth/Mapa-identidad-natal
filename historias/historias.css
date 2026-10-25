@@ -209,6 +209,19 @@ a { color: inherit; }
 .historia .msg.sale  { margin-left: auto; background: #1f5c4a; border-bottom-right-radius: 4px; }
 .historia .msg.entra { margin-right: auto; background: #2b2b33; border-bottom-left-radius: 4px; }
 
+/* Publicación en redes sociales */
+.historia .publicacion {
+    font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #1c1c1c;
+    background: #fafafa;
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    margin: 0.4rem 0 1.4rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
 /* Búsquedas en internet */
 .historia .busqueda {
     font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -284,6 +297,12 @@ a { color: inherit; }
     text-decoration: none;
     box-shadow: 0 6px 20px rgba(201, 168, 76, 0.3);
     transition: transform 0.25s, box-shadow 0.25s;
+}
+.cta-extra {
+    margin-top: 1.6rem;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--text-light);
 }
 .btn-mapa:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201, 168, 76, 0.45); }
 

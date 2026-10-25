@@ -35,16 +35,23 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       Imágenes en `img/`: `portada.jpg`, `parte-1-1.jpg` … `parte-1-7.jpg` (la 6 es la de redes: versión horizontal `parte-1-redes.jpg`; la serie usa `portada-redes.jpg`).
       - [x] Parte 1 "El cuaderno de Rosario" **publicada el 17-oct** (Teresa la programó en Facebook para el domingo 18)
             junto con el índice de la serie y el libro de la Sala de lectura.
-      - [x] Parte 2 "El mapa invisible" armada (texto v4 + 4 imágenes) como **borrador oculto**
-            `_parte-2.html` (GitHub Pages no publica archivos que empiezan con "_").
-            **Para publicarla el domingo 25-oct:** renombrar a `parte-2.html`; en la Parte 1 cambiar el
-            "Próximamente — Parte 2…" por el enlace "Sigue con la Parte 2 →"; en el índice de la serie
-            volver la Parte 2 un enlace; agregarla a `sitemap.xml`.
-            Red social: `parte-2-redes.jpg` (sale de la imagen 1, el celular con el sello; Teresa puede pedir otra).
-      - [ ] Parte 3 (domingo 1-nov).
+      - [x] Parte 2 "El mapa invisible" **publicada el 25-oct** (la Parte 1 ya enlaza "Sigue con la Parte 2 →").
+            Red social: `parte-2-redes.jpg` (el celular con el sello).
+      - [x] Parte 3 "La tercera línea" (FINAL) armada con el texto v2 como **borrador oculto** `_parte-3.html`.
+            Imágenes completas (1–6). Redes: `parte-3-redes.jpg` (sale de la imagen 5, el abrazo). La lámpara "movió dos veces".
+            Correcciones de puntuación aplicadas ("¡Sí! ¡Ja, ja! —se rio Daniela—", "¿El sillón de Leti? Lo odiaba",
+            "Sí, aún está"). CTA final: "¿Qué vas a hacer con tus páginas en blanco?" + invitación a regalar un mapa.
+            **Para publicarla el domingo 1-nov:** renombrar a `parte-3.html`; en la Parte 2 cambiar el "Próximamente"
+            por "Sigue con la Parte 3 →"; en el índice volver la Parte 3 un enlace; sitemap.
+            Verificado: Rosario Kin 9 Luna Roja Solar, Daniela Kin 229 Luna Roja Galáctica; ángel Nelchael (6 de julio).
       Continuidad: la mesa es **redonda** (la lámpara va en la "orilla", nunca "esquina"). La hoja suelta de Rosario
       dice "Mi número: 11" (sin "camino"). En la calculadora evolutiva Rosario da Camino 11, Mente 11 y Corazón 11;
       Daniela: Misión 28/10, Base 18/9, Pasado 13/4, Camino 19/10.
+      Guiño a propósito (no corregir): en la Parte 1 aparece "once" 3 veces (once publicaciones, a las once,
+      once pestañas).
+      **Medición:** Clarity y el Pixel solo se cargan en centroserintegral.org (no en vistas previas) y no en los
+      dispositivos de Teresa: abrir cualquier historia con `?soy-teresa` lo apaga en ese dispositivo
+      (`?no-soy-teresa` lo vuelve a encender). Datos antes del 25-oct incluyen revisiones de Teresa.
       Cada parte: "Fin de la Parte X", recuadro CTA → /mapa-natal.html, enlace a la siguiente
       o "Próximamente", enlace al índice, Open Graph completo, Clarity + Pixel, leyenda "solo en español".
 - [ ] Idea segunda etapa: "Avísame cuando salga la siguiente parte" (correo, con Make).
@@ -65,6 +72,9 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 ---
 
 ## ✅ Hecho (lo más reciente arriba)
+
+**25-oct**
+- **Parte 2** de "Las páginas que faltaban" publicada; la medición ya no cuenta vistas previas ni las visitas de Teresa.
 
 **17-oct**
 - **Historias** publicadas: libro "Las páginas que faltaban" en la Sala de lectura, índice de la serie y Parte 1.
