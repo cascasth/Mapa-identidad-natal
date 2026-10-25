@@ -28,8 +28,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Cinzel+Decorative:wght@400&family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../historias.css">
 
+<!-- Medición: no cuenta la vista previa ni los dispositivos de Teresa.
+     Abrir cualquier página de las historias con ?soy-teresa apaga la medición en ese dispositivo;
+     con ?no-soy-teresa se vuelve a encender. -->
+<script>
+(function () {
+    var q = location.search, interna = false;
+    try {
+        if (/[?&]soy-teresa\b/.test(q)) { localStorage.setItem('csi_interna', '1'); alert('Listo: las visitas de este dispositivo ya no cuentan en las estadísticas.'); }
+        if (/[?&]no-soy-teresa\b/.test(q)) { localStorage.removeItem('csi_interna'); alert('Listo: este dispositivo vuelve a contar en las estadísticas.'); }
+        interna = localStorage.getItem('csi_interna') === '1';
+    } catch (e) {}
+    window.CSI_MEDIR = !interna && /(^|\.)centroserintegral\.org$/.test(location.hostname);
+})();
+</script>
+
 <!-- Meta Pixel Code -->
 <script>
+if (window.CSI_MEDIR) {
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -40,14 +56,12 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1389833309683131');
 fbq('track', 'PageView');
+}
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
 
 <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
+    if (window.CSI_MEDIR) (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
@@ -86,10 +100,11 @@ src="https://www.facebook.com/tr?id=1389833309683131&ev=PageView&noscript=1"
             </a>
         </li>
         <li>
-            <div class="parte pronto">
+            <a class="parte" href="parte-2.html">
                 <span class="num">II</span>
-                <span><span class="titulo">El mapa invisible</span><span class="estado">Parte 2 · Próximamente, domingo 25 de octubre</span></span>
-            </div>
+                <span><span class="titulo">El mapa invisible</span><span class="estado">Parte 2 · Lectura de 7 minutos</span></span>
+                <span class="ir">→</span>
+            </a>
         </li>
         <li>
             <div class="parte pronto">

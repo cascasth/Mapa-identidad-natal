@@ -34,6 +34,8 @@
 
     window.addEventListener('scroll', revisar, { passive: true });
     window.addEventListener('resize', revisar);
+    // Las imágenes cargan mientras se lee y la página crece: se vuelve a revisar cuando termina cada una
+    document.addEventListener('load', revisar, true);
     revisar();
 
     document.querySelectorAll('.btn-mapa').forEach(function (b) {
