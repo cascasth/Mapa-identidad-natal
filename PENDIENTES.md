@@ -66,6 +66,17 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 
 ---
 
+## 📣 Redes sociales (aprendido en oct-2026)
+- **Límite de Meta:** la página de Facebook solo puede poner enlaces en **2 publicaciones al mes** (sin Meta One);
+  tampoco deja enlaces en comentarios. Se renueva el día 1. Usar esos 2 enlaces para lo más importante
+  (ej. la última parte de una historia → página de la serie). Los **anuncios pagados no tienen ese límite**.
+- Alternativas sin límite: historias con sticker de enlace, link en la bio de Instagram, botón "Más información"
+  de la página, WhatsApp, y compartir desde el perfil personal de Teresa.
+- En la sección "Enlaces" del perfil y en las vistas previas Facebook solo muestra el dominio: es normal.
+  Teresa descartó crear una dirección corta (ej. `/historia`) por eso.
+- Si una vista previa sale incompleta: Depurador de Facebook → "Volver a extraer" y volver a publicar.
+- El carrusel estilo periódico en Instagram rindió mejor que los posts normales.
+
 ## 💡 Ideas para después
 - Pedir a quienes dan testimonio permiso para usar nombre + inicial (ya se hizo con los 5 actuales).
 
