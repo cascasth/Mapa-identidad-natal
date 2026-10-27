@@ -247,6 +247,12 @@ a:hover { color: var(--cream); }
 .combo p { margin: 0 0 0.4rem; }
 .combo .reto { font-size: 1.08rem; color: var(--text-muted); }
 .combo .reto b { color: #d4c2f2; font-weight: 500; }
+.combo-head .glifo { width: 44px; height: 44px; flex: none; align-self: center; border-radius: 6px; }
+.combo-head:has(.glifo) { align-items: center; }
+.combo b.tit { color: var(--gold); font-weight: 500; }
+.combo .pregunta { font-style: italic; color: var(--cream); border-left: 2px solid var(--gold); padding-left: 0.8rem; margin-top: 0.6rem; }
+.combo .pregunta::before { content: 'Para reflexionar: '; font-style: normal; font-family: 'Cinzel', serif; font-size: 0.95rem; letter-spacing: 1px; color: var(--gold-bright); }
+.lead-q { font-size: 1.3rem; color: var(--cream); }
 
 /* Nota aclaratoria */
 .nota {
