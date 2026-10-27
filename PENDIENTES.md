@@ -87,6 +87,11 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 
 ## ✅ Hecho (lo más reciente arriba)
 
+**27-oct**
+- Blog: tema **Tzolkin** abierto ("Tu Kin Dreamspell y el amor"), libro activo en la repisa Blog.
+- Menú "☰ Gratis" de todas las páginas con **Sala de lectura** y **Blog**, en el orden del librero.
+- Catálogo: textos de Palabras, Árbol Pro ("un solo pago y uso de por vida") y Tzolkin ("cuenta Dreamspell", sin nombrar autores).
+
 **25-oct**
 - **Parte 2** de "Las páginas que faltaban" publicada; la medición ya no cuenta vistas previas ni las visitas de Teresa.
 
