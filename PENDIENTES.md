@@ -27,6 +27,9 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       Al agregar una entrada: tarjeta en `blog/<tema>/index.html` (tarot en orden 0, I, II…; signos en orden del zodiaco;
       otros temas, lo más nuevo arriba), las 4 más nuevas en "Entradas recientes" de `blog/index.html`, contador del tema,
       `sitemap.xml`, y los enlaces Anterior/Siguiente o los chips de signos.
+      Tzolkin: tema abierto el 27-oct con "Tu Kin Dreamspell y el amor" (`blog/tzolkin/tu-kin-y-el-amor.html`):
+      los 20 sellos con su glifo (`/Glifos/glifo_NN.png`), "Cómo amas / Tu desafío / Para reflexionar".
+      El blog **no lleva arte propio**: símbolo grande arriba y `og_titulo4.png` para redes (en Tzolkin, los glifos del sitio).
       Idea: cada post de redes lleva a su entrada con "lee más en el blog".
 - [ ] **Historias · "Las páginas que faltaban"** (3 partes, sale una cada **domingo en la tarde-noche**).
       Carpeta `historias/las-paginas-que-faltaban/`: `index.html` (índice de la serie), `parte-1.html`,
