@@ -31,7 +31,7 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       los 20 sellos con su glifo (`/Glifos/glifo_NN.png`), "Cómo amas / Tu desafío / Para reflexionar".
       El blog **no lleva arte propio**: símbolo grande arriba y `og_titulo4.png` para redes (en Tzolkin, los glifos del sitio).
       Idea: cada post de redes lleva a su entrada con "lee más en el blog".
-- [ ] **Historias · "Las páginas que faltaban"** (3 partes, sale una cada **domingo en la tarde-noche**).
+- [x] **Historias · "Las páginas que faltaban"** — serie completa (3 partes, publicadas los domingos 18-oct, 25-oct y 1-nov).
       Carpeta `historias/las-paginas-que-faltaban/`: `index.html` (índice de la serie), `parte-1.html`,
       `parte-2.html`… Estilo común en `historias/historias.css`; medición de lectura en `historias/historias.js`
       (eventos lectura_25/50/75, lectura_fin y clic_mapa en Clarity y en el Pixel de Meta como "LecturaHistoria").
@@ -40,12 +40,8 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
             junto con el índice de la serie y el libro de la Sala de lectura.
       - [x] Parte 2 "El mapa invisible" **publicada el 25-oct** (la Parte 1 ya enlaza "Sigue con la Parte 2 →").
             Red social: `parte-2-redes.jpg` (el celular con el sello).
-      - [x] Parte 3 "La tercera línea" (FINAL) armada con el texto v2 como **borrador oculto** `_parte-3.html`.
-            Imágenes completas (1–6). Redes: `parte-3-redes.jpg` (sale de la imagen 5, el abrazo). La lámpara "movió dos veces".
-            Correcciones de puntuación aplicadas ("¡Sí! ¡Ja, ja! —se rio Daniela—", "¿El sillón de Leti? Lo odiaba",
-            "Sí, aún está"). CTA final: "¿Qué vas a hacer con tus páginas en blanco?" + invitación a regalar un mapa.
-            **Para publicarla el domingo 1-nov:** renombrar a `parte-3.html`; en la Parte 2 cambiar el "Próximamente"
-            por "Sigue con la Parte 3 →"; en el índice volver la Parte 3 un enlace; sitemap.
+      - [x] Parte 3 "La tercera línea" (FINAL) **publicada el 1-nov**. **Serie completa.**
+            Redes: `parte-3-redes.jpg` (el abrazo).
             Verificado: Rosario Kin 9 Luna Roja Solar, Daniela Kin 229 Luna Roja Galáctica; ángel Nelchael (6 de julio).
       Continuidad: la mesa es **redonda** (la lámpara va en la "orilla", nunca "esquina"). La hoja suelta de Rosario
       dice "Mi número: 11" (sin "camino"). En la calculadora evolutiva Rosario da Camino 11, Mente 11 y Corazón 11;
@@ -86,6 +82,9 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 ---
 
 ## ✅ Hecho (lo más reciente arriba)
+
+**1-nov**
+- **Parte 3** (final) de "Las páginas que faltaban" publicada: la serie está completa.
 
 **27-oct**
 - Blog: tema **Tzolkin** abierto ("Tu Kin Dreamspell y el amor"), libro activo en la repisa Blog.
