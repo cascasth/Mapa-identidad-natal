@@ -48,9 +48,7 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
       Daniela: Misión 28/10, Base 18/9, Pasado 13/4, Camino 19/10.
       Guiño a propósito (no corregir): en la Parte 1 aparece "once" 3 veces (once publicaciones, a las once,
       once pestañas).
-      **Medición:** Clarity y el Pixel solo se cargan en centroserintegral.org (no en vistas previas) y no en los
-      dispositivos de Teresa: abrir cualquier historia con `?soy-teresa` lo apaga en ese dispositivo
-      (`?no-soy-teresa` lo vuelve a encender). Datos antes del 25-oct incluyen revisiones de Teresa.
+      **Medición:** ver la sección "📊 Medición" más abajo.
       Cada parte: "Fin de la Parte X", recuadro CTA → /mapa-natal.html, enlace a la siguiente
       o "Próximamente", enlace al índice, Open Graph completo, Clarity + Pixel, leyenda "solo en español".
 - [ ] Idea segunda etapa: "Avísame cuando salga la siguiente parte" (correo, con Make).
@@ -76,12 +74,25 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 - Si una vista previa sale incompleta: Depurador de Facebook → "Volver a extraer" y volver a publicar.
 - El carrusel estilo periódico en Instagram rindió mejor que los posts normales.
 
+## 📊 Medición (Clarity + Pixel de Meta)
+- Desde el 2-nov, en **todas** las páginas con Clarity/Pixel (Biblioteca, Mapa, calculadoras, Árbol, privacidad,
+  historias) solo se mide en centroserintegral.org y **no** en los dispositivos de Teresa: abrir cualquier página con
+  `?soy-teresa` apaga la medición en ese dispositivo (`?no-soy-teresa` la enciende). Antes de esa fecha (y antes del
+  25-oct en historias) los datos incluyen muchas visitas de Teresa (~48 de 143 sesiones en oct).
+- El proyecto de Clarity **también recibe bioevolutivaconsciente.com** (otro sitio): filtrar por URL "contiene
+  centroserintegral.org". Pendiente: darle a ese sitio su propio proyecto de Clarity.
+- Las páginas del **blog no tienen** Clarity ni Pixel todavía.
+- Etiqueta de Clarity `historia` = `las-paginas-que-faltaban-1/2/3` para filtrar por parte.
+
 ## 💡 Ideas para después
 - Pedir a quienes dan testimonio permiso para usar nombre + inicial (ya se hizo con los 5 actuales).
 
 ---
 
 ## ✅ Hecho (lo más reciente arriba)
+
+**2-nov**
+- Medición: el apagado `?soy-teresa` y "solo en el dominio real" ahora aplica en todo el sitio, no solo en las historias.
 
 **1-nov**
 - **Parte 3** (final) de "Las páginas que faltaban" publicada: la serie está completa.
