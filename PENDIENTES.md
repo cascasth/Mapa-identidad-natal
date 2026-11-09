@@ -81,7 +81,7 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
   25-oct en historias) los datos incluyen muchas visitas de Teresa (~48 de 143 sesiones en oct).
 - El proyecto de Clarity **también recibe bioevolutivaconsciente.com** (otro sitio): filtrar por URL "contiene
   centroserintegral.org". Pendiente: darle a ese sitio su propio proyecto de Clarity.
-- Las páginas del **blog no tienen** Clarity ni Pixel todavía.
+- El **blog** tiene Clarity desde el 9-nov (con el mismo apagado `?soy-teresa`); no tiene Pixel.
 - Etiqueta de Clarity `historia` = `las-paginas-que-faltaban-1/2/3` para filtrar por parte.
 
 ## 💡 Ideas para después
