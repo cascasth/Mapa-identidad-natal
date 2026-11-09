@@ -71,6 +71,9 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
   de la página, WhatsApp, y compartir desde el perfil personal de Teresa.
 - En la sección "Enlaces" del perfil y en las vistas previas Facebook solo muestra el dominio: es normal.
   Teresa descartó crear una dirección corta (ej. `/historia`) por eso.
+- **Redes en el sitio** (desde el 9-nov): íconos de Facebook (facebook.com/CentroSerIntegral), Instagram
+  (instagram.com/centroserintegral) y TikTok (tiktok.com/@centroserintegral) en el pie de página de todas las páginas
+  (bloque `csi-redes`; en pies claros de calculadoras van en morado). YouTube no se usa.
 - Si una vista previa sale incompleta: Depurador de Facebook → "Volver a extraer" y volver a publicar.
 - El carrusel estilo periódico en Instagram rindió mejor que los posts normales.
 
@@ -81,7 +84,7 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
   25-oct en historias) los datos incluyen muchas visitas de Teresa (~48 de 143 sesiones en oct).
 - El proyecto de Clarity **también recibe bioevolutivaconsciente.com** (otro sitio): filtrar por URL "contiene
   centroserintegral.org". Pendiente: darle a ese sitio su propio proyecto de Clarity.
-- Las páginas del **blog no tienen** Clarity ni Pixel todavía.
+- El **blog** tiene Clarity desde el 9-nov (con el mismo apagado `?soy-teresa`); no tiene Pixel.
 - Etiqueta de Clarity `historia` = `las-paginas-que-faltaban-1/2/3` para filtrar por parte.
 
 ## 💡 Ideas para después
@@ -90,6 +93,10 @@ Cada conversación de Claude lee este archivo al empezar y lo actualiza al termi
 ---
 
 ## ✅ Hecho (lo más reciente arriba)
+
+**9-nov**
+- Íconos de Facebook, Instagram y TikTok en el pie de página de 39 páginas.
+- Clarity en las 24 páginas del blog.
 
 **2-nov**
 - Medición: el apagado `?soy-teresa` y "solo en el dominio real" ahora aplica en todo el sitio, no solo en las historias.
